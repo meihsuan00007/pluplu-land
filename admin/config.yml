@@ -8,7 +8,7 @@
 
 backend:
   name: github
-  repo: your-github-username/pluplu-land   # ← 部署後請改成你的 GitHub 帳號/repo 名稱
+  repo: meihsuan00007/pluplu-land   # ← 部署後請改成你的 GitHub 帳號/repo 名稱
   branch: main
 
 # 圖片上傳後會存放在這個資料夾，網站程式碼會從這裡讀取圖片
