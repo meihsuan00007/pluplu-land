@@ -1,0 +1,107 @@
+# ────────────────────────────────────────────────────────────
+# PluPlu Land 後台設定檔
+#
+# 部署到 GitHub + Netlify 後，請把下面 repo 欄位
+# 改成你自己的「GitHub帳號/repo名稱」，例如：
+#   repo: melody-chen/pluplu-land
+# ────────────────────────────────────────────────────────────
+
+backend:
+  name: github
+  repo: your-github-username/pluplu-land   # ← 部署後請改成你的 GitHub 帳號/repo 名稱
+  branch: main
+
+# 圖片上傳後會存放在這個資料夾，網站程式碼會從這裡讀取圖片
+media_folder: "images/uploads"
+public_folder: "/images/uploads"
+
+locale: "zh_Hant"
+
+collections:
+
+  # ── 網站文字設定（首頁／各分頁標題文案／聯絡資訊）──────────────
+  - name: "site_settings"
+    label: "網站文字設定"
+    files:
+      - name: "site"
+        label: "首頁與各頁面文字"
+        file: "content/site.json"
+        fields:
+          - { label: "首頁", name: "home", widget: "object", fields: [
+              { label: "小標籤", name: "eyebrow", widget: "string" },
+              { label: "主標題", name: "title", widget: "string" },
+              { label: "介紹文字", name: "lead", widget: "text" },
+              { label: "主視覺圖片", name: "hero_image", widget: "image" },
+            ]}
+          - { label: "はむにぎり倉鼠娃頁", name: "hamu_page", widget: "object", fields: [
+              { label: "小標籤", name: "eyebrow", widget: "string" },
+              { label: "主標題", name: "title", widget: "string" },
+              { label: "介紹文字", name: "lead", widget: "text" },
+              { label: "主視覺圖片", name: "hero_image", widget: "image" },
+            ]}
+          - { label: "娃裝配件頁", name: "goods_page", widget: "object", fields: [
+              { label: "小標籤", name: "eyebrow", widget: "string" },
+              { label: "主標題", name: "title", widget: "string" },
+              { label: "介紹文字", name: "lead", widget: "text" },
+              { label: "主視覺圖片", name: "hero_image", widget: "image" },
+            ]}
+          - { label: "品牌故事頁", name: "story_page", widget: "object", fields: [
+              { label: "小標籤", name: "eyebrow", widget: "string" },
+              { label: "主標題", name: "title", widget: "string" },
+              { label: "介紹文字", name: "lead", widget: "text" },
+              { label: "主視覺圖片", name: "hero_image", widget: "image" },
+              { label: "品牌時間軸", name: "timeline", widget: "list", fields: [
+                  { label: "階段標籤", name: "year", widget: "string" },
+                  { label: "標題", name: "title", widget: "string" },
+                  { label: "內文", name: "body", widget: "text" },
+                ]
+              },
+            ]}
+          - { label: "聯絡資訊", name: "contact", widget: "object", fields: [
+              { label: "Email", name: "email", widget: "string" },
+              { label: "Instagram 帳號顯示文字", name: "instagram_handle", widget: "string" },
+              { label: "Instagram 連結網址", name: "instagram_url", widget: "string" },
+              { label: "客服時間", name: "hours", widget: "string" },
+            ]}
+
+  # ── はむにぎり倉鼠娃商品清單 ──────────────────────────────────
+  - name: "hamu_products"
+    label: "はむにぎり倉鼠娃商品"
+    files:
+      - name: "hamu"
+        label: "倉鼠娃陳列清單"
+        file: "content/products-hamu.json"
+        fields:
+          - label: "商品清單"
+            name: "items"
+            widget: "list"
+            summary: "{{name}}"
+            fields:
+              - { label: "商品名稱", name: "name", widget: "string" }
+              - { label: "小標籤（例如：居家／戶外／節慶）", name: "tag", widget: "string", required: false }
+              - { label: "商品照片", name: "image", widget: "image" }
+              - { label: "商品說明", name: "note", widget: "text" }
+
+  # ── 娃裝配件商品清單 ──────────────────────────────────────────
+  - name: "goods_products"
+    label: "娃裝配件商品"
+    files:
+      - name: "goods"
+        label: "娃裝配件陳列清單"
+        file: "content/products-goods.json"
+        fields:
+          - label: "商品清單"
+            name: "items"
+            widget: "list"
+            summary: "{{name}} — {{category}}"
+            fields:
+              - { label: "商品名稱", name: "name", widget: "string" }
+              - label: "分類"
+                name: "category"
+                widget: "select"
+                options:
+                  - { label: "外套 ・ 洋裝", value: "outerwear" }
+                  - { label: "帽飾 ・ 披肩", value: "hats" }
+              - { label: "小標籤", name: "tag", widget: "string", required: false }
+              - { label: "商品照片", name: "image", widget: "image" }
+              - { label: "商品說明", name: "note", widget: "text" }
