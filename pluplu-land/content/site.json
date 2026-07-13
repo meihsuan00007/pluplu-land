@@ -1,0 +1,49 @@
+{
+  "home": {
+    "eyebrow": "PluPlu Land · 概念旗艦店",
+    "title": "在棉花軟綿綿的小天地，遇見想陪你的娃寶。",
+    "lead": "はむにぎり倉鼠娃寶與一件件手作娃裝，是我們替都市生活找到的溫柔出口。這裡沒有交易的距離感，只有陪伴的溫度。",
+    "hero_image": "images/uploads/denim-dress-hand.jpg"
+  },
+  "hamu_page": {
+    "eyebrow": "はむにぎり ・ 導流主力",
+    "title": "圓滾滾的療癒系倉鼠娃寶",
+    "lead": "來自日本、在台灣也掀起討論度的當紅角色。每一隻娃寶的表情都不太一樣——有點呆、有點傲嬌，捧在手心裡剛剛好。",
+    "hero_image": "images/uploads/cuddle-closeup.jpg"
+  },
+  "goods_page": {
+    "eyebrow": "娃裝配件 ・ 主力商品",
+    "title": "一件一件手作的生活感",
+    "lead": "從家居針織到節慶披風，替娃寶打理今天要穿什麼，是這個小天地最珍惜的日常儀式。也是品牌最主要的收入來源與心血所在。",
+    "hero_image": "images/uploads/tweed-pearl-coat.jpg"
+  },
+  "story_page": {
+    "eyebrow": "OUR STORY",
+    "title": "一個棉花軟綿綿的小天地",
+    "lead": "PluPlu Land 不只是賣娃衣，而是打造一個「療癒與陪伴的微型世界」。在這裡，買娃衣不是一筆交易，而是替娃寶打造生活的體驗。",
+    "hero_image": "images/uploads/gingham-overalls.jpg",
+    "timeline": [
+      {
+        "year": "前線・十年",
+        "title": "服務業前線的十年",
+        "body": "創辦人曾在服務業前線待了十年。大部分的公司體制並非理想的健康環境，這段經歷，種下了「希望創造一個讓夥伴自在、積極工作」的心願。"
+      },
+      {
+        "year": "相遇",
+        "title": "一見鍾情的娃款",
+        "body": "一直覺得娃衣市場有潛力，直到遇見一款讓人一見鍾情、卻難買到衣服的娃款——這就是はむにぎり倉鼠娃寶。於是從這款娃寶的娃衣專賣店開始了 PluPlu Land。"
+      },
+      {
+        "year": "現在",
+        "title": "不只是做生意",
+        "body": "希望不只是做生意，也能對這個社會上需要療癒的人，產生一點正向的影響。這個名字，PluPlu Land，就是想留給你的——一個便便軟綿綿的小天地。"
+      }
+    ]
+  },
+  "contact": {
+    "email": "hello@pluplu-land.com",
+    "instagram_handle": "@pluplu.land",
+    "instagram_url": "https://instagram.com/pluplu.land",
+    "hours": "週一至週五 10:00–18:00"
+  }
+}
