@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>PluPlu Land ｜ 棉花軟綿綿的小天地</title>
-<meta name="description" content="PluPlu Land — はむにぎり倉鼠娃寶與娃裝配件的概念旗艦店，全實拍、零 AI，陪你打造一格療癒的微型世界。">
+<title>PluPlu Land ｜ 軟綿綿的小天地</title>
+<meta name="description" content="PluPlu Land，軟綿綿的小天地。はむにぎり倉鼠娃寶與精心挑選的娃裝配件，全實拍、零 AI，陪你把日子過得慢一點、軟一點。">
 <link rel="icon" href="images/logo.png">
 <link rel="stylesheet" href="css/style.css">
 <!-- Netlify Identity：讓後台的邀請信連結能正確導回 /admin -->
@@ -18,57 +18,191 @@
       <img src="images/logo.png" alt="PluPlu Land">
       <span>Concept Store</span>
     </a>
-    <button class="nav-toggle" aria-label="開啟選單"><span></span></button>
     <div class="nav-links">
-      <a href="index.html" class="current">首頁</a>
       <a href="hamu.html">はむにぎり倉鼠娃</a>
-      <a href="goods.html">娃裝配件</a>
+      <a href="shop.html">娃衣選品</a>
       <a href="story.html">品牌故事</a>
-      <a href="contact.html">聯絡我們</a>
     </div>
+    <div class="nav-icons">
+      <a class="nav-icon nav-icon--cart" href="https://myship.7-11.com.tw/general/detail/GM2605058795102" target="_blank" rel="noopener" aria-label="前往賣貨便下單"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="21" r="1.5"></circle><circle cx="19" cy="21" r="1.5"></circle><path d="M2 3h3l2.6 12.5a1 1 0 0 0 1 .8h9.8a1 1 0 0 0 1-.8L21 8H6"></path></svg></a>
+      <a class="nav-icon nav-icon--ig" href="https://www.instagram.com/plupluland_tw" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg></a>
+      <a class="nav-icon nav-icon--line" href="https://lin.ee/p8jJX9m" target="_blank" rel="noopener" aria-label="加入 LINE 好友"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.5C6.2 2.5 1.5 6.4 1.5 11.2c0 4.3 3.7 7.9 8.8 8.6.34.07.8.23.92.52.1.27.07.68.03.95l-.14.9c-.04.27-.2 1.04.9.57 1.1-.47 5.9-3.55 8.05-6.07 1.48-1.66 2.44-3.35 2.44-5.43C22.5 6.4 17.8 2.5 12 2.5z"/></svg></a>
+    </div>
+    <button class="nav-toggle" aria-label="開啟選單"><span></span></button>
   </div>
 </nav>
 
-<header class="hero">
-  <div class="wrap hero-inner">
-    <div class="hero-copy reveal in">
-      <span class="eyebrow" data-field="home.eyebrow">PluPlu Land · 概念旗艦店</span>
-      <h1 data-field="home.title">在棉花軟綿綿的<br>小天地，遇見想陪你的娃寶。</h1>
-      <p class="lead" data-field="home.lead">はむにぎり倉鼠娃寶與一件件手作娃裝，是我們替都市生活找到的溫柔出口。這裡沒有交易的距離感，只有陪伴的溫度。</p>
-      <div class="hero-cta">
-        <a href="hamu.html" class="btn solid">認識倉鼠娃寶</a>
-        <a href="goods.html" class="btn">選購娃裝配件</a>
+<!-- ===== 頂部大輪播（內容可在後台「首頁」編輯，以下為載入前的預設內容）===== -->
+<section class="carousel-shell" aria-label="主打活動輪播">
+  <div class="wrap">
+    <div class="carousel" id="home-carousel">
+  <div class="carousel-track">
+    <div class="carousel-slide is-active">
+      <img src="images/uploads/dollhouse-group.jpg" alt="多隻はむにぎり倉鼠娃寶穿著不同針織裝聚在一起">
+      <div class="carousel-caption">
+        <span class="eyebrow">MEET THE HAMU</span>
+        <h2>遇見はむにぎり娃寶</h2>
+        <p>每一隻的表情都不太一樣，有點呆、有點傲嬌，正等你帶回家、取一個名字。</p>
+        <a href="hamu.html" class="btn solid">來認識娃寶</a>
       </div>
     </div>
-    <div class="hero-figure reveal in">
-      <img data-field-img="home.hero_image" src="images/uploads/denim-dress-hand.jpg" alt="はむにぎり倉鼠娃寶穿著牛仔洋裝，被輕輕捧在手心">
-      <div class="tag-sticker">全實拍<br>NO AI</div>
+    <div class="carousel-slide">
+      <img src="images/uploads/tweed-pearl-coat.jpg" alt="娃寶穿著粗花呢珍珠外套">
+      <div class="carousel-caption">
+        <span class="eyebrow">NEW ARRIVAL</span>
+        <h2>新品娃裝上架</h2>
+        <p>粗花呢配珍珠領，穿上的那一刻，娃寶優雅得像要去喝下午茶。</p>
+        <a href="goods.html" class="btn solid">先睹為快</a>
+      </div>
+    </div>
+    <!-- 海報式輪播格：圖片本身已含文案與「前往野餐」按鈕設計，整張可點擊 -->
+    <a href="shop.html" class="carousel-slide carousel-slide--poster">
+      <img src="images/uploads/picnic-banner.jpg" alt="野餐季企劃新品登場，三隻娃寶戴草帽準備野餐">
+    </a>
+  </div>
+  <button class="carousel-arrow prev" aria-label="上一張">‹</button>
+  <button class="carousel-arrow next" aria-label="下一張">›</button>
+  <div class="carousel-dots"></div>
     </div>
   </div>
-</header>
+</section>
 
+<!-- ===== 行銷組合 Banner：左大圖＋右二疊圖 ===== -->
+<section class="section">
+  <div class="wrap">
+    <div class="promo-grid reveal" id="promo-grid">
+      <a href="goods.html" class="promo-item promo-item--tall">
+        <img src="images/uploads/denim-dress-hand.jpg" alt="娃寶穿著牛仔吊帶裙，被捧在手心">
+        <div class="promo-copy">
+          <span class="promo-more">New in</span>
+          <h3>新品上市</h3>
+          <p>娃裝新朋友，陸續報到中</p>
+        </div>
+      </a>
+      <a href="hamu.html" class="promo-item">
+        <img src="images/uploads/cuddle-closeup.jpg" alt="兩隻倉鼠娃寶依偎的特寫">
+        <div class="promo-copy">
+          <span class="promo-more">Popular</span>
+          <h3>人氣推薦</h3>
+          <p>最常被抱回家的娃寶們</p>
+        </div>
+      </a>
+      <a href="goods.html" class="promo-item">
+        <img src="images/uploads/pearl-butterfly-detail.jpg" alt="娃裝上的珍珠蝴蝶項鍊特寫">
+        <div class="promo-copy">
+          <span class="promo-more">Accessories</span>
+          <h3>配件專區</h3>
+          <p>帽帽、披肩與亮晶晶的小珠寶</p>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 社群分享行銷活動公告 ===== -->
+<section class="section" style="padding-top:0;">
+  <div class="wrap">
+    <div class="campaign reveal">
+      <div class="campaign-copy">
+        <span class="eyebrow">SHARE &amp; SAVE</span>
+        <h2>發限動，折 NT$30</h2>
+        <p>收到娃寶或新衣後，拍張照發限時動態、標記 @plupluland_tw，下次消費就折 NT$30。讓更多人看見你家寶寶今天的可愛吧！</p>
+      </div>
+      <div class="campaign-actions">
+        <a class="btn solid icon-link" href="https://instagram.com/plupluland_tw" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>追蹤 Instagram</a>
+        <a class="line-btn" href="https://lin.ee/p8jJX9m" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.5C6.2 2.5 1.5 6.4 1.5 11.2c0 4.3 3.7 7.9 8.8 8.6.34.07.8.23.92.52.1.27.07.68.03.95l-.14.9c-.04.27-.2 1.04.9.57 1.1-.47 5.9-3.55 8.05-6.07 1.48-1.66 2.44-3.35 2.44-5.43C22.5 6.4 17.8 2.5 12 2.5z"/></svg>加入 LINE 好友</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 商品推薦牆（在後台勾選「首頁推薦」的商品會顯示在這裡）===== -->
+<section class="section" style="padding-top:0;">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">RECOMMENDED</span>
+      <h2>大家的心頭好</h2>
+      <p class="lead" style="margin:14px auto 0;">這些是最常被抱回家的娃寶與小衣裳，說不定，你的緣分就在裡面。</p>
+    </div>
+    <!-- 排行與品項與 js/render.js 的 FEATURED_IDS 同步：口水巾、眼鏡固定為第 1、2 名 -->
+    <div class="product-grid product-grid--wall" id="featured-grid">
+      <div class="product-card reveal in" data-product-id="31">
+        <a href="shop.html" class="product-photo-link"><div class="product-photo"><img src="assets/images/products/31-knit-bib.jpg" alt="針織口水巾多色陳列"><span class="product-tape">TOP 1</span></div></a>
+        <div class="product-name">針織口水巾</div>
+        <div class="product-price">NT$ 50</div>
+        <a href="https://myship.7-11.com.tw/general/detail/GM2605058795102" class="product-buy" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="21" r="1.5"></circle><circle cx="19" cy="21" r="1.5"></circle><path d="M2 3h3l2.6 12.5a1 1 0 0 0 1 .8h9.8a1 1 0 0 0 1-.8L21 8H6"></path></svg>前往賣貨便下單</a>
+      </div>
+      <div class="product-card reveal in" data-product-id="30">
+        <a href="shop.html" class="product-photo-link"><div class="product-photo"><img src="assets/images/products/30-glasses-6cm.jpg" alt="娃寶戴著 6cm 眼鏡"><span class="product-tape">TOP 2</span></div></a>
+        <div class="product-name">眼鏡、墨鏡 6cm</div>
+        <div class="product-price">NT$ 45</div>
+        <a href="https://myship.7-11.com.tw/general/detail/GM2605058795102" class="product-buy" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="21" r="1.5"></circle><circle cx="19" cy="21" r="1.5"></circle><path d="M2 3h3l2.6 12.5a1 1 0 0 0 1 .8h9.8a1 1 0 0 0 1-.8L21 8H6"></path></svg>前往賣貨便下單</a>
+      </div>
+      <div class="product-card reveal in" data-product-id="24">
+        <a href="shop.html" class="product-photo-link"><div class="product-photo"><img src="assets/images/products/24-cardigan.jpg" alt="娃寶穿著文青鈕扣毛衣"></div></a>
+        <div class="product-name">文青鈕扣毛衣</div>
+        <div class="product-price">NT$ 130</div>
+        <a href="https://myship.7-11.com.tw/general/detail/GM2605058795102" class="product-buy" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="21" r="1.5"></circle><circle cx="19" cy="21" r="1.5"></circle><path d="M2 3h3l2.6 12.5a1 1 0 0 0 1 .8h9.8a1 1 0 0 0 1-.8L21 8H6"></path></svg>前往賣貨便下單</a>
+      </div>
+      <div class="product-card reveal in" data-product-id="01">
+        <a href="shop.html" class="product-photo-link"><div class="product-photo"><img src="assets/images/products/01-livheart-hamster-plush.jpg" alt="日本 livheart 捏捏倉鼠玩偶"></div></a>
+        <div class="product-name">【日本livheart正貨】捏捏倉鼠玩偶 はむにぎり療癒小勞贖🐹（售完不補）</div>
+        <div class="product-price">NT$ 550</div>
+        <a href="https://myship.7-11.com.tw/general/detail/GM2605058795102" class="product-buy" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="21" r="1.5"></circle><circle cx="19" cy="21" r="1.5"></circle><path d="M2 3h3l2.6 12.5a1 1 0 0 0 1 .8h9.8a1 1 0 0 0 1-.8L21 8H6"></path></svg>前往賣貨便下單</a>
+      </div>
+      <div class="product-card reveal in" data-product-id="02">
+        <a href="shop.html" class="product-photo-link"><div class="product-photo"><img src="assets/images/products/02-knit-ear-hat.jpg" alt="娃寶戴著毛茸茸訂做兔耳帽"></div></a>
+        <div class="product-name">【織女手工系列】毛茸茸訂做兔耳帽</div>
+        <div class="product-price">NT$ 390</div>
+        <a href="https://myship.7-11.com.tw/general/detail/GM2605058795102" class="product-buy" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="21" r="1.5"></circle><circle cx="19" cy="21" r="1.5"></circle><path d="M2 3h3l2.6 12.5a1 1 0 0 0 1 .8h9.8a1 1 0 0 0 1-.8L21 8H6"></path></svg>前往賣貨便下單</a>
+      </div>
+      <div class="product-card reveal in" data-product-id="03">
+        <a href="shop.html" class="product-photo-link"><div class="product-photo"><img src="assets/images/products/03-sleep-set.jpg" alt="娃寶好眠套組睡衣與懶骨頭"></div></a>
+        <div class="product-name">😴好眠套組（睡衣＆懶骨頭可拆買）</div>
+        <div class="product-price">NT$ 180</div>
+        <a href="https://myship.7-11.com.tw/general/detail/GM2605058795102" class="product-buy" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="21" r="1.5"></circle><circle cx="19" cy="21" r="1.5"></circle><path d="M2 3h3l2.6 12.5a1 1 0 0 0 1 .8h9.8a1 1 0 0 0 1-.8L21 8H6"></path></svg>前往賣貨便下單</a>
+      </div>
+      <div class="product-card reveal in" data-product-id="09">
+        <a href="shop.html" class="product-photo-link"><div class="product-photo"><img src="assets/images/products/09-tweed-dress.jpg" alt="娃寶穿著小香風洋裝"></div></a>
+        <div class="product-name">小香風洋裝</div>
+        <div class="product-price">NT$ 130</div>
+        <a href="https://myship.7-11.com.tw/general/detail/GM2605058795102" class="product-buy" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="21" r="1.5"></circle><circle cx="19" cy="21" r="1.5"></circle><path d="M2 3h3l2.6 12.5a1 1 0 0 0 1 .8h9.8a1 1 0 0 0 1-.8L21 8H6"></path></svg>前往賣貨便下單</a>
+      </div>
+      <div class="product-card reveal in" data-product-id="11">
+        <a href="shop.html" class="product-photo-link"><div class="product-photo"><img src="assets/images/products/11-denim-overalls.jpg" alt="娃寶穿著率性牛仔吊帶褲"></div></a>
+        <div class="product-name">率性牛仔吊帶褲</div>
+        <div class="product-price">NT$ 110</div>
+        <a href="https://myship.7-11.com.tw/general/detail/GM2605058795102" class="product-buy" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="21" r="1.5"></circle><circle cx="19" cy="21" r="1.5"></circle><path d="M2 3h3l2.6 12.5a1 1 0 0 0 1 .8h9.8a1 1 0 0 0 1-.8L21 8H6"></path></svg>前往賣貨便下單</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="stitch stitch--wide">
+
+<!-- ===== 品牌理念（文案可在後台「首頁」編輯）===== -->
 <section class="section">
   <div class="wrap">
     <div class="section-head reveal">
-      <span class="eyebrow">OUR BELIEF</span>
-      <h2>我們相信，陪伴不需要很大</h2>
-      <p class="lead" style="margin:14px auto 0;">三個一直放在心上的堅持，讓 PluPlu Land 不只是娃衣店。</p>
+      <span class="eyebrow" data-field="home.eyebrow">PluPlu&nbsp;Land · 軟綿綿的小天地</span>
+      <h2 data-field="home.title">在軟綿綿的小天地，遇見想陪你的娃寶。</h2>
+      <p class="lead" style="margin:14px auto 0;" data-field="home.lead">はむにぎり倉鼠娃寶，和一件一件精心挑選的小衣裳。這裡沒有交易的距離感，只有陪伴的溫度。進來坐坐吧，我們不趕時間。</p>
     </div>
     <div class="value-row">
       <div class="value-item reveal">
         <span class="value-num">01 ・ 陪伴</span>
         <h3>替娃寶佈置生活</h3>
-        <p style="color:var(--ink-soft);margin-top:10px;font-size:14.5px;">換裝、拍照、佈置場景——每一次打理娃寶，都是一次溫柔的情緒出口。</p>
+        <p style="color:var(--ink-soft);margin-top:10px;">換裝、拍照、佈置一個小角落。每一次打理娃寶，都是把日子過軟一點的溫柔練習。</p>
       </div>
       <div class="value-item reveal">
         <span class="value-num">02 ・ 微型</span>
         <h3>一個有角色的小生命</h3>
-        <p style="color:var(--ink-soft);margin-top:10px;font-size:14.5px;">娃寶不是物品，是被慎重對待、值得被稱呼的「小朋友」。</p>
+        <p style="color:var(--ink-soft);margin-top:10px;">娃寶不是物品，是值得被取名字、被好好稱呼的「小朋友」。</p>
       </div>
       <div class="value-item reveal">
         <span class="value-num">03 ・ 真實</span>
         <h3>堅持全實拍，零 AI</h3>
-        <p style="color:var(--ink-soft);margin-top:10px;font-size:14.5px;">你在網站上看到的每一張照片，都是娃寶真實存在過的瞬間。</p>
+        <p style="color:var(--ink-soft);margin-top:10px;">每一件衣服、每一個配件，都由娃寶親自實穿拍攝，絕不使用 AI 生成照片。想把最真實、沒有誤差的穿搭質感，交給每一位陪伴娃寶的主人。</p>
       </div>
     </div>
   </div>
@@ -96,42 +230,55 @@
 <hr class="stitch stitch--wide">
 
 <section class="section">
-  <div class="wrap split reveal">
-    <div class="split-figure"><img src="images/uploads/dollhouse-group.jpg" alt="多隻はむにぎり倉鼠娃寶穿著不同針織裝，聚在一起"></div>
-    <div>
+  <div class="wrap duo duo--flip reveal">
+    <div class="duo-copy">
       <span class="eyebrow">はむにぎり</span>
-      <h2>導流主力：<br>療癒系倉鼠娃寶</h2>
-      <p class="lead" style="margin:20px 0 28px;">來自日本的當紅角色，圓滾滾的手感是這個小天地的起點。每一隻娃寶都有自己的表情與個性，等你帶回家取名字。</p>
-      <a href="hamu.html" class="btn">看看娃寶們 →</a>
+      <h2>小天地的起點：<br>療癒系倉鼠娃寶</h2>
+      <p class="lead">來自日本的圓滾滾小可愛，是這個小天地一切的起點。每一隻娃寶都有自己的表情與個性，有點呆、有點傲嬌，正等你帶回家、取一個名字。</p>
+      <div class="duo-actions">
+        <a href="hamu.html" class="btn">看看娃寶們 →</a>
+      </div>
     </div>
+    <div class="duo-media"><img src="images/uploads/dollhouse-group.jpg" alt="多隻はむにぎり倉鼠娃寶穿著不同針織裝，聚在一起"></div>
   </div>
 </section>
 
 <section class="section">
-  <div class="wrap split reverse reveal">
-    <div class="split-figure"><img src="images/uploads/tweed-pearl-coat.jpg" alt="倉鼠娃寶穿著粗花呢珍珠外套"></div>
-    <div>
+  <div class="wrap duo reveal">
+    <div class="duo-copy">
       <span class="eyebrow">娃裝配件</span>
-      <h2>主力商品：<br>一件一件手作的生活感</h2>
-      <p class="lead" style="margin:20px 0 28px;">從針織外套到節慶披風，替娃寶打理今天要穿什麼，是我們最珍惜的日常儀式感。</p>
-      <a href="goods.html" class="btn">選購娃裝 →</a>
+      <h2>精挑細選：<br>替娃寶張羅的生活感</h2>
+      <p class="lead">有我們跑遍各地挑回來的選物，也有請合作的織女特別訂製的款式。替娃寶打理今天要穿什麼，是我們最珍惜的日常儀式感。</p>
+      <div class="duo-actions">
+        <a href="goods.html" class="btn">替娃寶挑衣服 →</a>
+      </div>
     </div>
+    <div class="duo-media"><img src="images/uploads/tweed-pearl-coat.jpg" alt="倉鼠娃寶穿著粗花呢珍珠外套"></div>
   </div>
 </section>
 
 <section class="section">
   <div class="wrap quote-block reveal">
     <blockquote>「娃寶不是玩具，而是一個有角色的小生命。<br>我們想陪你，一起把生活過得更溫柔一點。」</blockquote>
-    <cite>— PluPlu Land 創辦人</cite>
+    <cite>PluPlu&nbsp;Land 創辦人</cite>
   </div>
 </section>
 
 <div class="strip">
   <div class="wrap reveal">
     <span class="badge-real" style="border-color:rgba(251,246,234,.4);color:var(--cream);">全站商品照片皆為實拍</span>
-    <h2 style="margin-top:20px;">想更了解 PluPlu Land 的起點？</h2>
-    <p>從服務業前線的十年，到遇見一隻讓人一見鍾情的娃款。</p>
+    <h2 style="margin-top:20px;">「1、2、3、4、5……」還記得幫娃寶點名的那個自己嗎？</h2>
+    <p>小時候那份認真的溫柔，我們把它好好收進了 PluPlu&nbsp;Land。這裡有個關於創立 PluPlu&nbsp;Land 的故事，想慢慢說給你聽。</p>
     <a href="story.html" class="btn">閱讀品牌故事</a>
+  </div>
+</div>
+
+<!-- 商品詳情視窗（與娃衣選品共用，內容由 js/shop.js 填入） -->
+<div class="shop-modal" id="shop-modal" aria-hidden="true">
+  <div class="shop-modal-backdrop" data-close></div>
+  <div class="shop-modal-panel" role="dialog" aria-modal="true" aria-label="商品詳情">
+    <button class="shop-modal-close" type="button" data-close aria-label="關閉商品詳情">✕</button>
+    <div class="modal-grid" id="shop-modal-body"></div>
   </div>
 </div>
 
@@ -142,17 +289,19 @@
       <span>PluPlu Land</span>
     </a>
     <div class="footer-links">
-      <a href="hamu.html">はむにぎり倉鼠娃</a>
-      <a href="goods.html">娃裝配件</a>
       <a href="story.html">品牌故事</a>
       <a href="contact.html">聯絡我們</a>
+    <a href="notice.html">購物須知</a>
+    <a href="https://myship.7-11.com.tw/general/detail/GM2605058795102" class="buy-btn" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="21" r="1.5"></circle><circle cx="19" cy="21" r="1.5"></circle><path d="M2 3h3l2.6 12.5a1 1 0 0 0 1 .8h9.8a1 1 0 0 0 1-.8L21 8H6"></path></svg>前往賣貨便下單</a>
+    <a href="https://lin.ee/p8jJX9m" class="line-btn" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.5C6.2 2.5 1.5 6.4 1.5 11.2c0 4.3 3.7 7.9 8.8 8.6.34.07.8.23.92.52.1.27.07.68.03.95l-.14.9c-.04.27-.2 1.04.9.57 1.1-.47 5.9-3.55 8.05-6.07 1.48-1.66 2.44-3.35 2.44-5.43C22.5 6.4 17.8 2.5 12 2.5z"/></svg>加入 LINE 好友</a>
     </div>
-    <p class="footer-note">© PluPlu Land — 棉花軟綿綿的小天地。本網站為品牌概念展示頁，暫不提供線上金流結帳。</p>
+    <p class="footer-note">© PluPlu&nbsp;Land・棉寓，意為軟綿綿的小天地。目前為品牌概念展示，暫不提供線上結帳；想帶娃寶回家，可至7-11賣貨便下單。</p>
   </div>
 </footer>
 
 <script src="js/main.js"></script>
 <script src="js/render.js"></script>
+<script src="js/shop.js"></script>
 <script>
   if (window.netlifyIdentity) {
     window.netlifyIdentity.on("init", function(user) {

@@ -1,49 +1,100 @@
 {
   "home": {
-    "eyebrow": "PluPlu Land · 概念旗艦店",
-    "title": "在棉花軟綿綿的小天地，遇見想陪你的娃寶。",
-    "lead": "はむにぎり倉鼠娃寶與一件件手作娃裝，是我們替都市生活找到的溫柔出口。這裡沒有交易的距離感，只有陪伴的溫度。",
-    "hero_image": "images/uploads/denim-dress-hand.jpg"
+    "eyebrow": "PluPlu Land · 軟綿綿的小天地",
+    "title": "在軟綿綿的小天地，遇見想陪你的娃寶。",
+    "lead": "はむにぎり倉鼠娃寶，和一件一件精心挑選的小衣裳。這裡沒有交易的距離感，只有陪伴的溫度。進來坐坐吧，我們不趕時間。",
+    "carousel": [
+      {
+        "image": "images/uploads/dollhouse-group.jpg",
+        "eyebrow": "MEET THE HAMU",
+        "title": "遇見はむにぎり娃寶",
+        "subtitle": "每一隻的表情都不太一樣，有點呆、有點傲嬌，正等你帶回家、取一個名字。",
+        "link_label": "來認識娃寶",
+        "link": "hamu.html"
+      },
+      {
+        "image": "images/uploads/tweed-pearl-coat.jpg",
+        "eyebrow": "NEW ARRIVAL",
+        "title": "新品娃裝上架",
+        "subtitle": "粗花呢配珍珠領，穿上的那一刻，娃寶優雅得像要去喝下午茶。",
+        "link_label": "先睹為快",
+        "link": "goods.html"
+      },
+      {
+        "image": "images/uploads/picnic-banner.jpg",
+        "eyebrow": "PICNIC SEASON",
+        "title": "野餐季企劃新品登場",
+        "poster": true,
+        "link": "shop.html"
+      }
+    ],
+    "banners": [
+      {
+        "image": "images/uploads/denim-dress-hand.jpg",
+        "label_en": "New in",
+        "title": "新品上市",
+        "subtitle": "娃裝新朋友，陸續報到中",
+        "link": "goods.html"
+      },
+      {
+        "image": "images/uploads/cuddle-closeup.jpg",
+        "label_en": "Popular",
+        "title": "人氣推薦",
+        "subtitle": "最常被抱回家的娃寶們",
+        "link": "hamu.html"
+      },
+      {
+        "image": "images/uploads/pearl-butterfly-detail.jpg",
+        "label_en": "Accessories",
+        "title": "配件專區",
+        "subtitle": "帽帽、披肩與亮晶晶的小珠寶",
+        "link": "goods.html"
+      }
+    ]
   },
   "hamu_page": {
-    "eyebrow": "はむにぎり ・ 導流主力",
-    "title": "圓滾滾的療癒系倉鼠娃寶",
-    "lead": "來自日本、在台灣也掀起討論度的當紅角色。每一隻娃寶的表情都不太一樣——有點呆、有點傲嬌，捧在手心裡剛剛好。",
+    "eyebrow": "はむにぎり ・ 小天地的起點",
+    "title": "圓滾滾的｜療癒系倉鼠娃寶",
+    "lead": "來自日本的圓滾滾小可愛，也是這個小天地一切的起點。每一隻娃寶的表情都不太一樣，有點呆、有點傲嬌，捧在手心裡剛剛好。",
     "hero_image": "images/uploads/cuddle-closeup.jpg"
   },
   "goods_page": {
-    "eyebrow": "娃裝配件 ・ 主力商品",
-    "title": "一件一件手作的生活感",
-    "lead": "從家居針織到節慶披風，替娃寶打理今天要穿什麼，是這個小天地最珍惜的日常儀式。也是品牌最主要的收入來源與心血所在。",
+    "eyebrow": "娃裝配件 ・ 精緻選物",
+    "title": "一件一件｜精心挑選的生活感",
+    "lead": "有我們跑遍各地認真挑回來的選物，也有請合作的織女特別訂製的款式。替寶寶挑今天要穿什麼，是這個小天地最珍惜的日常儀式。",
     "hero_image": "images/uploads/tweed-pearl-coat.jpg"
   },
   "story_page": {
     "eyebrow": "OUR STORY",
-    "title": "一個棉花軟綿綿的小天地",
-    "lead": "PluPlu Land 不只是賣娃衣，而是打造一個「療癒與陪伴的微型世界」。在這裡，買娃衣不是一筆交易，而是替娃寶打造生活的體驗。",
+    "title": "軟綿綿的｜小天地",
+    "lead": "還記得小時候，出門前總要幫娃寶們一個一個點名嗎？PluPlu Land 想守住的，就是那份最初的溫柔，一個療癒與陪伴的世界。",
     "hero_image": "images/uploads/gingham-overalls.jpg",
     "timeline": [
       {
-        "year": "前線・十年",
-        "title": "服務業前線的十年",
-        "body": "創辦人曾在服務業前線待了十年。大部分的公司體制並非理想的健康環境，這段經歷，種下了「希望創造一個讓夥伴自在、積極工作」的心願。"
+        "year": "小時候",
+        "title": "「1、2、3、4、5……」",
+        "body": "出門前，我們總會認真地幫每一個娃寶點名；不小心掉到地上，會心疼地趕快撿起來呼呼。那是我們最初學會的照顧，也是最純粹的愛。"
+      },
+      {
+        "year": "長大後",
+        "title": "漸漸忘了對自己溫柔",
+        "body": "長大後的社會壓力，讓我們把溫柔都留給了工作與別人，漸漸忘了留一點給自己。直到某天，看見妹妹下班後依然細心地替她的狐獴小娃寶穿上小衣服、跟他碎碎念分享日常，才驚覺，那份純真從來沒有消失。"
       },
       {
         "year": "相遇",
-        "title": "一見鍾情的娃款",
-        "body": "一直覺得娃衣市場有潛力，直到遇見一款讓人一見鍾情、卻難買到衣服的娃款——這就是はむにぎり倉鼠娃寶。於是從這款娃寶的娃衣專賣店開始了 PluPlu Land。"
+        "title": "遇見圓滾滾的小傢伙",
+        "body": "後來，遇見了はむにぎり倉鼠娃寶。圓滾滾的、有點呆又有點傲嬌，卻總是買不到合身的小衣服。於是我們開始四處尋找、認真挑選，也和合作的織女一起訂製，替這些小朋友張羅屬於他們的日常。PluPlu Land，就這樣開始了。"
       },
       {
         "year": "現在",
-        "title": "不只是做生意",
-        "body": "希望不只是做生意，也能對這個社會上需要療癒的人，產生一點正向的影響。這個名字，PluPlu Land，就是想留給你的——一個棉花軟綿綿的小天地。"
+        "title": "留一個軟綿綿的小天地",
+        "body": "這個品牌的誕生，是為了在疲憊的世界裡，留下一個可以慢慢喘口氣的角落。PluPlu Land，軟綿綿的小天地。希望你也能在這裡，重新牽起小時候的自己，找回最初的溫柔與療癒。"
       }
     ]
   },
   "contact": {
-    "email": "hello@pluplu-land.com",
-    "instagram_handle": "@pluplu.land",
-    "instagram_url": "https://instagram.com/pluplu.land",
-    "hours": "週一至週五 10:00–18:00"
+    "instagram_handle": "@plupluland_tw",
+    "instagram_url": "https://instagram.com/plupluland_tw",
+    "hours": "週一至週六 10:00–18:00"
   }
 }

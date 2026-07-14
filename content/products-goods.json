@@ -5,6 +5,8 @@
       "category": "outerwear",
       "tag": "精品感",
       "image": "images/uploads/tweed-pearl-coat.jpg",
+      "price": "NT$ 680",
+      "featured": true,
       "note": "綁上珍珠項鍊細節，娃寶秒變小貴婦。"
     },
     {
@@ -12,6 +14,8 @@
       "category": "outerwear",
       "tag": "成對款",
       "image": "images/uploads/couple-knit-coat.jpg",
+      "price": "NT$ 880",
+      "featured": false,
       "note": "一件開襟外套、一件蓬裙，適合幫兩隻娃寶湊成一對。"
     },
     {
@@ -19,6 +23,8 @@
       "category": "outerwear",
       "tag": "日常",
       "image": "images/uploads/cream-knit-vest.jpg",
+      "price": "NT$ 420",
+      "featured": false,
       "note": "扭花編織質地，秋冬窩在家最需要的一件。"
     },
     {
@@ -26,6 +32,8 @@
       "category": "outerwear",
       "tag": "日常",
       "image": "images/uploads/blue-floral-dress.jpg",
+      "price": "NT$ 520",
+      "featured": false,
       "note": "木質桌面配碎花布料，是週末野餐的固定班底。"
     },
     {
@@ -33,6 +41,8 @@
       "category": "outerwear",
       "tag": "節慶",
       "image": "images/uploads/red-velvet-duo.jpg",
+      "price": "NT$ 920",
+      "featured": true,
       "note": "絨布光澤加蕾絲滾邊，聖誕、跨年場合的定番選擇。"
     },
     {
@@ -40,6 +50,8 @@
       "category": "outerwear",
       "tag": "戶外",
       "image": "images/uploads/gingham-overalls.jpg",
+      "price": "NT$ 460",
+      "featured": false,
       "note": "配上草帽最對味，野餐系穿搭的基本款。"
     },
     {
@@ -47,20 +59,26 @@
       "category": "hats",
       "tag": "系列款",
       "image": "images/uploads/capes-collection.jpg",
+      "price": "NT$ 380",
+      "featured": false,
       "note": "格紋、素色多種花色，換季披上剛剛好保暖。"
     },
     {
       "name": "粉藍雙色鉤織毛帽",
       "category": "hats",
-      "tag": "手作鉤織",
+      "tag": "鉤織",
       "image": "images/uploads/crochet-hat-closeup.jpg",
-      "note": "毛球點綴、貼耳剪裁，特寫也經得起放大檢視的手工細節。"
+      "price": "NT$ 320",
+      "featured": true,
+      "note": "毛球點綴、貼耳剪裁，特寫也經得起放大檢視的精緻細節。"
     },
     {
       "name": "草莓帽＋斜背小提袋",
       "category": "hats",
       "tag": "配件組合",
       "image": "images/uploads/strawberry-hat-bag.jpg",
+      "price": "NT$ 450",
+      "featured": true,
       "note": "連小飲料瓶配件都準備好了，出門野餐一套到位。"
     },
     {
@@ -68,6 +86,8 @@
       "category": "hats",
       "tag": "節慶",
       "image": "images/uploads/halloween-hood.jpg",
+      "price": "NT$ 480",
+      "featured": false,
       "note": "南瓜吊飾加橘色毛球點綴，應景又不失可愛。"
     },
     {
@@ -75,6 +95,8 @@
       "category": "hats",
       "tag": "戶外",
       "image": "images/uploads/strawhat-trio.jpg",
+      "price": "NT$ 990",
+      "featured": false,
       "note": "一次幫三隻娃寶備好郊遊行頭。"
     },
     {
@@ -82,6 +104,8 @@
       "category": "hats",
       "tag": "珠寶配件",
       "image": "images/uploads/pearl-butterfly-detail.jpg",
+      "price": "NT$ 350",
+      "featured": false,
       "note": "迷你金屬五金加淡水珍珠，畫龍點睛的最後一件配件。"
     }
   ]

@@ -27,27 +27,50 @@ collections:
         label: "首頁與各頁面文字"
         file: "content/site.json"
         fields:
-          - { label: "首頁", name: "home", widget: "object", fields: [
-              { label: "小標籤", name: "eyebrow", widget: "string" },
-              { label: "主標題", name: "title", widget: "string" },
-              { label: "介紹文字", name: "lead", widget: "text" },
-              { label: "主視覺圖片", name: "hero_image", widget: "image" },
-            ]}
+          - label: "首頁"
+            name: "home"
+            widget: "object"
+            fields:
+              - { label: "品牌理念小標籤", name: "eyebrow", widget: "string" }
+              - { label: "品牌理念主標題", name: "title", widget: "string" }
+              - { label: "品牌理念介紹文字", name: "lead", widget: "text" }
+              - label: "頂部大輪播（建議 2–4 張橫式大圖）"
+                name: "carousel"
+                widget: "list"
+                summary: "{{title}}"
+                fields:
+                  - { label: "輪播大圖（建議橫式寬圖）", name: "image", widget: "image" }
+                  - { label: "海報模式（圖片本身已含文字設計：整張可點、不顯示文字卡片）", name: "poster", widget: "boolean", required: false, default: false }
+                  - { label: "英文小標籤（例如：NEW ARRIVAL）", name: "eyebrow", widget: "string", required: false }
+                  - { label: "標題", name: "title", widget: "string" }
+                  - { label: "副標說明", name: "subtitle", widget: "string", required: false }
+                  - { label: "按鈕文字", name: "link_label", widget: "string", required: false }
+                  - { label: "按鈕連結（例如：goods.html）", name: "link", widget: "string", required: false }
+              - label: "行銷組合 Banner（固定 3 張：第 1 張為左側大圖，第 2、3 張為右側上下疊圖）"
+                name: "banners"
+                widget: "list"
+                summary: "{{title}}"
+                fields:
+                  - { label: "Banner 圖片", name: "image", widget: "image" }
+                  - { label: "英文小標籤（例如：New in）", name: "label_en", widget: "string", required: false }
+                  - { label: "標題（例如：新品上市）", name: "title", widget: "string" }
+                  - { label: "副標說明", name: "subtitle", widget: "string", required: false }
+                  - { label: "點擊連結（例如：hamu.html）", name: "link", widget: "string", required: false }
           - { label: "はむにぎり倉鼠娃頁", name: "hamu_page", widget: "object", fields: [
               { label: "小標籤", name: "eyebrow", widget: "string" },
-              { label: "主標題", name: "title", widget: "string" },
+              { label: "主標題（可用全形｜指定換行位置）", name: "title", widget: "string" },
               { label: "介紹文字", name: "lead", widget: "text" },
               { label: "主視覺圖片", name: "hero_image", widget: "image" },
             ]}
           - { label: "娃裝配件頁", name: "goods_page", widget: "object", fields: [
               { label: "小標籤", name: "eyebrow", widget: "string" },
-              { label: "主標題", name: "title", widget: "string" },
+              { label: "主標題（可用全形｜指定換行位置）", name: "title", widget: "string" },
               { label: "介紹文字", name: "lead", widget: "text" },
               { label: "主視覺圖片", name: "hero_image", widget: "image" },
             ]}
           - { label: "品牌故事頁", name: "story_page", widget: "object", fields: [
               { label: "小標籤", name: "eyebrow", widget: "string" },
-              { label: "主標題", name: "title", widget: "string" },
+              { label: "主標題（可用全形｜指定換行位置）", name: "title", widget: "string" },
               { label: "介紹文字", name: "lead", widget: "text" },
               { label: "主視覺圖片", name: "hero_image", widget: "image" },
               { label: "品牌時間軸", name: "timeline", widget: "list", fields: [
@@ -58,7 +81,6 @@ collections:
               },
             ]}
           - { label: "聯絡資訊", name: "contact", widget: "object", fields: [
-              { label: "Email", name: "email", widget: "string" },
               { label: "Instagram 帳號顯示文字", name: "instagram_handle", widget: "string" },
               { label: "Instagram 連結網址", name: "instagram_url", widget: "string" },
               { label: "客服時間", name: "hours", widget: "string" },
@@ -80,6 +102,9 @@ collections:
               - { label: "商品名稱", name: "name", widget: "string" }
               - { label: "小標籤（例如：居家／戶外／節慶）", name: "tag", widget: "string", required: false }
               - { label: "商品照片", name: "image", widget: "image" }
+              - { label: "價格（例如：NT$ 130）", name: "price", widget: "string", required: false }
+              - { label: "對應娃衣選品商品編號（填入後點卡片會開啟該商品的詳情視窗）", name: "store_id", widget: "string", required: false }
+              - { label: "顯示在首頁熱銷推薦", name: "featured", widget: "boolean", required: false, default: false }
               - { label: "商品說明", name: "note", widget: "text" }
 
   # ── 娃裝配件商品清單 ──────────────────────────────────────────
@@ -104,4 +129,66 @@ collections:
                   - { label: "帽飾 ・ 披肩", value: "hats" }
               - { label: "小標籤", name: "tag", widget: "string", required: false }
               - { label: "商品照片", name: "image", widget: "image" }
+              - { label: "價格（例如：NT$ 380）", name: "price", widget: "string", required: false }
+              - { label: "顯示在首頁熱銷推薦", name: "featured", widget: "boolean", required: false, default: false }
               - { label: "商品說明", name: "note", widget: "text" }
+
+  # ── 娃衣選品商店（shop.html 商品資料）─────────────────────────
+  - name: "store_products"
+    label: "娃衣選品商店"
+    files:
+      - name: "store"
+        label: "選品商店商品清單"
+        file: "content/products-store.json"
+        fields:
+          - label: "分類清單（商品的「分類」需對應這裡的代碼）"
+            name: "categories"
+            widget: "list"
+            summary: "{{label}}（{{key}}）"
+            fields:
+              - { label: "分類代碼（英文小寫，例如：dress）", name: "key", widget: "string" }
+              - { label: "分類名稱", name: "label", widget: "string" }
+          - label: "商品清單"
+            name: "items"
+            widget: "list"
+            summary: "{{id}}｜{{name}}"
+            fields:
+              - { label: "商品編號（兩位數字，例如：01）", name: "id", widget: "string" }
+              - { label: "商品名稱", name: "name", widget: "string" }
+              - label: "分類（新增分類代碼後需同步更新此選單）"
+                name: "category"
+                widget: "select"
+                options:
+                  - { label: "玩偶本體", value: "doll" }
+                  - { label: "洋裝", value: "dress" }
+                  - { label: "裙子", value: "skirt" }
+                  - { label: "上衣・毛衣", value: "top" }
+                  - { label: "褲裝・吊帶", value: "bottom" }
+                  - { label: "套裝", value: "set" }
+                  - { label: "外套・披肩", value: "outerwear" }
+                  - { label: "帽子・頭飾", value: "headwear" }
+                  - { label: "包包・提袋", value: "bag" }
+                  - { label: "配件小物", value: "accessory" }
+              - { label: "系列標籤（例如：韓國直送）", name: "tags", widget: "list", required: false }
+              - { label: "售價（純數字）", name: "price", widget: "number", value_type: "int" }
+              - { label: "原價（純數字，無折扣時填與售價相同）", name: "original_price", widget: "number", value_type: "int" }
+              - { label: "特價中", name: "on_sale", widget: "boolean", required: false, default: false }
+              - { label: "特價標籤（例如：開幕優惠 6 折）", name: "sale_label", widget: "string", required: false }
+              - label: "販售狀態"
+                name: "status"
+                widget: "select"
+                options:
+                  - { label: "販售中", value: "available" }
+                  - { label: "售完", value: "sold_out" }
+              - { label: "含娃寶本體（僅玩偶本體商品勾選）", name: "body_included", widget: "boolean", required: false, default: false }
+              - { label: "商品照片", name: "image", widget: "image" }
+              - label: "規格清單"
+                name: "variants"
+                widget: "list"
+                summary: "{{supply}}｜{{name}}"
+                fields:
+                  - { label: "供貨方式（現貨／預購）", name: "supply", widget: "string" }
+                  - { label: "規格名稱", name: "name", widget: "string" }
+                  - { label: "有庫存", name: "in_stock", widget: "boolean", required: false, default: true }
+              - { label: "商品介紹（官網文案）", name: "description", widget: "text" }
+              - { label: "小提醒（選填，會以獨立提示框顯示）", name: "reminder", widget: "text", required: false }
