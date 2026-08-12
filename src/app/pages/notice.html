@@ -1,0 +1,87 @@
+<pl-page-hero
+  eyebrow="BEFORE YOU ORDER"
+  title="購物須知"
+  lead="下單前請花一分鐘看看這頁，讓每一件娃衣都能順順利利抵達寶寶的衣櫃。"
+  [center]="true"
+/>
+
+<section class="section" style="padding-top:24px;">
+  <div class="wrap">
+    <div class="notice-list reveal in">
+      <div class="notice-card">
+        <span class="eyebrow">特殊優惠</span>
+        <h3>發限動、折 {{ SHARE_DISCOUNT_AMOUNT }} 元</h3>
+        <p class="promo-intro">三個小步驟，讓娃寶的可愛被更多人看見，還能領到下次的折扣！</p>
+        <ol class="promo-steps">
+          <li>
+            <strong>拍照發限動</strong>：收到產品後，替娃寶拍張美美的穿搭照，發佈 IG 限時動態並標記
+            <a [href]="IG_URL" target="_blank" rel="noopener" style="text-decoration:underline;text-underline-offset:3px;"><strong>&#64;plupluland_tw</strong></a
+            >。
+          </li>
+          <li>
+            <strong>截圖傳給我們</strong>：把限動畫面截圖，傳送到我們的
+            <a [href]="LINE_URL" target="_blank" rel="noopener" style="text-decoration:underline;text-underline-offset:3px;"><strong>LINE 官方帳號</strong></a
+            >。
+          </li>
+          <li>
+            <strong>領取折價券</strong>：小幫手收到截圖後，馬上發放「下次消費現折
+            <strong>{{ SHARE_DISCOUNT }}</strong
+            >」的折價券給你！每筆訂單完成後，都可以這樣兌換一次唷。
+          </li>
+        </ol>
+      </div>
+
+      <div class="notice-card">
+        <span class="eyebrow">出貨時間</span>
+        <h3>現貨與預購不太一樣</h3>
+        <ul>
+          <li><strong>現貨商品</strong>：目前訂單較多，下單後 <strong>3–10 個工作天</strong>內出貨。</li>
+          <li><strong>預購商品</strong>：下單即叫貨，需等 <strong>10–20 天</strong>，不接急單。</li>
+        </ul>
+      </div>
+
+      <div class="notice-card">
+        <span class="eyebrow">注意事項</span>
+        <h3>下單前請先知道的事</h3>
+        <ul>
+          <li>
+            <strong>訂單規範</strong>：無故取消訂單、未取貨者，將列入黑名單不再交易。未成年者下單，即視為已取得法定代理人同意。
+          </li>
+          <li><strong>取貨說明</strong>：開箱請全程錄影！無影片恕無法處理售後。</li>
+        </ul>
+      </div>
+
+      <div class="notice-card">
+        <span class="eyebrow">退換貨規則</span>
+        <h3>退換商品與重新寄送</h3>
+        <ul>
+          <li>
+            <strong>退換商品</strong>：商品售出後，不接受個人因素（如尺寸、不喜歡）退換貨；除非商品有瑕疵，否則無 7
+            天鑑賞期。
+          </li>
+          <li>螢幕顯示與手作個體差異可能產生色差，非瑕疵，完美主義者請斟酌下單。</li>
+          <li><strong>重新寄送</strong>：若包裹遭退回需重寄，請先匯款商品全額及運費。</li>
+        </ul>
+      </div>
+
+      <div class="notice-card">
+        <span class="eyebrow">聯絡我們</span>
+        <h3>有任何問題，先來聊聊</h3>
+        <ul>
+          <li>
+            LINE 官方帳號：<a [href]="LINE_URL" target="_blank" rel="noopener" style="text-decoration:underline;text-underline-offset:3px;"><strong>&#64;plupluland_tw</strong></a
+            >（下單、預購、客製問題都可以問）
+          </li>
+          <li>
+            也可以透過<a routerLink="/contact" style="text-decoration:underline;text-underline-offset:3px;"><strong>聯絡我們</strong></a
+            >頁面留言給我們。
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="center mt-lg reveal in">
+      <a routerLink="/shop" class="btn">回娃衣選品</a>
+    </div>
+  </div>
+</section>

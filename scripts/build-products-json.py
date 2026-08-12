@@ -25,11 +25,10 @@ def variant_stem(pid, vname):
 
 # 主分類（2026-07-14 經主理人確認：一個主分類＋多個標籤）
 CATEGORIES = [
-    {"key": "doll", "label": "玩偶本體"},
-    {"key": "dress", "label": "洋裝"},
-    {"key": "skirt", "label": "裙子"},
+    {"key": "doll", "label": "鼠鼠本體"},  # 2026-08-05 主理人指定改名
+    {"key": "dress", "label": "洋裝・裙子"},  # 2026-07-17 洋裝與裙子合併為單一分類
     {"key": "top", "label": "上衣・毛衣"},
-    {"key": "bottom", "label": "褲裝・吊帶"},
+    {"key": "bottom", "label": "褲裝"},  # 2026-08-05 主理人指定改名
     {"key": "set", "label": "套裝"},
     {"key": "outerwear", "label": "外套・披肩"},
     {"key": "headwear", "label": "帽子・頭飾"},
@@ -38,8 +37,9 @@ CATEGORIES = [
 ]
 CATEGORY_OF = {
     "01": "doll",
+    # 洋裝・裙子（原「洋裝」6 項＋原「裙子」5 項，共 11 項）
     "09": "dress", "21": "dress", "25": "dress", "34": "dress", "35": "dress", "45": "dress",
-    "06": "skirt", "22": "skirt", "36": "skirt", "46": "skirt", "47": "skirt",
+    "06": "dress", "22": "dress", "36": "dress", "46": "dress", "47": "dress",
     "05": "top", "24": "top", "37": "top",
     "11": "bottom",
     "03": "set", "04": "set", "17": "set", "33": "set",

@@ -1,0 +1,212 @@
+<!-- ===== 頂部大輪播（內容可在後台「首頁」編輯） ===== -->
+<pl-carousel [slides]="slides()" />
+
+<!-- ===== 野餐企劃專區（輪播海報「前往野餐」跳到這裡；資料在後台「野餐企劃品項」編輯）=====
+     store_id 有值＝既有選品（點卡片開選品詳情視窗）；
+     Coming Soon 品項＝佔位圖＋停用購買按鈕「即將開賣」，點卡片開預告視窗 -->
+<section class="section" id="picnic-plan">
+  <div class="wrap">
+    <pl-section-head
+      eyebrow="PICNIC SEASON"
+      title="野餐季企劃"
+      lead="藤編提籃、草帽與餐點小物陸續集合中。鋪上格紋墊，帶寶寶一起去曬曬太陽吧！"
+    />
+    <div class="product-grid" id="picnic-grid">
+      @if (!picnic().length) {
+        <div class="shop-fallback">品項載入中……若一直沒有出現，請重新整理頁面。</div>
+      }
+      @for (item of picnic(); track item.id) {
+        <div
+          class="product-card reveal in"
+          role="button"
+          tabindex="0"
+          (click)="openPicnic(item)"
+          (keydown.enter)="openPicnic(item)"
+          (keydown.space)="$event.preventDefault(); openPicnic(item)"
+        >
+          <div class="product-photo">
+            <img [src]="asset(item.image)" [alt]="item.name" loading="lazy" />
+          </div>
+          <div class="product-name">{{ item.name }}</div>
+          @if (item.price !== null) {
+            <div class="product-price">{{ money(item.price) }}</div>
+          }
+          @if (item.note) {
+            <p class="product-note">{{ item.note }}</p>
+          }
+          @if (item.status === 'coming_soon') {
+            <span class="product-buy is-disabled" aria-disabled="true">即將開賣</span>
+          } @else {
+            <pl-buy-button variant="card" />
+          }
+        </div>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- ===== 行銷組合 Banner：左大圖＋右二疊圖（後台「首頁」可編輯） ===== -->
+<section class="section">
+  <div class="wrap">
+    <div class="promo-grid reveal">
+      @for (b of banners(); track $index) {
+        @if (isExternal(b.link)) {
+          <!-- 後台若填外部網址（如 IG 貼文），開新分頁 -->
+          <a [href]="b.link" target="_blank" rel="noopener" class="promo-item" [class.promo-item--tall]="$index === 0">
+            <ng-container *ngTemplateOutlet="promoInner; context: { b }" />
+          </a>
+        } @else {
+          <a [routerLink]="route(b.link)" class="promo-item" [class.promo-item--tall]="$index === 0">
+            <ng-container *ngTemplateOutlet="promoInner; context: { b }" />
+          </a>
+        }
+      }
+    </div>
+    <ng-template #promoInner let-b="b">
+      <img [src]="asset(b.image)" [alt]="b.title" loading="lazy" />
+      <div class="promo-copy">
+        @if (b.label_en) {
+          <span class="promo-more">{{ b.label_en }}</span>
+        }
+        <h3>{{ b.title }}</h3>
+        @if (b.subtitle) {
+          <p>{{ b.subtitle }}</p>
+        }
+      </div>
+    </ng-template>
+  </div>
+</section>
+
+<!-- ===== 社群分享行銷活動公告（折扣金額由 core/brand.ts 統一設定） ===== -->
+<section class="section" style="padding-top:0;">
+  <div class="wrap">
+    <div class="campaign reveal">
+      <div class="campaign-copy">
+        <span class="eyebrow">SHARE &amp; SAVE</span>
+        <h2>發限動，折 {{ SHARE_DISCOUNT }}</h2>
+        <p>
+          收到娃寶或新衣後，拍張照發限時動態、標記 &#64;plupluland_tw，下次消費就折
+          {{ SHARE_DISCOUNT }}。讓更多人看見你家寶寶今天的可愛吧！
+        </p>
+      </div>
+      <div class="campaign-actions">
+        <a class="btn solid icon-link" [href]="IG_URL" target="_blank" rel="noopener"><pl-icon-ig />追蹤 Instagram</a>
+        <pl-line-button />
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 商品推薦牆「大家的心頭好」：真實商品，點卡片開詳情視窗 ===== -->
+<section class="section" style="padding-top:0;">
+  <div class="wrap">
+    <pl-section-head
+      eyebrow="RECOMMENDED"
+      title="大家的心頭好"
+      lead="這些是最常被抱回家的娃寶與小衣裳，說不定，你的緣分就在裡面。"
+    />
+    <div class="product-grid product-grid--wall">
+      @if (!featured().length) {
+        <div class="shop-fallback">商品資料載入中……若一直沒有出現，請重新整理頁面。</div>
+      }
+      @for (card of featured(); track card.pid) {
+        <pl-product-card [data]="card" />
+      }
+    </div>
+  </div>
+</section>
+
+<hr class="stitch stitch--wide" />
+
+<!-- ===== 品牌理念（文案可在後台「首頁」編輯） ===== -->
+<section class="section">
+  <div class="wrap">
+    <pl-section-head [eyebrow]="home().eyebrow" [title]="home().title" [lead]="home().lead" />
+    <div class="value-row">
+      <div class="value-item reveal">
+        <span class="value-num">01 ・ 陪伴</span>
+        <h3>替娃寶佈置生活</h3>
+        <p style="color:var(--ink-soft);margin-top:10px;">
+          換裝、拍照、佈置一個小角落。每一次打理娃寶，都是把日子過軟一點的溫柔練習。
+        </p>
+      </div>
+      <div class="value-item reveal">
+        <span class="value-num">02 ・ 微型</span>
+        <h3>一個有角色的小生命</h3>
+        <p style="color:var(--ink-soft);margin-top:10px;">
+          娃寶不是物品，是值得被取名字、被好好稱呼的「小朋友」。
+        </p>
+      </div>
+      <div class="value-item reveal">
+        <span class="value-num">03 ・ 真實</span>
+        <h3>堅持全實拍，零 AI</h3>
+        <p style="color:var(--ink-soft);margin-top:10px;">
+          每一件衣服、每一個配件，都由娃寶親自實穿拍攝，絕不使用 AI
+          生成照片。想把最真實、沒有誤差的穿搭質感，交給每一位陪伴娃寶的主人。
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="stitch stitch--wide" />
+
+<!-- ===== 陳列櫃裡的日常片刻 ===== -->
+<section class="section">
+  <div class="wrap">
+    <pl-section-head eyebrow="DISPLAY SHELF" title="陳列櫃裡的日常片刻" />
+    <div class="shelf reveal">
+      <div class="shelf-item">
+        <img src="/images/uploads/wineglass-nightcap.jpg" alt="倉鼠娃寶戴著藍色睡帽靠在酒杯旁" /><span class="shelf-label">晚安時光</span>
+      </div>
+      <div class="shelf-item">
+        <img src="/images/uploads/strawhat-trio.jpg" alt="三隻倉鼠娃寶戴著草帽野餐" /><span class="shelf-label">野餐日</span>
+      </div>
+      <div class="shelf-item">
+        <img src="/images/uploads/capes-collection.jpg" alt="倉鼠娃寶披肩收藏陳列" /><span class="shelf-label">披肩收藏</span>
+      </div>
+      <div class="shelf-item">
+        <img src="/images/uploads/sleepy-beanbags.jpg" alt="兩隻倉鼠娃寶窩在豆袋裡睡覺" /><span class="shelf-label">午睡角落</span>
+      </div>
+      <div class="shelf-item">
+        <img src="/images/uploads/pearl-butterfly-detail.jpg" alt="娃裝上的珍珠蝴蝶項鍊特寫" /><span class="shelf-label">珠寶細節</span>
+      </div>
+      <div class="shelf-item">
+        <img src="/images/uploads/peach-strawhat.jpg" alt="倉鼠娃寶戴草莓帽坐在水蜜桃旁" /><span class="shelf-label">水蜜桃季</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="stitch stitch--wide" />
+
+<!-- ===== 圖文對稱區塊（.duo 統一版型） ===== -->
+<section class="section">
+  <div class="wrap duo reveal">
+    <div class="duo-copy">
+      <span class="eyebrow">娃裝配件</span>
+      <h2>精挑細選：<br />替娃寶張羅的生活感</h2>
+      <p class="lead">
+        有我們跑遍各地挑回來的選物，也有請合作的織女特別訂製的款式。替娃寶打理今天要穿什麼，是我們最珍惜的日常儀式感。
+      </p>
+      <div class="duo-actions">
+        <a routerLink="/shop" class="btn">替娃寶挑衣服 →</a>
+      </div>
+    </div>
+    <div class="duo-media">
+      <img src="/images/uploads/tweed-pearl-coat.jpg" alt="倉鼠娃寶穿著粗花呢珍珠外套" />
+    </div>
+  </div>
+</section>
+
+<pl-quote-block quote="「娃寶不是玩具，而是一個有角色的小生命。｜我們想陪你，一起把生活過得更溫柔一點。」" />
+
+<pl-strip-cta
+  title="「1、2、3、4、5……」還記得幫娃寶點名的那個自己嗎？"
+  body="小時候那份認真的溫柔，我們把它好好收進了 PluPlu Land。這裡有個關於創立 PluPlu Land 的故事，想慢慢說給你聽。"
+  label="閱讀品牌故事"
+  link="/story"
+  [hasIntro]="true"
+>
+  <pl-badge-real text="全站商品照片皆為實拍" [onDark]="true" />
+</pl-strip-cta>

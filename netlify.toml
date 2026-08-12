@@ -1,7 +1,70 @@
-[build]
-  publish = "."
+# Netlify 部署設定（Angular 版）
+# push 到 GitHub 後，Netlify 會自動執行 build 指令、把打包結果上線。
 
+[build]
+  command = "npm ci && npm run build"
+  publish = "dist/pluplu-land/browser"
+
+[build.environment]
+  NODE_VERSION = "22"
+
+# 後台編輯的內容檔不快取，改完文案馬上生效
 [[headers]]
   for = "/content/*.json"
   [headers.values]
     Cache-Control = "no-cache"
+
+# ===== 舊網址轉新網址（301）：別人存的舊連結不會壞 =====
+[[redirects]]
+  from = "/index.html"
+  to = "/"
+  status = 301
+
+# 倉鼠娃頁已移除，新舊網址都導回首頁
+[[redirects]]
+  from = "/hamu.html"
+  to = "/"
+  status = 301
+
+[[redirects]]
+  from = "/hamu"
+  to = "/"
+  status = 301
+
+[[redirects]]
+  from = "/shop.html"
+  to = "/shop"
+  status = 301
+
+# 娃裝配件頁已移除，新舊網址都轉到娃衣選品
+[[redirects]]
+  from = "/goods.html"
+  to = "/shop"
+  status = 301
+
+[[redirects]]
+  from = "/goods"
+  to = "/shop"
+  status = 301
+
+[[redirects]]
+  from = "/story.html"
+  to = "/story"
+  status = 301
+
+[[redirects]]
+  from = "/contact.html"
+  to = "/contact"
+  status = 301
+
+[[redirects]]
+  from = "/notice.html"
+  to = "/notice"
+  status = 301
+
+# ===== SPA fallback：其餘路徑一律交給 Angular 處理 =====
+# （實際存在的檔案如 /admin/、/images/、/content/ 會優先被直接回傳，不受影響）
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200

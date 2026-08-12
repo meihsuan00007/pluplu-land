@@ -1,0 +1,63 @@
+<pl-page-hero
+  eyebrow="PLUPLU SELECT ・ 娃衣選品"
+  title="幫娃寶治裝的｜小小選品店"
+  lead="洋裝、裙子、帽帽、迷你小物……全部都是替倉鼠娃寶們精心挑選（或請織女手工織）的。點開每一項看看規格與出貨時間，喜歡的話就到賣貨便帶回家吧。"
+  image="assets/images/products/00-storefront.jpg"
+  alt="PluPlu Land 娃衣選品賣場主圖，倉鼠娃寶穿著選品服飾"
+  [hasActions]="true"
+>
+  <pl-badge-real />
+  <a routerLink="/notice" class="btn ghost">購物須知</a>
+</pl-page-hero>
+
+<section class="section">
+  <div class="wrap">
+    <pl-section-head
+      eyebrow="ALL ITEMS"
+      title="選品陳列架"
+      lead="「現貨」下單後 3–10 個工作天出貨；「預購」約 10–20 天，不接急單。售完的品項也留在架上，紀念它們曾經來過。"
+    />
+
+    <div class="filter-bar">
+      @for (chip of filterChips(); track chip.key) {
+        <button
+          type="button"
+          class="filter-chip"
+          [class.is-active]="currentCat() === chip.key"
+          (click)="currentCat.set(chip.key)"
+        >
+          {{ chip.label }}
+        </button>
+      }
+    </div>
+
+    <!-- id="shop-grid" 供 CSS 頂端對齊規則使用，勿移除 -->
+    <div class="product-grid" id="shop-grid">
+      @if (!catalog()) {
+        <div class="shop-fallback">
+          商品資料載入中……若一直沒有出現，請重新整理頁面，<br />
+          或直接前往
+          <a [href]="BUY_URL" target="_blank" rel="noopener" style="text-decoration:underline;">7-11 賣貨便賣場</a>
+          逛逛。
+        </div>
+      } @else {
+        @for (card of cards(); track card.pid) {
+          <pl-product-card [data]="card" [showBuy]="false" [shopStyle]="true" />
+        }
+      }
+    </div>
+  </div>
+</section>
+
+<hr class="stitch stitch--wide" />
+
+<!-- 出貨三步驟（與品牌故事頁共用同一份元件，改一次兩頁都更新） -->
+<pl-steps title="出貨前的小小儀式" lead="每一件選物在出門找你之前，都會先經過我們的手。" />
+
+<pl-strip-cta
+  title="不知道從哪一件開始？"
+  [body]="stripBody"
+  label="前往賣貨便賣場"
+  [link]="BUY_URL"
+  [external]="true"
+/>

@@ -5,12 +5,21 @@
     "lead": "はむにぎり倉鼠娃寶，和一件一件精心挑選的小衣裳。這裡沒有交易的距離感，只有陪伴的溫度。進來坐坐吧，我們不趕時間。",
     "carousel": [
       {
+        "image": "images/uploads/picnic-banner-2.jpg",
+        "eyebrow": "PICNIC SEASON",
+        "title": "野餐季企劃新品登場",
+        "poster": true,
+        "hotspot": true,
+        "link": "#picnic-plan"
+      },
+      {
         "image": "images/uploads/dollhouse-group.jpg",
         "eyebrow": "MEET THE HAMU",
-        "title": "遇見はむにぎり娃寶",
+        "title": "遇見｜はむにぎり娃寶",
         "subtitle": "每一隻的表情都不太一樣，有點呆、有點傲嬌，正等你帶回家、取一個名字。",
         "link_label": "來認識娃寶",
-        "link": "hamu.html"
+        "link": "shop.html",
+        "theme": "butter"
       },
       {
         "image": "images/uploads/tweed-pearl-coat.jpg",
@@ -18,14 +27,8 @@
         "title": "新品娃裝上架",
         "subtitle": "粗花呢配珍珠領，穿上的那一刻，娃寶優雅得像要去喝下午茶。",
         "link_label": "先睹為快",
-        "link": "goods.html"
-      },
-      {
-        "image": "images/uploads/picnic-banner.jpg",
-        "eyebrow": "PICNIC SEASON",
-        "title": "野餐季企劃新品登場",
-        "poster": true,
-        "link": "shop.html"
+        "link": "shop.html",
+        "theme": "rose"
       }
     ],
     "banners": [
@@ -34,35 +37,23 @@
         "label_en": "New in",
         "title": "新品上市",
         "subtitle": "娃裝新朋友，陸續報到中",
-        "link": "goods.html"
+        "link": "shop.html"
       },
       {
         "image": "images/uploads/cuddle-closeup.jpg",
         "label_en": "Popular",
         "title": "人氣推薦",
         "subtitle": "最常被抱回家的娃寶們",
-        "link": "hamu.html"
+        "link": "shop.html"
       },
       {
         "image": "images/uploads/pearl-butterfly-detail.jpg",
         "label_en": "Accessories",
         "title": "配件專區",
         "subtitle": "帽帽、披肩與亮晶晶的小珠寶",
-        "link": "goods.html"
+        "link": "shop.html"
       }
     ]
-  },
-  "hamu_page": {
-    "eyebrow": "はむにぎり ・ 小天地的起點",
-    "title": "圓滾滾的｜療癒系倉鼠娃寶",
-    "lead": "來自日本的圓滾滾小可愛，也是這個小天地一切的起點。每一隻娃寶的表情都不太一樣，有點呆、有點傲嬌，捧在手心裡剛剛好。",
-    "hero_image": "images/uploads/cuddle-closeup.jpg"
-  },
-  "goods_page": {
-    "eyebrow": "娃裝配件 ・ 精緻選物",
-    "title": "一件一件｜精心挑選的生活感",
-    "lead": "有我們跑遍各地認真挑回來的選物，也有請合作的織女特別訂製的款式。替寶寶挑今天要穿什麼，是這個小天地最珍惜的日常儀式。",
-    "hero_image": "images/uploads/tweed-pearl-coat.jpg"
   },
   "story_page": {
     "eyebrow": "OUR STORY",

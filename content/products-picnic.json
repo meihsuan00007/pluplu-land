@@ -1,0 +1,32 @@
+{
+  "items": [
+    {
+      "id": "picnic-bag",
+      "store_id": "18",
+      "name": "格紋小布包",
+      "price": 45,
+      "image": "assets/images/products/18-plaid-schoolbag.jpg",
+      "status": "available",
+      "note": "背上小布包、再戴頂草帽，寶寶就可以出發去郊遊啦！",
+      "description": "超可愛的野餐風格紋小布包！紅、粉、藍三色，小小一顆掛在身上，可愛度瞬間翻倍。"
+    },
+    {
+      "id": "picnic-strawhat",
+      "name": "草帽",
+      "price": null,
+      "image": "assets/images/products/coming-soon-strawhat.svg",
+      "status": "coming_soon",
+      "note": "預計陸續到貨，敬請期待！",
+      "description": "圓圓的藤編草帽，戴上就有出門野餐的好心情。寶寶們的新帽子正在路上，到貨後會第一時間上架。"
+    },
+    {
+      "id": "picnic-basket",
+      "name": "小提籃",
+      "price": null,
+      "image": "assets/images/products/coming-soon-basket.svg",
+      "status": "coming_soon",
+      "note": "預計陸續到貨，敬請期待！",
+      "description": "藤編小提籃，裝得下寶寶的野餐點心，也裝得下滿滿的期待。正在準備中，到貨後會第一時間上架。"
+    }
+  ]
+}

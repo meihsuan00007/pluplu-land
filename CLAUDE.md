@@ -1,71 +1,108 @@
 # CLAUDE.md — PluPlu Land
 
-娃衣品牌「PluPlu Land」的概念旗艦店。**純靜態網站**：原生 HTML + CSS + vanilla JS，無 build 工具、無框架（刻意，為了免費的 Decap CMS + Netlify 架構）。目前只陳列展示，**沒有金流／購物車**。
+娃衣品牌「PluPlu Land」的概念旗艦店。**Angular v21 + SCSS 單頁應用**（2026-07-17 由純靜態 HTML/CSS/JS 重構而來），內容後台用 Decap CMS、部署在 Netlify（免費）。目前只陳列展示，**沒有金流／購物車**，所有購買導向 7-11 賣貨便。
 
-完整背景見 [CLAUDE_CODE_HANDOFF.md](CLAUDE_CODE_HANDOFF.md)；部署步驟見 [README.md](README.md)。
+## ⚠️ 與使用者溝通的方式（最重要）
 
-## 檔案結構
-- `index.html` / `hamu.html` / `goods.html` / `story.html` / `contact.html` — 五個主要頁面
-- `shop.html`（娃衣選品，含分類篩選與商品彈窗，由 `js/shop.js` + `content/products-store.json` 驅動）、`notice.html`（購物須知）
-- `css/style.css` — 唯一樣式檔，所有 token 用 CSS 變數管在 `:root`
-- `js/main.js` — 手機選單開關、滾動淡入（`.reveal`）、首頁輪播 `setupCarousel()`
-- `js/render.js` — fetch `content/*.json` 填入頁面
-- `content/site.json` — 各頁文案 / hero 圖 / 聯絡資訊 / 首頁輪播與 Banner
-- `content/products-hamu.json`、`content/products-goods.json` — 商品清單
-- `content/products-store.json` — 娃衣選品 47 項（**產出檔勿直接手改**：由 `scripts/build-products-json.py` 解析 `plupluland_products.md`（規格與價格）＋ `docs/products/web-copy.md`（文案定稿）產生；賣場更新時改 md 後重跑腳本）
-- `assets/images/products/` — 選品商品圖（`scripts/download-product-images.mjs` 從賣貨便下載 → `scripts/compress-product-images.py` 壓縮，最長邊 1600px；對照表在 `docs/products/image-map.md`。⚠️ #30 首圖為主理人提供的本地照片，重跑下載腳本不會覆蓋）
-- `assets/images/products/variants/` — 規格專屬圖片。**命名規範：`{商品編號}_{規格名稱}.jpg`**（規格名稱照 JSON 的 `variants[].name`，空格移除、`/` 改 `-`，例：`06_暖陽黃.jpg`、`30_眼鏡-6cm-透棕框.jpg`）。照規範放進來後重跑 build 腳本即自動接到 `variants[].image`；對不到規格的檔名會讓腳本報錯提醒。前台點選規格時主圖淡入切換，沒有專屬圖的規格自動退回商品主圖。
-- `admin/config.yml` — Decap CMS 後台欄位定義；`admin/index.html` — 後台入口
-- `images/uploads/` — 所有商品實拍照（後台上傳也存這）
-- `netlify.toml` — 部署設定（publish `.`，`/content/*.json` 設 no-cache）
+- **主理人（使用者）不懂前端程式碼，也不會自己動 code**，所有修改都透過 Claude Code 進行。
+- 回報與提問**不要用程式術語**（不要說 component、signal、routing、build……），改用「影響」與「考量面向」讓使用者做選擇。例：不要問「要不要把這段抽成共用元件？」，要問「這兩頁的這個區塊要不要改成『改一次、兩頁一起變』？」。
+- 遇到「各頁內容不一致」或「不確定要不要合併」的問題：寫一份 .md 清單（分類＋標明網站上哪裡看得到＋建議選項）讓使用者回填，參考 `docs/REFACTOR-QUESTIONS.md` 的格式。
+- **大規模開發或改版之後，必須自行 spawn subagent 做對抗性驗證**（一個驗證「結果是否符合目的」、一個做 code review），修完問題才回報使用者。
+- 從不主動 commit；工作完成後詢問使用者是否要 commit + push。
 
-## 內容渲染機制（最容易改壞的地方）
-- 可編輯元素帶 `data-field="page.key"`（文字）、`data-field-img`、`data-field-href`；商品容器用固定 id：`hamu-grid`、`goods-grid-outerwear`、`goods-grid-hats`；首頁另有 `home-carousel`（輪播）、`promo-grid`（行銷 Banner）、`featured-grid`（推薦牆「大家的心頭好」：從 `products-store.json` 取真實商品，排行寫死在 render.js 的 `FEATURED_IDS`，口水巾與眼鏡固定前兩名；HTML fallback 要與該清單同步）。
-- `render.js` 在載入時 fetch JSON 填入；**fetch 失敗時（如 `file://` 直開）保留 HTML 裡寫死的 fallback，不會空白，這是刻意設計**。
-- ⚠️ 改任何頁面文字：**HTML 的 fallback 與對應 JSON 兩邊要同步改，不能只改一邊**，否則線上（讀 JSON）跟本機預覽會不一致。
-- `data-page` 屬性決定 render.js 抓哪份資料：`home` / `hamu_page` / `goods_page` / `story_page` / `contact_page`。
+## 必讀文件（動手前先看）
 
-## Decap CMS 資料結構限制
-- 商品 JSON **必須維持 `{"items":[...]}` 包裹格式**（file collection 需要）。
-- goods 每筆多一個 `category` 欄位，值只能是 `outerwear` 或 `hats`，render.js 依此分流到兩個 grid。
-- products-hamu 的名稱與價格已對應 products-store.json 真實商品，每筆有 `store_id`（對應選品商品編號）：render.js 會轉成卡片的 `data-product-id`，點擊開詳情視窗（hamu.html 已含 modal + shop.js）。products-goods 的價格仍是示意佔位值；`featured` 已不再驅動首頁推薦牆（改用 render.js 的 `FEATURED_IDS`）。
-- 各頁主標題（site.json 的 `title`）支援用全形「｜」指定換行位置（render.js 的 `setTitle` 轉成 `<br>`），避免「療癒系」這類詞彙被自動斷在詞中間；HTML fallback 的 `<br>` 要放在相同位置。
-- 聯絡資訊（site.json `contact`）只有 Instagram 與客服時間，**Email 已移除**；LINE 加好友連結 `https://lin.ee/p8jJX9m` 寫死在 HTML（綠色 `.line-btn`）。
-- 新增 / 改欄位時，**JSON 與 `admin/config.yml` 的 `fields` 要同步**，否則後台編輯不到。
-- `products-store.json` **尚未接 Decap 後台**（規格為巢狀結構，config.yml 未定義）；目前更新流程是「改 `plupluland_products.md` → 重跑 build 腳本」，若日後要讓 Melody 在後台編輯需另外設計。
-- `shop.html` 的商品牆沒有逐項 HTML fallback（47 項太多）：fetch 失敗時顯示 `.shop-fallback` 備援訊息並導向賣貨便，這是刻意設計。
+1. `docs/COMPONENTS.md` — **共用元件與常數總覽**。改按鈕、彈窗、卡片、頁首頁尾、賣場網址、折扣金額之前先查這份，避免重複造輪子或改錯地方。
+2. `docs/PRODUCT-SOP.md` — **商品上架標準流程**。新增／更新商品、換圖、標特價、標完售都照這份做（含兩種上架方式的「腳本會蓋掉手改」警告）。
+3. `README.md` — 本機預覽指令（`npm start`）與部署流程。
+4. 本檔其餘章節 — 資料流、品牌規範、設計系統。
+
+## 專案結構
+
+```
+src/
+  index.html            分頁外殼（字型、favicon、Netlify Identity）
+  styles.scss           全站唯一樣式檔（所有 token 在 :root；元件不寫私有樣式）
+  app/
+    app.ts / app.config.ts / app.routes.ts   根版型、路由（含舊 .html 網址轉址）
+    core/               常數與資料層
+      brand.ts            賣貨便網址、LINE/IG、折扣金額、推薦排行等「單一來源」常數
+      site-content.service.ts   讀 content/site.json（全站文案）
+      products.service.ts       讀三份商品 JSON（store/goods/picnic）
+      product-modal.service.ts  商品詳情視窗開關
+      text.ts             keepBrand（品牌名不斷行）、titleBreak（「｜」→換行）
+      reveal.directive.ts 滾動淡入
+    shared/             共用 UI 元件（清單見 docs/COMPONENTS.md）
+    pages/              5 個頁面：home / shop / story / contact / notice
+content/                後台可編輯的文案與商品 JSON（維持舊格式，Decap 後台不受改版影響）
+admin/                  Decap CMS 後台（config.yml 欄位定義）
+images/、assets/        照片與商品圖（angular.json 有把這些資料夾映射進網站）
+scripts/                商品資料產生腳本（python / node）
+netlify.toml            部署設定（打包指令、舊網址 301 轉址、SPA fallback）
+files/、files.zip       舊版遺留檔案，一律忽略不改
+```
+
+- 本機預覽：`npm start` → http://localhost:4200 （不再用 Live Server）。
+- 驗證正式版：`npm run build` 後需要有 SPA fallback 的伺服器（可用 scratchpad 起一個 Node 靜態伺服器；`python -m http.server` 進不了 /shop 這類路由）。
+- 單元測試：`npm test`（vitest）。
+
+## 內容資料流（最容易改壞的地方）
+
+- **JSON 是唯一內容來源**（改版後不再有「HTML fallback 要兩邊同步改」的問題）：
+  - `content/site.json` — 各頁文案 / hero 圖 / 聯絡資訊 / 首頁輪播與 Banner
+  - `content/products-picnic.json` — 首頁野餐企劃專區（`#picnic-plan`）：`store_id` 有值＝既有選品；`status: coming_soon`＝預告品項（佔位圖 `assets/images/products/coming-soon-*.svg`＋停用購買按鈕「即將開賣」，點卡片開預告視窗）
+  - `content/products-store.json` — 娃衣選品 47 項（**產出檔勿手改**：由 `scripts/build-products-json.py` 解析 `plupluland_products.md`＋`docs/products/web-copy.md` 產生；賣場更新時改 md 後重跑腳本）
+- 商品 JSON **必須維持 `{"items":[...]}` 包裹格式**（Decap file collection 需要）。
+- 新增／改 JSON 欄位時，`admin/config.yml` 的 `fields` 要同步，否則後台編輯不到。
+- `site-content.service.ts` 裡有一份「載入前的預設文案」，只在畫面載入的一瞬間出現，**後台改文案時不需要跟著改它**。
+- `assets/images/products/variants/` 規格專屬圖片命名規範：`{商品編號}_{規格名稱}.jpg`（空格移除、`/` 改 `-`）。照規範放入後重跑 build 腳本即自動接上；彈窗點選規格時主圖淡入切換。
+- 各頁主標題支援用全形「｜」指定換行位置（`titleBreak` pipe），避免「療癒系」這類詞被斷在中間。
+
+## 購買導流與品牌常數（單一來源）
+
+全部集中在 `src/app/core/brand.ts`，**改一處全站生效**：
+- 賣貨便網址 `BUY_URL`（換賣場只改這裡）
+- LINE `https://lin.ee/p8jJX9m`、IG `@plupluland_tw`
+- 「發限動折扣」金額 `SHARE_DISCOUNT_AMOUNT`（首頁活動區、選品頁橫幅、購物須知三處同步）
+- 首頁推薦牆排行 `FEATURED_IDS`（口水巾、眼鏡固定第 1、2 名）
 
 ## 設計系統
-- 改色 / 改字體 / 改版型 → 改 `css/style.css` 的 `:root` 變數，別散改各處。
-- 主色：`--cream #FBF6EA`、`--brown-deep #6B4A32`；點綴：`--moss #7C8A63`、`--rose #C97B82`。
-- 字體：標題 `--serif-cjk`（M PLUS Rounded 1c，**圓體，不要手寫感**）、內文 `--sans-cjk`（Noto Sans TC）、拉丁點綴 `--accent-lat`（Quicksand）。
-- 簽名視覺：陳列櫃 `.shelf`、手縫虛線 `.stitch`、商品貼紙標籤 `.product-tape`。
-- **圖文對稱區塊一律用 `.duo`**（文字 55% / 圖 45%、gap 56px、圖框固定 **1:1 正方形** + cover + 圓角 12px、頂部對齊 `align-items:start`；圖在左加 `.duo--flip`）；內頁頁首一律用 `.page-hero`（padding 寫死，**不要用 inline style 覆寫**）；Navbar 高度固定 72px。
-- 商品詳情視窗（`#shop-modal`）已從 shop.html 抽象化：頁面只要放 modal markup ＋載入 `js/shop.js`，任何帶 `data-product-id`（對應 products-store.json 的 id）的元素點擊就會開窗；首頁推薦牆即走此機制。卡片內 `.product-buy` 按鈕不受攔截、照常外連賣貨便。
-- 全站商品圖統一規格：`.product-photo` 基底即 **1:1 正方形＋圓角 12px＋cover**（娃寶陳列區、大家的心頭好、選品陳列架共用），不要在個別區塊覆寫比例。
-- 導覽列**沒有「首頁」與「聯絡我們」連結**（點 LOGO 回首頁；聯絡入口在頁尾與 icon）；文字選單只有はむにぎり倉鼠娃／娃衣選品／品牌故事，右上角固定三個圓形功能 icon：購物車（賣貨便，橘 `--seven-orange`）、Instagram（玫瑰）、LINE（綠），手機版維持水平並排在漢堡選單旁。
-- 頁尾選單：品牌故事、聯絡我們、購物須知＋兩顆膠囊按鈕：橘色 `.buy-btn`（前往賣貨便下單，含購物車 icon）與綠色 `.line-btn`（加入 LINE 好友），兩者規格完全相同。
-- 娃寶陳列區（hamu-grid）最多顯示 **6 個品項**（render.js `slice(0, 6)`）。
-- 輪播支援**海報模式**（carousel item 的 `poster: true`）：圖片本身已含文字設計時整張為連結、不疊文字卡片，手機裁切靠左（`.carousel-slide--poster`）；野餐季 Banner（`images/uploads/picnic-banner.jpg`，2100×900）即此模式。
 
-## 購買導流（7-11 賣貨便）
-- 網站無內建金流，所有購買都導向賣貨便：`https://myship.7-11.com.tw/general/detail/GM2605058795102`。
-- 這個網址出現在：各頁 nav 的 `.nav-buy`、footer 的 `.buy-link`、商品卡的 `.product-buy`（render.js 的 `BUY_URL` 常數與各頁 HTML fallback）、`js/shop.js` 的 `STORE_URL`。**若賣場網址更換，以上位置要全部同步改**。
-- 品牌故事頁有「PluPlu的四位店員」區塊，大頭貼放 `images/staff/`（manager＝花生米／parttimer＝多多／accountant＝比司吉／buyer＝Coco，470px 方形，由主理人提供的合照裁出），未放照片時顯示米色圓形佔位。
-- 「出貨前的小小儀式」使用 `.steps` 流程元件（圓形 icon＋玫瑰色數字標籤，三欄含手機版），story.html 與 goods.html 共用同一份文案：嚴格驗貨、細緻剪線頭、手工打結收尾。**兩頁要同步改**。
+- 改色／字體／版型 → 改 `src/styles.scss` 的 `:root` 變數，別散改各處。
+- 主色：`--cream #FBF6EA`、`--brown-deep #6B4A32`；點綴：`--moss #7C8A63`、`--rose #C97B82`。
+- 字體：標題 M PLUS Rounded 1c（圓體，不要手寫感）、內文 Noto Sans TC、拉丁點綴 Quicksand（在 `src/index.html` 以 link 載入）。
+- 導覽列：LOGO 旁文字為「首頁」（點擊回首頁）；文字選單為 娃衣選品／品牌故事／購物須知／聯絡我們；右上三顆圓 icon 為**奶茶棕色階**（賣貨便＝淺、IG＝中、LINE＝深，token `--nav-icon-*`，主理人指定）。
+- **全站段落間距規格**：相鄰區塊之間留白統一 200px（`.section` 各出 100px、stitch 分隔線置中不佔間距；手機減半）。改間距只改 styles.scss 的 `.section` 規則。
+- 實拍標章 `.badge-real`：**純文字＋小圓點＋手縫虛線底線**，刻意不做膠囊外框（避免誤認為按鈕，主理人指定）。
+- **完售品項不做灰階與售完貼紙**（像展示歷年作品；主理人指定），售完資訊只在彈窗內以「已售完」停用按鈕與補貨說明呈現。
+- 選品分類名稱：「鼠鼠本體」「褲裝」（改名要同時改 `scripts/build-products-json.py`、`content/products-store.json`、`admin/config.yml` 三處）。
+- 已移除的頁面（勿重建）：「はむにぎり倉鼠娃」頁（2026-07-17，舊網址轉回首頁）、「娃裝配件」頁（2026-08-05，舊網址 /goods 與 goods.html 轉到 /shop）。相關資料檔與後台收藏一併移除；本體與衣裝都在娃衣選品分類裡。
+- 品牌故事頁段落間距為主理人指定的 450px 大留白（`.story-spacing`，手機縮為 150px），樣式在 styles.scss。
+- 頁尾連結順序：品牌故事 → 購物須知 → 聯絡我們（主理人指定）＋橘色賣貨便膠囊＋綠色 LINE 膠囊（規格相同）。
+- 圖文對稱區塊一律用 `.duo`（文字 55%／圖 45%、1:1 方形圖、頂部對齊；圖在左加 `.duo--flip`）。
+- 全站商品圖統一 `.product-photo`：1:1 正方形＋圓角 12px＋cover。
+- 輪播兩種版型：**海報模式**（poster:true 整張可點，可加 hotspot 熱區光圈，座標寫死在 styles.scss，手機 4:3 靠左裁切 x 軸 ×1.75）；**分割式版型**（非海報：左格紋色塊 theme butter/rose ＋右實拍，格紋色在 `--gingham-*`，手機上文下圖）。
+- 新增共用元件：selector 用 `pl-` 前綴，並把 selector 加進 styles.scss 頂部的 `display:contents` 清單（見 docs/COMPONENTS.md 的規則）。
 
 ## 品牌語言規範
+
 - **不稱「娃娃」**，一律用「娃寶／寶寶／小朋友」等擬人化稱呼。
+- **全站禁用破折號（——）**，改用逗號、頓號或「：」斷句。
+- 品牌名稱「PluPlu Land」不可斷行：JSON 文案經 `keepBrand` pipe 處理；模板寫死處用 `PluPlu&nbsp;Land`。
+- 按鈕與短標籤套 `word-break:keep-all`；**長句內文不可套**，會撐破版面。
 - **全站堅持實拍照片，絕不放 AI 生成圖**（品牌現階段最不妥協的堅持）。
 - 調性：溫柔陪伴感、日系極簡。
 
 ## 改 CSS 後要檢查的斷點
-style.css 用到的 breakpoint：**480 / 560 / 760 / 820 / 900 / 1000px（導覽列收合為漢堡選單）**。改版型後至少過一輪窄機（320–480）、平板（760–820）。
-目前所有手機版修正僅在單檔預覽目視過，**尚未在真機／DevTools 逐頁逐斷點驗證**。
+
+styles.scss 的 breakpoint：**480 / 560 / 760 / 820 / 900 / 1000px（導覽列收合為漢堡選單）**。
+改版型後至少過一輪窄機（500px 寬，Edge headless 最窄只能開到約 500）、平板（760–820）、桌機（1440）。
 
 ## 部署狀態與待辦
-- Step 1 GitHub repo：完成。
-- Step 2 改 `admin/config.yml` 的 repo 名稱：目前仍是預留值 `your-github-username/pluplu-land`，**待確認 Melody 是否已在線上版改對**。
-- Step 3 接 Netlify（Import → Deploy）：狀態未確認。
-- Step 4 Netlify Identity + Git Gateway（開後台登入）：**尚未做**。
-- ⚠️ 待釐清：`config.yml` 目前是 `backend: name: github`，與「Identity + Git Gateway」流程通常需要的 `git-gateway` 不一致，上線前需確認。
+
+- Netlify 打包設定已寫在 `netlify.toml`（`npm ci && npm run build`、publish `dist/pluplu-land/browser`、舊 .html 網址 301 轉址、SPA fallback）。
+- `admin/config.yml` 的 repo 名稱仍是預留值 `your-github-username/pluplu-land`，上線前要改成實際 repo。
+- Netlify Identity + Git Gateway（後台登入）尚未開通；`config.yml` 目前 `backend: name: github` 與 Git Gateway 流程的差異上線前需確認。
+- 聯絡頁不設表單（主理人指定，2026-07-17 移除）：顧客一律走 LINE／IG 私訊。
+- 野餐海報圖內文字寫「2026的好天氣」，跨年要換圖。
+- 已知限制：分享連結到 LINE／FB 時，內頁的預覽標題與描述會顯示首頁的版本（單頁應用特性）。若日後在意，可加「預先產生各頁 HTML」（prerender）解決，屬獨立工程。

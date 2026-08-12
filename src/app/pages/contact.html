@@ -1,0 +1,33 @@
+<pl-page-hero
+  eyebrow="GET IN TOUCH"
+  title="來聊聊娃寶的事吧"
+  lead="想替寶寶預訂新衣、想問問娃寶的近況，或者只是今天有點累、想找個軟綿綿的地方說說話，都歡迎來找我們。"
+  image="images/uploads/crochet-hat-closeup.jpg"
+  alt="娃寶戴著粉藍雙色鉤織毛帽特寫"
+/>
+
+<section class="section">
+  <div class="wrap reveal">
+    <div class="contact-card contact-card--solo">
+      <span class="eyebrow">聯絡方式</span>
+      <h3 style="margin-top:6px;">這裡都找得到我們</h3>
+      <p class="contact-note">想預訂、詢價或聊聊娃寶的日常，直接用 LINE 或 Instagram 私訊我們就可以囉，小幫手會盡快回覆你。</p>
+      <div class="contact-list">
+        <div>
+          <span class="label">LINE</span>
+          <pl-line-button [label]="LINE_HANDLE" />
+        </div>
+        <div>
+          <span class="label">Instagram</span>
+          <a class="value icon-link" [href]="contact().instagram_url" target="_blank" rel="noopener">
+            <pl-icon-ig /><span>{{ contact().instagram_handle }}</span>
+          </a>
+        </div>
+        <div>
+          <span class="label">客服時間</span>
+          <span class="value">{{ contact().hours }}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

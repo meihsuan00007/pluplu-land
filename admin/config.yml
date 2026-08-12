@@ -41,11 +41,20 @@ collections:
                 fields:
                   - { label: "輪播大圖（建議橫式寬圖）", name: "image", widget: "image" }
                   - { label: "海報模式（圖片本身已含文字設計：整張可點、不顯示文字卡片）", name: "poster", widget: "boolean", required: false, default: false }
+                  - { label: "海報按鈕熱區（僅海報模式：圖面左下角按鈕位置顯示可點擊光圈）", name: "hotspot", widget: "boolean", required: false, default: false }
                   - { label: "英文小標籤（例如：NEW ARRIVAL）", name: "eyebrow", widget: "string", required: false }
                   - { label: "標題", name: "title", widget: "string" }
                   - { label: "副標說明", name: "subtitle", widget: "string", required: false }
                   - { label: "按鈕文字", name: "link_label", widget: "string", required: false }
-                  - { label: "按鈕連結（例如：goods.html）", name: "link", widget: "string", required: false }
+                  - { label: "按鈕連結（例如：goods.html，也可填 #picnic-plan 跳到野餐專區）", name: "link", widget: "string", required: false }
+                  - label: "左側色塊主題（非海報模式：格紋色塊底色）"
+                    name: "theme"
+                    widget: "select"
+                    required: false
+                    default: "butter"
+                    options:
+                      - { label: "奶油黃綠格紋", value: "butter" }
+                      - { label: "玫瑰粉格紋", value: "rose" }
               - label: "行銷組合 Banner（固定 3 張：第 1 張為左側大圖，第 2、3 張為右側上下疊圖）"
                 name: "banners"
                 widget: "list"
@@ -55,19 +64,7 @@ collections:
                   - { label: "英文小標籤（例如：New in）", name: "label_en", widget: "string", required: false }
                   - { label: "標題（例如：新品上市）", name: "title", widget: "string" }
                   - { label: "副標說明", name: "subtitle", widget: "string", required: false }
-                  - { label: "點擊連結（例如：hamu.html）", name: "link", widget: "string", required: false }
-          - { label: "はむにぎり倉鼠娃頁", name: "hamu_page", widget: "object", fields: [
-              { label: "小標籤", name: "eyebrow", widget: "string" },
-              { label: "主標題（可用全形｜指定換行位置）", name: "title", widget: "string" },
-              { label: "介紹文字", name: "lead", widget: "text" },
-              { label: "主視覺圖片", name: "hero_image", widget: "image" },
-            ]}
-          - { label: "娃裝配件頁", name: "goods_page", widget: "object", fields: [
-              { label: "小標籤", name: "eyebrow", widget: "string" },
-              { label: "主標題（可用全形｜指定換行位置）", name: "title", widget: "string" },
-              { label: "介紹文字", name: "lead", widget: "text" },
-              { label: "主視覺圖片", name: "hero_image", widget: "image" },
-            ]}
+                  - { label: "點擊連結（例如：goods.html）", name: "link", widget: "string", required: false }
           - { label: "品牌故事頁", name: "story_page", widget: "object", fields: [
               { label: "小標籤", name: "eyebrow", widget: "string" },
               { label: "主標題（可用全形｜指定換行位置）", name: "title", widget: "string" },
@@ -86,52 +83,32 @@ collections:
               { label: "客服時間", name: "hours", widget: "string" },
             ]}
 
-  # ── はむにぎり倉鼠娃商品清單 ──────────────────────────────────
-  - name: "hamu_products"
-    label: "はむにぎり倉鼠娃商品"
+  # ── 野餐企劃品項（首頁野餐專區，含 Coming Soon 預告）──────────
+  - name: "picnic_products"
+    label: "野餐企劃品項"
     files:
-      - name: "hamu"
-        label: "倉鼠娃陳列清單"
-        file: "content/products-hamu.json"
+      - name: "picnic"
+        label: "野餐企劃清單"
+        file: "content/products-picnic.json"
         fields:
-          - label: "商品清單"
+          - label: "品項清單"
             name: "items"
             widget: "list"
-            summary: "{{name}}"
+            summary: "{{name}}（{{status}}）"
             fields:
-              - { label: "商品名稱", name: "name", widget: "string" }
-              - { label: "小標籤（例如：居家／戶外／節慶）", name: "tag", widget: "string", required: false }
-              - { label: "商品照片", name: "image", widget: "image" }
-              - { label: "價格（例如：NT$ 130）", name: "price", widget: "string", required: false }
-              - { label: "對應娃衣選品商品編號（填入後點卡片會開啟該商品的詳情視窗）", name: "store_id", widget: "string", required: false }
-              - { label: "顯示在首頁熱銷推薦", name: "featured", widget: "boolean", required: false, default: false }
-              - { label: "商品說明", name: "note", widget: "text" }
-
-  # ── 娃裝配件商品清單 ──────────────────────────────────────────
-  - name: "goods_products"
-    label: "娃裝配件商品"
-    files:
-      - name: "goods"
-        label: "娃裝配件陳列清單"
-        file: "content/products-goods.json"
-        fields:
-          - label: "商品清單"
-            name: "items"
-            widget: "list"
-            summary: "{{name}} — {{category}}"
-            fields:
-              - { label: "商品名稱", name: "name", widget: "string" }
-              - label: "分類"
-                name: "category"
+              - { label: "品項代碼（英文，例如：picnic-strawhat）", name: "id", widget: "string" }
+              - { label: "對應娃衣選品商品編號（既有選品填編號，點卡片會開該商品詳情；預告品項留空）", name: "store_id", widget: "string", required: false }
+              - { label: "品項名稱", name: "name", widget: "string" }
+              - { label: "售價（純數字；尚未開賣留空）", name: "price", widget: "number", value_type: "int", required: false }
+              - { label: "品項圖片（尚未到貨可用 Coming Soon 佔位圖）", name: "image", widget: "image" }
+              - label: "販售狀態"
+                name: "status"
                 widget: "select"
                 options:
-                  - { label: "外套 ・ 洋裝", value: "outerwear" }
-                  - { label: "帽飾 ・ 披肩", value: "hats" }
-              - { label: "小標籤", name: "tag", widget: "string", required: false }
-              - { label: "商品照片", name: "image", widget: "image" }
-              - { label: "價格（例如：NT$ 380）", name: "price", widget: "string", required: false }
-              - { label: "顯示在首頁熱銷推薦", name: "featured", widget: "boolean", required: false, default: false }
-              - { label: "商品說明", name: "note", widget: "text" }
+                  - { label: "販售中", value: "available" }
+                  - { label: "即將開賣（Coming Soon）", value: "coming_soon" }
+              - { label: "卡片小字（顯示在名稱下方，例如：預計陸續到貨，敬請期待！）", name: "note", widget: "string", required: false }
+              - { label: "詳情視窗介紹文字", name: "description", widget: "text", required: false }
 
   # ── 娃衣選品商店（shop.html 商品資料）─────────────────────────
   - name: "store_products"
@@ -159,11 +136,11 @@ collections:
                 name: "category"
                 widget: "select"
                 options:
-                  - { label: "玩偶本體", value: "doll" }
+                  - { label: "鼠鼠本體", value: "doll" }
                   - { label: "洋裝", value: "dress" }
                   - { label: "裙子", value: "skirt" }
                   - { label: "上衣・毛衣", value: "top" }
-                  - { label: "褲裝・吊帶", value: "bottom" }
+                  - { label: "褲裝", value: "bottom" }
                   - { label: "套裝", value: "set" }
                   - { label: "外套・披肩", value: "outerwear" }
                   - { label: "帽子・頭飾", value: "headwear" }

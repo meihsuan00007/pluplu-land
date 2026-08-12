@@ -1,0 +1,130 @@
+<pl-page-hero
+  [eyebrow]="page().eyebrow"
+  [title]="page().title"
+  [lead]="page().lead"
+  [image]="page().hero_image || ''"
+  alt="娃寶穿著格紋吊帶褲坐在木桌上"
+/>
+
+<section class="section">
+  <div class="wrap">
+    <pl-section-head eyebrow="HOW IT STARTED" title="這一切，從一次點名開始" />
+    <div class="timeline reveal">
+      @for (row of timeline(); track $index) {
+        <div class="timeline-row">
+          <div class="timeline-year">{{ row.year }}</div>
+          <div class="timeline-line"></div>
+          <div class="timeline-copy">
+            <h3>{{ row.title | keepBrand }}</h3>
+            <p>{{ row.body | keepBrand }}</p>
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+</section>
+
+<hr class="stitch stitch--wide" />
+
+<section class="section">
+  <div class="wrap duo reveal">
+    <div class="duo-copy">
+      <span class="eyebrow">WHO WE'RE FOR</span>
+      <h2>寫給渴望被陪伴的你</h2>
+      <p class="lead">
+        也許你是工作壓力好大的上班族，也許你只是著迷於世界裡的小小美好。不管是哪一種你，都值得有一個「可以被照顧、也悄悄照顧你」的小存在。
+      </p>
+      <p style="color:var(--ink-soft);margin-top:24px;">
+        替娃寶換上新衣、佈置一個小角落、拍下今天的合照。這些小小的儀式，會輕輕接住疲憊的你。娃寶想陪你，把日子過得慢一點、軟一點。
+      </p>
+    </div>
+    <div class="duo-media">
+      <img src="/images/uploads/cuddle-closeup.jpg" alt="兩隻娃寶依偎在一起的特寫" />
+    </div>
+  </div>
+</section>
+
+<pl-quote-block quote="「在我們眼裡，每一個娃寶都不是物品，｜而是值得被取名字、被好好稱呼的小朋友。」" />
+
+<hr class="stitch stitch--wide" />
+
+<!-- ===== PluPlu的四位店員（品牌角色介紹）
+     大頭貼為四位店員的專屬定裝照，放在 images/staff/：
+     花生米 manager.jpg ／ 多多 parttimer.jpg ／ 比司吉 accountant.jpg ／ Coco buyer.jpg ===== -->
+<section class="section">
+  <div class="wrap">
+    <pl-section-head
+      eyebrow="SHOP KEEPERS"
+      title="PluPlu的四位店員"
+      lead="四隻はむにぎり娃寶組成的小小團隊，每天在店裡張羅大小事，等你來玩。"
+    />
+    <div class="team-grid reveal">
+      <div class="team-card">
+        <div class="team-avatar">
+          <img src="/images/staff/manager.jpg" alt="店長花生米的大頭貼：戴著藍色毛帽的米色娃寶" loading="lazy" (error)="onAvatarError($event)" />
+        </div>
+        <span class="team-role">店長 ・ 米色</span>
+        <h3>花生米</h3>
+        <p>溫柔的效率控，也是大家最信任的肩膀。圍裙口袋像百寶袋，永遠能掏出剛剛好的工具，默默替大家把每一件事都打點妥當。</p>
+      </div>
+      <div class="team-card">
+        <div class="team-avatar">
+          <img src="/images/staff/parttimer.jpg" alt="工讀生多多的大頭貼：戴著粉紅草莓帽的白色娃寶" loading="lazy" (error)="onAvatarError($event)" />
+        </div>
+        <span class="team-role">工讀生 ・ 白色</span>
+        <h3>多多</h3>
+        <p>偶爾出點小差錯，但因為實在太可愛，反而成了店裡的招財貓。對美感有天生的直覺，店裡最好看的陳列，常常出自他手。</p>
+      </div>
+      <div class="team-card">
+        <div class="team-avatar">
+          <img src="/images/staff/accountant.jpg" alt="會計比司吉的大頭貼：戴著眼鏡拿計算機的灰色娃寶" loading="lazy" (error)="onAvatarError($event)" />
+        </div>
+        <span class="team-role">會計 ・ 灰色</span>
+        <h3>比司吉</h3>
+        <p>年紀最小，卻自帶長輩般的穩重氣場。眼鏡其實沒有度數，只是為了看起來專業。喜歡喝熱茶，最近迷上自學程式。</p>
+        <span class="team-egg">✦ 這個網站就是他做的喔！</span>
+      </div>
+      <div class="team-card">
+        <div class="team-avatar">
+          <img src="/images/staff/buyer.jpg" alt="採購Coco的大頭貼：穿著鵝黃上衣的棕色娃寶" loading="lazy" (error)="onAvatarError($event)" />
+        </div>
+        <span class="team-role">採購 ・ 棕色</span>
+        <h3>Coco</h3>
+        <p>像風一樣的孩子，是 PluPlu&nbsp;Land 與外面世界之間的橋樑。喜歡在路邊亂逛尋找靈感，常常帶回一些「奇怪但莫名受歡迎」的神祕小物。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="stitch stitch--wide" />
+
+<section class="section">
+  <div class="wrap">
+    <pl-section-head eyebrow="OUR PROMISE" title="最珍貴、也最不妥協的堅持" />
+    <div class="duo duo--flip reveal">
+      <div class="duo-copy">
+        <pl-badge-real text="全站商品照片皆為實拍" />
+        <p class="lead">
+          我們堅持每一件衣服、每一個配件，都由娃寶親自實穿拍攝，絕不使用 AI
+          生成照片。因為我們想把最真實、最沒有誤差的穿搭質感，呈現給每一位陪伴娃寶的主人。這是
+          PluPlu&nbsp;Land 最珍貴、也最不妥協的堅持。
+        </p>
+      </div>
+      <div class="duo-media">
+        <img src="/images/uploads/dollhouse-group.jpg" alt="多隻娃寶穿著不同針織裝聚在陳列場景中" />
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="stitch stitch--wide" />
+
+<!-- 出貨三步驟（內容與娃裝配件頁共用同一份元件，標題開場白各自保留） -->
+<pl-steps title="出貨前的小小儀式" lead="每一件選物在出門找你之前，都會先經過我們的手。" />
+
+<pl-strip-cta
+  title="累了，就回來小天地坐坐吧"
+  body="從認識娃寶開始，或者，就只是進來跟我們說說話。"
+  label="聯絡我們"
+  link="/contact"
+/>

@@ -2,15 +2,11 @@
   "categories": [
     {
       "key": "doll",
-      "label": "玩偶本體"
+      "label": "鼠鼠本體"
     },
     {
       "key": "dress",
-      "label": "洋裝"
-    },
-    {
-      "key": "skirt",
-      "label": "裙子"
+      "label": "洋裝・裙子"
     },
     {
       "key": "top",
@@ -18,7 +14,7 @@
     },
     {
       "key": "bottom",
-      "label": "褲裝・吊帶"
+      "label": "褲裝"
     },
     {
       "key": "set",
@@ -206,7 +202,7 @@
     {
       "id": "06",
       "name": "雙層緹花蛋糕裙（超多顏色！）",
-      "category": "skirt",
+      "category": "dress",
       "tags": [
         "特價"
       ],
@@ -869,7 +865,7 @@
     {
       "id": "22",
       "name": "田園碎花裙",
-      "category": "skirt",
+      "category": "dress",
       "tags": [],
       "price": 90,
       "original_price": 90,
@@ -1503,7 +1499,7 @@
     {
       "id": "36",
       "name": "粉嫩莫內花園裙",
-      "category": "skirt",
+      "category": "dress",
       "tags": [],
       "price": 120,
       "original_price": 120,
@@ -1785,7 +1781,7 @@
     {
       "id": "46",
       "name": "花苞吊帶裙🌹",
-      "category": "skirt",
+      "category": "dress",
       "tags": [],
       "price": 150,
       "original_price": 150,
@@ -1808,7 +1804,7 @@
     {
       "id": "47",
       "name": "仙氣公主澎澎裙",
-      "category": "skirt",
+      "category": "dress",
       "tags": [],
       "price": 290,
       "original_price": 290,
