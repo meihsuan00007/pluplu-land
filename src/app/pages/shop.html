@@ -23,8 +23,8 @@
         <button
           type="button"
           class="filter-chip"
-          [class.is-active]="currentCat() === chip.key"
-          (click)="currentCat.set(chip.key)"
+          [class.is-active]="activeCat() === chip.key"
+          (click)="setCat(chip.key)"
         >
           {{ chip.label }}
         </button>

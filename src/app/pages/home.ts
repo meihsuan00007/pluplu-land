@@ -1,14 +1,7 @@
 import { NgTemplateOutlet } from '@angular/common';
 import { ChangeDetectionStrategy, Component, computed, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import {
-  FEATURED_IDS,
-  IG_URL,
-  SHARE_DISCOUNT,
-  assetUrl,
-  money,
-  routeFromLegacy,
-} from '../core/brand';
+import { FEATURED_IDS, IG_URL, SHARE_DISCOUNT, assetUrl, routeFromLegacy } from '../core/brand';
 import { ProductModalService } from '../core/product-modal.service';
 import { PicnicItem, ProductsService } from '../core/products.service';
 import { Reveal } from '../core/reveal.directive';
@@ -50,7 +43,6 @@ export class Home {
 
   readonly IG_URL = IG_URL;
   readonly SHARE_DISCOUNT = SHARE_DISCOUNT;
-  readonly money = money;
 
   /** 野餐企劃品項（含 Coming Soon 預告） */
   readonly picnic = this.products.picnicItems;
@@ -72,7 +64,6 @@ export class Home {
         {
           name: it.name,
           image: assetUrl(it.image),
-          priceText: money(it.price),
           tag: i === 0 ? 'TOP 1' : i === 1 ? 'TOP 2' : undefined,
           pid: it.id,
         },
@@ -94,8 +85,16 @@ export class Home {
     return assetUrl(path);
   }
 
+  /** 方塊連結的路由路徑（去掉 ?cat=… 查詢參數的部分） */
   route(link: string | undefined): string {
-    return routeFromLegacy(link);
+    return routeFromLegacy(link).split('?')[0];
+  }
+
+  /** 方塊連結的查詢參數（/shop?cat=handmade → { cat: 'handmade' }），沒有就回 null */
+  routeQuery(link: string | undefined): Record<string, string> | null {
+    const query = (link ?? '').split('?')[1];
+    if (!query) return null;
+    return Object.fromEntries(new URLSearchParams(query));
   }
 
   /** 後台連結欄位若填的是外部網址（http 開頭），要用開新分頁的方式外連 */

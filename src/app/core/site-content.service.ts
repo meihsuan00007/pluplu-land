@@ -7,10 +7,7 @@ export interface CarouselSlide {
   eyebrow?: string;
   subtitle?: string;
   link?: string;
-  link_label?: string;
   poster?: boolean;
-  /** 海報模式：在圖面左下角按鈕位置疊可點擊光圈熱區 */
-  hotspot?: boolean;
   /** 分割式版型左側格紋色塊主題 */
   theme?: 'butter' | 'rose';
 }
@@ -57,24 +54,13 @@ const DEFAULT_SITE: SiteContent = {
         eyebrow: 'PICNIC SEASON',
         title: '野餐季企劃新品登場',
         poster: true,
-        hotspot: true,
         link: '#picnic-plan',
-      },
-      {
-        image: 'images/uploads/dollhouse-group.jpg',
-        eyebrow: 'MEET THE HAMU',
-        title: '遇見｜はむにぎり娃寶',
-        subtitle: '每一隻的表情都不太一樣，有點呆、有點傲嬌，正等你帶回家、取一個名字。',
-        link_label: '來認識娃寶',
-        link: 'shop.html',
-        theme: 'butter',
       },
       {
         image: 'images/uploads/tweed-pearl-coat.jpg',
         eyebrow: 'NEW ARRIVAL',
         title: '新品娃裝上架',
         subtitle: '粗花呢配珍珠領，穿上的那一刻，娃寶優雅得像要去喝下午茶。',
-        link_label: '先睹為快',
         link: 'shop.html',
         theme: 'rose',
       },
@@ -89,17 +75,17 @@ const DEFAULT_SITE: SiteContent = {
       },
       {
         image: 'images/uploads/cuddle-closeup.jpg',
-        label_en: 'Popular',
-        title: '人氣推薦',
-        subtitle: '最常被抱回家的娃寶們',
-        link: 'shop.html',
+        label_en: 'Handmade',
+        title: '織女手作系列',
+        subtitle: '請織女一針一線訂做的手作款',
+        link: '/shop?cat=handmade',
       },
       {
         image: 'images/uploads/pearl-butterfly-detail.jpg',
         label_en: 'Accessories',
         title: '配件專區',
         subtitle: '帽帽、披肩與亮晶晶的小珠寶',
-        link: 'shop.html',
+        link: '/shop?cat=accessory',
       },
     ],
   },

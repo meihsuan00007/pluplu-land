@@ -28,9 +28,6 @@
             <img [src]="asset(item.image)" [alt]="item.name" loading="lazy" />
           </div>
           <div class="product-name">{{ item.name }}</div>
-          @if (item.price !== null) {
-            <div class="product-price">{{ money(item.price) }}</div>
-          }
           @if (item.note) {
             <p class="product-note">{{ item.note }}</p>
           }
@@ -56,7 +53,13 @@
             <ng-container *ngTemplateOutlet="promoInner; context: { b }" />
           </a>
         } @else {
-          <a [routerLink]="route(b.link)" class="promo-item" [class.promo-item--tall]="$index === 0">
+          <!-- 連結可帶 ?cat=分類鍵，導到選品頁時自動切到指定分類（如織女手作系列、配件小物） -->
+          <a
+            [routerLink]="route(b.link)"
+            [queryParams]="routeQuery(b.link)"
+            class="promo-item"
+            [class.promo-item--tall]="$index === 0"
+          >
             <ng-container *ngTemplateOutlet="promoInner; context: { b }" />
           </a>
         }

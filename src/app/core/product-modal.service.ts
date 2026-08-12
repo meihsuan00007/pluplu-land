@@ -2,13 +2,12 @@ import { Injectable, inject, signal } from '@angular/core';
 import { PicnicItem, ProductsService, StoreItem, StoreVariant } from './products.service';
 
 /** 商品詳情視窗的統一顯示資料：
- *  一般選品商品（有規格、價格）與野餐 Coming Soon 預告品項（無價格、無規格）都轉成這個格式。 */
+ *  一般選品商品（有規格）與野餐 Coming Soon 預告品項（無規格）都轉成這個格式。
+ *  全站不顯示價格，所以這裡沒有價格欄位；特價資訊只留 onSale／saleLabel 小籤。 */
 export interface ModalView {
   name: string;
   image: string;
-  price: number | null;
   onSale: boolean;
-  originalPrice: number;
   saleLabel: string | null;
   tags: string[];
   bodyIncluded: boolean;
@@ -47,9 +46,7 @@ export class ProductModalService {
     this.product.set({
       name: item.name,
       image: item.image,
-      price: item.price,
       onSale: false,
-      originalPrice: item.price ?? 0,
       saleLabel: null,
       tags: [],
       bodyIncluded: true,
@@ -70,9 +67,7 @@ export class ProductModalService {
     return {
       name: item.name,
       image: item.image,
-      price: item.price,
       onSale: item.on_sale,
-      originalPrice: item.original_price,
       saleLabel: item.sale_label,
       tags: item.tags ?? [],
       bodyIncluded: item.body_included,

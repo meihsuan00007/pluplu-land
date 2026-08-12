@@ -41,12 +41,10 @@ collections:
                 fields:
                   - { label: "輪播大圖（建議橫式寬圖）", name: "image", widget: "image" }
                   - { label: "海報模式（圖片本身已含文字設計：整張可點、不顯示文字卡片）", name: "poster", widget: "boolean", required: false, default: false }
-                  - { label: "海報按鈕熱區（僅海報模式：圖面左下角按鈕位置顯示可點擊光圈）", name: "hotspot", widget: "boolean", required: false, default: false }
                   - { label: "英文小標籤（例如：NEW ARRIVAL）", name: "eyebrow", widget: "string", required: false }
                   - { label: "標題", name: "title", widget: "string" }
                   - { label: "副標說明", name: "subtitle", widget: "string", required: false }
-                  - { label: "按鈕文字", name: "link_label", widget: "string", required: false }
-                  - { label: "按鈕連結（例如：goods.html，也可填 #picnic-plan 跳到野餐專區）", name: "link", widget: "string", required: false }
+                  - { label: "點擊連結（整張 Banner 可點。例如：shop.html，也可填 #picnic-plan 跳到野餐專區，或 /shop?cat=handmade 直達選品分類）", name: "link", widget: "string", required: false }
                   - label: "左側色塊主題（非海報模式：格紋色塊底色）"
                     name: "theme"
                     widget: "select"
@@ -64,7 +62,7 @@ collections:
                   - { label: "英文小標籤（例如：New in）", name: "label_en", widget: "string", required: false }
                   - { label: "標題（例如：新品上市）", name: "title", widget: "string" }
                   - { label: "副標說明", name: "subtitle", widget: "string", required: false }
-                  - { label: "點擊連結（例如：goods.html）", name: "link", widget: "string", required: false }
+                  - { label: "點擊連結（例如：shop.html；要直接跳到選品的某個分類可填 /shop?cat=handmade 織女手作系列、/shop?cat=accessory 配件小物）", name: "link", widget: "string", required: false }
           - { label: "品牌故事頁", name: "story_page", widget: "object", fields: [
               { label: "小標籤", name: "eyebrow", widget: "string" },
               { label: "主標題（可用全形｜指定換行位置）", name: "title", widget: "string" },

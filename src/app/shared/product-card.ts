@@ -3,15 +3,12 @@ import { ProductModalService } from '../core/product-modal.service';
 import { KeepBrandPipe } from '../core/text';
 import { BuyButton } from './buy-button';
 
-/** 商品卡片的顯示資料（各頁面把自己的商品資料整理成這個格式再餵進來） */
+/** 商品卡片的顯示資料（各頁面把自己的商品資料整理成這個格式再餵進來）。
+ *  2026-08-12 起全站不顯示價格（價格到賣貨便才看得到），卡片沒有價格欄位。 */
 export interface ProductCardData {
   name: string;
   image: string;
   alt?: string;
-  /** 一般價格顯示字串，如「NT$ 130」 */
-  priceText?: string;
-  /** 特價時改用這組（畫面會顯示特價＋原價刪除線） */
-  sale?: { priceText: string; originalText: string };
   /** 左上角貼紙標籤（居家／TOP 1／分類名稱……） */
   tag?: string;
   /** 右上角特價貼紙文字（僅選品陳列架使用） */
@@ -51,14 +48,6 @@ export interface ProductCardData {
         }
       </div>
       <div class="product-name">{{ data().name | keepBrand }}</div>
-      @if (data().sale; as sale) {
-        <div class="product-price">
-          <span class="price-sale">{{ sale.priceText }}</span>
-          <del class="price-original">{{ sale.originalText }}</del>
-        </div>
-      } @else if (data().priceText) {
-        <div class="product-price">{{ data().priceText }}</div>
-      }
       @if (data().note) {
         <p class="product-note">{{ data().note | keepBrand }}</p>
       }

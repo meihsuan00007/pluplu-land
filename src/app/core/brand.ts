@@ -24,7 +24,15 @@ export const SHARE_DISCOUNT = `NT$${SHARE_DISCOUNT_AMOUNT}`;
  *  口水巾、眼鏡固定為第 1、2 名） */
 export const FEATURED_IDS = ['31', '30', '24', '01', '02', '03', '09', '11'];
 
-/** 金額顯示格式：NT$ 1,234 */
+/** 「織女手作系列」虛擬分類（選品陳列架篩選籤＋首頁方塊導流共用）。
+ *  不是 products-store.json 的正式分類，而是撈商品 tags 裡含 HANDMADE_TAG 的品項；
+ *  商品名稱與資料沿用賣場原文「織女手工系列」，網站上的顯示名稱依主理人指定為「織女手作系列」。 */
+export const HANDMADE_CAT_KEY = 'handmade';
+export const HANDMADE_CAT_LABEL = '織女手作系列';
+export const HANDMADE_TAG = '織女手工系列';
+
+/** 金額顯示格式：NT$ 1,234。
+ *  2026-08-12 起全站不顯示價格（價格到賣貨便才看得到），此函式暫無人使用、保留備用。 */
 export function money(n: number): string {
   return 'NT$ ' + Number(n).toLocaleString('zh-Hant-TW');
 }

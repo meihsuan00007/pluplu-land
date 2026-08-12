@@ -15,6 +15,9 @@
 | `IG_URL` / `IG_HANDLE` | Instagram 連結／帳號名 | 導覽列 icon、首頁活動區、聯絡頁 |
 | `SHARE_DISCOUNT_AMOUNT` | 「發限動」折扣金額（數字 30） | 首頁活動區、選品頁橫幅、購物須知，三處一起變 |
 | `FEATURED_IDS` | 首頁「大家的心頭好」排行（口水巾、眼鏡固定前兩名） | 首頁推薦牆 |
+| `HANDMADE_CAT_KEY` / `HANDMADE_CAT_LABEL` / `HANDMADE_TAG` | 「織女手作系列」虛擬分類（key `handmade`、顯示名、對應商品 tags 的「織女手工系列」） | 選品陳列架篩選籤、首頁「織女手作系列」方塊導流（`/shop?cat=handmade`） |
+
+> 全站**不顯示價格**（2026-08-12 起）：卡片與彈窗都沒有價格欄位，`money()` 目前無人使用、保留備用。
 
 ## 共用元件（src/app/shared/）
 
@@ -27,7 +30,7 @@
 | `pl-badge-real` | `badge-real.ts` | 「全實拍」標章（純文字＋虛線底線的說明標籤，不是按鈕） | `text`（預設「全實拍・零 AI」）、`onDark`（深色底用） |
 | `pl-product-card` | `product-card.ts` | 商品卡片（首頁心頭好／娃裝配件／選品陳列架共用） | `data: ProductCardData`、`showBuy`、`shopStyle`；`data.pid` 有值＝點卡片開詳情視窗 |
 | `pl-product-modal` | `product-modal.ts` | 商品詳情彈出視窗（全站唯一，掛在 `app.ts` 根版型） | 無輸入，由 `ProductModalService` 控制 |
-| `pl-carousel` | `carousel.ts` | 首頁大輪播（海報模式＋分割式版型、自動播 5 秒、熱區） | `slides`（來自 site.json 的 home.carousel） |
+| `pl-carousel` | `carousel.ts` | 首頁大輪播（海報模式＋分割式版型、自動播 5 秒；兩種版型都整張滿版可點、不做實體按鈕也不疊光圈熱區，跳轉目的地看 site.json 的 link） | `slides`（來自 site.json 的 home.carousel） |
 | `pl-page-hero` | `page-hero.ts` | 內頁頁首（左文右圖；`center` 模式＝置中無圖，購物須知用） | `eyebrow`/`title`/`lead`/`image`/`alt`/`hasActions`/`center`；按鈕徽章用 `<ng-content>` 投影 |
 | `pl-section-head` | `section-head.ts` | 區塊標題組（英文小字＋大標＋導言） | `eyebrow`/`title`/`lead` |
 | `pl-strip-cta` | `strip-cta.ts` | 每頁底部深色行動呼籲橫幅 | `title`/`body`/`label`/`link`/`external`/`hasIntro` |

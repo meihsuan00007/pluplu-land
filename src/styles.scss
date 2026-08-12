@@ -358,29 +358,17 @@ p.lead{
 /* 海報式輪播格：圖片本身已含文案與按鈕設計（如野餐季 Banner），
    整張為連結、不疊文字卡片；手機 4:3 裁切時靠左對齊，
    確保設計在圖片左側的文字與按鈕完整呈現 */
-a.carousel-slide{ display:block; }
+/* 兩種版型都是 <a> 整張可點：海報用 block、分割式由下方 --split 規則控制 grid，
+   這裡刻意不用 a.carousel-slide 提高權重，避免蓋掉手機版的上文下圖規則 */
+.carousel-slide--poster{ display:block; }
 .carousel-slide--poster img{ object-position:left center; }
 .carousel-slide > img{
   width:100%; height:100%;
   object-fit:cover;
 }
-/* 海報按鈕熱區：疊在海報圖面左下角的按鈕位置（座標對準 picnic-banner-2.jpg 的「前往野餐」），
-   hover 顯示光圈提示可點；整張海報本來就是連結，熱區純為視覺回饋。
-   手機 4:3 靠左裁切時，可見寬度只剩 4/3 ÷ 21/9 ≈ 57%，x 軸座標與寬度 ×1.75。 */
-.poster-hotspot{
-  position:absolute;
-  left:7.5%; bottom:8%;
-  width:11%; height:11%;
-  border-radius:999px;
-  pointer-events:none;
-  transition:box-shadow .3s ease;
-}
-.carousel-slide--poster:hover .poster-hotspot{
-  box-shadow:0 0 0 3px rgba(251,246,234,.9), 0 0 26px rgba(251,246,234,.6);
-}
-
 /* 分割式輪播格（非海報一律用此版型）：左側格紋色塊文案＋右側情境實拍。
-   格紋顏色用 :root 的 --gingham-* 變數，主題由 .split-copy--rose 切換。 */
+   格紋顏色用 :root 的 --gingham-* 變數，主題由 .split-copy--rose 切換。
+   整張為連結，點任何位置都跳轉。 */
 .carousel-slide--split{
   display:grid;
   grid-template-columns:minmax(0,38fr) minmax(0,62fr);
@@ -428,20 +416,6 @@ a.carousel-slide{ display:block; }
   color:var(--ink-soft);
   max-width:30em;
 }
-.split-cta{
-  display:inline-flex; align-items:center;
-  margin-top:8px;
-  padding:10px 26px;
-  border-radius:999px;
-  background:var(--brown-deep);
-  color:var(--cream);
-  font-size:clamp(13px,1.1vw,14.5px);
-  letter-spacing:.08em;
-  white-space:nowrap;
-  word-break:keep-all;
-  transition:background .25s ease;
-}
-.split-cta:hover{ background:var(--ink); color:var(--cream); }
 .split-media{ position:relative; overflow:hidden; }
 .split-media img{
   position:absolute; inset:0;
@@ -495,9 +469,6 @@ a.carousel-slide{ display:block; }
   }
   .split-copy{ padding:14px 18px 16px; padding-left:18px; gap:6px; }
   .split-copy p{ display:none; }
-  .split-cta{ margin-top:4px; padding:7px 18px; font-size:12.5px; }
-  /* 海報熱區：4:3 靠左裁切，x 軸座標與寬度 ×1.75 */
-  .poster-hotspot{ left:13.1%; width:19.3%; }
   .carousel-arrow{ width:34px; height:34px; font-size:18px; }
   .carousel-arrow.prev{ left:10px; }
   .carousel-arrow.next{ right:10px; }
@@ -671,14 +642,6 @@ a.carousel-slide{ display:block; }
 .product-name{
   font-family:var(--serif-cjk);
   font-size:18px;
-  color:var(--brown-deep);
-  margin-bottom:6px;
-}
-.product-price{
-  font-family:var(--accent-lat);
-  font-weight:600;
-  font-size:14.5px;
-  letter-spacing:.05em;
   color:var(--brown-deep);
   margin-bottom:6px;
 }
@@ -1259,16 +1222,6 @@ footer{
 }
 /* 完售品項不做灰階與售完貼紙（主理人指定 2026-08-05）：
    卡片與彈窗主圖維持正常外觀，像展示歷年作品；售完資訊只在彈窗內以文字與停用按鈕呈現 */
-
-/* 價格：特價刪除線 */
-.price-sale{ color:var(--rose); }
-.price-original{
-  color:var(--ink-soft);
-  font-weight:500;
-  font-size:12.5px;
-  margin-left:8px;
-  text-decoration:line-through;
-}
 
 /* 讀取失敗（如 file:// 直開）時的備援訊息 */
 .shop-fallback{

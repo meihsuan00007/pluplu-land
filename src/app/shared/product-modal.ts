@@ -10,7 +10,7 @@ import {
   viewChild,
 } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { BUY_URL, assetUrl, money } from '../core/brand';
+import { BUY_URL, assetUrl } from '../core/brand';
 import { ModalView, ProductModalService } from '../core/product-modal.service';
 
 const SHIP_TEXT: Record<string, string> = {
@@ -22,7 +22,8 @@ const SOLDOUT_TEXT = '這個品項已經全數售完，若想蹲補貨消息，�
 /** 商品詳情視窗（全站唯一一份，放在 App 根版型）。
  *  由 ProductModalService 控制開關；規格選擇會連動出貨時間說明，
  *  規格若有專屬圖片（variants[].image）主圖會淡入切換，沒有就退回商品主圖。
- *  Coming Soon 預告品項：無價格、無規格，購買按鈕停用顯示「即將開賣」。 */
+ *  全站不顯示價格（價格到賣貨便才看得到），特價品項只保留「特價」小籤。
+ *  Coming Soon 預告品項：無規格，購買按鈕停用顯示「即將開賣」。 */
 @Component({
   selector: 'pl-product-modal',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -48,15 +49,10 @@ const SOLDOUT_TEXT = '這個品項已經全數售完，若想蹲補貨消息，�
                 </div>
               }
               <h3>{{ p.name }}</h3>
-              @if (p.price !== null) {
+              <!-- 全站不顯示價格（到賣貨便才看得到）；特價品項仍保留「特價」小籤提示 -->
+              @if (p.onSale) {
                 <div class="modal-price">
-                  @if (p.onSale) {
-                    <span class="price-sale">{{ money(p.price) }}</span>
-                    <del class="price-original">{{ money(p.originalPrice) }}</del>
-                    <span class="sale-chip">{{ p.saleLabel || '特價' }}</span>
-                  } @else {
-                    {{ money(p.price) }}
-                  }
+                  <span class="sale-chip">{{ p.saleLabel || '特價' }}</span>
                 </div>
               }
               @if (!p.bodyIncluded) {
@@ -112,7 +108,6 @@ export class ProductModal {
   private modal = inject(ProductModalService);
 
   readonly BUY_URL = BUY_URL;
-  readonly money = money;
 
   readonly product = this.modal.product;
   readonly selectedIdx = signal(-1);
