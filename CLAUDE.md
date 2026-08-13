@@ -51,7 +51,7 @@ files/、files.zip       舊版遺留檔案，一律忽略不改
 - **JSON 是唯一內容來源**（改版後不再有「HTML fallback 要兩邊同步改」的問題）：
   - `content/site.json` — 各頁文案 / hero 圖 / 聯絡資訊 / 首頁輪播與 Banner
   - `content/products-picnic.json` — 首頁野餐企劃專區（`#picnic-plan`）：`store_id` 有值＝既有選品；`status: coming_soon`＝預告品項（佔位圖 `assets/images/products/coming-soon-*.svg`＋停用購買按鈕「即將開賣」，點卡片開預告視窗）
-  - `content/products-store.json` — 娃衣選品 47 項（**產出檔勿手改**：由 `scripts/build-products-json.py` 解析 `plupluland_products.md`＋`docs/products/web-copy.md` 產生；賣場更新時改 md 後重跑腳本）
+  - `content/products-store.json` — 娃衣選品 59 項（**產出檔勿手改**：由 `scripts/build-products-json.py` 解析 `plupluland_products.md`＋`docs/products/web-copy.md` 產生；賣場更新時改 md 後重跑腳本。2026-08-13 依賣場全量同步：新增 48–59、#36/#44/#47 為賣場已下架保留展示）
 - 商品 JSON **必須維持 `{"items":[...]}` 包裹格式**（Decap file collection 需要）。
 - 新增／改 JSON 欄位時，`admin/config.yml` 的 `fields` 要同步，否則後台編輯不到。
 - `site-content.service.ts` 裡有一份「載入前的預設文案」，只在畫面載入的一瞬間出現，**後台改文案時不需要跟著改它**。

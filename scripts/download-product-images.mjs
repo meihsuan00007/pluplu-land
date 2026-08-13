@@ -64,6 +64,19 @@ const CATALOG = [
   { id: '45', slug: 'gradient-tulle-dress', name: '夢幻渲染彩紗裙', file: '2605281189626012.jpg' },
   { id: '46', slug: 'flower-suspender-skirt', name: '花苞吊帶裙🌹', file: '2605071159294749.jpg' },
   { id: '47', slug: 'princess-puff-skirt', name: '仙氣公主澎澎裙', file: '2605071159196023.jpg' },
+  // 2026-08-13 全量同步新增（48–59）
+  { id: '48', slug: 'knit-cardigan', name: '針織開襟小外套', file: '2608101298762572.jpg' },
+  { id: '49', slug: 'striped-tee', name: '完美版型條紋T', file: '2608101298752937.jpg' },
+  { id: '50', slug: 'plaid-bow-dress', name: '甜美格紋蝴蝶結洋裝（含髮飾）', file: '2607241273979260.jpg' },
+  { id: '51', slug: 'dot-party-dress', name: '點點派對裙╰（*°▽°*）╯', file: '2608051291503749.jpg' },
+  { id: '52', slug: 'swim-ring', name: '樂不濕鼠封底款游泳圈＆夏日充氣游泳圈⛱️', file: '2607301283095197.jpg' },
+  { id: '53', slug: 'bathrobe', name: '下班後放鬆浴袍', file: '2607301282281149.jpg' },
+  { id: '54', slug: 'lamb-hood', name: '【織女手工系列】溫馴小羊頭套', file: '2608051291460515.jpg' },
+  { id: '55', slug: 'hoodie', name: '范特西小鼠🐹酷帥抽繩帽T', file: '2607301282021025.jpg' },
+  { id: '56', slug: 'messenger-bag', name: '魔術大空間帆布郵差包', file: '2607271277822952.jpg' },
+  { id: '57', slug: 'toy-camera', name: '迷你配件 - 有聲相機', file: '2607301282755217.jpg' },
+  { id: '58', slug: 'daisy-headband', name: '【韓國直送】🌼雛菊小波浪寶寶髮帶（露耳款）', file: '2607311283937044.jpg' },
+  { id: '59', slug: 'wave-flower-hat', name: '【韓國直送】🌻波浪花花帽（露耳款）', file: '2607301282780398.jpg' },
 ];
 
 const HEADERS = {

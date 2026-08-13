@@ -12,12 +12,13 @@
     },
     {
       "id": "picnic-strawhat",
-      "name": "草帽",
-      "price": null,
-      "image": "assets/images/products/coming-soon-strawhat.svg",
-      "status": "coming_soon",
-      "note": "預計陸續到貨，敬請期待！",
-      "description": "圓圓的藤編草帽，戴上就有出門野餐的好心情。寶寶們的新帽子正在路上，到貨後會第一時間上架。"
+      "store_id": "18",
+      "name": "遮陽草帽",
+      "price": 45,
+      "image": "assets/images/products/18-plaid-schoolbag.jpg",
+      "status": "available",
+      "note": "鼠鼠尺寸的藤編草帽到貨啦，戴上就有出門野餐的好心情！",
+      "description": "圓圓的藤編遮陽草帽，鼠鼠尺寸剛剛好，戴上就有出門野餐的好心情。搭配格紋小布包一起帶走，野餐造型直接完成！"
     },
     {
       "id": "picnic-basket",

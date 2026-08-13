@@ -7,6 +7,7 @@ import {
   effect,
   inject,
   signal,
+  untracked,
   viewChild,
 } from '@angular/core';
 import { RouterLink } from '@angular/router';
@@ -132,12 +133,15 @@ export class ProductModal {
   private closeBtn = viewChild<ElementRef<HTMLButtonElement>>('closeBtn');
 
   constructor() {
-    // 開啟／關閉時：鎖住頁面捲動、重設規格選擇、把焦點移到關閉鈕
+    // 開啟／關閉時：鎖住頁面捲動、重設規格選擇、把焦點移到關閉鈕。
+    // resetFor 要用 untracked 包住：它的呼叫鏈會讀 mediaSrc()（swapMedia 的防重判斷），
+    // 若被 effect 追蹤，規格圖預載完成寫入 mediaSrc 時 effect 會重跑、把主圖蓋回去，
+    // 造成規格切圖永遠不生效的無限循環。
     effect(() => {
       const p = this.product();
       document.body.classList.toggle('modal-open', !!p);
       if (!p) return;
-      this.resetFor(p);
+      untracked(() => this.resetFor(p));
       queueMicrotask(() => {
         const panel = this.panel()?.nativeElement;
         if (panel) panel.scrollTop = 0;

@@ -18,7 +18,7 @@ import { SectionHead } from '../shared/section-head';
 import { Steps } from '../shared/steps';
 import { StripCta } from '../shared/strip-cta';
 
-/** 娃衣選品頁：47 項真實商品的商品牆＋分類篩選。
+/** 娃衣選品頁：59 項真實商品的商品牆＋分類篩選。
  *  資料來自 content/products-store.json（產出檔勿手改，見 CLAUDE.md）。
  *  分類籤除正式分類外，另有「織女手作系列」虛擬分類（依商品 tags 篩選）；
  *  網址可帶 ?cat=分類鍵 直接切到指定分類（首頁方塊導流用）。

@@ -49,6 +49,19 @@ CATEGORY_OF = {
     "07": "bag", "18": "bag", "19": "bag", "39": "bag", "44": "bag",
     "08": "accessory", "10": "accessory", "20": "accessory", "26": "accessory", "27": "accessory",
     "29": "accessory", "30": "accessory", "31": "accessory", "40": "accessory",
+    # 2026-08-13 全量同步新增（48–59）
+    "48": "outerwear",  # 針織開襟小外套
+    "49": "top",        # 完美版型條紋T
+    "50": "dress",      # 甜美格紋蝴蝶結洋裝
+    "51": "dress",      # 點點派對裙
+    "52": "accessory",  # 游泳圈
+    "53": "outerwear",  # 下班後放鬆浴袍
+    "54": "headwear",   # 溫馴小羊頭套
+    "55": "top",        # 范特西小鼠帽T
+    "56": "bag",        # 魔術大空間帆布郵差包
+    "57": "accessory",  # 迷你配件 - 有聲相機
+    "58": "headwear",   # 雛菊小波浪寶寶髮帶
+    "59": "headwear",   # 波浪花花帽
 }
 FESTIVE = {"33"}  # 節慶限定標籤
 
@@ -59,7 +72,9 @@ def parse_webcopy():
     """回傳 {id: {"description": str, "reminder": str|None}}"""
     text = WEBCOPY_MD.read_text(encoding="utf-8")
     body = text.split("---", 1)[1]  # 跳過表頭（第一個 --- 之後才是內文）
-    body = body.split("## 待品牌確認事項")[0]
+    # 在商品清單結尾的分隔線截斷，避免檔尾的「品牌確認紀錄」等內部備註
+    # 被吞進最後一項商品的 description（曾造成 #47/#59 彈窗顯示內部筆記）
+    body = body.split("\n---")[0]
     result = {}
     for m in re.finditer(r"^### (\d{2})\.[^\n]*\n(.*?)(?=^### |\Z)", body, flags=re.M | re.S):
         pid, block = m.group(1), m.group(2).strip()
@@ -172,8 +187,8 @@ def main():
 
     # 驗證
     errors = []
-    if len(items) != 47:
-        errors.append(f"商品數 {len(items)} ≠ 47")
+    if len(items) != 59:
+        errors.append(f"商品數 {len(items)} ≠ 59")
     for item in items:
         if not (ROOT / item["image"]).exists():
             errors.append(f"#{item['id']} 圖片不存在：{item['image']}")
