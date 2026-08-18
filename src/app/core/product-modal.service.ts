@@ -2,19 +2,16 @@ import { Injectable, inject, signal } from '@angular/core';
 import { PicnicItem, ProductsService, StoreItem, StoreVariant } from './products.service';
 
 /** 商品詳情視窗的統一顯示資料：
- *  一般選品商品（有規格）與野餐 Coming Soon 預告品項（無規格）都轉成這個格式。
- *  全站不顯示價格，所以這裡沒有價格欄位；特價資訊只留 onSale／saleLabel 小籤。 */
+ *  一般選品商品（有款式）與野餐 Coming Soon 預告品項（無款式）都轉成這個格式。
+ *  彈窗是純展示的作品圖鑑：沒有價格與特價欄位，「特價」標籤也會從 tags 過濾掉。 */
 export interface ModalView {
   name: string;
   image: string;
-  onSale: boolean;
-  saleLabel: string | null;
   tags: string[];
   bodyIncluded: boolean;
   description: string | null;
   reminder: string | null;
   variants: StoreVariant[];
-  soldOut: boolean;
   comingSoon: boolean;
   /** Coming Soon 品項的到貨提示（顯示在出貨說明框的位置） */
   comingSoonNote: string | null;
@@ -46,14 +43,11 @@ export class ProductModalService {
     this.product.set({
       name: item.name,
       image: item.image,
-      onSale: false,
-      saleLabel: null,
       tags: [],
       bodyIncluded: true,
       description: item.description ?? null,
       reminder: null,
       variants: [],
-      soldOut: false,
       comingSoon: item.status === 'coming_soon',
       comingSoonNote: item.note ?? '預計陸續到貨，敬請期待！',
     });
@@ -67,14 +61,12 @@ export class ProductModalService {
     return {
       name: item.name,
       image: item.image,
-      onSale: item.on_sale,
-      saleLabel: item.sale_label,
-      tags: item.tags ?? [],
+      // 「特價」是 build 腳本依售價自動加的狀態籤，圖鑑彈窗不顯示（選品卡片的特價貼紙照舊）
+      tags: (item.tags ?? []).filter((t) => t !== '特價'),
       bodyIncluded: item.body_included,
       description: item.description ?? null,
       reminder: item.reminder ?? null,
       variants: item.variants,
-      soldOut: item.status === 'sold_out',
       comingSoon: false,
       comingSoonNote: null,
     };

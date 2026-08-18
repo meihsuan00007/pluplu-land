@@ -22,7 +22,7 @@ export interface ProductCardData {
 /** 商品卡片（全站唯一一份）：
  *  - 娃寶陳列區：tag ＋ note ＋ 購買按鈕
  *  - 首頁大家的心頭好：TOP 標籤 ＋ 購買按鈕（無 note）
- *  - 選品陳列架：shopStyle=true，分類標籤＋售完/特價貼紙，整卡可點、無購買按鈕
+ *  - 選品陳列架：shopStyle=true，分類標籤＋特價貼紙（無售完貼紙），整卡可點、無購買按鈕
  *  有 pid 的卡片點擊會開啟商品詳情視窗；卡片內的購買按鈕照常外連賣貨便（不會誤開視窗）。 */
 @Component({
   selector: 'pl-product-card',

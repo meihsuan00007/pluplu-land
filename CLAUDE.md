@@ -51,7 +51,7 @@ files/、files.zip       舊版遺留檔案，一律忽略不改
 - **JSON 是唯一內容來源**（改版後不再有「HTML fallback 要兩邊同步改」的問題）：
   - `content/site.json` — 各頁文案 / hero 圖 / 聯絡資訊 / 首頁輪播與 Banner
   - `content/products-picnic.json` — 首頁野餐企劃專區（`#picnic-plan`）：`store_id` 有值＝既有選品；`status: coming_soon`＝預告品項（佔位圖 `assets/images/products/coming-soon-*.svg`＋停用購買按鈕「即將開賣」，點卡片開預告視窗）
-  - `content/products-store.json` — 娃衣選品 59 項（**產出檔勿手改**：由 `scripts/build-products-json.py` 解析 `plupluland_products.md`＋`docs/products/web-copy.md` 產生；賣場更新時改 md 後重跑腳本。2026-08-13 依賣場全量同步：新增 48–59、#36/#44/#47 為賣場已下架保留展示）
+  - `content/products-store.json` — 娃衣選品 58 項（**產出檔勿手改**：由 `scripts/build-products-json.py` 解析 `plupluland_products.md`＋`docs/products/web-copy.md` 產生；賣場更新時改 md 後重跑腳本。2026-08-13 依賣場全量同步：新增 48–59、#36/#44/#47 為賣場已下架保留展示、#12 花立鼠帽帽已下架並完全移除，編號缺 12 屬正常）
 - 商品 JSON **必須維持 `{"items":[...]}` 包裹格式**（Decap file collection 需要）。
 - 新增／改 JSON 欄位時，`admin/config.yml` 的 `fields` 要同步，否則後台編輯不到。
 - `site-content.service.ts` 裡有一份「載入前的預設文案」，只在畫面載入的一瞬間出現，**後台改文案時不需要跟著改它**。
@@ -71,10 +71,10 @@ files/、files.zip       舊版遺留檔案，一律忽略不改
 - 改色／字體／版型 → 改 `src/styles.scss` 的 `:root` 變數，別散改各處。
 - 主色：`--cream #FBF6EA`、`--brown-deep #6B4A32`；點綴：`--moss #7C8A63`、`--rose #C97B82`。
 - 字體：標題 M PLUS Rounded 1c（圓體，不要手寫感）、內文 Noto Sans TC、拉丁點綴 Quicksand（在 `src/index.html` 以 link 載入）。
-- 導覽列：LOGO 旁文字為「首頁」（點擊回首頁）；文字選單為 娃衣選品／品牌故事／購物須知／聯絡我們；右上三顆圓 icon 為**奶茶棕色階**（賣貨便＝淺、IG＝中、LINE＝深，token `--nav-icon-*`，主理人指定）。
-- **全站段落間距規格**：相鄰區塊之間留白統一 200px（`.section` 各出 100px、stitch 分隔線置中不佔間距；手機減半）。改間距只改 styles.scss 的 `.section` 規則。
+- 導覽列：品牌 LOGO 為去背字標圖檔 `images/logo-wordmark.png`（點擊回首頁；2026-08-17 主理人指定：不加「首頁」文字、不裁圓、固定 65px 高）；頁尾與 favicon 仍用圓形 `images/logo.png`。文字選單為 娃衣選品／品牌故事／購物須知／聯絡我們；右上三顆圓 icon 為**奶茶棕色階**（賣貨便＝淺、IG＝中、LINE＝深，token `--nav-icon-*`，主理人指定）。
+- **全站段落間距規格**：相鄰區塊之間留白統一 200px（`.section` 各出 100px、stitch 分隔線置中不佔間距；手機減半）。改間距只改 styles.scss 的 `.section` 規則。例外（2026-08-17 主理人指定）：頁首區與第一個區塊的間距縮為 60%（`.page-hero` padding 38/60、首段 `padding-top:60px`，手機減半），導覽列 LOGO 高 52px。
 - 實拍標章 `.badge-real`：**純文字＋小圓點＋手縫虛線底線**，刻意不做膠囊外框（避免誤認為按鈕，主理人指定）。
-- **完售品項不做灰階與售完貼紙**（像展示歷年作品；主理人指定），售完資訊只在彈窗內以「已售完」停用按鈕與補貨說明呈現。
+- **商品詳情彈窗是「作品圖鑑」**（2026-08-13 主理人指定；2026-08-17 再精簡）：純展示名稱、系列籤、敘述與多圖照片，**不顯示現貨／預購／售完／特價任何狀態字樣、價格、出貨時程，也沒有購買按鈕與購物須知連結**（勿重建 ship-info 出貨說明、售完停用按鈕、「前往賣貨便選購」鈕與「特價」小籤；「特價」系列籤在彈窗資料層過濾，選品卡片的特價貼紙照舊）。購買動線走導覽列／頁尾／各區塊的賣貨便按鈕。完售品項不做灰階與售完貼紙，與販售中完全同樣呈現（像展示歷年作品）。彈窗版型：左欄照片固定 1:1 正方形＋圓角 12px（不因文字長短變形），右欄文字桌機獨立捲動、手機整面板捲動。
 - 選品分類名稱：「鼠鼠本體」「褲裝」（改名要同時改 `scripts/build-products-json.py`、`content/products-store.json`、`admin/config.yml` 三處）。
 - 已移除的頁面（勿重建）：「はむにぎり倉鼠娃」頁（2026-07-17，舊網址轉回首頁）、「娃裝配件」頁（2026-08-05，舊網址 /goods 與 goods.html 轉到 /shop）。相關資料檔與後台收藏一併移除；本體與衣裝都在娃衣選品分類裡。
 - 品牌故事頁段落間距為主理人指定的 450px 大留白（`.story-spacing`，手機縮為 150px），樣式在 styles.scss。

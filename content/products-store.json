@@ -55,15 +55,15 @@
       "variants": [
         {
           "supply": "預購",
-          "name": "麻糬白鼠仔（預計八月底出貨）",
+          "name": "麻糬白鼠仔",
           "in_stock": true,
-          "image": "assets/images/products/variants/01_麻糬白鼠仔（預計八月底出貨）.jpg"
+          "image": "assets/images/products/variants/01_麻糬白鼠仔.jpg"
         },
         {
           "supply": "預購",
-          "name": "黃豆米鼠仔（預計八月底出貨）",
+          "name": "黃豆米鼠仔",
           "in_stock": true,
-          "image": "assets/images/products/variants/01_黃豆米鼠仔（預計八月底出貨）.jpg"
+          "image": "assets/images/products/variants/01_黃豆米鼠仔.jpg"
         },
         {
           "supply": "現貨",
@@ -126,13 +126,13 @@
           "image": "assets/images/products/variants/03_粉藍天使睡衣（含小帽帽）.jpg"
         },
         {
-          "supply": "預購",
+          "supply": "現貨",
           "name": "粉紅天使睡衣（含小帽帽）",
           "in_stock": true,
           "image": "assets/images/products/variants/03_粉紅天使睡衣（含小帽帽）.jpg"
         },
         {
-          "supply": "預購",
+          "supply": "現貨",
           "name": "粉藍懶骨頭（含小枕頭）",
           "in_stock": true,
           "image": null
@@ -140,18 +140,6 @@
         {
           "supply": "現貨",
           "name": "粉紅懶骨頭（含小枕頭）",
-          "in_stock": true,
-          "image": null
-        },
-        {
-          "supply": "現貨",
-          "name": "粉藍懶骨頭（含小枕頭）（現貨到貨）",
-          "in_stock": true,
-          "image": null
-        },
-        {
-          "supply": "現貨",
-          "name": "粉紅天使睡衣（含小帽帽）（現貨到貨）",
           "in_stock": true,
           "image": null
         }
@@ -482,31 +470,6 @@
       "reminder": null
     },
     {
-      "id": "12",
-      "name": "【織女手工系列】花立鼠帽帽",
-      "category": "headwear",
-      "tags": [
-        "織女手工系列"
-      ],
-      "price": 320,
-      "original_price": 320,
-      "on_sale": false,
-      "sale_label": null,
-      "status": "available",
-      "body_included": false,
-      "image": "assets/images/products/12-chipmunk-hat.jpg",
-      "variants": [
-        {
-          "supply": "預購",
-          "name": "花立鼠",
-          "in_stock": true,
-          "image": null
-        }
-      ],
-      "description": "快看～是誰把春天直接戴在頭上！綠色帽沿配上頭頂那朵紅花，戴上就像從童話書裡跑出來的森林小花童。今天想帶寶寶去哪裡探險呢？",
-      "reminder": null
-    },
-    {
       "id": "13",
       "name": "【織女手工系列】水果露耳帽帽",
       "category": "headwear",
@@ -690,7 +653,7 @@
           "supply": "現貨",
           "name": "遮陽草帽 - 鼠鼠尺寸",
           "in_stock": true,
-          "image": null
+          "image": "assets/images/products/variants/18_遮陽草帽-鼠鼠尺寸.jpg"
         }
       ],
       "description": "超可愛的野餐出遊組合！格紋小布包紅、粉、藍三色任選，再配一頂鼠鼠尺寸的遮陽草帽，寶寶就可以出發去郊遊啦～小小一顆掛在身上，可愛度瞬間翻倍。",
@@ -1349,9 +1312,9 @@
         },
         {
           "supply": "現貨",
-          "name": "眼鏡 - 6cm - 漸層粉黃（售完不補）",
+          "name": "眼鏡 - 6cm - 漸層粉黃",
           "in_stock": false,
-          "image": "assets/images/products/variants/30_眼鏡-6cm-漸層粉黃（售完不補）.jpg"
+          "image": "assets/images/products/variants/30_眼鏡-6cm-漸層粉黃.jpg"
         }
       ],
       "description": "大頭寶寶專屬的時尚配件！漸層、透框、貓眼造型通通有，戴上眼鏡的瞬間，氣質直接升級。十多款任你挑，總有一副是你家寶寶的命定款。",
@@ -1444,9 +1407,9 @@
         },
         {
           "supply": "現貨",
-          "name": "熊熊藍（售完不補）",
+          "name": "熊熊藍",
           "in_stock": false,
-          "image": "assets/images/products/variants/31_熊熊藍（售完不補）.jpg"
+          "image": "assets/images/products/variants/31_熊熊藍.jpg"
         }
       ],
       "description": "爆炸可愛的顏色，讓你忍不住一次掃貨！櫻桃、小花、蝴蝶結、草莓……十多款配色任選。每條線頭都會在驗貨時手工打結，防止後續開花，細節控可以放心。",
@@ -1511,16 +1474,10 @@
       "image": "assets/images/products/33-halloween-pumpkin-bag.jpg",
       "variants": [
         {
-          "supply": "預購",
-          "name": "南瓜套裝（追加預購）",
-          "in_stock": true,
-          "image": "assets/images/products/variants/33_南瓜套裝（追加預購）.jpg"
-        },
-        {
           "supply": "現貨",
           "name": "南瓜套裝",
           "in_stock": true,
-          "image": null
+          "image": "assets/images/products/variants/33_南瓜套裝.jpg"
         }
       ],
       "description": "針織波浪帽簷，帽頂還掛著一顆針織小南瓜，加上蜘蛛網元素的圍兜，整個心臟爆擊！帽子綁帶綁到側邊、跟圍兜綁帶一起塞進帽子裡，看起來更俐落唷。",
@@ -1570,9 +1527,9 @@
         },
         {
           "supply": "現貨",
-          "name": "長版（售完不補）",
+          "name": "長版",
           "in_stock": false,
-          "image": "assets/images/products/variants/35_長版（售完不補）.jpg"
+          "image": "assets/images/products/variants/35_長版.jpg"
         }
       ],
       "description": "裙擺微抽鬚設計，隨性又有型！配頂草帽、背個小織包，直接出發夏日野餐。短版長版都好看，是衣櫃裡的夏天代表作。",
@@ -1887,9 +1844,9 @@
       "variants": [
         {
           "supply": "現貨",
-          "name": "粉（售完不補）",
+          "name": "粉",
           "in_stock": false,
-          "image": "assets/images/products/variants/46_粉（售完不補）.jpg"
+          "image": "assets/images/products/variants/46_粉.jpg"
         }
       ],
       "description": "裙襬像花苞一樣古錐！肩帶可以用綁的自由調整長度，而且還是絨面材質，質感好到想一直摸。粉嫩一件，寶寶穿上就是春天本人。",

@@ -29,9 +29,9 @@
 | `pl-line-button` | `line-button.ts` | LINE 綠色膠囊按鈕 | `label`（預設「加入 LINE 好友」，聯絡頁傳帳號名） |
 | `pl-badge-real` | `badge-real.ts` | 「全實拍」標章（純文字＋虛線底線的說明標籤，不是按鈕） | `text`（預設「全實拍・零 AI」）、`onDark`（深色底用） |
 | `pl-product-card` | `product-card.ts` | 商品卡片（首頁心頭好／娃裝配件／選品陳列架共用） | `data: ProductCardData`、`showBuy`、`shopStyle`；`data.pid` 有值＝點卡片開詳情視窗 |
-| `pl-product-modal` | `product-modal.ts` | 商品詳情彈出視窗（全站唯一，掛在 `app.ts` 根版型） | 無輸入，由 `ProductModalService` 控制 |
+| `pl-product-modal` | `product-modal.ts` | 商品詳情彈出視窗（全站唯一，掛在 `app.ts` 根版型）。定位是「作品圖鑑」：照片固定 1:1＋款式籤切圖，純展示、無購買按鈕，不顯示現貨／預購／售完／特價狀態與出貨時程 | 無輸入，由 `ProductModalService` 控制 |
 | `pl-carousel` | `carousel.ts` | 首頁大輪播（海報模式＋分割式版型、自動播 5 秒；兩種版型都整張滿版可點、不做實體按鈕也不疊光圈熱區，跳轉目的地看 site.json 的 link） | `slides`（來自 site.json 的 home.carousel） |
-| `pl-page-hero` | `page-hero.ts` | 內頁頁首（左文右圖；`center` 模式＝置中無圖，購物須知用） | `eyebrow`/`title`/`lead`/`image`/`alt`/`hasActions`/`center`；按鈕徽章用 `<ng-content>` 投影 |
+| `pl-page-hero` | `page-hero.ts` | 內頁頁首（一律左對齊：短線小標＋標題＋導言；有 image＝左文右圖【五頁皆用此版】，無 image＝純文字備用。置中版已廢除勿重建） | `eyebrow`/`title`/`lead`/`image`/`alt`/`hasActions`；按鈕徽章用 `<ng-content>` 投影 |
 | `pl-section-head` | `section-head.ts` | 區塊標題組（英文小字＋大標＋導言） | `eyebrow`/`title`/`lead` |
 | `pl-strip-cta` | `strip-cta.ts` | 每頁底部深色行動呼籲橫幅 | `title`/`body`/`label`/`link`/`external`/`hasIntro` |
 | `pl-quote-block` | `quote-block.ts` | 創辦人引言區 | `quote`（用全形「｜」指定換行）/`cite` |

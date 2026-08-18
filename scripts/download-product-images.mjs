@@ -28,7 +28,6 @@ const CATALOG = [
   { id: '09', slug: 'tweed-dress', name: '小香風洋裝', file: '2607081250372913.jpg' },
   { id: '10', slug: 'work-apron', name: '工作圍兜兜', file: '2607061247587393.jpg' },
   { id: '11', slug: 'denim-overalls', name: '率性牛仔吊帶褲', file: '2607021242050673.jpg' },
-  { id: '12', slug: 'chipmunk-hat', name: '【織女手工系列】花立鼠帽帽', file: '2607061247255522.jpg' },
   { id: '13', slug: 'fruit-earflap-hat', name: '【織女手工系列】水果露耳帽帽', file: '2607061247418001.jpg' },
   { id: '14', slug: 'strawberry-headband', name: '【韓國直送】🍎蘋果小波浪寶寶髮帶（露耳款）', file: '2606281235724127.jpg' },
   { id: '15', slug: 'elf-triangle-hat', name: '【韓國直送】小精靈三角針織帽（露耳款）', file: '2606241229985463.jpg' },

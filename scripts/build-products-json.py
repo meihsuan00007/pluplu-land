@@ -44,7 +44,8 @@ CATEGORY_OF = {
     "11": "bottom",
     "03": "set", "04": "set", "17": "set", "33": "set",
     "23": "outerwear", "38": "outerwear", "41": "outerwear", "43": "outerwear",
-    "02": "headwear", "12": "headwear", "13": "headwear", "14": "headwear", "15": "headwear",
+    # （#12 花立鼠帽帽已於 2026-08-13 賣場下架並自官網移除，編號 12 缺號屬正常）
+    "02": "headwear", "13": "headwear", "14": "headwear", "15": "headwear",
     "16": "headwear", "28": "headwear", "32": "headwear", "42": "headwear",
     "07": "bag", "18": "bag", "19": "bag", "39": "bag", "44": "bag",
     "08": "accessory", "10": "accessory", "20": "accessory", "26": "accessory", "27": "accessory",
@@ -187,8 +188,8 @@ def main():
 
     # 驗證
     errors = []
-    if len(items) != 59:
-        errors.append(f"商品數 {len(items)} ≠ 59")
+    if len(items) != 58:
+        errors.append(f"商品數 {len(items)} ≠ 58")
     for item in items:
         if not (ROOT / item["image"]).exists():
             errors.append(f"#{item['id']} 圖片不存在：{item['image']}")

@@ -3,32 +3,26 @@ import {
   Component,
   ElementRef,
   HostListener,
-  computed,
   effect,
   inject,
   signal,
   untracked,
   viewChild,
 } from '@angular/core';
-import { RouterLink } from '@angular/router';
-import { BUY_URL, assetUrl } from '../core/brand';
+import { assetUrl } from '../core/brand';
 import { ModalView, ProductModalService } from '../core/product-modal.service';
 
-const SHIP_TEXT: Record<string, string> = {
-  現貨: '現貨規格｜下單後 3–10 個工作天出貨',
-  預購: '預購規格｜下單即叫貨，約 10–20 天出貨，不接急單',
-};
-const SOLDOUT_TEXT = '這個品項已經全數售完，若想蹲補貨消息，歡迎加 LINE（@plupluland_tw）問問。';
-
 /** 商品詳情視窗（全站唯一一份，放在 App 根版型）。
- *  由 ProductModalService 控制開關；規格選擇會連動出貨時間說明，
- *  規格若有專屬圖片（variants[].image）主圖會淡入切換，沒有就退回商品主圖。
- *  全站不顯示價格（價格到賣貨便才看得到），特價品項只保留「特價」小籤。
- *  Coming Soon 預告品項：無規格，購買按鈕停用顯示「即將開賣」。 */
+ *  定位是「品牌作品圖鑑」（2026-08-13 主理人指定；2026-08-17 起連導購按鈕、
+ *  購物須知連結與「特價」小籤也一併移除）：純展示名稱、系列籤、敘述與多圖照片，
+ *  不顯示現貨／預購／售完／特價任何狀態字樣、價格與出貨時程，也沒有購買按鈕；
+ *  購買一律走頁面上其他導購入口（導覽列、頁尾、各區塊按鈕）到賣貨便。
+ *  由 ProductModalService 控制開關；點款式籤可切換照片：
+ *  款式若有專屬圖片（variants[].image）主圖會淡入切換，沒有就退回商品主圖。
+ *  Coming Soon 預告品項：無款式，只顯示到貨提示框。 */
 @Component({
   selector: 'pl-product-modal',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [RouterLink],
   template: `
     <div class="shop-modal" [class.is-open]="product()" [attr.aria-hidden]="product() ? 'false' : 'true'">
       <div class="shop-modal-backdrop" (click)="close()"></div>
@@ -36,8 +30,8 @@ const SOLDOUT_TEXT = '這個品項已經全數售完，若想蹲補貨消息，�
         <button class="shop-modal-close" #closeBtn type="button" aria-label="關閉商品詳情" (click)="close()">✕</button>
         <div class="modal-grid">
           @if (product(); as p) {
-            <!-- 完售品項不做灰階與售完貼紙（主理人指定：像展示歷年作品一樣正常呈現），
-                 售完資訊由下方的規格狀態、補貨說明與「已售完」按鈕傳達 -->
+            <!-- 作品圖鑑定位：完售品項與販售中完全同樣呈現（不灰階、無售完字樣），
+                 像展覽歷年作品；購買細節到賣貨便才看得到 -->
             <div class="modal-media">
               <img [src]="mediaSrc()" [alt]="mediaAlt()" [style.opacity]="mediaOpacity()" />
             </div>
@@ -50,12 +44,6 @@ const SOLDOUT_TEXT = '這個品項已經全數售完，若想蹲補貨消息，�
                 </div>
               }
               <h3>{{ p.name }}</h3>
-              <!-- 全站不顯示價格（到賣貨便才看得到）；特價品項仍保留「特價」小籤提示 -->
-              @if (p.onSale) {
-                <div class="modal-price">
-                  <span class="sale-chip">{{ p.saleLabel || '特價' }}</span>
-                </div>
-              }
               @if (!p.bodyIncluded) {
                 <p class="note-nobody">＊此品項不含娃寶本體，僅含衣裝／配件本身。</p>
               }
@@ -66,38 +54,24 @@ const SOLDOUT_TEXT = '這個品項已經全數售完，若想蹲補貨消息，�
                 <div class="reminder-box">小提醒｜{{ p.reminder }}</div>
               }
               @if (p.variants.length) {
-                <span class="variant-label">規格（{{ p.variants.length }} 款）</span>
+                <span class="variant-label">款式（{{ p.variants.length }} 款）</span>
                 <div class="variant-list">
+                  <!-- 圖鑑化：款式籤只用來切換照片，不標現貨／預購／售完狀態 -->
                   @for (v of p.variants; track $index) {
                     <button
                       type="button"
                       class="variant-btn"
-                      [class.is-soldout]="!v.in_stock"
                       [class.is-selected]="selectedIdx() === $index"
-                      [disabled]="!v.in_stock"
-                      [attr.aria-disabled]="v.in_stock ? null : 'true'"
                       (click)="select($index)"
                     >
-                      <span class="variant-supply" [class.variant-supply--pre]="v.supply === '預購'">{{ v.supply }}</span>
                       {{ v.name }}
-                      @if (!v.in_stock) {
-                        <span class="variant-oos">售完</span>
-                      }
                     </button>
                   }
                 </div>
               }
-              <div class="ship-info" [class.is-soldout]="shipSoldOut()">{{ shipText() }}</div>
-              <div class="modal-actions">
-                @if (p.comingSoon) {
-                  <span class="btn solid is-disabled" aria-disabled="true">即將開賣</span>
-                } @else if (p.soldOut) {
-                  <span class="btn solid is-disabled" aria-disabled="true">已售完</span>
-                } @else {
-                  <a class="btn solid" [href]="BUY_URL" target="_blank" rel="noopener">前往賣貨便選購</a>
-                }
-                <a class="notice-link" routerLink="/notice" (click)="close()">購物須知・退換貨規則</a>
-              </div>
+              @if (p.comingSoon && p.comingSoonNote) {
+                <div class="ship-info">{{ p.comingSoonNote }}</div>
+              }
             </div>
           }
         </div>
@@ -108,26 +82,11 @@ const SOLDOUT_TEXT = '這個品項已經全數售完，若想蹲補貨消息，�
 export class ProductModal {
   private modal = inject(ProductModalService);
 
-  readonly BUY_URL = BUY_URL;
-
   readonly product = this.modal.product;
   readonly selectedIdx = signal(-1);
   readonly mediaSrc = signal('');
   readonly mediaAlt = signal('');
   readonly mediaOpacity = signal<string | null>(null);
-
-  readonly shipSoldOut = computed(() => {
-    const p = this.product();
-    return !!p && !p.comingSoon && this.selectedIdx() < 0;
-  });
-  readonly shipText = computed(() => {
-    const p = this.product();
-    if (!p) return '';
-    if (p.comingSoon) return p.comingSoonNote ?? '';
-    const idx = this.selectedIdx();
-    if (idx < 0) return SOLDOUT_TEXT;
-    return SHIP_TEXT[p.variants[idx].supply] ?? '';
-  });
 
   private panel = viewChild<ElementRef<HTMLElement>>('panel');
   private closeBtn = viewChild<ElementRef<HTMLButtonElement>>('closeBtn');
@@ -154,12 +113,9 @@ export class ProductModal {
     this.mediaSrc.set(assetUrl(p.image));
     this.mediaAlt.set(p.name);
     this.mediaOpacity.set(null);
-    const firstInStock = p.variants.findIndex((v) => v.in_stock);
-    if (p.soldOut || firstInStock === -1) {
-      this.selectedIdx.set(-1);
-    } else {
-      this.select(firstInStock);
-    }
+    // 圖鑑化：不分庫存狀態，一律預選第一個款式（款式籤只負責切換照片）
+    if (p.variants.length) this.select(0);
+    else this.selectedIdx.set(-1);
   }
 
   select(idx: number): void {

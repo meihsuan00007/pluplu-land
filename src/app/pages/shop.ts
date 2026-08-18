@@ -18,7 +18,7 @@ import { SectionHead } from '../shared/section-head';
 import { Steps } from '../shared/steps';
 import { StripCta } from '../shared/strip-cta';
 
-/** 娃衣選品頁：59 項真實商品的商品牆＋分類篩選。
+/** 娃衣選品頁：58 項真實商品的商品牆＋分類篩選。
  *  資料來自 content/products-store.json（產出檔勿手改，見 CLAUDE.md）。
  *  分類籤除正式分類外，另有「織女手作系列」虛擬分類（依商品 tags 篩選）；
  *  網址可帶 ?cat=分類鍵 直接切到指定分類（首頁方塊導流用）。
@@ -90,8 +90,24 @@ export class Shop {
       .queryParamMap.pipe(takeUntilDestroyed())
       .subscribe((params) => {
         // 沒帶參數時要退回「全部」：從 ?cat=handmade 點導覽列回 /shop 時篩選才會重設
-        this.currentCat.set(params.get('cat') ?? 'all');
+        const cat = params.get('cat');
+        this.currentCat.set(cat ?? 'all');
+        // 帶分類進來＝從首頁方塊導流來的，自動捲到選品陳列架讓顧客直接看到商品
+        if (cat) this.scrollToShelf();
       });
+  }
+
+  /** 平滑捲動到「選品陳列架」區塊（#shop-shelf）。
+   *  延遲一小拍，讓路由內建的「換頁回到頂端」先發生，捲動才不會被蓋掉；
+   *  尊重使用者的「減少動態」系統設定（改為直接跳至定位）。 */
+  private scrollToShelf(): void {
+    setTimeout(() => {
+      const el = document.getElementById('shop-shelf');
+      if (!el) return;
+      const reduced =
+        typeof matchMedia !== 'undefined' && matchMedia('(prefers-reduced-motion: reduce)').matches;
+      el.scrollIntoView({ behavior: reduced ? 'auto' : 'smooth', block: 'start' });
+    }, 150);
   }
 
   /** 點分類籤：切換篩選並同步網址列的 ?cat=（重新整理或分享連結會停留在同一分類） */

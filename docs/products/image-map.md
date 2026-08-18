@@ -19,7 +19,6 @@
 | 09 | 小香風洋裝 | `assets/images/products/09-tweed-dress.jpg` | https://myship.7-11.com.tw/i/cgdm/GM2605058795102/2607081250372913.jpg | ✅ |
 | 10 | 工作圍兜兜 | `assets/images/products/10-work-apron.jpg` | https://myship.7-11.com.tw/i/cgdm/GM2605058795102/2607061247587393.jpg | ✅ |
 | 11 | 率性牛仔吊帶褲 | `assets/images/products/11-denim-overalls.jpg` | https://myship.7-11.com.tw/i/cgdm/GM2605058795102/2607021242050673.jpg | ✅ |
-| 12 | 【織女手工系列】花立鼠帽帽 | `assets/images/products/12-chipmunk-hat.jpg` | https://myship.7-11.com.tw/i/cgdm/GM2605058795102/2607061247255522.jpg | ✅ |
 | 13 | 【織女手工系列】水果露耳帽帽 | `assets/images/products/13-fruit-earflap-hat.jpg` | https://myship.7-11.com.tw/i/cgdm/GM2605058795102/2607061247418001.jpg | ✅ |
 | 14 | 【韓國直送】🍎蘋果小波浪寶寶髮帶（露耳款） | `assets/images/products/14-strawberry-headband.jpg` | https://myship.7-11.com.tw/i/cgdm/GM2605058795102/2606281235724127.jpg | ✅ |
 | 15 | 【韓國直送】小精靈三角針織帽（露耳款） | `assets/images/products/15-elf-triangle-hat.jpg` | https://myship.7-11.com.tw/i/cgdm/GM2605058795102/2606241229985463.jpg | ✅ |

@@ -17,8 +17,9 @@ describe('App 根版型', () => {
     await fixture.whenStable();
     const el: HTMLElement = fixture.nativeElement;
 
-    // 導覽列
-    expect(el.querySelector('.brand-mark span')?.textContent).toContain('首頁');
+    // 導覽列（LOGO 為去背字標圖檔，不加「首頁」文字，2026-08-17 主理人指定）
+    expect(el.querySelector('.brand-mark img')?.getAttribute('src')).toBe('/images/logo-wordmark.png');
+    expect(el.querySelector('.brand-mark span')).toBeNull();
     const navLinks = Array.from(el.querySelectorAll('.nav-links a')).map((a) => a.textContent?.trim());
     expect(navLinks).toEqual(['娃衣選品', '品牌故事', '購物須知', '聯絡我們']);
     expect(el.querySelectorAll('.nav-icons .nav-icon').length).toBe(3);

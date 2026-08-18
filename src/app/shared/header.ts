@@ -4,7 +4,8 @@ import { BUY_URL, IG_URL, LINE_URL } from '../core/brand';
 import { CartIcon, IgIcon, LineIcon } from './icons';
 
 /** 全站導覽列（唯一一份）。
- *  結構：LOGO（點擊回首頁）→ 文字選單三項 → 右上角三顆圓形功能 icon
+ *  結構：去背字標 LOGO（點擊回首頁，不加文字、不裁圓，2026-08-17 主理人指定）
+ *  → 文字選單四項 → 右上角三顆圓形功能 icon
  *（賣貨便＝淺棕、IG＝中棕、LINE＝深棕，顏色在 styles.scss 的 --nav-icon-* 設定）
  *  → 手機版漢堡按鈕。手機選單開啟時鎖住頁面捲動（body.nav-open）。 */
 @Component({
@@ -14,9 +15,8 @@ import { CartIcon, IgIcon, LineIcon } from './icons';
   template: `
     <nav class="site-nav">
       <div class="wrap">
-        <a routerLink="/" class="brand-mark" (click)="closeMenu()">
-          <img src="/images/logo.png" alt="PluPlu Land" />
-          <span>首頁</span>
+        <a routerLink="/" class="brand-mark" aria-label="回到首頁" (click)="closeMenu()">
+          <img src="/images/logo-wordmark.png" alt="PluPlu Land" />
         </a>
         <div class="nav-links" [class.open]="menuOpen()">
           <a routerLink="/shop" routerLinkActive="current" (click)="closeMenu()">娃衣選品</a>

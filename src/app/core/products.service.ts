@@ -47,7 +47,7 @@ export interface PicnicItem {
 /** 商品資料載入器：各 JSON 載一次（進入頁面時才載入，結果快取共用）。 */
 @Injectable({ providedIn: 'root' })
 export class ProductsService {
-  /** 娃衣選品目錄（59 項真實商品，商品詳情視窗也吃這份） */
+  /** 娃衣選品目錄（58 項真實商品，商品詳情視窗也吃這份） */
   readonly storeCatalog = signal<StoreCatalog | null>(null);
   /** 選品目錄載入失敗（顯示備援訊息、導向賣貨便） */
   readonly storeFailed = signal(false);
