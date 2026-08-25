@@ -4,7 +4,8 @@ import { KeepBrandPipe } from '../core/text';
 import { BuyButton } from './buy-button';
 
 /** 商品卡片的顯示資料（各頁面把自己的商品資料整理成這個格式再餵進來）。
- *  2026-08-12 起全站不顯示價格（價格到賣貨便才看得到），卡片沒有價格欄位。 */
+ *  2026-08-25 起卡片顯示價格（主理人指定格式「NT$ 金額」，用 core/brand.ts 的 priceLabel 產生）；
+ *  完售品項不填 priceText（不標價、不做完售標示，當作歷年作品展示）。 */
 export interface ProductCardData {
   name: string;
   image: string;
@@ -13,6 +14,8 @@ export interface ProductCardData {
   tag?: string;
   /** 右上角特價貼紙文字（僅選品陳列架使用） */
   saleTape?: string;
+  /** 價格標示（如「NT$ 130」「NT$ 15 起」）；完售品項留空＝不顯示 */
+  priceText?: string;
   /** 情境短文 */
   note?: string;
   /** 對應 products-store.json 的商品編號；有值時點卡片會開商品詳情視窗 */
@@ -48,6 +51,9 @@ export interface ProductCardData {
         }
       </div>
       <div class="product-name">{{ data().name | keepBrand }}</div>
+      @if (data().priceText) {
+        <div class="product-price">{{ data().priceText }}</div>
+      }
       @if (data().note) {
         <p class="product-note">{{ data().note | keepBrand }}</p>
       }

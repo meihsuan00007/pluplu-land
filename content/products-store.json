@@ -46,6 +46,7 @@
         "日本livheart正貨"
       ],
       "price": 550,
+      "price_max": null,
       "original_price": 550,
       "on_sale": false,
       "sale_label": null,
@@ -54,26 +55,30 @@
       "image": "assets/images/products/01-livheart-hamster-plush.jpg",
       "variants": [
         {
-          "supply": "預購",
+          "supply": "現貨",
           "name": "麻糬白鼠仔",
+          "price": 550,
           "in_stock": true,
           "image": "assets/images/products/variants/01_麻糬白鼠仔.jpg"
         },
         {
-          "supply": "預購",
+          "supply": "現貨",
           "name": "黃豆米鼠仔",
+          "price": 550,
           "in_stock": true,
           "image": "assets/images/products/variants/01_黃豆米鼠仔.jpg"
         },
         {
           "supply": "現貨",
           "name": "芝麻灰鼠仔",
+          "price": 550,
           "in_stock": true,
           "image": "assets/images/products/variants/01_芝麻灰鼠仔.jpg"
         },
         {
           "supply": "現貨",
           "name": "醬糰棕鼠仔",
+          "price": 550,
           "in_stock": true,
           "image": "assets/images/products/variants/01_醬糰棕鼠仔.jpg"
         }
@@ -89,6 +94,7 @@
         "織女手工系列"
       ],
       "price": 390,
+      "price_max": null,
       "original_price": 390,
       "on_sale": false,
       "sale_label": null,
@@ -99,6 +105,7 @@
         {
           "supply": "預購",
           "name": "兔耳帽",
+          "price": 390,
           "in_stock": true,
           "image": "assets/images/products/variants/02_兔耳帽.jpg"
         }
@@ -112,6 +119,7 @@
       "category": "set",
       "tags": [],
       "price": 210,
+      "price_max": 320,
       "original_price": 210,
       "on_sale": false,
       "sale_label": null,
@@ -122,24 +130,28 @@
         {
           "supply": "預購",
           "name": "粉藍天使睡衣（含小帽帽）",
+          "price": 210,
           "in_stock": true,
           "image": "assets/images/products/variants/03_粉藍天使睡衣（含小帽帽）.jpg"
         },
         {
-          "supply": "現貨",
+          "supply": "預購",
           "name": "粉紅天使睡衣（含小帽帽）",
+          "price": 210,
           "in_stock": true,
           "image": "assets/images/products/variants/03_粉紅天使睡衣（含小帽帽）.jpg"
         },
         {
-          "supply": "現貨",
+          "supply": "預購",
           "name": "粉藍懶骨頭（含小枕頭）",
+          "price": 320,
           "in_stock": true,
           "image": null
         },
         {
-          "supply": "現貨",
+          "supply": "預購",
           "name": "粉紅懶骨頭（含小枕頭）",
+          "price": 320,
           "in_stock": true,
           "image": null
         }
@@ -152,18 +164,20 @@
       "name": "元氣少女套裝（含鵝黃襯衫+氧氣感淺藍紗裙）",
       "category": "set",
       "tags": [],
-      "price": 190,
-      "original_price": 190,
+      "price": 210,
+      "price_max": null,
+      "original_price": 210,
       "on_sale": false,
       "sale_label": null,
-      "status": "sold_out",
+      "status": "available",
       "body_included": false,
       "image": "assets/images/products/04-shirt-skirt-set.jpg",
       "variants": [
         {
           "supply": "預購",
           "name": "單一規格",
-          "in_stock": false,
+          "price": 210,
+          "in_stock": true,
           "image": "assets/images/products/variants/04_單一規格.jpg"
         }
       ],
@@ -178,6 +192,7 @@
         "特價"
       ],
       "price": 50,
+      "price_max": null,
       "original_price": 60,
       "on_sale": true,
       "sale_label": null,
@@ -188,66 +203,77 @@
         {
           "supply": "現貨",
           "name": "灰白格",
+          "price": 50,
           "in_stock": true,
           "image": null
         },
         {
           "supply": "現貨",
           "name": "白底黑點",
-          "in_stock": true,
-          "image": null
-        },
-        {
-          "supply": "現貨",
-          "name": "白底紅點",
+          "price": 50,
           "in_stock": true,
           "image": null
         },
         {
           "supply": "現貨",
           "name": "紅白格",
+          "price": 50,
           "in_stock": true,
           "image": null
         },
         {
           "supply": "現貨",
           "name": "深藍白格",
+          "price": 50,
+          "in_stock": true,
+          "image": null
+        },
+        {
+          "supply": "現貨",
+          "name": "白底紅點",
+          "price": 50,
           "in_stock": true,
           "image": null
         },
         {
           "supply": "現貨",
           "name": "棕白格",
+          "price": 50,
           "in_stock": true,
           "image": null
         },
         {
           "supply": "現貨",
           "name": "紫底白點",
+          "price": 50,
           "in_stock": true,
           "image": "assets/images/products/variants/05_紫底白點.jpg"
         },
         {
           "supply": "現貨",
-          "name": "黃底白點",
+          "name": "黃底白點（售完不補）",
+          "price": 50,
           "in_stock": true,
           "image": null
         },
         {
           "supply": "現貨",
           "name": "黑白格",
+          "price": 50,
           "in_stock": true,
           "image": null
         },
         {
           "supply": "現貨",
           "name": "綠白格",
+          "price": 50,
           "in_stock": true,
           "image": null
         },
         {
           "supply": "現貨",
           "name": "淺藍白格",
+          "price": 50,
           "in_stock": true,
           "image": null
         }
@@ -263,6 +289,7 @@
         "特價"
       ],
       "price": 70,
+      "price_max": null,
       "original_price": 90,
       "on_sale": true,
       "sale_label": null,
@@ -271,40 +298,46 @@
       "image": "assets/images/products/06-tiered-jacquard-skirt.jpg",
       "variants": [
         {
-          "supply": "預購",
-          "name": "暖陽黃",
-          "in_stock": true,
-          "image": "assets/images/products/variants/06_暖陽黃.jpg"
-        },
-        {
-          "supply": "現貨",
-          "name": "晨霧綠",
-          "in_stock": true,
-          "image": "assets/images/products/variants/06_晨霧綠.jpg"
-        },
-        {
           "supply": "現貨",
           "name": "初綻粉",
+          "price": 70,
           "in_stock": true,
           "image": "assets/images/products/variants/06_初綻粉.jpg"
         },
         {
           "supply": "現貨",
           "name": "奶油米",
+          "price": 70,
           "in_stock": true,
           "image": "assets/images/products/variants/06_奶油米.jpg"
         },
         {
           "supply": "現貨",
           "name": "晴空藍",
+          "price": 70,
           "in_stock": true,
           "image": "assets/images/products/variants/06_晴空藍.jpg"
         },
         {
           "supply": "現貨",
           "name": "深夜黑",
+          "price": 70,
           "in_stock": true,
           "image": "assets/images/products/variants/06_深夜黑.jpg"
+        },
+        {
+          "supply": "現貨",
+          "name": "暖陽黃",
+          "price": 70,
+          "in_stock": true,
+          "image": "assets/images/products/variants/06_暖陽黃.jpg"
+        },
+        {
+          "supply": "預購",
+          "name": "晨霧綠",
+          "price": 70,
+          "in_stock": true,
+          "image": "assets/images/products/variants/06_晨霧綠.jpg"
         }
       ],
       "description": "轉圈圈吧！讓寶寶穿上最華麗的「甜點蛋糕」🍰雙層緹花層層堆疊的蓬蓬感，隨便搭件上衣都像在辦個人時裝秀。多種顏色任你選，成為櫃子裡最耀眼的小公主！",
@@ -315,8 +348,9 @@
       "name": "斜背牛角包",
       "category": "bag",
       "tags": [],
-      "price": 290,
-      "original_price": 290,
+      "price": 310,
+      "price_max": null,
+      "original_price": 310,
       "on_sale": false,
       "sale_label": null,
       "status": "available",
@@ -326,8 +360,16 @@
         {
           "supply": "預購",
           "name": "黑",
+          "price": 310,
           "in_stock": true,
           "image": "assets/images/products/variants/07_黑.jpg"
+        },
+        {
+          "supply": "預購",
+          "name": "深棕",
+          "price": 310,
+          "in_stock": true,
+          "image": null
         }
       ],
       "description": "收到實體會被細緻程度驚豔到的娃寶包！材質好摸、做工精細，背帶長度還可以自己調整，斜背肩背都沒問題。價格稍高一些，但真的值得，真心推給在找包包的你。",
@@ -341,6 +383,7 @@
         "韓國直送"
       ],
       "price": 150,
+      "price_max": 250,
       "original_price": 150,
       "on_sale": false,
       "sale_label": null,
@@ -351,26 +394,30 @@
         {
           "supply": "現貨",
           "name": "經典正圓",
+          "price": 150,
           "in_stock": true,
           "image": "assets/images/products/variants/08_經典正圓.jpg"
         },
         {
           "supply": "現貨",
-          "name": "愛心吊墜",
-          "in_stock": true,
-          "image": "assets/images/products/variants/08_愛心吊墜.jpg"
-        },
-        {
-          "supply": "現貨",
           "name": "不規則香檳色",
+          "price": 250,
           "in_stock": true,
           "image": "assets/images/products/variants/08_不規則香檳色.jpg"
         },
         {
           "supply": "現貨",
           "name": "蝴蝶吊墜",
+          "price": 190,
           "in_stock": false,
           "image": "assets/images/products/variants/08_蝴蝶吊墜.jpg"
+        },
+        {
+          "supply": "現貨",
+          "name": "愛心吊墜",
+          "price": 200,
+          "in_stock": false,
+          "image": "assets/images/products/variants/08_愛心吊墜.jpg"
         }
       ],
       "description": "誰說優雅是人類的專利？戴上珍珠項鍊，寶寶瞬間貴氣起來，快帶她去參加舞會！經典正圓、蝴蝶吊墜、愛心吊墜、香檳色，四款貴婦風任你選。",
@@ -382,6 +429,7 @@
       "category": "dress",
       "tags": [],
       "price": 120,
+      "price_max": 140,
       "original_price": 120,
       "on_sale": false,
       "sale_label": null,
@@ -391,27 +439,31 @@
       "variants": [
         {
           "supply": "預購",
+          "name": "小香風洋裝 - 長版紫",
+          "price": 130,
+          "in_stock": true,
+          "image": "assets/images/products/variants/09_小香風洋裝-長版紫.jpg"
+        },
+        {
+          "supply": "現貨",
+          "name": "小香風洋裝 - 長版藍",
+          "price": 140,
+          "in_stock": true,
+          "image": "assets/images/products/variants/09_小香風洋裝-長版藍.jpg"
+        },
+        {
+          "supply": "現貨",
           "name": "小香風洋裝 - 短版綠",
+          "price": 120,
           "in_stock": true,
           "image": "assets/images/products/variants/09_小香風洋裝-短版綠.jpg"
         },
         {
-          "supply": "現貨",
+          "supply": "預購",
           "name": "小香風洋裝 - 短版棕",
+          "price": 120,
           "in_stock": true,
           "image": "assets/images/products/variants/09_小香風洋裝-短版棕.jpg"
-        },
-        {
-          "supply": "預購",
-          "name": "小香風洋裝 - 長版紫",
-          "in_stock": false,
-          "image": "assets/images/products/variants/09_小香風洋裝-長版紫.jpg"
-        },
-        {
-          "supply": "預購",
-          "name": "小香風洋裝 - 落地款藍",
-          "in_stock": false,
-          "image": "assets/images/products/variants/09_小香風洋裝-落地款藍.jpg"
         }
       ],
       "description": "高質感粗花呢混織細閃，抓褶設計讓裙身自然蓬起，完美貼合寶寶圓圓的可愛身形。幫寶寶換上這身法式優雅，來一場質感滿分的午茶約會吧！",
@@ -422,8 +474,9 @@
       "name": "工作圍兜兜",
       "category": "accessory",
       "tags": [],
-      "price": 35,
-      "original_price": 35,
+      "price": 38,
+      "price_max": null,
+      "original_price": 38,
       "on_sale": false,
       "sale_label": null,
       "status": "available",
@@ -433,6 +486,7 @@
         {
           "supply": "現貨",
           "name": "米色",
+          "price": 38,
           "in_stock": true,
           "image": "assets/images/products/variants/10_米色.jpg"
         }
@@ -445,8 +499,9 @@
       "name": "率性牛仔吊帶褲",
       "category": "bottom",
       "tags": [],
-      "price": 120,
-      "original_price": 120,
+      "price": 130,
+      "price_max": null,
+      "original_price": 130,
       "on_sale": false,
       "sale_label": null,
       "status": "available",
@@ -456,14 +511,23 @@
         {
           "supply": "現貨",
           "name": "我不介意顏色~",
+          "price": 130,
           "in_stock": true,
           "image": "assets/images/products/variants/11_我不介意顏色~.jpg"
         },
         {
           "supply": "現貨",
-          "name": "指定顏色（請先洽官方 LINE）",
+          "name": "指定顏色 - 淺藍（請先洽官方LINE）",
+          "price": 130,
           "in_stock": true,
-          "image": "assets/images/products/variants/11_指定顏色（請先洽官方LINE）.jpg"
+          "image": "assets/images/products/variants/11_指定顏色-淺藍（請先洽官方LINE）.jpg"
+        },
+        {
+          "supply": "現貨",
+          "name": "指定顏色 - 深藍（請先洽官方LINE）",
+          "price": 130,
+          "in_stock": true,
+          "image": null
         }
       ],
       "description": "難得鼠鼠也穿得上的牛仔吊帶褲！高腰設計讓鼠鼠看起來腿長了一些（笑），率性又時髦，快幫寶寶入手一件，帥氣值直接拉滿。",
@@ -477,6 +541,7 @@
         "織女手工系列"
       ],
       "price": 290,
+      "price_max": null,
       "original_price": 290,
       "on_sale": false,
       "sale_label": null,
@@ -487,18 +552,21 @@
         {
           "supply": "現貨",
           "name": "蘋果",
+          "price": 290,
           "in_stock": true,
           "image": "assets/images/products/variants/13_蘋果.jpg"
         },
         {
           "supply": "現貨",
           "name": "蜜桃",
+          "price": 290,
           "in_stock": true,
           "image": "assets/images/products/variants/13_蜜桃.jpg"
         },
         {
           "supply": "現貨",
           "name": "草莓",
+          "price": 290,
           "in_stock": true,
           "image": "assets/images/products/variants/13_草莓.jpg"
         }
@@ -513,8 +581,9 @@
       "tags": [
         "韓國直送"
       ],
-      "price": 130,
-      "original_price": 130,
+      "price": 80,
+      "price_max": 130,
+      "original_price": 80,
       "on_sale": false,
       "sale_label": null,
       "status": "sold_out",
@@ -523,9 +592,17 @@
       "variants": [
         {
           "supply": "現貨",
-          "name": "蘋果紅",
+          "name": "蘋果",
+          "price": 130,
           "in_stock": false,
-          "image": "assets/images/products/variants/14_蘋果紅.jpg"
+          "image": "assets/images/products/variants/14_蘋果.jpg"
+        },
+        {
+          "supply": "現貨",
+          "name": "橘子",
+          "price": 80,
+          "in_stock": false,
+          "image": null
         }
       ],
       "description": "戴上髮帶的寶寶，就像一顆剛採下來的新鮮蘋果！前方小波浪設計讓她更像個小嬰兒，是韓國代購期間最熱銷的款式，錯過會捶心肝的那種。",
@@ -539,24 +616,20 @@
         "韓國直送"
       ],
       "price": 150,
+      "price_max": null,
       "original_price": 150,
       "on_sale": false,
       "sale_label": null,
-      "status": "available",
+      "status": "sold_out",
       "body_included": false,
       "image": "assets/images/products/15-elf-triangle-hat.jpg",
       "variants": [
         {
           "supply": "現貨",
           "name": "咖棕",
-          "in_stock": true,
-          "image": "assets/images/products/variants/15_咖棕.jpg"
-        },
-        {
-          "supply": "現貨",
-          "name": "紫粉",
+          "price": 150,
           "in_stock": false,
-          "image": "assets/images/products/variants/15_紫粉.jpg"
+          "image": "assets/images/products/variants/15_咖棕.jpg"
         }
       ],
       "description": "超可愛的露耳款小精靈帽！當初在韓國看到整個愛上😻只帶了一點點回來分享給大家。多種配色，戴上瞬間變身童話裡的小精靈，露出的小耳朵萌度加倍。",
@@ -570,6 +643,7 @@
         "韓國直送"
       ],
       "price": 130,
+      "price_max": null,
       "original_price": 130,
       "on_sale": false,
       "sale_label": null,
@@ -580,6 +654,7 @@
         {
           "supply": "現貨",
           "name": "單一規格",
+          "price": 130,
           "in_stock": false,
           "image": null
         }
@@ -595,6 +670,7 @@
         "韓國直送"
       ],
       "price": 95,
+      "price_max": 120,
       "original_price": 95,
       "on_sale": false,
       "sale_label": null,
@@ -605,12 +681,14 @@
         {
           "supply": "現貨",
           "name": "針織小棕帽",
+          "price": 120,
           "in_stock": true,
           "image": "assets/images/products/variants/17_針織小棕帽.jpg"
         },
         {
           "supply": "現貨",
           "name": "針織相機包",
+          "price": 95,
           "in_stock": true,
           "image": "assets/images/products/variants/17_針織相機包.jpg"
         }
@@ -620,10 +698,11 @@
     },
     {
       "id": "18",
-      "name": "野餐出遊套組🧺🧺：格紋小布包/田園草帽",
+      "name": "野餐出遊套組🧺：格紋小布包/田園草帽",
       "category": "bag",
       "tags": [],
       "price": 40,
+      "price_max": 45,
       "original_price": 40,
       "on_sale": false,
       "sale_label": null,
@@ -634,26 +713,30 @@
         {
           "supply": "現貨",
           "name": "格紋小布包 - 紅",
+          "price": 45,
           "in_stock": true,
           "image": "assets/images/products/variants/18_格紋小布包-紅.jpg"
         },
         {
-          "supply": "現貨",
+          "supply": "預購",
           "name": "格紋小布包 - 藍",
+          "price": 45,
           "in_stock": true,
           "image": "assets/images/products/variants/18_格紋小布包-藍.jpg"
         },
         {
           "supply": "現貨",
           "name": "格紋小布包 - 粉",
+          "price": 45,
           "in_stock": true,
           "image": "assets/images/products/variants/18_格紋小布包-粉.jpg"
         },
         {
-          "supply": "現貨",
-          "name": "遮陽草帽 - 鼠鼠尺寸",
+          "supply": "預購",
+          "name": "遮陽草帽（鼠鼠尺寸）",
+          "price": 40,
           "in_stock": true,
-          "image": "assets/images/products/variants/18_遮陽草帽-鼠鼠尺寸.jpg"
+          "image": "assets/images/products/variants/18_遮陽草帽（鼠鼠尺寸）.jpg"
         }
       ],
       "description": "超可愛的野餐出遊組合！格紋小布包紅、粉、藍三色任選，再配一頂鼠鼠尺寸的遮陽草帽，寶寶就可以出發去郊遊啦～小小一顆掛在身上，可愛度瞬間翻倍。",
@@ -661,13 +744,13 @@
     },
     {
       "id": "19",
-      "name": "【韓國直送】、【織女手工系列】飲料提袋",
+      "name": "【織女手工系列】飲料提袋",
       "category": "bag",
       "tags": [
-        "韓國直送",
         "織女手工系列"
       ],
       "price": 40,
+      "price_max": 90,
       "original_price": 40,
       "on_sale": false,
       "sale_label": null,
@@ -678,37 +761,43 @@
         {
           "supply": "預購",
           "name": "【織女手工系列】斜背煦暖桃",
+          "price": 90,
           "in_stock": true,
           "image": "assets/images/products/variants/19_【織女手工系列】斜背煦暖桃.jpg"
         },
         {
-          "supply": "現貨",
+          "supply": "預購",
           "name": "【織女手工系列】斜背流光染",
+          "price": 90,
           "in_stock": true,
           "image": "assets/images/products/variants/19_【織女手工系列】斜背流光染.jpg"
         },
         {
           "supply": "現貨",
           "name": "【織女手工系列】斜背果韻紅",
+          "price": 90,
           "in_stock": true,
           "image": "assets/images/products/variants/19_【織女手工系列】斜背果韻紅.jpg"
         },
         {
           "supply": "預購",
           "name": "【織女手工系列】斜背森野綠",
+          "price": 90,
           "in_stock": true,
           "image": "assets/images/products/variants/19_【織女手工系列】斜背森野綠.jpg"
         },
         {
           "supply": "預購",
           "name": "【織女手工系列】斜背奶白兔",
+          "price": 90,
           "in_stock": true,
           "image": "assets/images/products/variants/19_【織女手工系列】斜背奶白兔.jpg"
         },
         {
           "supply": "現貨",
           "name": "肩背珍珠白",
-          "in_stock": false,
+          "price": 40,
+          "in_stock": true,
           "image": "assets/images/products/variants/19_肩背珍珠白.jpg"
         }
       ],
@@ -723,6 +812,7 @@
         "特價"
       ],
       "price": 8,
+      "price_max": 40,
       "original_price": 10,
       "on_sale": true,
       "sale_label": null,
@@ -732,117 +822,157 @@
       "variants": [
         {
           "supply": "現貨",
-          "name": "【韓國直送】燒酒",
-          "in_stock": true,
-          "image": "assets/images/products/variants/20_【韓國直送】燒酒.jpg"
-        },
-        {
-          "supply": "現貨",
-          "name": "【韓國直送】鋁罐飲料",
-          "in_stock": true,
-          "image": "assets/images/products/variants/20_【韓國直送】鋁罐飲料.jpg"
-        },
-        {
-          "supply": "現貨",
-          "name": "【韓國直送】鋁罐百事",
-          "in_stock": true,
-          "image": "assets/images/products/variants/20_【韓國直送】鋁罐百事.jpg"
-        },
-        {
-          "supply": "現貨",
-          "name": "【韓國直送】 鋁罐雪碧",
-          "in_stock": true,
-          "image": "assets/images/products/variants/20_【韓國直送】鋁罐雪碧.jpg"
-        },
-        {
-          "supply": "現貨",
-          "name": "【韓國直送】鋁罐可樂",
-          "in_stock": true,
-          "image": "assets/images/products/variants/20_【韓國直送】鋁罐可樂.jpg"
-        },
-        {
-          "supply": "現貨",
           "name": "棒棒糖 - 橘紅白",
+          "price": 30,
           "in_stock": true,
           "image": "assets/images/products/variants/20_棒棒糖-橘紅白.jpg"
         },
         {
           "supply": "現貨",
           "name": "棒棒糖 - 橘黃白",
+          "price": 30,
           "in_stock": true,
           "image": "assets/images/products/variants/20_棒棒糖-橘黃白.jpg"
         },
         {
           "supply": "現貨",
           "name": "鼠鼠棒棒糖 - 草莓紅",
+          "price": 25,
           "in_stock": true,
           "image": "assets/images/products/variants/20_鼠鼠棒棒糖-草莓紅.jpg"
         },
         {
           "supply": "現貨",
           "name": "鼠鼠棒棒糖 - 可樂棕",
+          "price": 25,
           "in_stock": true,
           "image": "assets/images/products/variants/20_鼠鼠棒棒糖-可樂棕.jpg"
         },
         {
           "supply": "現貨",
           "name": "鼠鼠棒棒糖 - 鳳梨黃",
+          "price": 25,
           "in_stock": true,
           "image": "assets/images/products/variants/20_鼠鼠棒棒糖-鳳梨黃.jpg"
         },
         {
           "supply": "現貨",
           "name": "鼠鼠棒棒糖 - 蜜桃粉",
+          "price": 25,
           "in_stock": true,
           "image": "assets/images/products/variants/20_鼠鼠棒棒糖-蜜桃粉.jpg"
         },
         {
           "supply": "現貨",
           "name": "鼠鼠棒棒糖 - 蘇打藍",
+          "price": 25,
           "in_stock": true,
           "image": "assets/images/products/variants/20_鼠鼠棒棒糖-蘇打藍.jpg"
         },
         {
           "supply": "現貨",
+          "name": "【韓國直送】鋁罐飲料",
+          "price": 40,
+          "in_stock": true,
+          "image": "assets/images/products/variants/20_【韓國直送】鋁罐飲料.jpg"
+        },
+        {
+          "supply": "現貨",
+          "name": "【韓國直送】鋁罐百事",
+          "price": 20,
+          "in_stock": true,
+          "image": "assets/images/products/variants/20_【韓國直送】鋁罐百事.jpg"
+        },
+        {
+          "supply": "現貨",
+          "name": "【韓國直送】 鋁罐雪碧",
+          "price": 20,
+          "in_stock": true,
+          "image": "assets/images/products/variants/20_【韓國直送】鋁罐雪碧.jpg"
+        },
+        {
+          "supply": "現貨",
+          "name": "【韓國直送】鋁罐可樂",
+          "price": 20,
+          "in_stock": true,
+          "image": "assets/images/products/variants/20_【韓國直送】鋁罐可樂.jpg"
+        },
+        {
+          "supply": "現貨",
           "name": "招財金元寶（含黃色蠟繩）",
+          "price": 30,
           "in_stock": true,
           "image": "assets/images/products/variants/20_招財金元寶（含黃色蠟繩）.jpg"
         },
         {
           "supply": "現貨",
           "name": "加購蠟繩（顏色請洽官方 LINE）",
+          "price": 8,
           "in_stock": true,
           "image": null
         },
         {
           "supply": "現貨",
-          "name": "【韓國直送】 牛奶",
+          "name": "瓶裝芬達",
+          "price": 30,
+          "in_stock": true,
+          "image": "assets/images/products/variants/20_瓶裝芬達.jpg"
+        },
+        {
+          "supply": "現貨",
+          "name": "起司",
+          "price": 40,
+          "in_stock": true,
+          "image": "assets/images/products/variants/20_起司.jpg"
+        },
+        {
+          "supply": "現貨",
+          "name": "鋁箔包柳橙汁",
+          "price": 40,
+          "in_stock": true,
+          "image": "assets/images/products/variants/20_鋁箔包柳橙汁.jpg"
+        },
+        {
+          "supply": "現貨",
+          "name": "【韓國直送】燒酒",
+          "price": 30,
           "in_stock": false,
-          "image": "assets/images/products/variants/20_【韓國直送】牛奶.jpg"
+          "image": "assets/images/products/variants/20_【韓國直送】燒酒.jpg"
+        },
+        {
+          "supply": "現貨",
+          "name": "【韓國直送】 棒棒冰 - 橘",
+          "price": 15,
+          "in_stock": false,
+          "image": "assets/images/products/variants/20_【韓國直送】棒棒冰-橘.jpg"
         },
         {
           "supply": "現貨",
           "name": "【韓國直送】綠色汽水（吧？）",
+          "price": 30,
           "in_stock": false,
           "image": "assets/images/products/variants/20_【韓國直送】綠色汽水（吧？）.jpg"
         },
         {
           "supply": "現貨",
           "name": "【韓國直送】棒棒冰 - 黃綠",
+          "price": 15,
           "in_stock": false,
           "image": "assets/images/products/variants/20_【韓國直送】棒棒冰-黃綠.jpg"
         },
         {
           "supply": "現貨",
           "name": "【韓國直送】棒棒冰 - 粉紅",
+          "price": 15,
           "in_stock": false,
           "image": "assets/images/products/variants/20_【韓國直送】棒棒冰-粉紅.jpg"
         },
         {
           "supply": "現貨",
-          "name": "【韓國直送】 棒棒冰 - 橘",
+          "name": "【韓國直送】 牛奶",
+          "price": 20,
           "in_stock": false,
-          "image": "assets/images/products/variants/20_【韓國直送】棒棒冰-橘.jpg"
+          "image": "assets/images/products/variants/20_【韓國直送】牛奶.jpg"
         }
       ],
       "description": "天氣太熱啦～寶寶們也想喝飲料！牛奶、汽水、棒棒冰、鼠鼠棒棒糖……近二十款迷你小物任你挑，幫寶寶增添滿滿氛圍感，搭配飲料提袋一起入手更對味！",
@@ -854,6 +984,7 @@
       "category": "dress",
       "tags": [],
       "price": 120,
+      "price_max": 180,
       "original_price": 120,
       "on_sale": false,
       "sale_label": null,
@@ -863,15 +994,17 @@
       "variants": [
         {
           "supply": "預購",
-          "name": "斗篷，紅",
-          "in_stock": true,
-          "image": "assets/images/products/variants/21_斗篷，紅.jpg"
-        },
-        {
-          "supply": "現貨",
           "name": "洋裝，紅",
+          "price": 120,
           "in_stock": true,
           "image": "assets/images/products/variants/21_洋裝，紅.jpg"
+        },
+        {
+          "supply": "預購",
+          "name": "斗篷，紅",
+          "price": 180,
+          "in_stock": true,
+          "image": "assets/images/products/variants/21_斗篷，紅.jpg"
         }
       ],
       "description": "要被美哭了啦！細閃燈芯絨連底下花邊都有小閃，不是俗bia bia的那種閃，是高雅細緻的微閃✨洋裝、斗篷兩款可選，一起帶走氣質直接翻倍。",
@@ -883,6 +1016,7 @@
       "category": "dress",
       "tags": [],
       "price": 110,
+      "price_max": null,
       "original_price": 110,
       "on_sale": false,
       "sale_label": null,
@@ -891,16 +1025,18 @@
       "image": "assets/images/products/22-floral-skirt.jpg",
       "variants": [
         {
-          "supply": "現貨",
-          "name": "松露灰棕",
+          "supply": "預購",
+          "name": "栗子咖啡",
+          "price": 110,
           "in_stock": true,
-          "image": "assets/images/products/variants/22_松露灰棕.jpg"
+          "image": "assets/images/products/variants/22_栗子咖啡.jpg"
         },
         {
           "supply": "現貨",
-          "name": "栗子咖啡",
+          "name": "松露灰棕",
+          "price": 110,
           "in_stock": true,
-          "image": "assets/images/products/variants/22_栗子咖啡.jpg"
+          "image": "assets/images/products/variants/22_松露灰棕.jpg"
         }
       ],
       "description": "可愛的田園花花裙～碎花點綴寶寶的可愛，裙襬還有滾邊蕾絲加持。優雅氣質款衣櫃必收，幫寶寶帶一件，出門散步都自帶田園濾鏡。",
@@ -912,6 +1048,7 @@
       "category": "outerwear",
       "tags": [],
       "price": 60,
+      "price_max": null,
       "original_price": 60,
       "on_sale": false,
       "sale_label": null,
@@ -921,25 +1058,29 @@
       "variants": [
         {
           "supply": "現貨",
-          "name": "棕",
+          "name": "棕格紋",
+          "price": 60,
           "in_stock": true,
-          "image": "assets/images/products/variants/23_棕.jpg"
+          "image": "assets/images/products/variants/23_棕格紋.jpg"
         },
         {
-          "supply": "現貨",
+          "supply": "預購",
           "name": "紅格紋",
+          "price": 60,
           "in_stock": true,
           "image": "assets/images/products/variants/23_紅格紋.jpg"
         },
         {
           "supply": "現貨",
-          "name": "棕格紋",
+          "name": "棕",
+          "price": 60,
           "in_stock": true,
-          "image": "assets/images/products/variants/23_棕格紋.jpg"
+          "image": "assets/images/products/variants/23_棕.jpg"
         },
         {
           "supply": "現貨",
           "name": "紅",
+          "price": 60,
           "in_stock": true,
           "image": "assets/images/products/variants/23_紅.jpg"
         }
@@ -953,6 +1094,7 @@
       "category": "top",
       "tags": [],
       "price": 130,
+      "price_max": null,
       "original_price": 130,
       "on_sale": false,
       "sale_label": null,
@@ -962,15 +1104,17 @@
       "variants": [
         {
           "supply": "現貨",
-          "name": "黑",
+          "name": "淺藍",
+          "price": 130,
           "in_stock": true,
-          "image": "assets/images/products/variants/24_黑.jpg"
+          "image": "assets/images/products/variants/24_淺藍.jpg"
         },
         {
           "supply": "現貨",
-          "name": "淺藍",
+          "name": "黑",
+          "price": 130,
           "in_stock": true,
-          "image": "assets/images/products/variants/24_淺藍.jpg"
+          "image": "assets/images/products/variants/24_黑.jpg"
         }
       ],
       "description": "穿上這件再隨便戴副眼鏡，簡直是被一堆女生追著跑的學霸帥哥！黑色大爆熱銷，上架兩次都在兩天內完售，手刀下單才追得上我們的學霸。",
@@ -982,6 +1126,7 @@
       "category": "dress",
       "tags": [],
       "price": 140,
+      "price_max": null,
       "original_price": 140,
       "on_sale": false,
       "sale_label": null,
@@ -991,15 +1136,17 @@
       "variants": [
         {
           "supply": "現貨",
-          "name": "白",
+          "name": "黑",
+          "price": 140,
           "in_stock": true,
-          "image": "assets/images/products/variants/25_白.jpg"
+          "image": "assets/images/products/variants/25_黑.jpg"
         },
         {
           "supply": "現貨",
-          "name": "黑",
+          "name": "白",
+          "price": 140,
           "in_stock": true,
-          "image": "assets/images/products/variants/25_黑.jpg"
+          "image": "assets/images/products/variants/25_白.jpg"
         }
       ],
       "description": "比小香風洋裝再多一點正式感！如果另一款是優雅下午茶，這件就是可以穿去派對或晚宴的戰袍。黑白兩色，讓寶寶當一晚最亮眼的主角。",
@@ -1011,6 +1158,7 @@
       "category": "accessory",
       "tags": [],
       "price": 30,
+      "price_max": 50,
       "original_price": 30,
       "on_sale": false,
       "sale_label": null,
@@ -1019,20 +1167,23 @@
       "image": "assets/images/products/26-mini-boba-bottle.jpg",
       "variants": [
         {
-          "supply": "預購",
+          "supply": "現貨",
           "name": "珍珠奶茶",
+          "price": 50,
           "in_stock": true,
           "image": "assets/images/products/variants/26_珍珠奶茶.jpg"
         },
         {
           "supply": "現貨",
           "name": "水壺 - 白",
+          "price": 30,
           "in_stock": true,
           "image": "assets/images/products/variants/26_水壺-白.jpg"
         },
         {
-          "supply": "現貨",
+          "supply": "預購",
           "name": "水壺 - 藍",
+          "price": 30,
           "in_stock": true,
           "image": "assets/images/products/variants/26_水壺-藍.jpg"
         }
@@ -1046,6 +1197,7 @@
       "category": "accessory",
       "tags": [],
       "price": 20,
+      "price_max": 30,
       "original_price": 20,
       "on_sale": false,
       "sale_label": null,
@@ -1055,45 +1207,45 @@
       "variants": [
         {
           "supply": "現貨",
-          "name": "爆米花 - 紅❤️",
-          "in_stock": true,
-          "image": "assets/images/products/variants/27_爆米花-紅❤️.jpg"
-        },
-        {
-          "supply": "現貨",
-          "name": "爆米花 - 白🤍",
-          "in_stock": true,
-          "image": "assets/images/products/variants/27_爆米花-白🤍.jpg"
-        },
-        {
-          "supply": "現貨",
-          "name": "爆米花 - 藍💙",
-          "in_stock": true,
-          "image": "assets/images/products/variants/27_爆米花-藍💙.jpg"
-        },
-        {
-          "supply": "現貨",
           "name": "爆米花 - 咖🤎",
+          "price": 30,
           "in_stock": true,
           "image": "assets/images/products/variants/27_爆米花-咖🤎.jpg"
         },
         {
           "supply": "現貨",
+          "name": "爆米花 - 藍💙",
+          "price": 30,
+          "in_stock": true,
+          "image": "assets/images/products/variants/27_爆米花-藍💙.jpg"
+        },
+        {
+          "supply": "現貨",
+          "name": "爆米花 - 白🤍",
+          "price": 30,
+          "in_stock": true,
+          "image": "assets/images/products/variants/27_爆米花-白🤍.jpg"
+        },
+        {
+          "supply": "現貨",
+          "name": "爆米花 - 紅❤️",
+          "price": 30,
+          "in_stock": true,
+          "image": "assets/images/products/variants/27_爆米花-紅❤️.jpg"
+        },
+        {
+          "supply": "現貨",
           "name": "爆米花 - 粉🩷",
+          "price": 30,
           "in_stock": true,
           "image": "assets/images/products/variants/27_爆米花-粉🩷.jpg"
         },
         {
-          "supply": "預購",
-          "name": "遊戲機 - 黃",
+          "supply": "現貨",
+          "name": "遊戲機 - 粉（售完不補）",
+          "price": 20,
           "in_stock": true,
-          "image": "assets/images/products/variants/27_遊戲機-黃.jpg"
-        },
-        {
-          "supply": "預購",
-          "name": "遊戲機 - 粉",
-          "in_stock": true,
-          "image": null
+          "image": "assets/images/products/variants/27_遊戲機-粉（售完不補）.jpg"
         }
       ],
       "description": "超精緻的迷你爆米花，帶寶寶看電影必備！印圖小物最怕字糊，這款完全不會。自古紅藍出CP，超推一次帶兩個～",
@@ -1107,6 +1259,7 @@
         "韓國直送"
       ],
       "price": 135,
+      "price_max": null,
       "original_price": 135,
       "on_sale": false,
       "sale_label": null,
@@ -1117,6 +1270,7 @@
         {
           "supply": "現貨",
           "name": "藍",
+          "price": 135,
           "in_stock": true,
           "image": null
         }
@@ -1130,6 +1284,7 @@
       "category": "accessory",
       "tags": [],
       "price": 30,
+      "price_max": 55,
       "original_price": 30,
       "on_sale": false,
       "sale_label": null,
@@ -1140,68 +1295,86 @@
         {
           "supply": "現貨",
           "name": "眼鏡 - 4.5cm - 透棕框",
+          "price": 30,
           "in_stock": true,
           "image": "assets/images/products/variants/29_眼鏡-4.5cm-透棕框.jpg"
         },
         {
           "supply": "現貨",
           "name": "墨鏡 - 4.5cm - 黑框",
+          "price": 35,
           "in_stock": true,
           "image": "assets/images/products/variants/29_墨鏡-4.5cm-黑框.jpg"
         },
         {
-          "supply": "現貨",
+          "supply": "預購",
           "name": "眼鏡 - 4.5cm - 黑框透片",
+          "price": 30,
           "in_stock": true,
           "image": "assets/images/products/variants/29_眼鏡-4.5cm-黑框透片.jpg"
         },
         {
           "supply": "現貨",
           "name": "眼鏡 - 4.5cm - 透灰",
+          "price": 30,
           "in_stock": true,
           "image": "assets/images/products/variants/29_眼鏡-4.5cm-透灰.jpg"
         },
         {
           "supply": "現貨",
+          "name": "眼鏡 - 4.5cm - 透綠（售完不補）",
+          "price": 30,
+          "in_stock": true,
+          "image": "assets/images/products/variants/29_眼鏡-4.5cm-透綠（售完不補）.jpg"
+        },
+        {
+          "supply": "預購",
           "name": "蛙鏡護目鏡 - 4.5cm - 黑",
+          "price": 55,
           "in_stock": true,
           "image": "assets/images/products/variants/29_蛙鏡護目鏡-4.5cm-黑.jpg"
         },
         {
-          "supply": "預購",
-          "name": "眼鏡 - 4.5cm - 透綠框",
-          "in_stock": true,
-          "image": "assets/images/products/variants/29_眼鏡-4.5cm-透綠框.jpg"
-        },
-        {
           "supply": "現貨",
           "name": "眼鏡 - 4.5cm - 黑框藍片",
+          "price": 35,
           "in_stock": true,
           "image": "assets/images/products/variants/29_眼鏡-4.5cm-黑框藍片.jpg"
         },
         {
-          "supply": "現貨",
+          "supply": "預購",
           "name": "眼鏡 - 4.5cm - 黑框茶片",
+          "price": 35,
           "in_stock": true,
           "image": "assets/images/products/variants/29_眼鏡-4.5cm-黑框茶片.jpg"
         },
         {
           "supply": "現貨",
           "name": "眼鏡 - 4.5cm - 透框藍片",
+          "price": 35,
           "in_stock": true,
           "image": "assets/images/products/variants/29_眼鏡-4.5cm-透框藍片.jpg"
         },
         {
           "supply": "現貨",
           "name": "眼鏡 - 4.5cm - 透框湖綠",
+          "price": 35,
           "in_stock": true,
           "image": "assets/images/products/variants/29_眼鏡-4.5cm-透框湖綠.jpg"
         },
         {
           "supply": "現貨",
           "name": "墨鏡 - 4.5cm - 白框",
+          "price": 35,
           "in_stock": true,
           "image": "assets/images/products/variants/29_墨鏡-4.5cm-白框.jpg"
+        },
+        {
+          "supply": "預購",
+          "name": "眼鏡 - 4.5cm - 棕框茶片",
+          "price": 35,
+          "in_stock": true,
+          "image": "assets/images/products/variants/29_眼鏡-4.5cm-棕框茶片.jpg"
         }
       ],
       "description": "眼鏡一戴，氣場立刻不一樣！文青風、酷酷風、時尚感，來 PluPlu Land 就 zenzen逮就補。十多款框型鏡片任你配，幫小傢伙打造專屬穿搭。",
@@ -1213,6 +1386,7 @@
       "category": "accessory",
       "tags": [],
       "price": 40,
+      "price_max": 60,
       "original_price": 40,
       "on_sale": false,
       "sale_label": null,
@@ -1222,99 +1396,115 @@
       "variants": [
         {
           "supply": "現貨",
-          "name": "眼鏡 - 6cm - 漸層藍粉",
-          "in_stock": true,
-          "image": "assets/images/products/variants/30_眼鏡-6cm-漸層藍粉.jpg"
-        },
-        {
-          "supply": "現貨",
-          "name": "眼鏡 - 6cm - 透框湖綠",
-          "in_stock": true,
-          "image": "assets/images/products/variants/30_眼鏡-6cm-透框湖綠.jpg"
-        },
-        {
-          "supply": "現貨",
-          "name": "眼鏡 - 6cm - 透框藍片",
-          "in_stock": true,
-          "image": "assets/images/products/variants/30_眼鏡-6cm-透框藍片.jpg"
-        },
-        {
-          "supply": "預購",
-          "name": "眼鏡 - 6cm - 漸層粉綠",
-          "in_stock": true,
-          "image": "assets/images/products/variants/30_眼鏡-6cm-漸層粉綠.jpg"
-        },
-        {
-          "supply": "現貨",
-          "name": "眼鏡 - 6cm - 透框粉橘",
-          "in_stock": true,
-          "image": "assets/images/products/variants/30_眼鏡-6cm-透框粉橘.jpg"
-        },
-        {
-          "supply": "現貨",
-          "name": "眼鏡 - 6cm - 黑框藍片",
-          "in_stock": true,
-          "image": "assets/images/products/variants/30_眼鏡-6cm-黑框藍片.jpg"
-        },
-        {
-          "supply": "現貨",
           "name": "墨鏡 - 6cm - 黑框",
+          "price": 45,
           "in_stock": true,
           "image": "assets/images/products/variants/30_墨鏡-6cm-黑框.jpg"
         },
         {
-          "supply": "現貨",
-          "name": "眼鏡 - 6cm - 黑框茶片",
-          "in_stock": true,
-          "image": "assets/images/products/variants/30_眼鏡-6cm-黑框茶片.jpg"
-        },
-        {
-          "supply": "現貨",
-          "name": "墨鏡 - 6cm - 白框",
-          "in_stock": true,
-          "image": "assets/images/products/variants/30_墨鏡-6cm-白框.jpg"
-        },
-        {
-          "supply": "現貨",
-          "name": "眼鏡 - 6cm - 黑框透片（請備註方框或圓框）",
-          "in_stock": true,
-          "image": "assets/images/products/variants/30_眼鏡-6cm-黑框透片（請備註方框或圓框）.jpg"
-        },
-        {
-          "supply": "現貨",
-          "name": "眼鏡 - 6cm - 透棕框",
-          "in_stock": true,
-          "image": "assets/images/products/variants/30_眼鏡-6cm-透棕框.jpg"
-        },
-        {
-          "supply": "預購",
-          "name": "眼鏡 - 6cm - 透框茶片",
-          "in_stock": true,
-          "image": "assets/images/products/variants/30_眼鏡-6cm-透框茶片.jpg"
-        },
-        {
           "supply": "預購",
           "name": "眼鏡 - 6cm - 粉框粉片",
+          "price": 45,
           "in_stock": true,
           "image": "assets/images/products/variants/30_眼鏡-6cm-粉框粉片.jpg"
         },
         {
           "supply": "預購",
           "name": "護目鏡 - 6cm - 透明",
+          "price": 60,
           "in_stock": true,
           "image": "assets/images/products/variants/30_護目鏡-6cm-透明.jpg"
         },
         {
           "supply": "現貨",
           "name": "貓眼造型墨鏡 - 6cm - 白框黑片",
+          "price": 50,
           "in_stock": true,
           "image": "assets/images/products/variants/30_貓眼造型墨鏡-6cm-白框黑片.jpg"
         },
         {
           "supply": "現貨",
-          "name": "眼鏡 - 6cm - 漸層粉黃",
+          "name": "眼鏡 - 6cm - 黑框茶片",
+          "price": 40,
+          "in_stock": true,
+          "image": "assets/images/products/variants/30_眼鏡-6cm-黑框茶片.jpg"
+        },
+        {
+          "supply": "現貨",
+          "name": "墨鏡 - 6cm - 白框",
+          "price": 45,
+          "in_stock": true,
+          "image": "assets/images/products/variants/30_墨鏡-6cm-白框.jpg"
+        },
+        {
+          "supply": "現貨",
+          "name": "眼鏡 - 6cm - 黑框透片（請備註方框或圓框）",
+          "price": 40,
+          "in_stock": true,
+          "image": "assets/images/products/variants/30_眼鏡-6cm-黑框透片（請備註方框或圓框）.jpg"
+        },
+        {
+          "supply": "現貨",
+          "name": "眼鏡 - 6cm - 透棕框",
+          "price": 40,
+          "in_stock": true,
+          "image": "assets/images/products/variants/30_眼鏡-6cm-透棕框.jpg"
+        },
+        {
+          "supply": "預購",
+          "name": "眼鏡 - 6cm - 透框茶片",
+          "price": 45,
+          "in_stock": true,
+          "image": "assets/images/products/variants/30_眼鏡-6cm-透框茶片.jpg"
+        },
+        {
+          "supply": "現貨",
+          "name": "眼鏡 - 6cm - 漸層藍粉",
+          "price": 45,
+          "in_stock": true,
+          "image": "assets/images/products/variants/30_眼鏡-6cm-漸層藍粉.jpg"
+        },
+        {
+          "supply": "現貨",
+          "name": "眼鏡 - 6cm - 透框湖綠",
+          "price": 40,
+          "in_stock": true,
+          "image": "assets/images/products/variants/30_眼鏡-6cm-透框湖綠.jpg"
+        },
+        {
+          "supply": "現貨",
+          "name": "眼鏡 - 6cm - 透框藍片",
+          "price": 40,
+          "in_stock": true,
+          "image": "assets/images/products/variants/30_眼鏡-6cm-透框藍片.jpg"
+        },
+        {
+          "supply": "預購",
+          "name": "眼鏡 - 6cm - 漸層粉綠",
+          "price": 40,
+          "in_stock": true,
+          "image": "assets/images/products/variants/30_眼鏡-6cm-漸層粉綠.jpg"
+        },
+        {
+          "supply": "現貨",
+          "name": "眼鏡 - 6cm - 透框粉橘",
+          "price": 40,
+          "in_stock": true,
+          "image": "assets/images/products/variants/30_眼鏡-6cm-透框粉橘.jpg"
+        },
+        {
+          "supply": "現貨",
+          "name": "眼鏡 - 6cm - 黑框藍片",
+          "price": 40,
+          "in_stock": true,
+          "image": "assets/images/products/variants/30_眼鏡-6cm-黑框藍片.jpg"
+        },
+        {
+          "supply": "現貨",
+          "name": "眼鏡 - 6cm - 漸層粉黃（售完不補）",
+          "price": 40,
           "in_stock": false,
-          "image": "assets/images/products/variants/30_眼鏡-6cm-漸層粉黃.jpg"
+          "image": "assets/images/products/variants/30_眼鏡-6cm-漸層粉黃（售完不補）.jpg"
         }
       ],
       "description": "大頭寶寶專屬的時尚配件！漸層、透框、貓眼造型通通有，戴上眼鏡的瞬間，氣質直接升級。十多款任你挑，總有一副是你家寶寶的命定款。",
@@ -1326,6 +1516,7 @@
       "category": "accessory",
       "tags": [],
       "price": 50,
+      "price_max": null,
       "original_price": 50,
       "on_sale": false,
       "sale_label": null,
@@ -1336,80 +1527,93 @@
         {
           "supply": "現貨",
           "name": "柑仔白橘",
+          "price": 50,
           "in_stock": true,
           "image": "assets/images/products/variants/31_柑仔白橘.jpg"
         },
         {
           "supply": "現貨",
           "name": "櫻桃黃粉",
+          "price": 50,
           "in_stock": true,
           "image": "assets/images/products/variants/31_櫻桃黃粉.jpg"
         },
         {
           "supply": "現貨",
           "name": "櫻桃黃白",
+          "price": 50,
           "in_stock": true,
           "image": "assets/images/products/variants/31_櫻桃黃白.jpg"
         },
         {
           "supply": "現貨",
           "name": "蝴蝶結黃紫",
+          "price": 50,
           "in_stock": true,
           "image": "assets/images/products/variants/31_蝴蝶結黃紫.jpg"
         },
         {
           "supply": "現貨",
           "name": "櫻桃藍白",
+          "price": 50,
           "in_stock": true,
           "image": "assets/images/products/variants/31_櫻桃藍白.jpg"
         },
         {
           "supply": "現貨",
           "name": "小花黃粉",
+          "price": 50,
           "in_stock": true,
           "image": "assets/images/products/variants/31_小花黃粉.jpg"
         },
         {
           "supply": "現貨",
           "name": "櫻桃藍紅",
+          "price": 50,
           "in_stock": true,
           "image": "assets/images/products/variants/31_櫻桃藍紅.jpg"
         },
         {
           "supply": "現貨",
           "name": "小花粉藍",
+          "price": 50,
           "in_stock": true,
           "image": "assets/images/products/variants/31_小花粉藍.jpg"
         },
         {
           "supply": "現貨",
           "name": "蝴蝶結白藍",
+          "price": 50,
           "in_stock": true,
           "image": "assets/images/products/variants/31_蝴蝶結白藍.jpg"
         },
         {
           "supply": "現貨",
           "name": "草莓白粉",
+          "price": 50,
           "in_stock": true,
           "image": "assets/images/products/variants/31_草莓白粉.jpg"
         },
         {
           "supply": "現貨",
           "name": "寶寶藍",
+          "price": 50,
           "in_stock": true,
           "image": "assets/images/products/variants/31_寶寶藍.jpg"
         },
         {
           "supply": "現貨",
           "name": "蘋果切片",
+          "price": 50,
           "in_stock": true,
           "image": "assets/images/products/variants/31_蘋果切片.jpg"
         },
         {
           "supply": "現貨",
-          "name": "熊熊藍",
+          "name": "熊熊藍（售完不補）",
+          "price": 50,
           "in_stock": false,
-          "image": "assets/images/products/variants/31_熊熊藍.jpg"
+          "image": "assets/images/products/variants/31_熊熊藍（售完不補）.jpg"
         }
       ],
       "description": "爆炸可愛的顏色，讓你忍不住一次掃貨！櫻桃、小花、蝴蝶結、草莓……十多款配色任選。每條線頭都會在驗貨時手工打結，防止後續開花，細節控可以放心。",
@@ -1423,6 +1627,7 @@
         "織女手工系列"
       ],
       "price": 280,
+      "price_max": null,
       "original_price": 280,
       "on_sale": false,
       "sale_label": null,
@@ -1431,28 +1636,32 @@
       "image": "assets/images/products/32-qing-headdress.jpg",
       "variants": [
         {
-          "supply": "現貨",
-          "name": "金旗頭",
-          "in_stock": true,
-          "image": "assets/images/products/variants/32_金旗頭.jpg"
-        },
-        {
           "supply": "預購",
-          "name": "粉旗頭",
+          "name": "皇帝帽",
+          "price": 280,
           "in_stock": true,
-          "image": "assets/images/products/variants/32_粉旗頭.jpg"
+          "image": "assets/images/products/variants/32_皇帝帽.jpg"
         },
         {
           "supply": "預購",
           "name": "紫旗頭",
+          "price": 280,
           "in_stock": true,
           "image": "assets/images/products/variants/32_紫旗頭.jpg"
         },
         {
           "supply": "預購",
-          "name": "皇帝帽",
+          "name": "粉旗頭",
+          "price": 280,
           "in_stock": true,
-          "image": "assets/images/products/variants/32_皇帝帽.jpg"
+          "image": "assets/images/products/variants/32_粉旗頭.jpg"
+        },
+        {
+          "supply": "現貨",
+          "name": "金旗頭",
+          "price": 280,
+          "in_stock": true,
+          "image": "assets/images/products/variants/32_金旗頭.jpg"
         }
       ],
       "description": "精緻中不失可愛，還保有手作的溫暖～金旗頭、粉旗頭、紫旗頭、皇帝帽通通有，追劇時讓寶寶戴著陪你一起看，快來打造你的鼠鼠後宮！",
@@ -1466,6 +1675,7 @@
         "節慶限定"
       ],
       "price": 200,
+      "price_max": null,
       "original_price": 200,
       "on_sale": false,
       "sale_label": null,
@@ -1476,6 +1686,7 @@
         {
           "supply": "現貨",
           "name": "南瓜套裝",
+          "price": 200,
           "in_stock": true,
           "image": "assets/images/products/variants/33_南瓜套裝.jpg"
         }
@@ -1489,6 +1700,7 @@
       "category": "dress",
       "tags": [],
       "price": 150,
+      "price_max": null,
       "original_price": 150,
       "on_sale": false,
       "sale_label": null,
@@ -1497,8 +1709,9 @@
       "image": "assets/images/products/34-lace-bow-dress.jpg",
       "variants": [
         {
-          "supply": "預購",
+          "supply": "現貨",
           "name": "灰",
+          "price": 150,
           "in_stock": true,
           "image": "assets/images/products/variants/34_灰.jpg"
         }
@@ -1508,11 +1721,12 @@
     },
     {
       "id": "35",
-      "name": "流蘇牛仔洋裝☀️",
+      "name": "流蘇牛仔洋裝☀️/野餐藤編提籃",
       "category": "dress",
       "tags": [],
-      "price": 90,
-      "original_price": 90,
+      "price": 15,
+      "price_max": 110,
+      "original_price": 15,
       "on_sale": false,
       "sale_label": null,
       "status": "available",
@@ -1522,18 +1736,34 @@
         {
           "supply": "現貨",
           "name": "短版",
+          "price": 90,
           "in_stock": true,
           "image": null
         },
         {
           "supply": "現貨",
-          "name": "長版",
+          "name": "野餐藤編提籃",
+          "price": 60,
+          "in_stock": true,
+          "image": "assets/images/products/variants/35_野餐藤編提籃.jpg"
+        },
+        {
+          "supply": "現貨",
+          "name": "蝴蝶結（請於訂單備註款式A~I）",
+          "price": 15,
+          "in_stock": true,
+          "image": "assets/images/products/variants/35_蝴蝶結（請於訂單備註款式A~I）.jpg"
+        },
+        {
+          "supply": "現貨",
+          "name": "長版（售完不補）",
+          "price": 110,
           "in_stock": false,
-          "image": "assets/images/products/variants/35_長版.jpg"
+          "image": "assets/images/products/variants/35_長版（售完不補）.jpg"
         }
       ],
-      "description": "裙擺微抽鬚設計，隨性又有型！配頂草帽、背個小織包，直接出發夏日野餐。短版長版都好看，是衣櫃裡的夏天代表作。",
-      "reminder": null
+      "description": "裙擺微抽鬚設計，隨性又有型！再挎上迷你藤編提籃，直接出發夏日野餐。還能加購 A 到 I 九款格紋小蝴蝶結，別在裙上、綁在籃上都好看，是衣櫃裡的夏天代表作。",
+      "reminder": "蝴蝶結請於訂單備註想要的款式（A～I）。"
     },
     {
       "id": "36",
@@ -1541,6 +1771,7 @@
       "category": "dress",
       "tags": [],
       "price": 120,
+      "price_max": null,
       "original_price": 120,
       "on_sale": false,
       "sale_label": null,
@@ -1551,12 +1782,14 @@
         {
           "supply": "現貨",
           "name": "粉色花園",
+          "price": 120,
           "in_stock": false,
           "image": null
         },
         {
           "supply": "預購",
           "name": "紫色花園",
+          "price": 120,
           "in_stock": false,
           "image": null
         }
@@ -1570,6 +1803,7 @@
       "category": "top",
       "tags": [],
       "price": 100,
+      "price_max": null,
       "original_price": 100,
       "on_sale": false,
       "sale_label": null,
@@ -1580,26 +1814,44 @@
         {
           "supply": "現貨",
           "name": "麻花米",
+          "price": 100,
           "in_stock": true,
           "image": "assets/images/products/variants/37_麻花米.jpg"
         },
         {
           "supply": "現貨",
           "name": "條紋藍底黃條",
+          "price": 100,
           "in_stock": true,
           "image": "assets/images/products/variants/37_條紋藍底黃條.jpg"
         },
         {
           "supply": "預購",
           "name": "灰底白滾邊",
+          "price": 100,
           "in_stock": true,
           "image": "assets/images/products/variants/37_灰底白滾邊.jpg"
         },
         {
           "supply": "現貨",
           "name": "細條紋藍白",
+          "price": 100,
           "in_stock": true,
           "image": "assets/images/products/variants/37_細條紋藍白.jpg"
+        },
+        {
+          "supply": "現貨",
+          "name": "麻花棕",
+          "price": 100,
+          "in_stock": true,
+          "image": null
+        },
+        {
+          "supply": "現貨",
+          "name": "麻花酒紅",
+          "price": 100,
+          "in_stock": true,
+          "image": null
         }
       ],
       "description": "針織毛衣一穿上，可愛度整個大飆升！可文青可活潑，彈性每麥，很多10cm的寶寶都穿得下。快來找一件跟寶寶的親子裝吧！",
@@ -1611,6 +1863,7 @@
       "category": "outerwear",
       "tags": [],
       "price": 150,
+      "price_max": 185,
       "original_price": 150,
       "on_sale": false,
       "sale_label": null,
@@ -1619,16 +1872,18 @@
       "image": "assets/images/products/38-tweed-shawl.jpg",
       "variants": [
         {
-          "supply": "現貨",
-          "name": "金絲白",
+          "supply": "預購",
+          "name": "黑",
+          "price": 185,
           "in_stock": true,
-          "image": "assets/images/products/variants/38_金絲白.jpg"
+          "image": "assets/images/products/variants/38_黑.jpg"
         },
         {
           "supply": "現貨",
-          "name": "黑",
+          "name": "金絲白（售完不補）",
+          "price": 150,
           "in_stock": false,
-          "image": "assets/images/products/variants/38_黑.jpg"
+          "image": "assets/images/products/variants/38_金絲白（售完不補）.jpg"
         }
       ],
       "description": "貴氣逼人，人間香奈兒就是你家的寶寶！金絲白的優雅配色，披上瞬間氣場全開，午茶、舞會、拍美照通通適合。",
@@ -1640,6 +1895,7 @@
       "category": "bag",
       "tags": [],
       "price": 35,
+      "price_max": null,
       "original_price": 35,
       "on_sale": false,
       "sale_label": null,
@@ -1648,16 +1904,18 @@
       "image": "assets/images/products/39-mini-suitcase.jpg",
       "variants": [
         {
-          "supply": "現貨",
-          "name": "透明黑拉桿",
+          "supply": "預購",
+          "name": "透明白拉桿",
+          "price": 35,
           "in_stock": true,
-          "image": "assets/images/products/variants/39_透明黑拉桿.jpg"
+          "image": "assets/images/products/variants/39_透明白拉桿.jpg"
         },
         {
           "supply": "現貨",
-          "name": "透明白拉桿",
-          "in_stock": false,
-          "image": "assets/images/products/variants/39_透明白拉桿.jpg"
+          "name": "透明黑拉桿",
+          "price": 35,
+          "in_stock": true,
+          "image": "assets/images/products/variants/39_透明黑拉桿.jpg"
         }
       ],
       "description": "雖然小，但可裝可愛！有可伸縮拉桿，裝得下寶寶出去玩一天的小衣服。透明白、透明黑兩色，拉著它，寶寶隨時可以來場說走就走的旅行。",
@@ -1669,6 +1927,7 @@
       "category": "accessory",
       "tags": [],
       "price": 30,
+      "price_max": null,
       "original_price": 30,
       "on_sale": false,
       "sale_label": null,
@@ -1679,12 +1938,14 @@
         {
           "supply": "現貨",
           "name": "米白色",
+          "price": 30,
           "in_stock": true,
           "image": "assets/images/products/variants/40_米白色.jpg"
         },
         {
           "supply": "現貨",
           "name": "栗棕色",
+          "price": 30,
           "in_stock": true,
           "image": "assets/images/products/variants/40_栗棕色.jpg"
         }
@@ -1698,6 +1959,7 @@
       "category": "outerwear",
       "tags": [],
       "price": 70,
+      "price_max": null,
       "original_price": 70,
       "on_sale": false,
       "sale_label": null,
@@ -1706,8 +1968,9 @@
       "image": "assets/images/products/41-raincoat.jpg",
       "variants": [
         {
-          "supply": "預購",
+          "supply": "現貨",
           "name": "透明熊耳",
+          "price": 70,
           "in_stock": true,
           "image": null
         }
@@ -1721,6 +1984,7 @@
       "category": "headwear",
       "tags": [],
       "price": 130,
+      "price_max": 140,
       "original_price": 130,
       "on_sale": false,
       "sale_label": null,
@@ -1730,15 +1994,17 @@
       "variants": [
         {
           "supply": "現貨",
-          "name": "咕咕雞",
+          "name": "蘋果（含斜背蘋果裝飾）",
+          "price": 140,
           "in_stock": true,
-          "image": "assets/images/products/variants/42_咕咕雞.jpg"
+          "image": "assets/images/products/variants/42_蘋果（含斜背蘋果裝飾）.jpg"
         },
         {
           "supply": "現貨",
-          "name": "蘋果（含斜背蘋果裝飾）",
+          "name": "咕咕雞",
+          "price": 130,
           "in_stock": true,
-          "image": "assets/images/products/variants/42_蘋果（含斜背蘋果裝飾）.jpg"
+          "image": "assets/images/products/variants/42_咕咕雞.jpg"
         }
       ],
       "description": "手感超級軟Ｑ，摸了就愛上！咕咕雞款頭頂立體小雞，軟萌呆萌；蘋果款有小白花和帶梗葉子，細節超加分，還附專屬斜背蘋果切片小裝飾，可愛加倍！",
@@ -1751,10 +2017,11 @@
       "tags": [
         "特價"
       ],
-      "price": 60,
-      "original_price": 100,
+      "price": 70,
+      "price_max": null,
+      "original_price": 80,
       "on_sale": true,
-      "sale_label": "開幕優惠 6 折",
+      "sale_label": null,
       "status": "available",
       "body_included": false,
       "image": "assets/images/products/43-fluffy-cape.jpg",
@@ -1762,18 +2029,21 @@
         {
           "supply": "現貨",
           "name": "莓果紅",
+          "price": 70,
           "in_stock": true,
           "image": "assets/images/products/variants/43_莓果紅.jpg"
         },
         {
           "supply": "現貨",
           "name": "森林綠",
+          "price": 70,
           "in_stock": true,
           "image": "assets/images/products/variants/43_森林綠.jpg"
         },
         {
           "supply": "現貨",
           "name": "栗子棕",
+          "price": 70,
           "in_stock": true,
           "image": "assets/images/products/variants/43_栗子棕.jpg"
         }
@@ -1789,6 +2059,7 @@
         "韓國直送"
       ],
       "price": 160,
+      "price_max": null,
       "original_price": 160,
       "on_sale": false,
       "sale_label": null,
@@ -1799,6 +2070,7 @@
         {
           "supply": "現貨",
           "name": "紅",
+          "price": 160,
           "in_stock": false,
           "image": null
         }
@@ -1812,6 +2084,7 @@
       "category": "dress",
       "tags": [],
       "price": 190,
+      "price_max": null,
       "original_price": 190,
       "on_sale": false,
       "sale_label": null,
@@ -1822,6 +2095,7 @@
         {
           "supply": "預購",
           "name": "夢幻渲染彩紗裙",
+          "price": 190,
           "in_stock": true,
           "image": null
         }
@@ -1835,6 +2109,7 @@
       "category": "dress",
       "tags": [],
       "price": 160,
+      "price_max": null,
       "original_price": 160,
       "on_sale": false,
       "sale_label": null,
@@ -1844,9 +2119,10 @@
       "variants": [
         {
           "supply": "現貨",
-          "name": "粉",
+          "name": "粉（售完不補）",
+          "price": 160,
           "in_stock": false,
-          "image": "assets/images/products/variants/46_粉.jpg"
+          "image": "assets/images/products/variants/46_粉（售完不補）.jpg"
         }
       ],
       "description": "裙襬像花苞一樣古錐！肩帶可以用綁的自由調整長度，而且還是絨面材質，質感好到想一直摸。粉嫩一件，寶寶穿上就是春天本人。",
@@ -1858,6 +2134,7 @@
       "category": "dress",
       "tags": [],
       "price": 290,
+      "price_max": null,
       "original_price": 290,
       "on_sale": false,
       "sale_label": null,
@@ -1868,6 +2145,7 @@
         {
           "supply": "現貨",
           "name": "粉",
+          "price": 290,
           "in_stock": false,
           "image": null
         }
@@ -1881,6 +2159,7 @@
       "category": "outerwear",
       "tags": [],
       "price": 180,
+      "price_max": null,
       "original_price": 180,
       "on_sale": false,
       "sale_label": null,
@@ -1890,19 +2169,29 @@
       "variants": [
         {
           "supply": "預購",
-          "name": "米白",
+          "name": "茉莉白",
+          "price": 180,
           "in_stock": true,
           "image": null
         },
         {
           "supply": "預購",
-          "name": "紫色",
+          "name": "丁香紫",
+          "price": 180,
           "in_stock": true,
           "image": null
         },
         {
           "supply": "預購",
-          "name": "鵝黃",
+          "name": "水仙黃",
+          "price": 180,
+          "in_stock": true,
+          "image": null
+        },
+        {
+          "supply": "預購",
+          "name": "暮瑰粉",
+          "price": 180,
           "in_stock": true,
           "image": null
         }
@@ -1916,6 +2205,7 @@
       "category": "top",
       "tags": [],
       "price": 80,
+      "price_max": null,
       "original_price": 80,
       "on_sale": false,
       "sale_label": null,
@@ -1926,42 +2216,49 @@
         {
           "supply": "現貨",
           "name": "灰白",
+          "price": 80,
           "in_stock": true,
           "image": "assets/images/products/variants/49_灰白.jpg"
         },
         {
           "supply": "現貨",
           "name": "綠白",
+          "price": 80,
           "in_stock": true,
           "image": "assets/images/products/variants/49_綠白.jpg"
         },
         {
           "supply": "現貨",
           "name": "紅白",
+          "price": 80,
           "in_stock": true,
           "image": "assets/images/products/variants/49_紅白.jpg"
         },
         {
           "supply": "現貨",
           "name": "深藍白",
+          "price": 80,
           "in_stock": true,
           "image": "assets/images/products/variants/49_深藍白.jpg"
         },
         {
           "supply": "現貨",
           "name": "黑白",
+          "price": 80,
           "in_stock": true,
           "image": "assets/images/products/variants/49_黑白.jpg"
         },
         {
           "supply": "現貨",
           "name": "棕白",
+          "price": 80,
           "in_stock": true,
           "image": "assets/images/products/variants/49_棕白.jpg"
         },
         {
           "supply": "現貨",
           "name": "淺藍白",
+          "price": 80,
           "in_stock": true,
           "image": "assets/images/products/variants/49_淺藍白.jpg"
         }
@@ -1975,6 +2272,7 @@
       "category": "dress",
       "tags": [],
       "price": 180,
+      "price_max": null,
       "original_price": 180,
       "on_sale": false,
       "sale_label": null,
@@ -1983,32 +2281,37 @@
       "image": "assets/images/products/50-plaid-bow-dress.jpg",
       "variants": [
         {
-          "supply": "現貨",
+          "supply": "預購",
           "name": "藍色",
+          "price": 180,
           "in_stock": true,
           "image": "assets/images/products/variants/50_藍色.jpg"
         },
         {
           "supply": "現貨",
           "name": "黃色",
+          "price": 180,
           "in_stock": true,
           "image": "assets/images/products/variants/50_黃色.jpg"
         },
         {
           "supply": "現貨",
           "name": "粉紅色",
+          "price": 180,
           "in_stock": true,
           "image": "assets/images/products/variants/50_粉紅色.jpg"
         },
         {
           "supply": "現貨",
           "name": "紫色",
+          "price": 180,
           "in_stock": true,
           "image": "assets/images/products/variants/50_紫色.jpg"
         },
         {
-          "supply": "現貨",
+          "supply": "預購",
           "name": "綠色",
+          "price": 180,
           "in_stock": true,
           "image": "assets/images/products/variants/50_綠色.jpg"
         }
@@ -2022,6 +2325,7 @@
       "category": "dress",
       "tags": [],
       "price": 140,
+      "price_max": null,
       "original_price": 140,
       "on_sale": false,
       "sale_label": null,
@@ -2032,6 +2336,7 @@
         {
           "supply": "預購",
           "name": "點點派對裙",
+          "price": 140,
           "in_stock": true,
           "image": "assets/images/products/variants/51_點點派對裙.jpg"
         }
@@ -2047,6 +2352,7 @@
         "特價"
       ],
       "price": 60,
+      "price_max": 90,
       "original_price": 70,
       "on_sale": true,
       "sale_label": null,
@@ -2057,54 +2363,63 @@
         {
           "supply": "現貨",
           "name": "西瓜可愛雙面",
+          "price": 60,
           "in_stock": true,
           "image": "assets/images/products/variants/52_西瓜可愛雙面.jpg"
         },
         {
           "supply": "現貨",
           "name": "藍白條紋",
+          "price": 60,
           "in_stock": true,
           "image": "assets/images/products/variants/52_藍白條紋.jpg"
         },
         {
           "supply": "現貨",
           "name": "粉白條紋",
+          "price": 60,
           "in_stock": true,
           "image": "assets/images/products/variants/52_粉白條紋.jpg"
         },
         {
           "supply": "現貨",
           "name": "任一顏色+小草帽優惠套組（請訂單備註顏色）",
+          "price": 90,
           "in_stock": true,
           "image": "assets/images/products/variants/52_任一顏色+小草帽優惠套組（請訂單備註顏色）.jpg"
         },
         {
           "supply": "預購",
           "name": "樂不濕鼠封底款 - 粉粉火鶴",
+          "price": 65,
           "in_stock": true,
           "image": "assets/images/products/variants/52_樂不濕鼠封底款-粉粉火鶴.jpg"
         },
         {
-          "supply": "預購",
+          "supply": "現貨",
           "name": "樂不濕鼠封底款 - 單顆櫻桃",
+          "price": 65,
           "in_stock": true,
           "image": "assets/images/products/variants/52_樂不濕鼠封底款-單顆櫻桃.jpg"
         },
         {
-          "supply": "預購",
+          "supply": "現貨",
           "name": "樂不濕鼠封底款 - 草莓甜甜圈",
+          "price": 65,
           "in_stock": true,
           "image": "assets/images/products/variants/52_樂不濕鼠封底款-草莓甜甜圈.jpg"
         },
         {
-          "supply": "預購",
+          "supply": "現貨",
           "name": "樂不濕鼠封底款 - 白色獨角獸",
+          "price": 80,
           "in_stock": true,
           "image": "assets/images/products/variants/52_樂不濕鼠封底款-白色獨角獸.jpg"
         },
         {
           "supply": "預購",
           "name": "樂不濕鼠封底款 - 兩顆櫻桃",
+          "price": 90,
           "in_stock": true,
           "image": "assets/images/products/variants/52_樂不濕鼠封底款-兩顆櫻桃.jpg"
         }
@@ -2118,6 +2433,7 @@
       "category": "outerwear",
       "tags": [],
       "price": 90,
+      "price_max": null,
       "original_price": 90,
       "on_sale": false,
       "sale_label": null,
@@ -2128,6 +2444,7 @@
         {
           "supply": "現貨",
           "name": "藍",
+          "price": 90,
           "in_stock": true,
           "image": null
         }
@@ -2143,6 +2460,7 @@
         "織女手工系列"
       ],
       "price": 180,
+      "price_max": 490,
       "original_price": 180,
       "on_sale": false,
       "sale_label": null,
@@ -2153,24 +2471,28 @@
         {
           "supply": "預購",
           "name": "溫馴小羊頭套",
+          "price": 180,
           "in_stock": true,
           "image": null
         },
         {
           "supply": "預購",
-          "name": "澎澎洋裝",
+          "name": "澎澎洋裝 - 小羊配色",
+          "price": 345,
           "in_stock": true,
-          "image": null
+          "image": "assets/images/products/variants/54_澎澎洋裝-小羊配色.jpg"
         },
         {
           "supply": "預購",
-          "name": "溫馴小羊頭套＋澎澎洋裝套裝優惠",
+          "name": "小羊頭套＋澎澎洋裝套裝優惠",
+          "price": 490,
           "in_stock": true,
-          "image": null
+          "image": "assets/images/products/variants/54_小羊頭套＋澎澎洋裝套裝優惠.jpg"
         },
         {
           "supply": "預購",
           "name": "澎澎洋裝（客製化顏色，請先洽官方 LINE）",
+          "price": 345,
           "in_stock": true,
           "image": null
         }
@@ -2184,6 +2506,7 @@
       "category": "top",
       "tags": [],
       "price": 120,
+      "price_max": null,
       "original_price": 120,
       "on_sale": false,
       "sale_label": null,
@@ -2194,26 +2517,30 @@
         {
           "supply": "預購",
           "name": "范特西紅",
+          "price": 120,
           "in_stock": true,
           "image": "assets/images/products/variants/55_范特西紅.jpg"
         },
         {
           "supply": "預購",
           "name": "芥末黃",
+          "price": 120,
           "in_stock": true,
-          "image": null
+          "image": "assets/images/products/variants/55_芥末黃.jpg"
         },
         {
           "supply": "預購",
           "name": "街頭灰",
+          "price": 120,
           "in_stock": true,
-          "image": null
+          "image": "assets/images/products/variants/55_街頭灰.jpg"
         },
         {
           "supply": "預購",
           "name": "酷帥黑",
+          "price": 120,
           "in_stock": true,
-          "image": null
+          "image": "assets/images/products/variants/55_酷帥黑.jpg"
         }
       ],
       "description": "快讓你的小鼠酷酷起來！抽繩帽 T 一套上，率性街頭感立現。范特西紅、芥末黃、街頭灰、酷帥黑四色任選，想許願其他顏色也可以私訊官方 LINE。",
@@ -2221,13 +2548,14 @@
     },
     {
       "id": "56",
-      "name": "魔術大空間帆布郵差包",
+      "name": "魔術大空間帆布斜背包",
       "category": "bag",
       "tags": [
         "特價"
       ],
       "price": 50,
-      "original_price": 60,
+      "price_max": null,
+      "original_price": 70,
       "on_sale": true,
       "sale_label": null,
       "status": "available",
@@ -2237,23 +2565,26 @@
         {
           "supply": "預購",
           "name": "藍",
+          "price": 50,
           "in_stock": true,
           "image": null
         },
         {
           "supply": "預購",
           "name": "粉",
+          "price": 50,
           "in_stock": true,
           "image": null
         },
         {
           "supply": "預購",
           "name": "黃",
+          "price": 50,
           "in_stock": true,
           "image": null
         }
       ],
-      "description": "小小一顆，藏著魔術大空間！零食、小配件、寶寶的隨身小物通通放得進去。奶油黃、櫻花粉、天空藍三色都想包色，背上瞬間可愛升級，一起出發冒險吧！",
+      "description": "小小一顆，藏著魔術大空間！零食、小配件、寶寶的隨身小物通通放得進去。奶油黃、櫻花粉、天空藍三色都想包色，斜背上肩瞬間可愛升級，一起出發冒險吧！",
       "reminder": null
     },
     {
@@ -2262,6 +2593,7 @@
       "category": "accessory",
       "tags": [],
       "price": 120,
+      "price_max": 150,
       "original_price": 120,
       "on_sale": false,
       "sale_label": null,
@@ -2270,50 +2602,58 @@
       "image": "assets/images/products/57-toy-camera.jpg",
       "variants": [
         {
-          "supply": "現貨",
+          "supply": "預購",
           "name": "黑相機・黑色蠟繩",
-          "in_stock": true,
-          "image": null
-        },
-        {
-          "supply": "現貨",
-          "name": "黑相機・淺棕蠟繩",
-          "in_stock": true,
-          "image": null
-        },
-        {
-          "supply": "現貨",
-          "name": "黑相機・深咖蠟繩",
-          "in_stock": true,
-          "image": null
-        },
-        {
-          "supply": "現貨",
-          "name": "黑相機・蠟繩隨機出貨",
-          "in_stock": true,
-          "image": null
-        },
-        {
-          "supply": "現貨",
-          "name": "棕相機・黑色蠟繩",
-          "in_stock": true,
-          "image": null
-        },
-        {
-          "supply": "現貨",
-          "name": "棕相機・淺棕蠟繩",
+          "price": 120,
           "in_stock": true,
           "image": null
         },
         {
           "supply": "現貨",
           "name": "棕相機・深咖蠟繩",
+          "price": 150,
           "in_stock": true,
           "image": null
         },
         {
           "supply": "現貨",
           "name": "棕相機・蠟繩隨機出貨",
+          "price": 150,
+          "in_stock": true,
+          "image": null
+        },
+        {
+          "supply": "預購",
+          "name": "黑相機・淺棕蠟繩",
+          "price": 120,
+          "in_stock": true,
+          "image": null
+        },
+        {
+          "supply": "預購",
+          "name": "黑相機・深咖蠟繩",
+          "price": 120,
+          "in_stock": true,
+          "image": null
+        },
+        {
+          "supply": "預購",
+          "name": "黑相機・蠟繩隨機出貨",
+          "price": 120,
+          "in_stock": true,
+          "image": null
+        },
+        {
+          "supply": "現貨",
+          "name": "棕相機・黑色蠟繩",
+          "price": 150,
+          "in_stock": true,
+          "image": null
+        },
+        {
+          "supply": "現貨",
+          "name": "棕相機・淺棕蠟繩",
+          "price": 150,
           "in_stock": true,
           "image": null
         }
@@ -2329,6 +2669,7 @@
         "韓國直送"
       ],
       "price": 140,
+      "price_max": null,
       "original_price": 140,
       "on_sale": false,
       "sale_label": null,
@@ -2339,18 +2680,21 @@
         {
           "supply": "現貨",
           "name": "藍",
+          "price": 140,
           "in_stock": false,
           "image": "assets/images/products/variants/58_藍.jpg"
         },
         {
           "supply": "現貨",
           "name": "粉",
+          "price": 140,
           "in_stock": false,
           "image": "assets/images/products/variants/58_粉.jpg"
         },
         {
           "supply": "現貨",
           "name": "白",
+          "price": 140,
           "in_stock": false,
           "image": "assets/images/products/variants/58_白.jpg"
         }
@@ -2366,6 +2710,7 @@
         "韓國直送"
       ],
       "price": 90,
+      "price_max": null,
       "original_price": 90,
       "on_sale": false,
       "sale_label": null,
@@ -2376,11 +2721,226 @@
         {
           "supply": "現貨",
           "name": "橘色",
+          "price": 90,
           "in_stock": false,
           "image": null
         }
       ],
       "description": "軟萌針織配上可愛的波浪帽簷，戴上多一點俏皮、一點療癒，還有滿滿的可愛，今天的 OOTD 就交給它！",
+      "reminder": null
+    },
+    {
+      "id": "60",
+      "name": "活力素色T-shirt",
+      "category": "top",
+      "tags": [],
+      "price": 100,
+      "price_max": null,
+      "original_price": 100,
+      "on_sale": false,
+      "sale_label": null,
+      "status": "available",
+      "body_included": false,
+      "image": "assets/images/products/60-plain-tee.jpg",
+      "variants": [
+        {
+          "supply": "預購",
+          "name": "素色T - shirt - 淡紫",
+          "price": 100,
+          "in_stock": true,
+          "image": null
+        },
+        {
+          "supply": "預購",
+          "name": "素色T - shirt - 淺藍綠",
+          "price": 100,
+          "in_stock": true,
+          "image": null
+        },
+        {
+          "supply": "預購",
+          "name": "素色T - shirt - 深藍",
+          "price": 100,
+          "in_stock": true,
+          "image": null
+        },
+        {
+          "supply": "預購",
+          "name": "素色T - shirt - 淺綠",
+          "price": 100,
+          "in_stock": true,
+          "image": null
+        },
+        {
+          "supply": "預購",
+          "name": "素色T - shirt - 派大星粉",
+          "price": 100,
+          "in_stock": true,
+          "image": null
+        },
+        {
+          "supply": "預購",
+          "name": "素色T - shirt - 黃",
+          "price": 100,
+          "in_stock": true,
+          "image": null
+        },
+        {
+          "supply": "預購",
+          "name": "素色T - shirt - 黑",
+          "price": 100,
+          "in_stock": true,
+          "image": null
+        },
+        {
+          "supply": "預購",
+          "name": "素色T - shirt - 天藍",
+          "price": 100,
+          "in_stock": true,
+          "image": null
+        },
+        {
+          "supply": "預購",
+          "name": "素色T - shirt - 白",
+          "price": 100,
+          "in_stock": true,
+          "image": null
+        }
+      ],
+      "description": "九色素T一字排開，任你替寶寶配色！魔鬼氈設計穿脫超方便，顏色飽滿又百搭，配吊帶褲、小裙子都對味。再搭副蛙鏡護目鏡，某個黃色小夥伴的即視感就來了！",
+      "reminder": null
+    },
+    {
+      "id": "61",
+      "name": "【織女手工系列】小胖蜂套裝🐝",
+      "category": "set",
+      "tags": [
+        "織女手工系列"
+      ],
+      "price": 490,
+      "price_max": null,
+      "original_price": 490,
+      "on_sale": false,
+      "sale_label": null,
+      "status": "available",
+      "body_included": false,
+      "image": "assets/images/products/61-bee-set.jpg",
+      "variants": [
+        {
+          "supply": "預購",
+          "name": "蜜蜂套裝",
+          "price": 490,
+          "in_stock": true,
+          "image": null
+        }
+      ],
+      "description": "嗡嗡嗡，花園裡最忙碌的小可愛報到！織女一針一針鉤出的小胖蜂裝，戴上觸角帽帽、套上黃棕條紋蜂蜂衣，寶寶立刻圓滾滾出門採蜜。手工訂製慢工出細活，值得等待。",
+      "reminder": null
+    },
+    {
+      "id": "62",
+      "name": "貴族千鳥格裙",
+      "category": "dress",
+      "tags": [],
+      "price": 90,
+      "price_max": null,
+      "original_price": 90,
+      "on_sale": false,
+      "sale_label": null,
+      "status": "available",
+      "body_included": false,
+      "image": "assets/images/products/62-houndstooth-skirt.jpg",
+      "variants": [
+        {
+          "supply": "現貨",
+          "name": "紅",
+          "price": 90,
+          "in_stock": true,
+          "image": "assets/images/products/variants/62_紅.jpg"
+        },
+        {
+          "supply": "預購",
+          "name": "粉",
+          "price": 90,
+          "in_stock": true,
+          "image": "assets/images/products/variants/62_粉.jpg"
+        },
+        {
+          "supply": "預購",
+          "name": "棕",
+          "price": 90,
+          "in_stock": true,
+          "image": "assets/images/products/variants/62_棕.jpg"
+        },
+        {
+          "supply": "預購",
+          "name": "綠",
+          "price": 90,
+          "in_stock": true,
+          "image": "assets/images/products/variants/62_綠.jpg"
+        }
+      ],
+      "description": "英倫學院風一秒上身！經典千鳥格紋吊帶裙，版型挺挺的超有質感，紅、粉、棕、綠四色各有個性。搭一件白上衣就很好看，兩隻寶寶穿不同色一起出門，回頭率直接翻倍。",
+      "reminder": null
+    },
+    {
+      "id": "63",
+      "name": "馬海毛質感毛衣",
+      "category": "top",
+      "tags": [],
+      "price": 90,
+      "price_max": null,
+      "original_price": 90,
+      "on_sale": false,
+      "sale_label": null,
+      "status": "available",
+      "body_included": false,
+      "image": "assets/images/products/63-mohair-sweater.jpg",
+      "variants": [
+        {
+          "supply": "現貨",
+          "name": "奶白",
+          "price": 90,
+          "in_stock": true,
+          "image": "assets/images/products/variants/63_奶白.jpg"
+        },
+        {
+          "supply": "現貨",
+          "name": "粉紅",
+          "price": 90,
+          "in_stock": true,
+          "image": "assets/images/products/variants/63_粉紅.jpg"
+        },
+        {
+          "supply": "現貨",
+          "name": "深咖",
+          "price": 90,
+          "in_stock": true,
+          "image": "assets/images/products/variants/63_深咖.jpg"
+        },
+        {
+          "supply": "現貨",
+          "name": "淺藍",
+          "price": 90,
+          "in_stock": true,
+          "image": "assets/images/products/variants/63_淺藍.jpg"
+        },
+        {
+          "supply": "預購",
+          "name": "緋紅",
+          "price": 90,
+          "in_stock": true,
+          "image": "assets/images/products/variants/63_緋紅.jpg"
+        },
+        {
+          "supply": "預購",
+          "name": "霧灰",
+          "price": 90,
+          "in_stock": true,
+          "image": "assets/images/products/variants/63_霧灰.jpg"
+        }
+      ],
+      "description": "毛茸茸的馬海毛質感，摸起來又軟又暖，和寶寶本人的絨毛完美融合！奶白、粉紅、深咖、淺藍、緋紅、霧灰六色任選，秋冬層次穿搭就靠它。整件輕飄飄的，穿上像抱著一朵雲。",
       "reminder": null
     }
   ]

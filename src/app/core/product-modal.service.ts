@@ -3,7 +3,8 @@ import { PicnicItem, ProductsService, StoreItem, StoreVariant } from './products
 
 /** 商品詳情視窗的統一顯示資料：
  *  一般選品商品（有款式）與野餐 Coming Soon 預告品項（無款式）都轉成這個格式。
- *  彈窗是純展示的作品圖鑑：沒有價格與特價欄位，「特價」標籤也會從 tags 過濾掉。 */
+ *  彈窗是作品圖鑑，但 2026-08-25 起顯示「跟著款式走」的價格（variants[].price，
+ *  完售款式與未定價款式不顯示）；仍然沒有特價欄位，「特價」標籤也會從 tags 過濾掉。 */
 export interface ModalView {
   name: string;
   image: string;
@@ -18,7 +19,7 @@ export interface ModalView {
 }
 
 /** 商品詳情視窗（全站共用）的開關狀態。
- *  任何頁面呼叫 open(商品編號) 就會開啟視窗——首頁推薦牆、野餐專區、
+ *  任何頁面呼叫 open(商品編號) 就會開啟視窗：首頁推薦牆、野餐專區、
  *  娃寶陳列區、選品陳列架都是走這一條路。 */
 @Injectable({ providedIn: 'root' })
 export class ProductModalService {

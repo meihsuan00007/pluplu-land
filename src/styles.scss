@@ -654,6 +654,18 @@ pl-carousel + .section{ padding-top:60px; }
   color:var(--brown-deep);
   margin-bottom:6px;
 }
+/* 商品卡價格（2026-08-25 起恢復顯示，主理人指定格式「NT$ 金額」；
+   完售品項不輸出這行＝不標價，維持歷年作品展示的乾淨版面） */
+.product-price{
+  font-family:var(--accent-lat);
+  font-size:14.5px;
+  font-weight:600;
+  letter-spacing:.04em;
+  color:var(--brown-deep);
+  margin-bottom:6px;
+  word-break:keep-all;
+  white-space:nowrap;
+}
 .product-note{
   font-size:13.5px;
   color:var(--ink-soft);
@@ -1305,6 +1317,21 @@ body.modal-open{ overflow:hidden; }
   overflow-y:auto;
 }
 .modal-info h3{ font-size:22px; margin:8px 0 10px; }
+/* 彈窗價格列（跟著選中的款式連動，2026-08-25 主理人指定）：
+   min-height 保留一行高度，切到完售款式（內容留空）時版面不跳動 */
+.modal-price{
+  font-family:var(--accent-lat);
+  font-size:17px;
+  font-weight:600;
+  letter-spacing:.04em;
+  color:var(--brown-deep);
+  margin:-2px 0 10px;
+  /* 行高與保留高度一致：切到完售款式（內容留空）時高度不變、版面不跳動 */
+  line-height:1.45;
+  min-height:1.45em;
+  word-break:keep-all;
+  white-space:nowrap;
+}
 .tag-chips{ display:flex; flex-wrap:wrap; gap:6px; }
 .tag-chip{
   font-size:11px; letter-spacing:.05em;

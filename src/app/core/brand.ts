@@ -31,10 +31,16 @@ export const HANDMADE_CAT_KEY = 'handmade';
 export const HANDMADE_CAT_LABEL = '織女手作系列';
 export const HANDMADE_TAG = '織女手工系列';
 
-/** 金額顯示格式：NT$ 1,234。
- *  2026-08-12 起全站不顯示價格（價格到賣貨便才看得到），此函式暫無人使用、保留備用。 */
+/** 金額顯示格式：NT$ 1,234。 */
 export function money(n: number): string {
   return 'NT$ ' + Number(n).toLocaleString('zh-Hant-TW');
+}
+
+/** 商品卡的價格標示（2026-08-25 起全站恢復顯示價格，主理人指定格式 NT$ 金額）：
+ *  多規格不同價的品項（price_max > price）顯示「NT$ 最低價 起」；
+ *  完售品項不標價格（由呼叫端判斷 status 後不傳入），當作歷年作品展示。 */
+export function priceLabel(price: number, priceMax?: number | null): string {
+  return money(price) + (priceMax && priceMax > price ? ' 起' : '');
 }
 
 /** JSON 內的資源路徑（images/…、assets/…）補成根路徑，

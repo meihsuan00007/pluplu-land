@@ -63,6 +63,12 @@ CATEGORY_OF = {
     "57": "accessory",  # 迷你配件 - 有聲相機
     "58": "headwear",   # 雛菊小波浪寶寶髮帶
     "59": "headwear",   # 波浪花花帽
+    # 2026-08-18 全量同步新增
+    "60": "top",        # 活力素色T-shirt
+    # 2026-08-25 全量同步新增
+    "61": "set",        # 小胖蜂套裝（織女手工系列）
+    "62": "dress",      # 貴族千鳥格裙
+    "63": "top",        # 馬海毛質感毛衣
 }
 FESTIVE = {"33"}  # 節慶限定標籤
 
@@ -107,6 +113,9 @@ def parse_products():
 
         price = int(field("price"))
         original = int(field("original_price"))
+        # 多規格不同價的品項會多一個 price_max 欄位，官網顯示「NT$ 最低價 起」
+        price_max_raw = field("price_max")
+        price_max = int(price_max_raw) if price_max_raw else None
         status_raw = field("status")
         image = field("image")
 
@@ -130,10 +139,17 @@ def parse_products():
             supply = "預購" if parts[0].startswith("預購") else "現貨"
             assert parts[0] in ("現貨", "預購", "預購中"), f"#{pid} 未知供貨方式：{parts[0]}"
             in_stock = parts[-1] != "無庫存"
-            vname = "｜".join(parts[1:-1] if not in_stock else parts[1:])
+            rest = parts[1:-1] if not in_stock else parts[1:]
+            # 款式獨立價格：結尾的「$金額」欄位（彈窗款式切換連動顯示；舊格式沒有這欄，回傳 None）
+            v_price = None
+            if rest and re.fullmatch(r"\$\d+", rest[-1]):
+                v_price = int(rest[-1][1:])
+                rest = rest[:-1]
+            vname = "｜".join(rest)
             variants.append({
                 "supply": supply,
                 "name": vname,
+                "price": v_price,
                 "in_stock": in_stock,
                 "image": None,  # 由 link_variant_images() 依檔名自動填入
             })
@@ -144,6 +160,7 @@ def parse_products():
             "category": CATEGORY_OF[pid],
             "tags": tags,
             "price": price,
+            "price_max": price_max,
             "original_price": original,
             "on_sale": on_sale,
             "sale_label": sale_label,
@@ -188,8 +205,8 @@ def main():
 
     # 驗證
     errors = []
-    if len(items) != 58:
-        errors.append(f"商品數 {len(items)} ≠ 58")
+    if len(items) != 62:
+        errors.append(f"商品數 {len(items)} ≠ 62")
     for item in items:
         if not (ROOT / item["image"]).exists():
             errors.append(f"#{item['id']} 圖片不存在：{item['image']}")

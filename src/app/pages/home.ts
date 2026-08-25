@@ -1,7 +1,7 @@
 import { NgTemplateOutlet } from '@angular/common';
 import { ChangeDetectionStrategy, Component, computed, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { FEATURED_IDS, IG_URL, SHARE_DISCOUNT, assetUrl, routeFromLegacy } from '../core/brand';
+import { FEATURED_IDS, IG_URL, SHARE_DISCOUNT, assetUrl, priceLabel, routeFromLegacy } from '../core/brand';
 import { ProductModalService } from '../core/product-modal.service';
 import { PicnicItem, ProductsService } from '../core/products.service';
 import { Reveal } from '../core/reveal.directive';
@@ -65,6 +65,8 @@ export class Home {
           name: it.name,
           image: assetUrl(it.image),
           tag: i === 0 ? 'TOP 1' : i === 1 ? 'TOP 2' : undefined,
+          // 完售品項不標價（歷年作品展示）；多規格不同價顯示「NT$ 最低價 起」
+          priceText: it.status === 'available' ? priceLabel(it.price, it.price_max) : undefined,
           pid: it.id,
         },
       ];
@@ -79,6 +81,19 @@ export class Home {
   /** 點野餐品項卡片：既有選品開商品詳情，Coming Soon 開預告視窗 */
   openPicnic(item: PicnicItem): void {
     void this.modal.openPicnic(item);
+  }
+
+  /** 野餐品項的價格標示：優先用野餐 JSON 各品項自己的價格
+   *（一張卡常對應選品的其中一個規格，整個選品的最低價會標錯，如提籃標到蝴蝶結的 15 元）；
+   *  Coming Soon、或對應選品整項完售時不標價。 */
+  picnicPrice(item: PicnicItem): string | undefined {
+    if (item.status !== 'available') return undefined;
+    const store = item.store_id
+      ? this.products.storeCatalog()?.items.find((it) => it.id === item.store_id)
+      : undefined;
+    if (store && store.status !== 'available') return undefined;
+    if (item.price != null) return priceLabel(item.price);
+    return store ? priceLabel(store.price, store.price_max) : undefined;
   }
 
   asset(path: string): string {

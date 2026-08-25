@@ -9,6 +9,7 @@ import {
   HANDMADE_TAG,
   SHARE_DISCOUNT,
   assetUrl,
+  priceLabel,
 } from '../core/brand';
 import { ProductsService } from '../core/products.service';
 import { BadgeReal } from '../shared/badge-real';
@@ -18,11 +19,11 @@ import { SectionHead } from '../shared/section-head';
 import { Steps } from '../shared/steps';
 import { StripCta } from '../shared/strip-cta';
 
-/** 娃衣選品頁：58 項真實商品的商品牆＋分類篩選。
+/** 娃衣選品頁：62 項真實商品的商品牆＋分類篩選。
  *  資料來自 content/products-store.json（產出檔勿手改，見 CLAUDE.md）。
  *  分類籤除正式分類外，另有「織女手作系列」虛擬分類（依商品 tags 篩選）；
  *  網址可帶 ?cat=分類鍵 直接切到指定分類（首頁方塊導流用）。
- *  全站不顯示價格，價格到賣貨便才看得到。
+ *  2026-08-25 起卡片顯示價格（NT$ 金額；完售品項不標價，當作歷年作品展示）。
  *  載入失敗時顯示備援訊息並導向賣貨便（刻意設計）。 */
 @Component({
   selector: 'app-shop',
@@ -79,6 +80,8 @@ export class Shop {
         image: assetUrl(it.image),
         tag: catLabel.get(it.category) ?? '',
         saleTape: it.on_sale ? (it.sale_label ?? '特價') : undefined,
+        // 完售品項不標價（歷年作品展示）；多規格不同價顯示「NT$ 最低價 起」
+        priceText: it.status === 'available' ? priceLabel(it.price, it.price_max) : undefined,
         pid: it.id,
       }));
   });

@@ -3,20 +3,24 @@ import {
   Component,
   ElementRef,
   HostListener,
+  computed,
   effect,
   inject,
   signal,
   untracked,
   viewChild,
 } from '@angular/core';
-import { assetUrl } from '../core/brand';
+import { assetUrl, money } from '../core/brand';
 import { ModalView, ProductModalService } from '../core/product-modal.service';
 
 /** 商品詳情視窗（全站唯一一份，放在 App 根版型）。
  *  定位是「品牌作品圖鑑」（2026-08-13 主理人指定；2026-08-17 起連導購按鈕、
- *  購物須知連結與「特價」小籤也一併移除）：純展示名稱、系列籤、敘述與多圖照片，
- *  不顯示現貨／預購／售完／特價任何狀態字樣、價格與出貨時程，也沒有購買按鈕；
+ *  購物須知連結與「特價」小籤也一併移除）：展示名稱、系列籤、敘述與多圖照片，
+ *  不顯示現貨／預購／售完／特價任何狀態字樣與出貨時程，也沒有購買按鈕；
  *  購買一律走頁面上其他導購入口（導覽列、頁尾、各區塊按鈕）到賣貨便。
+ *  價格（2026-08-25 主理人指定「款式切換連動價格」）：標題下方顯示目前選中
+ *  款式的「NT$ 金額」，點款式籤即時切換；完售款式與未定價款式不顯示價格，
+ *  整項完售的歷史展示品完全沒有價格列（版面高度有保留，切換不跳動）。
  *  由 ProductModalService 控制開關；點款式籤可切換照片：
  *  款式若有專屬圖片（variants[].image）主圖會淡入切換，沒有就退回商品主圖。
  *  Coming Soon 預告品項：無款式，只顯示到貨提示框。 */
@@ -44,6 +48,10 @@ import { ModalView, ProductModalService } from '../core/product-modal.service';
                 </div>
               }
               <h3>{{ p.name }}</h3>
+              @if (hasAnyPrice()) {
+                <!-- 價格列跟著選中的款式連動；款式完售時內容留空但高度保留，切換不跳動 -->
+                <div class="modal-price">{{ priceText() ?? '' }}</div>
+              }
               @if (!p.bodyIncluded) {
                 <p class="note-nobody">＊此品項不含娃寶本體，僅含衣裝／配件本身。</p>
               }
@@ -84,6 +92,18 @@ export class ProductModal {
 
   readonly product = this.modal.product;
   readonly selectedIdx = signal(-1);
+
+  /** 這個商品是否有任何「販售中且有定價」的款式（整項完售的歷史展示品＝false，完全不出價格列） */
+  readonly hasAnyPrice = computed(() => {
+    const p = this.product();
+    return !!p && p.variants.some((v) => v.in_stock && v.price != null);
+  });
+
+  /** 目前選中款式的價格標示；完售或未定價的款式回傳 null（價格列留空） */
+  readonly priceText = computed(() => {
+    const v = this.product()?.variants[this.selectedIdx()];
+    return v && v.in_stock && v.price != null ? money(v.price) : null;
+  });
   readonly mediaSrc = signal('');
   readonly mediaAlt = signal('');
   readonly mediaOpacity = signal<string | null>(null);

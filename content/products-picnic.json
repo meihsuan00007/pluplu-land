@@ -14,7 +14,7 @@
       "id": "picnic-strawhat",
       "store_id": "18",
       "name": "遮陽草帽",
-      "price": 45,
+      "price": 40,
       "image": "assets/images/products/18-strawhat.jpg",
       "status": "available",
       "note": "鼠鼠尺寸的藤編草帽到貨啦，戴上就有出門野餐的好心情！",
@@ -22,12 +22,13 @@
     },
     {
       "id": "picnic-basket",
-      "name": "小提籃",
-      "price": null,
-      "image": "assets/images/products/coming-soon-basket.svg",
-      "status": "coming_soon",
-      "note": "預計陸續到貨，敬請期待！",
-      "description": "藤編小提籃，裝得下寶寶的野餐點心，也裝得下滿滿的期待。正在準備中，到貨後會第一時間上架。"
+      "store_id": "35",
+      "name": "野餐藤編提籃",
+      "price": 60,
+      "image": "assets/images/products/variants/35_野餐藤編提籃.jpg",
+      "status": "available",
+      "note": "藤編小提籃到貨啦！裝得下寶寶的野餐點心，也裝得下滿滿的期待。",
+      "description": "迷你藤編提籃，挎在寶寶手上剛剛好。搭配流蘇牛仔洋裝與格紋蝴蝶結，夏日野餐造型直接完成！"
     }
   ]
 }

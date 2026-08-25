@@ -146,6 +146,7 @@ collections:
                   - { label: "配件小物", value: "accessory" }
               - { label: "系列標籤（例如：韓國直送）", name: "tags", widget: "list", required: false }
               - { label: "售價（純數字）", name: "price", widget: "number", value_type: "int" }
+              - { label: "最高價（多規格不同價時填最高的那個，卡片會顯示「NT$ 售價 起」；單一價位留空）", name: "price_max", widget: "number", value_type: "int", required: false }
               - { label: "原價（純數字，無折扣時填與售價相同）", name: "original_price", widget: "number", value_type: "int" }
               - { label: "特價中", name: "on_sale", widget: "boolean", required: false, default: false }
               - { label: "特價標籤（例如：開幕優惠 6 折）", name: "sale_label", widget: "string", required: false }
@@ -164,6 +165,8 @@ collections:
                 fields:
                   - { label: "供貨方式（現貨／預購）", name: "supply", widget: "string" }
                   - { label: "規格名稱", name: "name", widget: "string" }
+                  - { label: "款式售價（純數字；彈窗點這個款式會顯示「NT$ 金額」，留空＝不顯示）", name: "price", widget: "number", value_type: "int", required: false }
                   - { label: "有庫存", name: "in_stock", widget: "boolean", required: false, default: true }
+                  - { label: "款式專屬圖片（點款式切換的照片；通常由腳本自動接上，留空＝顯示主圖）", name: "image", widget: "image", required: false }
               - { label: "商品介紹（官網文案）", name: "description", widget: "text" }
               - { label: "小提醒（選填，會以獨立提示框顯示）", name: "reminder", widget: "text", required: false }

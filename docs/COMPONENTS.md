@@ -15,6 +15,7 @@
 | `IG_URL` / `IG_HANDLE` | Instagram 連結／帳號名 | 導覽列 icon、首頁活動區、聯絡頁 |
 | `SHARE_DISCOUNT_AMOUNT` | 「發限動」折扣金額（數字 30） | 首頁活動區、選品頁橫幅、購物須知，三處一起變 |
 | `FEATURED_IDS` | 首頁「大家的心頭好」排行（口水巾、眼鏡固定前兩名） | 首頁推薦牆 |
+| `money()` / `priceLabel()` | 金額格式 NT$ 1,234／商品卡價格標示（多規格不同價自動加「起」） | 選品卡、推薦牆、野餐專區的價格（完售品項不標價） |
 | `HANDMADE_CAT_KEY` / `HANDMADE_CAT_LABEL` / `HANDMADE_TAG` | 「織女手作系列」虛擬分類（key `handmade`、顯示名、對應商品 tags 的「織女手工系列」） | 選品陳列架篩選籤、首頁「織女手作系列」方塊導流（`/shop?cat=handmade`） |
 
 > 全站**不顯示價格**（2026-08-12 起）：卡片與彈窗都沒有價格欄位，`money()` 目前無人使用、保留備用。
@@ -28,8 +29,8 @@
 | `pl-buy-button` | `buy-button.ts` | 「前往賣貨便下單」按鈕，三種外觀 | `variant`: `hero`(頁首棕色實心)／`capsule`(頁尾橘膠囊)／`card`(商品卡玫瑰小鈕)、`label` |
 | `pl-line-button` | `line-button.ts` | LINE 綠色膠囊按鈕 | `label`（預設「加入 LINE 好友」，聯絡頁傳帳號名） |
 | `pl-badge-real` | `badge-real.ts` | 「全實拍」標章（純文字＋虛線底線的說明標籤，不是按鈕） | `text`（預設「全實拍・零 AI」）、`onDark`（深色底用） |
-| `pl-product-card` | `product-card.ts` | 商品卡片（首頁心頭好／娃裝配件／選品陳列架共用） | `data: ProductCardData`、`showBuy`、`shopStyle`；`data.pid` 有值＝點卡片開詳情視窗 |
-| `pl-product-modal` | `product-modal.ts` | 商品詳情彈出視窗（全站唯一，掛在 `app.ts` 根版型）。定位是「作品圖鑑」：照片固定 1:1＋款式籤切圖，純展示、無購買按鈕，不顯示現貨／預購／售完／特價狀態與出貨時程 | 無輸入，由 `ProductModalService` 控制 |
+| `pl-product-card` | `product-card.ts` | 商品卡片（首頁心頭好／選品陳列架共用；2026-08-25 起顯示價格） | `data: ProductCardData`（`priceText` 有值才顯示價格，完售品項留空）、`showBuy`、`shopStyle`；`data.pid` 有值＝點卡片開詳情視窗 |
+| `pl-product-modal` | `product-modal.ts` | 商品詳情彈出視窗（全站唯一，掛在 `app.ts` 根版型）。定位是「作品圖鑑」：照片固定 1:1＋款式籤切圖，無購買按鈕，不顯示現貨／預購／售完／特價狀態與出貨時程；2026-08-25 起標題下方顯示「跟著款式走」的價格（`variants[].price`，完售款式不顯示、版面高度保留不跳動） | 無輸入，由 `ProductModalService` 控制 |
 | `pl-carousel` | `carousel.ts` | 首頁大輪播（海報模式＋分割式版型、自動播 5 秒；兩種版型都整張滿版可點、不做實體按鈕也不疊光圈熱區，跳轉目的地看 site.json 的 link） | `slides`（來自 site.json 的 home.carousel） |
 | `pl-page-hero` | `page-hero.ts` | 內頁頁首（一律左對齊：短線小標＋標題＋導言；有 image＝左文右圖【五頁皆用此版】，無 image＝純文字備用。置中版已廢除勿重建） | `eyebrow`/`title`/`lead`/`image`/`alt`/`hasActions`；按鈕徽章用 `<ng-content>` 投影 |
 | `pl-section-head` | `section-head.ts` | 區塊標題組（英文小字＋大標＋導言） | `eyebrow`/`title`/`lead` |

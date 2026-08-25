@@ -71,11 +71,16 @@ const CATALOG = [
   { id: '52', slug: 'swim-ring', name: '樂不濕鼠封底款游泳圈＆夏日充氣游泳圈⛱️', file: '2607301283095197.jpg' },
   { id: '53', slug: 'bathrobe', name: '下班後放鬆浴袍', file: '2607301282281149.jpg' },
   { id: '54', slug: 'lamb-hood', name: '【織女手工系列】溫馴小羊頭套', file: '2608051291460515.jpg' },
-  { id: '55', slug: 'hoodie', name: '范特西小鼠🐹酷帥抽繩帽T', file: '2607301282021025.jpg' },
+  { id: '55', slug: 'hoodie', name: '范特西小鼠🐹酷帥抽繩帽T', localOverride: '55-hoodie.jpg', file: '2607301282021025.jpg' },
   { id: '56', slug: 'messenger-bag', name: '魔術大空間帆布郵差包', file: '2607271277822952.jpg' },
   { id: '57', slug: 'toy-camera', name: '迷你配件 - 有聲相機', file: '2607301282755217.jpg' },
   { id: '58', slug: 'daisy-headband', name: '【韓國直送】🌼雛菊小波浪寶寶髮帶（露耳款）', file: '2607311283937044.jpg' },
   { id: '59', slug: 'wave-flower-hat', name: '【韓國直送】🌻波浪花花帽（露耳款）', file: '2607301282780398.jpg' },
+  { id: '60', slug: 'plain-tee', name: '活力素色T-shirt', file: '2608141305372653.jpg' },
+  // 2026-08-25 全量同步新增（61–63 主圖為主理人提供的實拍照，不從 CDN 下載）
+  { id: '61', slug: 'bee-set', name: '【織女手工系列】小胖蜂套裝🐝', localOverride: '61-bee-set.jpg' },
+  { id: '62', slug: 'houndstooth-skirt', name: '貴族千鳥格裙', localOverride: '62-houndstooth-skirt.jpg' },
+  { id: '63', slug: 'mohair-sweater', name: '馬海毛質感毛衣', localOverride: '63-mohair-sweater.jpg' },
 ];
 
 const HEADERS = {

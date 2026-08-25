@@ -28,6 +28,9 @@
             <img [src]="asset(item.image)" [alt]="item.name" loading="lazy" />
           </div>
           <div class="product-name">{{ item.name }}</div>
+          @if (picnicPrice(item); as price) {
+            <div class="product-price">{{ price }}</div>
+          }
           @if (item.note) {
             <p class="product-note">{{ item.note }}</p>
           }

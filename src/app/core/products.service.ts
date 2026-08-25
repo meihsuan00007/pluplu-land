@@ -4,6 +4,8 @@ import { Injectable, signal } from '@angular/core';
 export interface StoreVariant {
   supply: '現貨' | '預購';
   name: string;
+  /** 該款式的獨立售價（彈窗款式切換連動顯示「NT$ 金額」；未定價為 null＝不顯示） */
+  price?: number | null;
   in_stock: boolean;
   image: string | null;
 }
@@ -14,6 +16,8 @@ export interface StoreItem {
   category: string;
   tags?: string[];
   price: number;
+  /** 多規格不同價時的最高價（卡片顯示「NT$ 最低價 起」；單一價位為 null） */
+  price_max?: number | null;
   original_price: number;
   on_sale: boolean;
   sale_label: string | null;
@@ -47,7 +51,7 @@ export interface PicnicItem {
 /** 商品資料載入器：各 JSON 載一次（進入頁面時才載入，結果快取共用）。 */
 @Injectable({ providedIn: 'root' })
 export class ProductsService {
-  /** 娃衣選品目錄（58 項真實商品，商品詳情視窗也吃這份） */
+  /** 娃衣選品目錄（62 項真實商品，商品詳情視窗也吃這份） */
   readonly storeCatalog = signal<StoreCatalog | null>(null);
   /** 選品目錄載入失敗（顯示備援訊息、導向賣貨便） */
   readonly storeFailed = signal(false);

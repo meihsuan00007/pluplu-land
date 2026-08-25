@@ -54,15 +54,20 @@
 | 45 | 夢幻渲染彩紗裙 | `assets/images/products/45-gradient-tulle-dress.jpg` | https://myship.7-11.com.tw/i/cgdm/GM2605058795102/2605281189626012.jpg | ✅ |
 | 46 | 花苞吊帶裙🌹 | `assets/images/products/46-flower-suspender-skirt.jpg` | https://myship.7-11.com.tw/i/cgdm/GM2605058795102/2605071159294749.jpg | ✅ |
 | 47 | 仙氣公主澎澎裙 | `assets/images/products/47-princess-puff-skirt.jpg` | https://myship.7-11.com.tw/i/cgdm/GM2605058795102/2605071159196023.jpg | ✅ |
-| 48 | 針織開襟小外套 | ssets/images/products/48-knit-cardigan.jpg` | https://myship.7-11.com.tw/i/cgdm/GM2605058795102/2608101298762572.jpg | ✅ |
-| 49 | 完美版型條紋T | ssets/images/products/49-striped-tee.jpg` | https://myship.7-11.com.tw/i/cgdm/GM2605058795102/2608101298752937.jpg | ✅ |
-| 50 | 甜美格紋蝴蝶結洋裝（含髮飾） | ssets/images/products/50-plaid-bow-dress.jpg` | https://myship.7-11.com.tw/i/cgdm/GM2605058795102/2607241273979260.jpg | ✅ |
-| 51 | 點點派對裙 | ssets/images/products/51-dot-party-dress.jpg` | https://myship.7-11.com.tw/i/cgdm/GM2605058795102/2608051291503749.jpg | ✅ |
-| 52 | 樂不濕鼠封底款游泳圈＆夏日充氣游泳圈 | ssets/images/products/52-swim-ring.jpg` | https://myship.7-11.com.tw/i/cgdm/GM2605058795102/2607301283095197.jpg | ✅ |
-| 53 | 下班後放鬆浴袍 | ssets/images/products/53-bathrobe.jpg` | https://myship.7-11.com.tw/i/cgdm/GM2605058795102/2607301282281149.jpg | ✅ |
-| 54 | 【織女手工系列】溫馴小羊頭套 | ssets/images/products/54-lamb-hood.jpg` | https://myship.7-11.com.tw/i/cgdm/GM2605058795102/2608051291460515.jpg | ✅ |
-| 55 | 范特西小鼠酷帥抽繩帽T | ssets/images/products/55-hoodie.jpg` | https://myship.7-11.com.tw/i/cgdm/GM2605058795102/2607301282021025.jpg | ✅ |
-| 56 | 魔術大空間帆布郵差包 | ssets/images/products/56-messenger-bag.jpg` | https://myship.7-11.com.tw/i/cgdm/GM2605058795102/2607271277822952.jpg | ✅ |
-| 57 | 迷你配件 - 有聲相機 | ssets/images/products/57-toy-camera.jpg` | https://myship.7-11.com.tw/i/cgdm/GM2605058795102/2607301282755217.jpg | ✅ |
-| 58 | 【韓國直送】雛菊小波浪寶寶髮帶（露耳款） | ssets/images/products/58-daisy-headband.jpg` | https://myship.7-11.com.tw/i/cgdm/GM2605058795102/2607311283937044.jpg | ✅ |
-| 59 | 【韓國直送】波浪花花帽（露耳款） | ssets/images/products/59-wave-flower-hat.jpg` | https://myship.7-11.com.tw/i/cgdm/GM2605058795102/2607301282780398.jpg | ✅ |
+| 48 | 針織開襟小外套 | `assets/images/products/48-knit-cardigan.jpg` | https://myship.7-11.com.tw/i/cgdm/GM2605058795102/2608101298762572.jpg | ✅ |
+| 49 | 完美版型條紋T | `assets/images/products/49-striped-tee.jpg` | https://myship.7-11.com.tw/i/cgdm/GM2605058795102/2608101298752937.jpg | ✅ |
+| 50 | 甜美格紋蝴蝶結洋裝（含髮飾） | `assets/images/products/50-plaid-bow-dress.jpg` | https://myship.7-11.com.tw/i/cgdm/GM2605058795102/2607241273979260.jpg | ✅ |
+| 51 | 點點派對裙 | `assets/images/products/51-dot-party-dress.jpg` | https://myship.7-11.com.tw/i/cgdm/GM2605058795102/2608051291503749.jpg | ✅ |
+| 52 | 樂不濕鼠封底款游泳圈＆夏日充氣游泳圈 | `assets/images/products/52-swim-ring.jpg` | https://myship.7-11.com.tw/i/cgdm/GM2605058795102/2607301283095197.jpg | ✅ |
+| 53 | 下班後放鬆浴袍 | `assets/images/products/53-bathrobe.jpg` | https://myship.7-11.com.tw/i/cgdm/GM2605058795102/2607301282281149.jpg | ✅ |
+| 54 | 【織女手工系列】溫馴小羊頭套 | `assets/images/products/54-lamb-hood.jpg` | https://myship.7-11.com.tw/i/cgdm/GM2605058795102/2608051291460515.jpg | ✅ |
+| 55 | 范特西小鼠酷帥抽繩帽T | `assets/images/products/55-hoodie.jpg` | https://myship.7-11.com.tw/i/cgdm/GM2605058795102/2607301282021025.jpg | ✅ |
+| 56 | 魔術大空間帆布郵差包 | `assets/images/products/56-messenger-bag.jpg` | https://myship.7-11.com.tw/i/cgdm/GM2605058795102/2607271277822952.jpg | ✅ |
+| 57 | 迷你配件 - 有聲相機 | `assets/images/products/57-toy-camera.jpg` | https://myship.7-11.com.tw/i/cgdm/GM2605058795102/2607301282755217.jpg | ✅ |
+| 58 | 【韓國直送】雛菊小波浪寶寶髮帶（露耳款） | `assets/images/products/58-daisy-headband.jpg` | https://myship.7-11.com.tw/i/cgdm/GM2605058795102/2607311283937044.jpg | ✅ |
+| 59 | 【韓國直送】波浪花花帽（露耳款） | `assets/images/products/59-wave-flower-hat.jpg` | https://myship.7-11.com.tw/i/cgdm/GM2605058795102/2607301282780398.jpg | ✅ |
+| 60 | 活力素色T-shirt | `assets/images/products/60-plain-tee.jpg` | https://myship.7-11.com.tw/i/cgdm/GM2605058795102/2608141305372653.jpg | ✅ |
+| 55 | 范特西小鼠🐹酷帥抽繩帽T（主圖改用主理人 2026-08-25 提供之四色實拍照） | `assets/images/products/55-hoodie.jpg` | （主理人提供之本地照片） | ✅ |
+| 61 | 【織女手工系列】小胖蜂套裝🐝 | `assets/images/products/61-bee-set.jpg` | （主理人提供之本地照片） | ✅ |
+| 62 | 貴族千鳥格裙 | `assets/images/products/62-houndstooth-skirt.jpg` | （主理人提供之本地照片） | ✅ |
+| 63 | 馬海毛質感毛衣 | `assets/images/products/63-mohair-sweater.jpg` | （主理人提供之本地照片） | ✅ |
