@@ -6,6 +6,8 @@ import { PicnicItem, ProductsService, StoreItem, StoreVariant } from './products
  *  彈窗是作品圖鑑，但 2026-08-25 起顯示「跟著款式走」的價格（variants[].price，
  *  完售款式與未定價款式不顯示）；仍然沒有特價欄位，「特價」標籤也會從 tags 過濾掉。 */
 export interface ModalView {
+  /** products-store.json 的商品編號（加入購物袋用；Coming Soon 預告品項為 null） */
+  id: string | null;
   name: string;
   image: string;
   tags: string[];
@@ -42,6 +44,7 @@ export class ProductModalService {
       return;
     }
     this.product.set({
+      id: null,
       name: item.name,
       image: item.image,
       tags: [],
@@ -60,6 +63,7 @@ export class ProductModalService {
 
   private fromStore(item: StoreItem): ModalView {
     return {
+      id: item.id,
       name: item.name,
       image: item.image,
       // 「特價」是 build 腳本依售價自動加的狀態籤，圖鑑彈窗不顯示（選品卡片的特價貼紙照舊）

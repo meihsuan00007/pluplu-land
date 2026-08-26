@@ -16,9 +16,10 @@
 | `SHARE_DISCOUNT_AMOUNT` | 「發限動」折扣金額（數字 30） | 首頁活動區、選品頁橫幅、購物須知，三處一起變 |
 | `FEATURED_IDS` | 首頁「大家的心頭好」排行（口水巾、眼鏡固定前兩名） | 首頁推薦牆 |
 | `money()` / `priceLabel()` | 金額格式 NT$ 1,234／商品卡價格標示（多規格不同價自動加「起」） | 選品卡、推薦牆、野餐專區的價格（完售品項不標價） |
+| `IG_DM_URL` / `THREADS_URL` | IG 私訊直達（ig.me）／Threads 帳號連結 | 購物袋側欄的私訊客服快捷鈕 |
 | `HANDMADE_CAT_KEY` / `HANDMADE_CAT_LABEL` / `HANDMADE_TAG` | 「織女手作系列」虛擬分類（key `handmade`、顯示名、對應商品 tags 的「織女手工系列」） | 選品陳列架篩選籤、首頁「織女手作系列」方塊導流（`/shop?cat=handmade`） |
 
-> 全站**不顯示價格**（2026-08-12 起）：卡片與彈窗都沒有價格欄位，`money()` 目前無人使用、保留備用。
+> 價格顯示（2026-08-25 起恢復）：商品卡顯示「NT$ 金額」（多價位加「起」）、彈窗顯示跟著款式走的價格、購物袋顯示單價與總額；**完售品項與完售款式一律不標價**。相關函式 `money()`／`priceLabel()` 見上表。
 
 ## 共用元件（src/app/shared/）
 
@@ -37,6 +38,7 @@
 | `pl-strip-cta` | `strip-cta.ts` | 每頁底部深色行動呼籲橫幅 | `title`/`body`/`label`/`link`/`external`/`hasIntro` |
 | `pl-quote-block` | `quote-block.ts` | 創辦人引言區 | `quote`（用全形「｜」指定換行）/`cite` |
 | `pl-steps` | `steps.ts` | 出貨前三步驟（驗貨→剪線頭→打結收尾，內容固定共用） | `title`/`lead`（story 與 shop 兩頁使用） |
+| `pl-cart-drawer` | `cart-drawer.ts` | 購物袋側欄（全站唯一，掛在 `app.ts` 根版型；清單＋數量加減＋一鍵複製明細＋LINE/IG/Threads 私訊鈕＋全站 Toast） | 無輸入，由 `CartService` 控制 |
 | `pl-icon-cart` / `pl-icon-ig` / `pl-icon-line` | `icons.ts` | 三個 SVG 圖示（唯一定義處） | 無 |
 
 ## 核心服務與工具（src/app/core/）
@@ -47,6 +49,7 @@
 | `site-content.service.ts` | 讀 `content/site.json`（全站文案），內含載入前的預設文案（不需與 JSON 同步維護） |
 | `products.service.ts` | 讀兩份商品 JSON：選品目錄（store）／野餐（picnic），各載一次快取 |
 | `product-modal.service.ts` | 商品詳情視窗開關：`open(商品編號)`、`openPicnic(野餐品項)`、`close()` |
+| `cart.service.ts` | 購物袋狀態（localStorage 記憶）：`add()`、`changeQty()`、`remove()`、件數 `count`、總額 `total`、明細文字 `orderText()`、側欄開關與 Toast |
 | `text.ts` | `keepBrand` pipe（品牌名不斷行）、`titleBreak` pipe（全形「｜」→ 換行） |
 | `reveal.directive.ts` | 滾動淡入：模板元素掛 `class="reveal"` 並在元件 imports 加 `Reveal` 即生效 |
 

@@ -23,7 +23,8 @@ describe('App 根版型', () => {
     const navLinks = Array.from(el.querySelectorAll('.nav-links a')).map((a) => a.textContent?.trim());
     expect(navLinks).toEqual(['娃衣選品', '品牌故事', '購物須知', '聯絡我們']);
     expect(el.querySelectorAll('.nav-icons .nav-icon').length).toBe(3);
-    expect(el.querySelector('.nav-icon--cart')?.getAttribute('href')).toBe(BUY_URL);
+    // 購物車 icon 是開啟購物袋的按鈕（2026-08-26 起），不再直接外連賣貨便
+    expect(el.querySelector('.nav-icon--cart')?.tagName).toBe('BUTTON');
 
     // 頁尾（順序：品牌故事 → 購物須知 → 聯絡我們，後接兩顆膠囊按鈕）
     const footerTexts = Array.from(el.querySelectorAll('.footer-links a')).map((a) =>
@@ -37,5 +38,10 @@ describe('App 根版型', () => {
     const modal = el.querySelector('.shop-modal');
     expect(modal).toBeTruthy();
     expect(modal?.classList.contains('is-open')).toBe(false);
+
+    // 全站共用購物袋側欄存在且預設關閉
+    const drawer = el.querySelector('.cart-drawer');
+    expect(drawer).toBeTruthy();
+    expect(drawer?.classList.contains('is-open')).toBe(false);
   });
 });

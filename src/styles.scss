@@ -49,12 +49,14 @@
 app-header, app-footer,
 pl-page-hero, pl-section-head, pl-strip-cta, pl-quote-block, pl-steps,
 pl-product-card, pl-buy-button, pl-line-button, pl-badge-real,
-pl-carousel, pl-product-modal,
+pl-carousel, pl-product-modal, pl-cart-drawer,
 pl-icon-cart, pl-icon-ig, pl-icon-line{
   display:contents;
 }
 
-html{ scroll-behavior:smooth; overflow-x:hidden; }
+/* 防橫向跑版用 clip 而非 hidden：overflow-x:hidden 會把 html/body 變成捲動容器，
+   使 .site-nav 的 position:sticky 失效（導覽列捲動時黏不住頂端）；clip 只裁切不產生捲動容器 */
+html{ scroll-behavior:smooth; overflow-x:clip; }
 
 body{
   background:var(--cream);
@@ -64,7 +66,7 @@ body{
   line-height:1.9;
   letter-spacing:.02em;
   -webkit-font-smoothing:antialiased;
-  overflow-x:hidden;
+  overflow-x:clip;   /* 同上：不能用 hidden，會破壞導覽列 sticky */
   max-width:100vw;
 }
 
@@ -189,14 +191,35 @@ p.lead{
   flex:none;
 }
 .nav-icon{
+  position:relative;   /* 購物袋件數標籤的定位基準 */
   display:flex;
   align-items:center;
   justify-content:center;
   width:38px;
   height:38px;
   border-radius:50%;
+  border:0;            /* 購物袋 icon 是 button，去掉瀏覽器預設外框與內距 */
+  padding:0;
+  cursor:pointer;
   color:#FFFFFF;
   transition:filter .25s ease, transform .25s ease;
+}
+/* 購物袋件數標籤（玫瑰色小圓點，數量歸零時整顆消失） */
+.nav-cart-badge{
+  position:absolute;
+  top:-4px; right:-6px;
+  min-width:18px; height:18px;
+  padding:0 4px;
+  border-radius:999px;
+  background:var(--rose);
+  color:var(--paper);
+  font-family:var(--accent-lat);
+  font-size:11px;
+  font-weight:700;
+  line-height:18px;
+  text-align:center;
+  white-space:nowrap;
+  box-shadow:0 0 0 2px var(--paper);
 }
 /* icon 圖示在圓鈕內絕對置中：svg 本身也移除行內基線影響 */
 .nav-icon svg{ width:19px; height:19px; display:block; flex:none; }
@@ -1261,8 +1284,11 @@ footer{
 }
 
 /* ---------- 商品詳情視窗 ---------- */
-body.modal-open{ overflow:hidden; }
-.shop-modal{ position:fixed; inset:0; z-index:300; display:none; }
+body.modal-open,
+body.cart-open{ overflow:hidden; }   /* 購物袋側欄開啟時同樣鎖住頁面捲動 */
+/* z-index 必須高於導覽列（.site-nav 是 1000）：否則頁面在頂端時，
+   彈窗與側欄的關閉鈕會被不透明的導覽列蓋住點不到（手機版會整個關不掉） */
+.shop-modal{ position:fixed; inset:0; z-index:1050; display:none; }
 .shop-modal.is-open{ display:block; }
 .shop-modal-backdrop{
   position:absolute; inset:0;
@@ -1502,4 +1528,298 @@ p.lead,
 .strip p{
   font-size:16px;
   line-height:1.9;
+}
+
+/* ============ 購物袋（2026-08-26 主理人指定：海外／香港顧客一鍵結單）============
+   彈窗「加入購物袋」列、導覽列件數標籤（見 .nav-cart-badge）、右側滑出側欄、
+   一鍵複製明細與私訊客服按鈕、全站共用 Toast。沒有金流，明細由客服人工確認。 */
+
+/* --- 彈窗內的數量選擇＋加入按鈕 --- */
+.modal-cart-row{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  margin-top:16px;
+  flex-wrap:wrap;
+}
+.qty-stepper{
+  display:inline-flex;
+  align-items:center;
+  border:1px solid var(--line);
+  border-radius:999px;
+  background:var(--paper);
+  overflow:hidden;
+}
+.qty-stepper button{
+  width:34px; height:34px;
+  border:0;
+  background:transparent;
+  color:var(--brown-deep);
+  font-size:17px;
+  line-height:1;
+  cursor:pointer;
+  transition:background .2s ease;
+}
+.qty-stepper button:hover:not(:disabled){ background:var(--cream); }
+.qty-stepper button:disabled{ opacity:.35; cursor:default; }
+.qty-num{
+  min-width:34px;
+  text-align:center;
+  font-family:var(--accent-lat);
+  font-size:15px;
+  font-weight:600;
+  color:var(--brown-deep);
+}
+.add-to-cart-btn{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  padding:10px 24px;
+  border:0;
+  border-radius:999px;
+  background:var(--brown-deep);
+  color:var(--paper);
+  font-size:14.5px;
+  letter-spacing:.06em;
+  cursor:pointer;
+  white-space:nowrap;
+  word-break:keep-all;
+  transition:filter .25s ease, transform .25s ease;
+}
+.add-to-cart-btn:hover{ filter:brightness(1.15); transform:translateY(-1px); }
+
+/* --- 側欄本體 --- */
+.cart-drawer{ position:fixed; inset:0; z-index:1100; display:none; }  /* 高於導覽列與商品彈窗 */
+.cart-drawer.is-open{ display:block; }
+.cart-backdrop{
+  position:absolute; inset:0;
+  background:rgba(60, 42, 28, .45);
+}
+.cart-panel{
+  position:absolute;
+  top:0; right:0; bottom:0;
+  width:min(400px, 100%);
+  background:var(--paper);
+  box-shadow:-12px 0 40px rgba(0,0,0,.18);
+  display:flex;
+  flex-direction:column;
+  animation:cart-slide-in .28s ease;
+}
+@keyframes cart-slide-in{
+  from{ transform:translateX(40px); opacity:0; }
+  to{ transform:translateX(0); opacity:1; }
+}
+@media (prefers-reduced-motion: reduce){
+  .cart-panel{ animation:none; }
+}
+.cart-head{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:18px 20px 14px;
+  border-bottom:1px solid var(--line);
+}
+.cart-head h3{
+  font-family:var(--serif-cjk);
+  font-size:19px;
+  color:var(--brown-deep);
+}
+.cart-close{
+  width:32px; height:32px;
+  border:0;
+  border-radius:50%;
+  background:var(--cream);
+  color:var(--brown-deep);
+  font-size:14px;
+  cursor:pointer;
+  transition:background .2s ease;
+}
+.cart-close:hover{ background:var(--cream-deep); }
+
+/* --- 空袋狀態 --- */
+.cart-empty{
+  flex:1;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:14px;
+  padding:32px 24px;
+  text-align:center;
+  color:var(--ink-soft);
+  font-size:15px;
+}
+.cart-empty-link{
+  color:var(--rose);
+  font-size:14.5px;
+  letter-spacing:.04em;
+  word-break:keep-all;
+}
+
+/* --- 清單 --- */
+.cart-list{
+  flex:1;
+  overflow-y:auto;
+  padding:14px 20px;
+  display:flex;
+  flex-direction:column;
+  gap:16px;
+}
+.cart-line{
+  display:flex;
+  gap:12px;
+  align-items:flex-start;
+}
+.cart-thumb{
+  width:64px; height:64px;
+  flex:none;
+  object-fit:cover;
+  border-radius:12px;
+  background:var(--cream-deep);
+}
+.cart-line-info{ flex:1; min-width:0; }
+.cart-line-name{
+  font-size:14.5px;
+  color:var(--brown-deep);
+  word-break:keep-all;
+  overflow-wrap:anywhere;   /* 名稱過長仍可換行，但不從詞中間斷開 */
+}
+.cart-line-variant{
+  font-size:12.5px;
+  color:var(--ink-soft);
+  margin-top:2px;
+  word-break:keep-all;
+}
+.cart-line-price{
+  font-family:var(--accent-lat);
+  font-size:13.5px;
+  font-weight:600;
+  color:var(--brown-deep);
+  margin-top:4px;
+  word-break:keep-all;
+  white-space:nowrap;
+}
+.cart-line-actions{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  margin-top:8px;
+}
+.qty-stepper--small button{ width:28px; height:28px; font-size:15px; }
+.qty-stepper--small .qty-num{ min-width:26px; font-size:13.5px; }
+.cart-line-remove{
+  border:0;
+  background:transparent;
+  color:var(--ink-soft);
+  font-size:12.5px;
+  cursor:pointer;
+  text-decoration:underline;
+  text-underline-offset:3px;
+  word-break:keep-all;
+}
+.cart-line-remove:hover{ color:var(--rose); }
+
+/* --- 底部結單區 --- */
+.cart-foot{
+  border-top:1px solid var(--line);
+  padding:16px 20px 20px;
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+  background:var(--cream);
+}
+.cart-total-row{
+  display:flex;
+  align-items:baseline;
+  justify-content:space-between;
+  font-size:13.5px;
+  color:var(--ink-soft);
+  word-break:keep-all;
+}
+.cart-total strong{
+  font-family:var(--accent-lat);
+  font-size:18px;
+  font-weight:700;
+  color:var(--brown-deep);
+  margin-left:6px;
+  white-space:nowrap;
+}
+.cart-copy-btn{
+  width:100%;
+  padding:12px 16px;
+  border:0;
+  border-radius:999px;
+  background:var(--brown-deep);
+  color:var(--paper);
+  font-size:15px;
+  letter-spacing:.08em;
+  cursor:pointer;
+  word-break:keep-all;
+  transition:filter .25s ease, transform .25s ease;
+}
+.cart-copy-btn:hover{ filter:brightness(1.15); transform:translateY(-1px); }
+.cart-hint{
+  font-size:12.5px;
+  line-height:1.7;
+  color:var(--ink-soft);
+}
+.cart-social-row{
+  display:flex;
+  gap:8px;
+}
+.cart-social{
+  flex:1;
+  text-align:center;
+  padding:9px 6px;
+  border-radius:999px;
+  color:#FFFFFF;
+  font-size:13px;
+  letter-spacing:.04em;
+  white-space:nowrap;
+  word-break:keep-all;
+  transition:filter .25s ease;
+}
+.cart-social:hover{ filter:brightness(.92); color:#FFFFFF; }
+.cart-social--line{ background:#06C755; }
+.cart-social--ig{ background:var(--rose); }
+.cart-social--threads{ background:var(--brown-deep); }
+.cart-buy-link{
+  text-align:center;
+  font-size:12.5px;
+  color:var(--ink-soft);
+  text-decoration:underline;
+  text-underline-offset:3px;
+  word-break:keep-all;
+}
+.cart-buy-link:hover{ color:var(--brown-deep); }
+
+/* --- 全站共用 Toast 小提示 --- */
+.pl-toast{
+  position:fixed;
+  left:50%;
+  bottom:34px;
+  transform:translateX(-50%);
+  z-index:1200;   /* 蓋在側欄（1100）與彈窗（1050）之上 */
+  background:var(--brown-deep);
+  color:var(--paper);
+  padding:10px 22px;
+  border-radius:999px;
+  font-size:14px;
+  letter-spacing:.04em;
+  white-space:nowrap;
+  word-break:keep-all;
+  box-shadow:0 8px 24px rgba(0,0,0,.22);
+  animation:toast-in .25s ease;
+}
+@keyframes toast-in{
+  from{ opacity:0; transform:translateX(-50%) translateY(8px); }
+  to{ opacity:1; transform:translateX(-50%) translateY(0); }
+}
+
+/* --- 手機版 --- */
+@media (max-width:560px){
+  .cart-panel{ width:100%; }
+  .modal-cart-row{ gap:10px; }
+  .add-to-cart-btn{ flex:1; justify-content:center; }
+  .pl-toast{ bottom:24px; max-width:calc(100vw - 32px); white-space:normal; text-align:center; }
 }

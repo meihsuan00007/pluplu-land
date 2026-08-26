@@ -11,6 +11,7 @@ import {
   viewChild,
 } from '@angular/core';
 import { assetUrl, money } from '../core/brand';
+import { CartService, MAX_QTY } from '../core/cart.service';
 import { ModalView, ProductModalService } from '../core/product-modal.service';
 
 /** 商品詳情視窗（全站唯一一份，放在 App 根版型）。
@@ -77,6 +78,18 @@ import { ModalView, ProductModalService } from '../core/product-modal.service';
                   }
                 </div>
               }
+              @if (canAddToCart()) {
+                <!-- 一鍵加入購物袋（2026-08-26 主理人指定）：只有「販售中且有定價」的
+                     款式會出現（與價格顯示同進退），完售款式與歷史展示品自然沒有按鈕 -->
+                <div class="modal-cart-row">
+                  <div class="qty-stepper" aria-label="數量">
+                    <button type="button" aria-label="減少數量" [disabled]="qty() <= 1" (click)="decQty()">−</button>
+                    <span class="qty-num">{{ qty() }}</span>
+                    <button type="button" aria-label="增加數量" [disabled]="qty() >= MAX_QTY" (click)="incQty()">＋</button>
+                  </div>
+                  <button type="button" class="add-to-cart-btn" (click)="addToCart()">加入購物袋</button>
+                </div>
+              }
               @if (p.comingSoon && p.comingSoonNote) {
                 <div class="ship-info">{{ p.comingSoonNote }}</div>
               }
@@ -89,9 +102,19 @@ import { ModalView, ProductModalService } from '../core/product-modal.service';
 })
 export class ProductModal {
   private modal = inject(ProductModalService);
+  private cart = inject(CartService);
 
   readonly product = this.modal.product;
   readonly selectedIdx = signal(-1);
+  /** 加入購物袋的數量（開新商品或加入成功後重設為 1） */
+  readonly qty = signal(1);
+
+  /** 目前選中的款式可否加入購物袋（＝販售中且有定價，與價格顯示同一套條件） */
+  readonly canAddToCart = computed(() => {
+    const p = this.product();
+    const v = p?.variants[this.selectedIdx()];
+    return !!p?.id && !!v && v.in_stock && v.price != null;
+  });
 
   /** 這個商品是否有任何「販售中且有定價」的款式（整項完售的歷史展示品＝false，完全不出價格列） */
   readonly hasAnyPrice = computed(() => {
@@ -133,6 +156,7 @@ export class ProductModal {
     this.mediaSrc.set(assetUrl(p.image));
     this.mediaAlt.set(p.name);
     this.mediaOpacity.set(null);
+    this.qty.set(1);
     // 圖鑑化：不分庫存狀態，一律預選第一個款式（款式籤只負責切換照片）
     if (p.variants.length) this.select(0);
     else this.selectedIdx.set(-1);
@@ -165,12 +189,39 @@ export class ProductModal {
     pre.src = src;
   }
 
+  readonly MAX_QTY = MAX_QTY;
+
+  incQty(): void {
+    this.qty.update((n) => Math.min(MAX_QTY, n + 1));
+  }
+
+  decQty(): void {
+    this.qty.update((n) => Math.max(1, n - 1));
+  }
+
+  /** 把目前選中的款式（含數量）加進購物袋，跳出小提示；彈窗保持開啟方便繼續逛 */
+  addToCart(): void {
+    const p = this.product();
+    const v = p?.variants[this.selectedIdx()];
+    if (!p?.id || !v || !v.in_stock || v.price == null) return;
+    // 只有一個款式的商品不記款式名，購物袋與明細就不會出現「款式：點點派對裙」這種贅字
+    const variant = p.variants.length > 1 ? v.name : '';
+    this.cart.add(
+      { pid: p.id, name: p.name, variant, price: v.price, image: v.image || p.image },
+      this.qty(),
+    );
+    this.qty.set(1);
+    this.cart.showToast('已加入購物袋！');
+  }
+
   close(): void {
     this.modal.close();
   }
 
   @HostListener('document:keydown.escape')
   onEscape(): void {
+    // 側欄疊在彈窗上時，Esc 先交給側欄關（逐層關閉），彈窗留著
+    if (this.cart.drawerOpen()) return;
     if (this.product()) this.close();
   }
 }

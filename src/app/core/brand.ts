@@ -14,6 +14,11 @@ export const LINE_HANDLE = '@plupluland_tw';
 /** Instagram */
 export const IG_URL = 'https://www.instagram.com/plupluland_tw';
 export const IG_HANDLE = '@plupluland_tw';
+/** IG 私訊直達連結（購物袋「私訊客服」用；ig.me 會直接開對話視窗） */
+export const IG_DM_URL = 'https://ig.me/m/plupluland_tw';
+
+/** Threads（購物袋「私訊客服」用；帳號與 IG 同名，2026-08-26 主理人確認） */
+export const THREADS_URL = 'https://www.threads.net/@plupluland_tw';
 
 /** 「發限動」活動折扣金額（首頁活動區、選品頁橫幅、購物須知三處共用）。
  *  改折扣只要改這個數字，三個頁面會一起更新。 */
