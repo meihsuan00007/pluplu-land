@@ -68,11 +68,11 @@ import { KeepBrandPipe } from '../core/text';
             <button type="button" class="cart-copy-btn" (click)="copyOrder()">一鍵複製訂單明細</button>
             <p class="cart-hint">複製後私訊我們，客服會確認現貨／預購狀態、寄送日期與最終金額。</p>
             <div class="cart-social-row">
-              <a class="cart-social cart-social--line" [href]="LINE_URL" target="_blank" rel="noopener" (click)="copyForSocial()">LINE 客服</a>
-              <a class="cart-social cart-social--ig" [href]="IG_DM_URL" target="_blank" rel="noopener" (click)="copyForSocial()">IG 私訊</a>
-              <a class="cart-social cart-social--threads" [href]="THREADS_URL" target="_blank" rel="noopener" (click)="copyForSocial()">Threads</a>
+              <a class="cart-social cart-social--line" [href]="LINE_URL" target="_blank" rel="noopener" (click)="copyForSocial()">LINE客服</a>
+              <a class="cart-social cart-social--ig" [href]="IG_DM_URL" target="_blank" rel="noopener" (click)="copyForSocial()">Instagram私訊</a>
+              <a class="cart-social cart-social--threads" [href]="THREADS_URL" target="_blank" rel="noopener" (click)="copyForSocial()">Threads私訊</a>
             </div>
-            <a class="cart-buy-link" [href]="BUY_URL" target="_blank" rel="noopener">習慣逐項下單？前往 7-11 賣貨便 →</a>
+            <a class="cart-buy-link" [href]="BUY_URL" target="_blank" rel="noopener">臺灣地區下單 →</a>
           </div>
         }
       </aside>

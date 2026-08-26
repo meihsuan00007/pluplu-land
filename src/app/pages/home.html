@@ -34,6 +34,8 @@
           @if (item.note) {
             <p class="product-note">{{ item.note }}</p>
           }
+          <!-- 彈性填充：按鈕靠底對齊（與 pl-product-card 同一套規則） -->
+          <div class="card-fill" aria-hidden="true"></div>
           @if (item.status === 'coming_soon') {
             <span class="product-buy is-disabled" aria-disabled="true">即將開賣</span>
           } @else {

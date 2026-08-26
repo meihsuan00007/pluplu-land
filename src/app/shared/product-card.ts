@@ -12,8 +12,6 @@ export interface ProductCardData {
   alt?: string;
   /** 左上角貼紙標籤（居家／TOP 1／分類名稱……） */
   tag?: string;
-  /** 右上角特價貼紙文字（僅選品陳列架使用） */
-  saleTape?: string;
   /** 價格標示（如「NT$ 130」「NT$ 15 起」）；完售品項留空＝不顯示 */
   priceText?: string;
   /** 情境短文 */
@@ -46,9 +44,6 @@ export interface ProductCardData {
         @if (data().tag) {
           <span class="product-tape">{{ data().tag }}</span>
         }
-        @if (data().saleTape) {
-          <span class="product-tape product-tape--sale">{{ data().saleTape }}</span>
-        }
       </div>
       <div class="product-name">{{ data().name | keepBrand }}</div>
       @if (data().priceText) {
@@ -57,6 +52,9 @@ export interface ProductCardData {
       @if (data().note) {
         <p class="product-note">{{ data().note | keepBrand }}</p>
       }
+      <!-- 彈性填充：把購買按鈕推到卡片底部，同一排卡片的按鈕高度就會對齊
+          （卡片標題行數不同時，多出來的空間由這裡吸收） -->
+      <div class="card-fill" aria-hidden="true"></div>
       @if (showBuy()) {
         <pl-buy-button variant="card" />
       }

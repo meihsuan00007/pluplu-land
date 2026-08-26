@@ -79,7 +79,7 @@ export class Shop {
         name: it.name,
         image: assetUrl(it.image),
         tag: catLabel.get(it.category) ?? '',
-        saleTape: it.on_sale ? (it.sale_label ?? '特價') : undefined,
+        // 「特價」貼紙已全站移除（2026-08-26 主理人指定），特價品直接顯示特價後價格
         // 完售品項不標價（歷年作品展示）；多規格不同價顯示「NT$ 最低價 起」
         priceText: it.status === 'available' ? priceLabel(it.price, it.price_max) : undefined,
         pid: it.id,

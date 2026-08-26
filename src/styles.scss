@@ -29,14 +29,15 @@
   --gingham-rose-base:   #FBEFE9;
   --gingham-rose-line:   rgba(201, 123, 130, .20);
 
-  /* 字體 fallback 鏈（2026-08-17 全站統一校正）：
-     M PLUS Rounded 1c 是日文圓體，缺很多繁中字（如 們、稱、值），
-     缺字時依序退到 Noto Sans TC（網頁字型）→ 系統黑體（PingFang／微軟正黑），
-     最後一定是 sans-serif，任何情況都不可退到新細明體／宋體。
+  /* 字體 fallback 鏈（2026-08-17 全站統一校正；2026-08-26 缺字修復）：
+     M PLUS Rounded 1c 是日文圓體，缺很多繁中字（如 緹、糕、懶），
+     缺字時先退到 Huninn（jf open 粉圓：台灣開源圓體、繁中字齊全，缺字補上後
+     看起來仍是圓體，不會同一行混出細黑體），再退 Noto Sans TC → 系統黑體
+    （PingFang／微軟正黑），最後一定是 sans-serif，任何情況都不可退到新細明體／宋體。
      改字體只改這三個變數，不要在個別元件另寫 font-family 清單。 */
-  --serif-cjk:  'M PLUS Rounded 1c', 'Noto Sans TC', 'PingFang TC', 'Microsoft JhengHei', 'Heiti TC', sans-serif;
+  --serif-cjk:  'M PLUS Rounded 1c', 'Huninn', 'Noto Sans TC', 'PingFang TC', 'Microsoft JhengHei', 'Heiti TC', sans-serif;
   --sans-cjk:   'Noto Sans TC', 'PingFang TC', 'Microsoft JhengHei', 'Heiti TC', sans-serif;
-  --accent-lat: 'Quicksand', 'M PLUS Rounded 1c', 'Noto Sans TC', 'PingFang TC', 'Microsoft JhengHei', sans-serif;
+  --accent-lat: 'Quicksand', 'M PLUS Rounded 1c', 'Huninn', 'Noto Sans TC', 'PingFang TC', 'Microsoft JhengHei', sans-serif;
 
   --wrap: 1120px;
 }
@@ -56,7 +57,7 @@ pl-icon-cart, pl-icon-ig, pl-icon-line{
 
 /* 防橫向跑版用 clip 而非 hidden：overflow-x:hidden 會把 html/body 變成捲動容器，
    使 .site-nav 的 position:sticky 失效（導覽列捲動時黏不住頂端）；clip 只裁切不產生捲動容器 */
-html{ scroll-behavior:smooth; overflow-x:clip; }
+html{ scroll-behavior:smooth; overflow-x:hidden; overflow-x:clip; }  /* 舊瀏覽器不認識 clip 時退回 hidden（防跑版優先） */
 
 body{
   background:var(--cream);
@@ -66,7 +67,7 @@ body{
   line-height:1.9;
   letter-spacing:.02em;
   -webkit-font-smoothing:antialiased;
-  overflow-x:clip;   /* 同上：不能用 hidden，會破壞導覽列 sticky */
+  overflow-x:hidden; overflow-x:clip;   /* 同上：clip 不產生捲動容器（sticky 才有效），舊瀏覽器退回 hidden */
   max-width:100vw;
 }
 
@@ -645,7 +646,11 @@ pl-carousel + .section{ padding-top:60px; }
   grid-template-columns:repeat(3,1fr);
   gap:40px 32px;
 }
-.product-card{ position:relative; }
+/* 卡片改為上下伸縮結構：標題／價格／短文在上，.card-fill 吸收多餘空間，
+   購買按鈕靠底對齊，同一排卡片不論標題幾行，按鈕都在同一水平線
+  （選品陳列架的 .shop-card 整卡可點、無按鈕，稍後的規則會蓋回 display:block） */
+.product-card{ position:relative; display:flex; flex-direction:column; }
+.card-fill{ flex:1 1 auto; min-height:0; }
 /* 全站商品圖統一規格：1:1 正方形＋微圓角 12px＋cover 置中裁切，
    娃寶陳列區、大家的心頭好、選品陳列架共用，不要在個別區塊覆寫比例 */
 .product-photo{
@@ -694,9 +699,12 @@ pl-carousel + .section{ padding-top:60px; }
   color:var(--ink-soft);
   letter-spacing:.03em;
 }
-/* 商品卡片上的「前往賣貨便下單」購買按鈕（外連 7-11 賣貨便，無站內金流） */
+/* 商品卡片上的「前往賣貨便下單」購買按鈕（外連 7-11 賣貨便，無站內金流）。
+   align-self:flex-start：卡片是 flex 直欄（按鈕靠底對齊用），
+   不加這行按鈕會被預設的 stretch 撐成滿版，要維持小膠囊外觀 */
 .product-buy{
   display:inline-flex; align-items:center; gap:7px;
+  align-self:flex-start;
   margin-top:12px;
   padding:8px 18px;
   font-size:13px;
@@ -732,7 +740,6 @@ a.product-photo-link{ display:block; }
   gap:36px 20px;
 }
 .product-grid--wall .product-name{ font-size:16px; }
-a.product-card{ display:block; color:inherit; }
 @media (max-width:900px){
   .product-grid--wall{ grid-template-columns:repeat(3,1fr); }
 }
@@ -1264,12 +1271,9 @@ footer{
 #shop-grid{ align-items:start; }
 /* 首頁方塊導流的自動捲動定位：預留 sticky 導覽列高度，標題不被壓在導覽列下面 */
 #shop-shelf{ scroll-margin-top:96px; }
-.product-tape--sale{
-  left:auto; right:14px;
-  background:var(--butter);
-  color:var(--brown-deep);
-}
-/* 完售品項不做灰階與售完貼紙（主理人指定 2026-08-05；2026-08-13 起彈窗圖鑑化，
+/* 「特價」黃色貼紙已全站移除（2026-08-26 主理人指定，勿重建）；
+   特價品項直接顯示特價後的價格，不另外標示。
+   完售品項不做灰階與售完貼紙（主理人指定 2026-08-05；2026-08-13 起彈窗圖鑑化，
    全站不再顯示任何售完字樣）：卡片與彈窗一律維持正常外觀，像展示歷年作品 */
 
 /* 讀取失敗（如 file:// 直開）時的備援訊息 */
@@ -1822,4 +1826,8 @@ p.lead,
   .modal-cart-row{ gap:10px; }
   .add-to-cart-btn{ flex:1; justify-content:center; }
   .pl-toast{ bottom:24px; max-width:calc(100vw - 32px); white-space:normal; text-align:center; }
+}
+/* 窄機（400px 以下）：「Instagram私訊」較長，縮小字級避免三顆等寬按鈕被撐爆 */
+@media (max-width:420px){
+  .cart-social{ font-size:12px; padding:8px 2px; letter-spacing:0; }
 }

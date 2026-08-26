@@ -71,3 +71,4 @@
 | 61 | 【織女手工系列】小胖蜂套裝🐝 | `assets/images/products/61-bee-set.jpg` | （主理人提供之本地照片） | ✅ |
 | 62 | 貴族千鳥格裙 | `assets/images/products/62-houndstooth-skirt.jpg` | （主理人提供之本地照片） | ✅ |
 | 63 | 馬海毛質感毛衣 | `assets/images/products/63-mohair-sweater.jpg` | （主理人提供之本地照片） | ✅ |
+| 54 | 【織女手工系列】溫馴小羊頭套（主圖改用主理人 2026-08-26 指定之酒杯背景實拍照，原賣場測試圖已刪除） | `assets/images/products/54-lamb-hood.jpg` | （主理人提供之本地照片） | ✅ |
