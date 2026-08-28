@@ -1,9 +1,9 @@
-import { NgTemplateOutlet } from '@angular/common';
-import { ChangeDetectionStrategy, Component, computed, inject } from '@angular/core';
+import { NgTemplateOutlet, ViewportScroller } from '@angular/common';
+import { ChangeDetectionStrategy, Component, computed, effect, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { FEATURED_IDS, IG_URL, SHARE_DISCOUNT, assetUrl, priceLabel, routeFromLegacy } from '../core/brand';
+import { FEATURED_IDS, IG_URL, KNIT_IDS, SHARE_DISCOUNT, assetUrl, priceLabel, routeFromLegacy } from '../core/brand';
 import { ProductModalService } from '../core/product-modal.service';
-import { PicnicItem, ProductsService } from '../core/products.service';
+import { PicnicItem, ProductsService, StoreItem } from '../core/products.service';
 import { Reveal } from '../core/reveal.directive';
 import { SiteContentService } from '../core/site-content.service';
 import { BadgeReal } from '../shared/badge-real';
@@ -52,7 +52,7 @@ export class Home {
   readonly banners = computed(() => (this.home().banners ?? []).slice(0, 3));
 
   /** 推薦牆「大家的心頭好」：從選品目錄取真實商品，
-   *  排行順序由 core/brand.ts 的 FEATURED_IDS 決定（口水巾、眼鏡固定前兩名）。 */
+   *  排行順序由 core/brand.ts 的 FEATURED_IDS 決定（2026-08-28 起固定 4 款，前兩名掛 TOP 貼紙）。 */
   readonly featured = computed<ProductCardData[]>(() => {
     const catalog = this.products.storeCatalog();
     if (!catalog) return [];
@@ -73,9 +73,45 @@ export class Home {
     });
   });
 
+  /** 針織企劃專區（#knit-collection，輪播針織海報跳到這裡）：
+   *  品項清單在 core/brand.ts 的 KNIT_IDS，資料撈選品目錄的即時內容 */
+  readonly knit = computed<StoreItem[]>(() => {
+    const catalog = this.products.storeCatalog();
+    if (!catalog) return [];
+    return KNIT_IDS.flatMap((id) => {
+      const it = catalog.items.find((x) => x.id === id);
+      return it ? [it] : [];
+    });
+  });
+
   constructor() {
     void this.products.ensureStore();
     void this.products.ensurePicnic();
+
+    // 冷載入帶錨點（如分享連結 /#knit-collection）的補捲：
+    // 商品卡片是非同步載入，路由內建的錨點捲動會在卡片長出來之前發生，
+    // 位在商品區塊下方的錨點會被後來渲染的內容往下推、落點跑掉（手機上偏差可達一整個螢幕）。
+    // 等選品目錄與野餐清單首次都有資料、畫面畫完後，再往正確位置補捲一次（只補這一次）。
+    const scroller = inject(ViewportScroller);
+    const hash = typeof location !== 'undefined' ? location.hash.slice(1) : '';
+    if (hash) {
+      const once = effect(() => {
+        if (this.products.storeCatalog() && this.products.picnicItems().length) {
+          setTimeout(() => scroller.scrollToAnchor(hash), 120);
+          once.destroy();
+        }
+      });
+    }
+  }
+
+  /** 點針織企劃卡片：開選品詳情視窗 */
+  openStore(id: string): void {
+    void this.modal.open(id);
+  }
+
+  /** 選品的價格標示（完售品項不標價；多規格不同價顯示「NT$ 最低價 起」） */
+  storePrice(it: StoreItem): string | undefined {
+    return it.status === 'available' ? priceLabel(it.price, it.price_max) : undefined;
   }
 
   /** 點野餐品項卡片：既有選品開商品詳情，Coming Soon 開預告視窗 */

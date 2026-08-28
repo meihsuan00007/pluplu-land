@@ -7,7 +7,8 @@ import { CartIcon } from './icons';
  *  - hero    ：內頁頁首的棕色實心按鈕
  *  - capsule ：頁尾的橘色膠囊按鈕（含購物車 icon）
  *  - card    ：商品卡下方的玫瑰色小按鈕（含購物車 icon）
- *  card 變體會擋下點擊冒泡，避免觸發商品卡的「開啟詳情視窗」。 */
+ *  card 變體會擋下點擊與 Enter 鍵冒泡，避免觸發商品卡的「開啟詳情視窗」
+ *（鍵盤焦點在按鈕上按 Enter 時，瀏覽器會自己開連結，不能再讓卡片也開彈窗）。 */
 @Component({
   selector: 'pl-buy-button',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -27,6 +28,7 @@ import { CartIcon } from './icons';
           target="_blank"
           rel="noopener"
           (click)="$event.stopPropagation()"
+          (keydown.enter)="$event.stopPropagation()"
           ><pl-icon-cart />{{ label() }}</a
         >
       }

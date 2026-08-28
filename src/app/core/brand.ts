@@ -25,9 +25,13 @@ export const THREADS_URL = 'https://www.threads.net/@plupluland_tw';
 export const SHARE_DISCOUNT_AMOUNT = 30;
 export const SHARE_DISCOUNT = `NT$${SHARE_DISCOUNT_AMOUNT}`;
 
-/** 首頁「大家的心頭好」排行順序（對應 products-store.json 的商品編號；
- *  口水巾、眼鏡固定為第 1、2 名） */
-export const FEATURED_IDS = ['31', '30', '24', '01', '02', '03', '09', '11'];
+/** 首頁「大家的心頭好」排行（對應 products-store.json 的商品編號；
+ *  2026-08-28 主理人指定精簡為 4 款：野餐出遊套組（草帽）、好眠套組、眼鏡 4.5cm、牛仔吊帶褲） */
+export const FEATURED_IDS = ['18', '03', '29', '11'];
+
+/** 首頁「針織企劃」專區（#knit-collection）的精選品項（輪播針織海報跳到這裡；
+ *  2026-08-28 主理人指定：針織開襟小外套、馬海毛質感毛衣、雙層緹花蛋糕裙） */
+export const KNIT_IDS = ['48', '63', '06'];
 
 /** 「織女手作系列」虛擬分類（選品陳列架篩選籤＋首頁方塊導流共用）。
  *  不是 products-store.json 的正式分類，而是撈商品 tags 裡含 HANDMADE_TAG 的品項；

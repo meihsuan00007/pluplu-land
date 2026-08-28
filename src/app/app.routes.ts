@@ -10,7 +10,7 @@ export const routes: Routes = [
     title: 'PluPlu Land ｜ 軟綿綿的小天地',
     data: {
       description:
-        'PluPlu Land，軟綿綿的小天地。はむにぎり倉鼠娃寶與精心挑選的娃裝配件，全實拍、零 AI，陪你把日子過得慢一點、軟一點。',
+        'PluPlu Land，軟綿綿的小天地。軟綿綿的娃寶們與精心挑選的娃裝配件，全實拍、零 AI，陪你把日子過得慢一點、軟一點。',
     },
   },
   {
@@ -19,7 +19,7 @@ export const routes: Routes = [
     title: '娃衣選品 ｜ PluPlu Land',
     data: {
       description:
-        'PluPlu Land 娃衣選品：倉鼠娃寶的洋裝、裙子、帽帽與迷你配件，全實拍呈現。點進每一項看看規格與出貨時間，喜歡就到賣貨便帶回家。',
+        'PluPlu Land 娃衣選品：娃寶的洋裝、裙子、帽帽與迷你配件，全實拍呈現。點進每一項看看規格與出貨時間，喜歡就到賣貨便帶回家。',
     },
   },
   {

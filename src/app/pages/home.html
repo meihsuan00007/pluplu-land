@@ -47,6 +47,44 @@
   </div>
 </section>
 
+<!-- ===== 針織企劃專區（輪播「針織開襟衫」海報跳到這裡）=====
+     精選品項清單在 core/brand.ts 的 KNIT_IDS（撈選品目錄的即時資料，點卡片開詳情視窗） -->
+<section class="section" id="knit-collection">
+  <div class="wrap">
+    <pl-section-head
+      eyebrow="KNIT COLLECTION"
+      title="秋日針織企劃"
+      lead="溫潤色調的針織小衣裳，隨手一套，陪娃寶感受步入微涼初秋的慵懶。"
+    />
+    <div class="product-grid" id="knit-grid">
+      @if (!knit().length) {
+        <div class="shop-fallback">品項載入中……若一直沒有出現，請重新整理頁面。</div>
+      }
+      @for (it of knit(); track it.id) {
+        <div
+          class="product-card reveal in"
+          role="button"
+          tabindex="0"
+          (click)="openStore(it.id)"
+          (keydown.enter)="openStore(it.id)"
+          (keydown.space)="$event.preventDefault(); openStore(it.id)"
+        >
+          <div class="product-photo">
+            <img [src]="asset(it.image)" [alt]="it.name" loading="lazy" />
+          </div>
+          <div class="product-name">{{ it.name }}</div>
+          @if (storePrice(it); as price) {
+            <div class="product-price">{{ price }}</div>
+          }
+          <!-- 彈性填充：按鈕靠底對齊（與野餐專區同一套規則） -->
+          <div class="card-fill" aria-hidden="true"></div>
+          <pl-buy-button variant="card" />
+        </div>
+      }
+    </div>
+  </div>
+</section>
+
 <!-- ===== 行銷組合 Banner：左大圖＋右二疊圖（後台「首頁」可編輯） ===== -->
 <section class="section">
   <div class="wrap">
@@ -165,44 +203,23 @@
     <pl-section-head eyebrow="DISPLAY SHELF" title="陳列櫃裡的日常片刻" />
     <div class="shelf reveal">
       <div class="shelf-item">
-        <img src="/images/uploads/wineglass-nightcap.jpg" alt="倉鼠娃寶戴著藍色睡帽靠在酒杯旁" /><span class="shelf-label">晚安時光</span>
+        <img src="/images/uploads/wineglass-nightcap.jpg" alt="娃寶戴著藍色睡帽靠在酒杯旁" /><span class="shelf-label">晚安時光</span>
       </div>
       <div class="shelf-item">
-        <img src="/images/uploads/strawhat-trio.jpg" alt="三隻倉鼠娃寶戴著草帽野餐" /><span class="shelf-label">野餐日</span>
+        <img src="/images/uploads/strawhat-trio.jpg" alt="三隻娃寶戴著草帽野餐" /><span class="shelf-label">野餐日</span>
       </div>
       <div class="shelf-item">
-        <img src="/images/uploads/capes-collection.jpg" alt="倉鼠娃寶披肩收藏陳列" /><span class="shelf-label">披肩收藏</span>
+        <img src="/images/uploads/capes-collection.jpg" alt="娃寶披肩收藏陳列" /><span class="shelf-label">披肩收藏</span>
       </div>
       <div class="shelf-item">
-        <img src="/images/uploads/sleepy-beanbags.jpg" alt="兩隻倉鼠娃寶窩在豆袋裡睡覺" /><span class="shelf-label">午睡角落</span>
+        <img src="/images/uploads/sleepy-beanbags.jpg" alt="兩隻娃寶窩在豆袋裡睡覺" /><span class="shelf-label">午睡角落</span>
       </div>
       <div class="shelf-item">
         <img src="/images/uploads/pearl-butterfly-detail.jpg" alt="娃裝上的珍珠蝴蝶項鍊特寫" /><span class="shelf-label">珠寶細節</span>
       </div>
       <div class="shelf-item">
-        <img src="/images/uploads/peach-strawhat.jpg" alt="倉鼠娃寶戴草莓帽坐在水蜜桃旁" /><span class="shelf-label">水蜜桃季</span>
+        <img src="/images/uploads/peach-strawhat.jpg" alt="娃寶戴草莓帽坐在水蜜桃旁" /><span class="shelf-label">水蜜桃季</span>
       </div>
-    </div>
-  </div>
-</section>
-
-<hr class="stitch stitch--wide" />
-
-<!-- ===== 圖文對稱區塊（.duo 統一版型） ===== -->
-<section class="section">
-  <div class="wrap duo reveal">
-    <div class="duo-copy">
-      <span class="eyebrow">娃裝配件</span>
-      <h2>精挑細選：<br />替娃寶張羅的生活感</h2>
-      <p class="lead">
-        有我們跑遍各地挑回來的選物，也有請合作的織女特別訂製的款式。替娃寶打理今天要穿什麼，是我們最珍惜的日常儀式感。
-      </p>
-      <div class="duo-actions">
-        <a routerLink="/shop" class="btn">替娃寶挑衣服 →</a>
-      </div>
-    </div>
-    <div class="duo-media">
-      <img src="/images/uploads/tweed-pearl-coat.jpg" alt="倉鼠娃寶穿著粗花呢珍珠外套" />
     </div>
   </div>
 </section>
@@ -210,7 +227,7 @@
 <pl-quote-block quote="「娃寶不是玩具，而是一個有角色的小生命。｜我們想陪你，一起把生活過得更溫柔一點。」" />
 
 <pl-strip-cta
-  title="「1、2、3、4、5……」還記得幫娃寶點名的那個自己嗎？"
+  title="「1、2、3、4……」還記得幫娃寶點名的那個自己嗎？"
   body="小時候那份認真的溫柔，我們把它好好收進了 PluPlu Land。這裡有個關於創立 PluPlu Land 的故事，想慢慢說給你聽。"
   label="閱讀品牌故事"
   link="/story"

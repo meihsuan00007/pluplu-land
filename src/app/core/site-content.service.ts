@@ -42,27 +42,26 @@ export interface SiteContent {
 
 /** 載入前的預設文案：與 content/site.json 目前內容一致，
  *  確保畫面不會在資料抓取完成前空白（等同舊版 HTML fallback 的角色）。
- *  ⚠️ 若後台改了文案，這份預設「不需要」跟著改——它只在載入的一瞬間出現。 */
+ *  ⚠️ 若後台改了文案，這份預設「不需要」跟著改：它只在載入的一瞬間出現。 */
 const DEFAULT_SITE: SiteContent = {
   home: {
     eyebrow: 'PluPlu Land · 軟綿綿的小天地',
     title: '在軟綿綿的小天地，遇見想陪你的娃寶。',
-    lead: 'はむにぎり倉鼠娃寶，和一件一件精心挑選的小衣裳。這裡沒有交易的距離感，只有陪伴的溫度。進來坐坐吧，我們不趕時間。',
+    lead: '軟綿綿的娃寶們，和一件一件精心挑選的小衣裳。這裡沒有交易的距離感，只有陪伴的溫度。進來坐坐吧，我們不趕時間。',
     carousel: [
       {
-        image: 'images/uploads/picnic-banner-2.jpg',
+        image: 'images/uploads/picnic-banner-3.jpg',
         eyebrow: 'PICNIC SEASON',
         title: '野餐季企劃新品登場',
         poster: true,
         link: '#picnic-plan',
       },
       {
-        image: 'images/uploads/tweed-pearl-coat.jpg',
-        eyebrow: 'NEW ARRIVAL',
-        title: '新品娃裝上架',
-        subtitle: '粗花呢配珍珠領，穿上的那一刻，娃寶優雅得像要去喝下午茶。',
-        link: 'shop.html',
-        theme: 'rose',
+        image: 'images/uploads/knit-banner-1.jpg',
+        eyebrow: 'KNIT COLLECTION',
+        title: '針織開襟衫溫柔上市',
+        poster: true,
+        link: '#knit-collection',
       },
     ],
     banners: [
@@ -97,7 +96,7 @@ const DEFAULT_SITE: SiteContent = {
     timeline: [
       {
         year: '小時候',
-        title: '「1、2、3、4、5……」',
+        title: '「1、2、3、4……」',
         body: '出門前，我們總會認真地幫每一個娃寶點名；不小心掉到地上，會心疼地趕快撿起來呼呼。那是我們最初學會的照顧，也是最純粹的愛。',
       },
       {
@@ -108,7 +107,7 @@ const DEFAULT_SITE: SiteContent = {
       {
         year: '相遇',
         title: '遇見圓滾滾的小傢伙',
-        body: '後來，遇見了はむにぎり倉鼠娃寶。圓滾滾的、有點呆又有點傲嬌，卻總是買不到合身的小衣服。於是我們開始四處尋找、認真挑選，也和合作的織女一起訂製，替這些小朋友張羅屬於他們的日常。PluPlu Land，就這樣開始了。',
+        body: '後來，遇見了はむにぎり娃寶。圓滾滾的、有點呆又有點傲嬌，卻總是買不到合身的小衣服。於是我們開始四處尋找、認真挑選，也和合作的織女一起訂製，替這些小朋友張羅屬於他們的日常。PluPlu Land，就這樣開始了。',
       },
       {
         year: '現在',

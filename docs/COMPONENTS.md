@@ -38,7 +38,7 @@
 | `pl-strip-cta` | `strip-cta.ts` | 每頁底部深色行動呼籲橫幅 | `title`/`body`/`label`/`link`/`external`/`hasIntro` |
 | `pl-quote-block` | `quote-block.ts` | 創辦人引言區 | `quote`（用全形「｜」指定換行）/`cite` |
 | `pl-steps` | `steps.ts` | 出貨前三步驟（驗貨→剪線頭→打結收尾，內容固定共用） | `title`/`lead`（story 與 shop 兩頁使用） |
-| `pl-cart-drawer` | `cart-drawer.ts` | 購物袋側欄（全站唯一，掛在 `app.ts` 根版型；清單＋數量加減＋一鍵複製明細＋LINE/IG/Threads 私訊鈕＋全站 Toast） | 無輸入，由 `CartService` 控制 |
+| `pl-cart-drawer` | `cart-drawer.ts` | 購物袋側欄（全站唯一，掛在 `app.ts` 根版型；清單＋數量加減＋清空購物袋二次確認＋一鍵複製明細＋LINE/IG/Threads 私訊鈕＋全站 Toast） | 無輸入，由 `CartService` 控制 |
 | `pl-icon-cart` / `pl-icon-ig` / `pl-icon-line` | `icons.ts` | 三個 SVG 圖示（唯一定義處） | 無 |
 
 ## 核心服務與工具（src/app/core/）

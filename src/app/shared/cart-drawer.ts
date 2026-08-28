@@ -5,6 +5,7 @@ import {
   HostListener,
   effect,
   inject,
+  signal,
   viewChild,
 } from '@angular/core';
 import { RouterLink } from '@angular/router';
@@ -58,6 +59,8 @@ import { KeepBrandPipe } from '../core/text';
                 </div>
               </div>
             }
+            <!-- 一鍵清空（低調文字按鈕，附二次確認防手滑） -->
+            <button type="button" class="cart-clear-btn" (click)="openConfirm()">清空購物袋</button>
           </div>
 
           <div class="cart-foot">
@@ -73,6 +76,25 @@ import { KeepBrandPipe } from '../core/text';
               <a class="cart-social cart-social--threads" [href]="THREADS_URL" target="_blank" rel="noopener" (click)="copyForSocial()">Threads私訊</a>
             </div>
             <a class="cart-buy-link" [href]="BUY_URL" target="_blank" rel="noopener">臺灣地區下單 →</a>
+          </div>
+        }
+
+        <!-- 清空購物袋的二次確認小視窗（蓋在側欄內） -->
+        @if (confirmOpen()) {
+          <div class="cart-confirm" (click)="confirmOpen.set(false)">
+            <div
+              class="cart-confirm-box"
+              role="alertdialog"
+              aria-modal="true"
+              aria-label="清空購物袋確認"
+              (click)="$event.stopPropagation()"
+            >
+              <p>確定要清空購物袋中的所有商品嗎？</p>
+              <div class="cart-confirm-actions">
+                <button class="cart-confirm-cancel" #confirmCancelBtn type="button" (click)="confirmOpen.set(false)">先留著</button>
+                <button class="cart-confirm-ok" type="button" (click)="confirmClear()">確定清空</button>
+              </div>
+            </div>
           </div>
         }
       </aside>
@@ -93,18 +115,38 @@ export class CartDrawer {
   readonly BUY_URL = BUY_URL;
 
   private closeBtn = viewChild<ElementRef<HTMLButtonElement>>('closeBtn');
+  private confirmCancelBtn = viewChild<ElementRef<HTMLButtonElement>>('confirmCancelBtn');
+
+  /** 清空購物袋的二次確認視窗開關 */
+  readonly confirmOpen = signal(false);
 
   constructor() {
-    // 開啟時鎖住頁面捲動＋把焦點移到關閉鈕（比照商品詳情視窗）
+    // 開啟時鎖住頁面捲動＋把焦點移到關閉鈕（比照商品詳情視窗）；
+    // 關閉時一併收起清空確認視窗，下次打開不會殘留
     effect(() => {
       const open = this.cart.drawerOpen();
       document.body.classList.toggle('cart-open', open);
       if (open) queueMicrotask(() => this.closeBtn()?.nativeElement.focus());
+      else this.confirmOpen.set(false);
     });
   }
 
   asset(path: string): string {
     return assetUrl(path);
+  }
+
+  /** 打開清空確認視窗，焦點移到「先留著」（預設選安全的那邊）。
+   *  用 setTimeout 等畫面先把視窗畫出來再對焦（queueMicrotask 會搶在渲染前執行、對不到焦） */
+  openConfirm(): void {
+    this.confirmOpen.set(true);
+    setTimeout(() => this.confirmCancelBtn()?.nativeElement.focus(), 50);
+  }
+
+  /** 二次確認後才真正清空；件數標籤歸零、側欄轉為空袋狀態 */
+  confirmClear(): void {
+    this.cart.clear();
+    this.confirmOpen.set(false);
+    this.cart.showToast('購物袋已清空');
   }
 
   price(n: number): string {
@@ -150,6 +192,11 @@ export class CartDrawer {
 
   @HostListener('document:keydown.escape')
   onEscape(): void {
+    // 逐層關閉：確認視窗開著就先關它，側欄留著
+    if (this.confirmOpen()) {
+      this.confirmOpen.set(false);
+      return;
+    }
     if (this.cart.drawerOpen()) this.cart.closeDrawer();
   }
 }

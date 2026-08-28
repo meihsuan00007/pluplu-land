@@ -602,6 +602,9 @@ pl-carousel + .section{ padding-top:60px; }
   max-width:600px;
   margin:0 auto 56px;
 }
+/* 區塊標題只在標點處換行（如「PluPlu的四位店員」整串不拆行）；
+   標題都是短句，keep-all 不會撐破版面 */
+.section-head h2{ word-break:keep-all; }
 .section-head .eyebrow{ justify-content:center; }
 .section-head .eyebrow::before{ display:none; }
 
@@ -734,16 +737,14 @@ a.product-photo-link{ display:block; }
   .product-grid{ grid-template-columns:1fr; }
 }
 
-/* 首頁商品推薦牆：4 欄明亮網格（Lativ 式） */
+/* 首頁商品推薦牆：4 欄明亮網格（Lativ 式）。
+   2026-08-28 起固定 4 款品項：平板直接收成 2×2、手機 1 欄，任何寬度都是整齊的滿列 */
 .product-grid--wall{
   grid-template-columns:repeat(4,1fr);
   gap:36px 20px;
 }
 .product-grid--wall .product-name{ font-size:16px; }
 @media (max-width:900px){
-  .product-grid--wall{ grid-template-columns:repeat(3,1fr); }
-}
-@media (max-width:760px){
   .product-grid--wall{ grid-template-columns:repeat(2,1fr); gap:28px 14px; }
 }
 
@@ -777,6 +778,14 @@ a.product-photo-link{ display:block; }
   font-size:clamp(20px,2.6vw,28px);
   color:var(--brown-deep);
   line-height:1.9;
+  /* 手機斷行優化（2026-08-26）：只在標點後換行、引號不落單，
+     「品，」「朋友。」這類字詞不會被擠成孤行 */
+  word-break:keep-all;
+  line-break:strict;
+}
+/* 特別窄的手機再縮一點字級，讓金句的每個語意段落都放得下一行 */
+@media (max-width:360px){
+  .quote-block blockquote{ font-size:18px; }
 }
 .quote-block cite{
   display:block;
@@ -972,6 +981,8 @@ a.product-photo-link{ display:block; }
 /* 最後一列不畫延伸線，但保留 grid 佔位（display:none 會讓文字欄跑進 1px 欄） */
 .timeline-row:last-child .timeline-line{ background:transparent; }
 .timeline-copy p{ color:var(--ink-soft); font-size:15px; }
+/* 時間軸小標（如「1、2、3、4……」）：只在標點後換行、下引號不落單 */
+.timeline-copy h3{ word-break:keep-all; line-break:strict; }
 
 /* ============ CONTACT ============ */
 .contact-card{
@@ -1722,6 +1733,76 @@ p.lead,
   word-break:keep-all;
 }
 .cart-line-remove:hover{ color:var(--rose); }
+/* 一鍵清空（低調文字按鈕，靠右對齊在清單最下方；點擊會先跳二次確認） */
+.cart-clear-btn{
+  align-self:flex-end;
+  border:0;
+  background:transparent;
+  color:var(--ink-soft);
+  font-size:12.5px;
+  cursor:pointer;
+  text-decoration:underline;
+  text-underline-offset:3px;
+  word-break:keep-all;
+  white-space:nowrap;
+  padding:2px 0;
+}
+.cart-clear-btn:hover{ color:var(--rose); }
+
+/* 清空購物袋的二次確認視窗（蓋在側欄面板內） */
+.cart-confirm{
+  position:absolute;
+  inset:0;
+  z-index:5;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:24px;
+  background:rgba(60, 42, 28, .35);
+}
+.cart-confirm-box{
+  width:100%;
+  max-width:300px;
+  background:var(--paper);
+  border-radius:14px;
+  padding:22px 20px 18px;
+  box-shadow:0 14px 40px rgba(0,0,0,.22);
+  text-align:center;
+}
+.cart-confirm-box p{
+  font-size:14.5px;
+  line-height:1.8;
+  color:var(--brown-deep);
+  word-break:keep-all;
+  margin-bottom:16px;
+}
+.cart-confirm-actions{
+  display:flex;
+  gap:10px;
+}
+.cart-confirm-actions button{
+  flex:1;
+  padding:9px 12px;
+  border-radius:999px;
+  font-size:13.5px;
+  letter-spacing:.04em;
+  cursor:pointer;
+  white-space:nowrap;
+  word-break:keep-all;
+  transition:filter .2s ease, background .2s ease;
+}
+.cart-confirm-cancel{
+  border:1px solid var(--line);
+  background:var(--paper);
+  color:var(--brown-deep);
+}
+.cart-confirm-cancel:hover{ background:var(--cream); }
+.cart-confirm-ok{
+  border:0;
+  background:var(--brown-deep);
+  color:var(--paper);
+}
+.cart-confirm-ok:hover{ filter:brightness(1.15); }
 
 /* --- 底部結單區 --- */
 .cart-foot{
