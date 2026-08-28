@@ -24,6 +24,9 @@ export interface StoreItem {
   status: 'available' | 'sold_out';
   body_included: boolean;
   image: string;
+  /** 商品詳情視窗輪播用的完整相簿（第一張＝主圖）。
+   *  由 scripts/sync-myship-gallery.py 從賣貨便同步、build-products-json.py 寫入，勿手改。 */
+  gallery?: string[];
   variants: StoreVariant[];
   description?: string | null;
   reminder?: string | null;

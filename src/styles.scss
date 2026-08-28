@@ -684,6 +684,9 @@ pl-carousel + .section{ padding-top:60px; }
   font-size:18px;
   color:var(--brown-deep);
   margin-bottom:6px;
+  /* 商品名稱優先不從詞中間斷行；真的一行放不下時仍會換行，不會撐破版面 */
+  word-break:keep-all;
+  overflow-wrap:break-word;
 }
 /* 商品卡價格（2026-08-25 起恢復顯示，主理人指定格式「NT$ 金額」；
    完售品項不輸出這行＝不標價，維持歷年作品展示的乾淨版面） */
@@ -1337,13 +1340,21 @@ body.cart-open{ overflow:hidden; }   /* 購物袋側欄開啟時同樣鎖住頁�
 /* 圖鑑版型（2026-08-13 主理人指定）：左欄照片固定 1:1 正方形＋微圓角，
    不論右欄文字多長都不被擠壓變形或裁切；右欄文字獨立捲動 */
 .modal-grid{ display:grid; grid-template-columns:1fr 1.05fr; align-items:start; }
+/* 相簿輪播（2026-08-28 主理人指定）：主圖 1:1 正方形固定不動，
+   下方縮圖列同樣 1:1，切換照片時版面完全不跳動 */
+.modal-gallery{
+  margin:22px 0 22px 22px;
+  min-width:0;
+  display:grid;
+  gap:10px;
+}
 .modal-media{
   position:relative;
   aspect-ratio:1/1;
-  margin:22px 0 22px 22px;
   border-radius:12px;
   overflow:hidden;
   background:var(--cream-deep);
+  touch-action:pan-y;   /* 直向捲動照常，左右滑動留給輪播 */
 }
 .modal-media img{
   width:100%; height:100%;
@@ -1351,13 +1362,74 @@ body.cart-open{ overflow:hidden; }   /* 購物袋側欄開啟時同樣鎖住頁�
   transition:opacity .25s ease; /* 款式連動換圖的淡入過渡 */
 }
 .modal-media .product-tape{ position:absolute; top:14px; }
+/* 左右箭頭：低調的半透明圓鈕，滑到照片上才變明顯 */
+.gallery-nav{
+  position:absolute; top:50%;
+  transform:translateY(-50%);
+  width:34px; height:34px;
+  display:flex; align-items:center; justify-content:center;
+  border:1px solid var(--line);
+  border-radius:50%;
+  background:rgba(255,253,248,.82);
+  color:var(--brown-deep);
+  font-size:20px; line-height:1;
+  cursor:pointer;
+  opacity:.7;
+  transition:opacity .2s ease, background .2s ease;
+}
+.gallery-nav:hover{ opacity:1; background:var(--paper); }
+.gallery-nav--prev{ left:10px; }
+.gallery-nav--next{ right:10px; }
+.gallery-count{
+  position:absolute; right:10px; bottom:10px;
+  font-family:var(--accent-lat);
+  font-size:11.5px; letter-spacing:.06em;
+  color:var(--brown-deep);
+  background:rgba(255,253,248,.82);
+  border-radius:999px;
+  padding:2px 9px;
+  word-break:keep-all;
+  white-space:nowrap;
+}
+/* 縮圖列：橫向捲動，作用中的那張加深邊框 */
+.modal-thumbs{
+  display:flex;
+  gap:8px;
+  overflow-x:auto;
+  scrollbar-width:thin;
+  padding-bottom:2px;
+}
+.modal-thumb{
+  flex:0 0 auto;
+  width:56px; height:56px;
+  padding:0;
+  border:1px solid var(--line);
+  border-radius:6px;
+  overflow:hidden;
+  background:var(--cream-deep);
+  cursor:pointer;
+  opacity:.72;
+  transition:opacity .2s ease, border-color .2s ease, box-shadow .2s ease;
+}
+.modal-thumb img{ width:100%; height:100%; object-fit:cover; display:block; }
+.modal-thumb:hover{ opacity:1; }
+.modal-thumb.is-active{
+  opacity:1;
+  border-color:var(--brown-deep);
+  box-shadow:inset 0 0 0 1px var(--brown-deep);
+}
 .modal-info{
   padding:36px 36px 32px;
   min-width:0;
   max-height:90vh;      /* 與面板同高上限：文字超出時自己出捲軸 */
   overflow-y:auto;
 }
-.modal-info h3{ font-size:22px; margin:8px 0 10px; }
+.modal-info h3{
+  font-size:22px; margin:8px 0 10px;
+  /* 商品名稱優先不從詞中間斷行；真的一行放不下時仍會換行，不會撐破版面 */
+  word-break:keep-all;
+  overflow-wrap:break-word;
+}
 /* 彈窗價格列（跟著選中的款式連動，2026-08-25 主理人指定）：
    min-height 保留一行高度，切到完售款式（內容留空）時版面不跳動 */
 .modal-price{
@@ -1430,10 +1502,23 @@ body.cart-open{ overflow:hidden; }   /* 購物袋側欄開啟時同樣鎖住頁�
   border-radius:0 3px 3px 0;
 }
 
+/* 視窗高度不夠時（筆電沒最大化、外接短螢幕）：面板改為整體可捲動，
+   否則左欄的縮圖列會被 max-height:90vh + overflow:hidden 切掉又捲不到 */
+@media (max-height:680px) and (min-width:761px){
+  .shop-modal-panel{ overflow-y:auto; }
+  .modal-info{ max-height:none; overflow-y:visible; }
+  .modal-gallery{ margin:16px 0 16px 16px; }
+  .modal-thumb{ width:46px; height:46px; }
+}
+
 @media (max-width:760px){
   .modal-grid{ grid-template-columns:1fr; }
   /* 手機：照片同樣固定 1:1 正方形，改為整面板捲動（避免小螢幕雙層捲軸） */
-  .modal-media{ aspect-ratio:1/1; margin:16px 16px 0; }
+  .modal-gallery{ margin:16px 16px 0; }
+  .modal-media{ aspect-ratio:1/1; }
+  /* 手機用滑的換照片為主，箭頭縮小讓出照片面積；縮圖也小一號 */
+  .gallery-nav{ width:30px; height:30px; font-size:18px; }
+  .modal-thumb{ width:48px; height:48px; }
   .modal-info{ padding:24px 22px 28px; max-height:none; overflow-y:visible; }
   .shop-modal-panel{ margin:3vh auto; max-height:94vh; width:calc(100% - 24px); overflow-y:auto; }
 }

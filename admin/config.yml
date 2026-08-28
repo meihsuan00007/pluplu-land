@@ -158,6 +158,11 @@ collections:
                   - { label: "售完", value: "sold_out" }
               - { label: "含娃寶本體（僅玩偶本體商品勾選）", name: "body_included", widget: "boolean", required: false, default: false }
               - { label: "商品照片", name: "image", widget: "image" }
+              - label: "詳情視窗相簿（輪播照片；由賣貨便同步腳本自動產生，通常不用手改）"
+                name: "gallery"
+                widget: "list"
+                required: false
+                field: { label: "照片", name: "image", widget: "image" }
               - label: "規格清單"
                 name: "variants"
                 widget: "list"

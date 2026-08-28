@@ -60,6 +60,19 @@ export function assetUrl(path: string): string {
   return '/' + path;
 }
 
+const PRODUCT_IMG_DIR = 'assets/images/products/';
+
+/** 商品相簿的縮圖版（彈窗縮圖列用）：assets/images/products/… → …/products/thumbs/…
+ *  小圖由 scripts/sync-myship-gallery.py 產生（200px）。萬一某張還沒產出，
+ *  模板的 onerror 會退回原圖，不會出現破圖。 */
+export function thumbUrl(path: string): string {
+  if (!path) return path;
+  const rel = path.replace(/^\//, '');
+  if (!rel.startsWith(PRODUCT_IMG_DIR)) return assetUrl(path);
+  return assetUrl(PRODUCT_IMG_DIR + 'thumbs/' + rel.slice(PRODUCT_IMG_DIR.length));
+}
+
+
 /** 舊版 .html 連結轉成 Angular 路由
  *（content/site.json 由後台編輯，裡面可能仍寫 hamu.html 這種舊格式） */
 export function routeFromLegacy(link: string | null | undefined): string {
