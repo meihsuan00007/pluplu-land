@@ -36,7 +36,7 @@ export class Shop {
   private location = inject(Location);
 
   readonly BUY_URL = BUY_URL;
-  readonly stripBody = `收到產品後發限動標記我們，下次消費可以折 ${SHARE_DISCOUNT} 唷。`;
+  readonly stripBody = `收到產品後發限動或 Threads 標記我們，下次消費可以折 ${SHARE_DISCOUNT} 唷。`;
 
   readonly catalog = this.products.storeCatalog;
   /** 使用者點選（或由網址 ?cat= 帶入）的分類鍵 */

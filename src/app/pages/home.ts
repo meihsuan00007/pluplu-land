@@ -2,6 +2,7 @@ import { NgTemplateOutlet, ViewportScroller } from '@angular/common';
 import { ChangeDetectionStrategy, Component, computed, effect, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { FEATURED_IDS, IG_URL, KNIT_IDS, SHARE_DISCOUNT, assetUrl, priceLabel, routeFromLegacy } from '../core/brand';
+import { pickLookbook } from '../core/lookbook';
 import { ProductModalService } from '../core/product-modal.service';
 import { PicnicItem, ProductsService, StoreItem } from '../core/products.service';
 import { Reveal } from '../core/reveal.directive';
@@ -16,7 +17,7 @@ import { QuoteBlock } from '../shared/quote-block';
 import { SectionHead } from '../shared/section-head';
 import { StripCta } from '../shared/strip-cta';
 
-/** 首頁：輪播 → 行銷 Banner → 限動活動 → 推薦牆 → 品牌理念 → 陳列櫃 → 圖文區 → 引言 → CTA */
+/** 首頁：輪播 → 行銷 Banner → 分享優惠 → 推薦牆 → 野餐／針織企劃 → 品牌理念 → Lookbook 小基地 → 引言 → CTA */
 @Component({
   selector: 'app-home',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -46,6 +47,10 @@ export class Home {
 
   /** 野餐企劃品項（含 Coming Soon 預告） */
   readonly picnic = this.products.picnicItems;
+
+  /** Lookbook 小基地：每次進首頁（重新整理）從照片庫隨機抽 6 張不重複的實拍照，
+   *  在同一次瀏覽中固定不變（切到別頁再回來會重抽一次，因為首頁會重新建立） */
+  readonly lookbook = pickLookbook(6);
 
   readonly home = computed(() => this.siteSvc.site().home);
   readonly slides = computed(() => this.home().carousel ?? []);

@@ -129,10 +129,10 @@
     <div class="campaign reveal">
       <div class="campaign-copy">
         <span class="eyebrow">SHARE &amp; SAVE</span>
-        <h2>發限動，折 {{ SHARE_DISCOUNT }}</h2>
+        <h2>分享實穿照，折 {{ SHARE_DISCOUNT }}</h2>
         <p>
-          收到娃寶或新衣後，拍張照發限時動態、標記 &#64;plupluland_tw，下次消費就折
-          {{ SHARE_DISCOUNT }}。讓更多人看見你家寶寶今天的可愛吧！
+          收到娃寶或新衣後，拍張實穿照發 IG 限動、貼文或 Threads，標記 &#64;plupluland_tw，下次消費就折
+          {{ SHARE_DISCOUNT }}（IG 與 Threads 各可領一次）。讓更多人看見你家寶寶今天的可愛吧！
         </p>
       </div>
       <div class="campaign-actions">
@@ -197,29 +197,16 @@
 
 <hr class="stitch stitch--wide" />
 
-<!-- ===== 陳列櫃裡的日常片刻 ===== -->
+<!-- ===== Lookbook 小基地：6 格照片每次重新整理隨機抽（照片庫在 core/lookbook.ts） ===== -->
 <section class="section">
   <div class="wrap">
-    <pl-section-head eyebrow="DISPLAY SHELF" title="陳列櫃裡的日常片刻" />
+    <pl-section-head eyebrow="LOOKBOOK" title="Lookbook 小基地" />
     <div class="shelf reveal">
-      <div class="shelf-item">
-        <img src="/images/uploads/wineglass-nightcap.jpg" alt="娃寶戴著藍色睡帽靠在酒杯旁" /><span class="shelf-label">晚安時光</span>
-      </div>
-      <div class="shelf-item">
-        <img src="/images/uploads/strawhat-trio.jpg" alt="三隻娃寶戴著草帽野餐" /><span class="shelf-label">野餐日</span>
-      </div>
-      <div class="shelf-item">
-        <img src="/images/uploads/capes-collection.jpg" alt="娃寶披肩收藏陳列" /><span class="shelf-label">披肩收藏</span>
-      </div>
-      <div class="shelf-item">
-        <img src="/images/uploads/sleepy-beanbags.jpg" alt="兩隻娃寶窩在豆袋裡睡覺" /><span class="shelf-label">午睡角落</span>
-      </div>
-      <div class="shelf-item">
-        <img src="/images/uploads/pearl-butterfly-detail.jpg" alt="娃裝上的珍珠蝴蝶項鍊特寫" /><span class="shelf-label">珠寶細節</span>
-      </div>
-      <div class="shelf-item">
-        <img src="/images/uploads/peach-strawhat.jpg" alt="娃寶戴草莓帽坐在水蜜桃旁" /><span class="shelf-label">水蜜桃季</span>
-      </div>
+      @for (photo of lookbook; track photo.src) {
+        <div class="shelf-item">
+          <img [src]="asset(photo.src)" [alt]="photo.alt" loading="lazy" /><span class="shelf-label">{{ photo.label }}</span>
+        </div>
+      }
     </div>
   </div>
 </section>

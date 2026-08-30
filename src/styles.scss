@@ -49,7 +49,7 @@
    新增共用元件時，請把它的 selector 加進這份清單。 */
 app-header, app-footer,
 pl-page-hero, pl-section-head, pl-strip-cta, pl-quote-block, pl-steps,
-pl-product-card, pl-buy-button, pl-line-button, pl-badge-real,
+pl-product-card, pl-buy-button, pl-line-button, pl-ig-button, pl-badge-real,
 pl-carousel, pl-product-modal, pl-cart-drawer,
 pl-icon-cart, pl-icon-ig, pl-icon-line{
   display:contents;
@@ -326,6 +326,15 @@ pl-carousel + .section{ padding-top:60px; }
 .duo--flip .duo-media{ order:-1; }
 .duo-copy .eyebrow{ margin-bottom:18px; }
 .duo-copy p.lead{ margin:20px 0 0; }
+/* 購物須知頁頭導言（2026-08-31 主理人指定）：套 keep-all 只在標點後換行，
+   手機閱讀時每個語意段落完整不破碎；line-break:strict 讓標點跟著前一個字走。
+   這是「長句內文不套 keep-all」通則的唯一例外：文案本身在 notice.html 用
+   零寬空格預留了最後一句的換行點，overflow-wrap:anywhere 只是極窄螢幕的保險，不會撐破版面。 */
+app-notice .page-hero p.lead{
+  word-break:keep-all;
+  line-break:strict;
+  overflow-wrap:anywhere;
+}
 .duo-actions{
   margin-top:32px;
   display:flex; gap:16px; flex-wrap:wrap; align-items:center;
@@ -999,21 +1008,32 @@ a.product-photo-link{ display:block; }
 @media (max-width:560px){
   .contact-card{ padding:28px 24px; }
 }
-/* 聯絡頁只剩一張卡片時：置中、限制寬度（表單已移除，改導 LINE／IG 私訊） */
+/* 聯絡頁只剩一張卡片時：置中、限制寬度（表單已移除，改導 LINE／IG 私訊）。
+   2026-08-31 主理人指定拓寬到 960px，與上方頁首版面視覺平衡；
+   說明文字另設閱讀寬度，卡片變寬時一行不會拉到難讀。 */
 .contact-card--solo{
-  max-width:560px;
+  max-width:960px;
   margin:0 auto;
 }
+.contact-card h3{ word-break:keep-all; }
 .contact-note{
   margin-top:14px;
   color:var(--ink-soft);
   font-size:16px;
   line-height:1.9;
+  max-width:640px;
   word-break:normal;
   line-break:strict;
 }
+/* 社群私訊膠囊按鈕列：IG（深棕）＋ LINE（綠）並排，手機不夠寬自動換行 */
+.contact-actions{
+  display:flex;
+  gap:14px;
+  flex-wrap:wrap;
+  margin-top:28px;
+}
 
-.contact-list{ display:flex; flex-direction:column; gap:22px; margin-top:28px; }
+.contact-list{ display:flex; flex-direction:column; gap:22px; margin-top:32px; }
 .contact-list a, .contact-list span{
   font-size:15px;
   overflow-wrap:anywhere;
@@ -1029,7 +1049,10 @@ a.product-photo-link{ display:block; }
   margin-bottom:4px;
 }
 .contact-list .value{ color:var(--brown-deep); }
-.contact-list .value:hover{ text-decoration:underline; }
+/* 底線只給真正的連結；純資訊文字（如客服時間）滑過不加底線、維持一般游標，
+   避免顧客誤以為可以點（2026-08-31 主理人指定） */
+.contact-list a.value:hover{ text-decoration:underline; }
+.contact-list span.value{ text-decoration:none; cursor:default; }
 
 .form-grid{ display:flex; flex-direction:column; gap:20px; }
 .form-grid label{
@@ -1098,6 +1121,25 @@ a.product-photo-link{ display:block; }
 .line-btn:hover{ background:#05A94A; color:#FFFFFF; }
 .line-btn svg{ width:18px; height:18px; flex:none; }
 .footer-links a.line-btn{ color:#FFFFFF; padding:6px 14px; font-size:12.5px; }
+
+/* ============ Instagram 深棕膠囊按鈕（pl-ig-button）============
+   與 .line-btn 完全相同的膠囊規格（padding、圓角、字級、icon 大小），
+   深棕底＋白色文字與 IG icon，兩顆並排時高度一致（聯絡頁社群私訊列）。 */
+.ig-btn{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  padding:8px 18px;
+  border-radius:999px;
+  background:var(--brown-deep);
+  color:#FFFFFF;
+  font-size:14px;
+  letter-spacing:.04em;
+  white-space:nowrap;
+  transition:background .25s ease;
+}
+.ig-btn:hover{ background:var(--ink); color:#FFFFFF; }
+.ig-btn svg{ width:18px; height:18px; flex:none; }
 
 /* ============ 賣貨便橘色膠囊按鈕 ============
    與 .line-btn 完全相同的膠囊規格（padding、圓角、字級、icon 大小），
@@ -1537,6 +1579,11 @@ body.cart-open{ overflow:hidden; }   /* 購物袋側欄開啟時同樣鎖住頁�
   padding:28px 32px;
 }
 .notice-card h3{ margin-bottom:10px; }
+/* 購物須知最後一張「先來聊聊」諮詢卡：整張置中、只放一顆 LINE 膠囊鈕（2026-08-31 主理人指定） */
+.notice-card--center{ text-align:center; }
+.notice-card--center .eyebrow::before{ display:none; }
+.notice-card--center .promo-intro{ max-width:520px; margin-left:auto; margin-right:auto; }
+.notice-actions{ display:flex; justify-content:center; margin-top:22px; }
 .notice-card ul{ list-style:none; }
 .notice-card li{
   position:relative;

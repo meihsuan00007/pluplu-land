@@ -13,7 +13,8 @@
 | `BUY_URL` | 7-11 賣貨便賣場網址 | 全站所有購買按鈕、購物車 icon、彈窗選購鈕 |
 | `LINE_URL` / `LINE_HANDLE` | LINE 加好友連結／帳號名 | 所有 LINE 按鈕 |
 | `IG_URL` / `IG_HANDLE` | Instagram 連結／帳號名 | 導覽列 icon、首頁活動區、聯絡頁 |
-| `SHARE_DISCOUNT_AMOUNT` | 「發限動」折扣金額（數字 30） | 首頁活動區、選品頁橫幅、購物須知，三處一起變 |
+| `SHARE_DISCOUNT_AMOUNT` | 「分享實穿照」折扣金額（數字 30；IG 限動／貼文或 Threads 擇一、每人限領一次） | 首頁活動區、選品頁橫幅、購物須知，三處一起變 |
+| `LOOKBOOK_POOL` / `pickLookbook()` | 首頁 Lookbook 小基地照片庫與隨機抽 6 張的邏輯（`core/lookbook.ts`） | 首頁 Lookbook 區塊；加照片只改這份清單 |
 | `FEATURED_IDS` | 首頁「大家的心頭好」排行（口水巾、眼鏡固定前兩名） | 首頁推薦牆 |
 | `money()` / `priceLabel()` | 金額格式 NT$ 1,234／商品卡價格標示（多規格不同價自動加「起」） | 選品卡、推薦牆、野餐專區的價格（完售品項不標價） |
 | `IG_DM_URL` / `THREADS_URL` | IG 私訊直達（ig.me）／Threads 帳號連結 | 購物袋側欄的私訊客服快捷鈕 |
@@ -28,7 +29,8 @@
 | `app-header` | `header.ts` | 全站導覽列（文字選單：娃衣選品／品牌故事／購物須知／聯絡我們＋手機漢堡選單、右上三顆圓 icon） | 無（內容寫死） |
 | `app-footer` | `footer.ts` | 全站頁尾（連結順序：品牌故事→購物須知→聯絡我們＋兩顆膠囊按鈕） | 無 |
 | `pl-buy-button` | `buy-button.ts` | 「前往賣貨便下單」按鈕，三種外觀 | `variant`: `hero`(頁首棕色實心)／`capsule`(頁尾橘膠囊)／`card`(商品卡玫瑰小鈕)、`label` |
-| `pl-line-button` | `line-button.ts` | LINE 綠色膠囊按鈕 | `label`（預設「加入 LINE 好友」，聯絡頁傳帳號名） |
+| `pl-line-button` | `line-button.ts` | LINE 綠色膠囊按鈕 | `label`（預設「加入 LINE 好友」） |
+| `pl-ig-button` | `ig-button.ts` | Instagram 深棕膠囊按鈕（與 LINE 鈕同規格，2026-08-31 新增；聯絡頁兩顆並排） | `label`（預設「追蹤 Instagram」） |
 | `pl-badge-real` | `badge-real.ts` | 「全實拍」標章（純文字＋虛線底線的說明標籤，不是按鈕） | `text`（預設「全實拍・零 AI」）、`onDark`（深色底用） |
 | `pl-product-card` | `product-card.ts` | 商品卡片（首頁心頭好／選品陳列架共用；2026-08-25 起顯示價格） | `data: ProductCardData`（`priceText` 有值才顯示價格，完售品項留空）、`showBuy`、`shopStyle`；`data.pid` 有值＝點卡片開詳情視窗 |
 | `pl-product-modal` | `product-modal.ts` | 商品詳情彈出視窗（全站唯一，掛在 `app.ts` 根版型）。定位是「作品圖鑑」：照片固定 1:1，無購買按鈕，不顯示現貨／預購／售完／特價狀態與出貨時程；2026-08-25 起標題下方顯示「跟著款式走」的價格（`variants[].price`，完售款式不顯示、版面高度保留不跳動）；2026-08-28 起主圖區是**相簿輪播**（`gallery` 欄位）：左右箭頭／下方縮圖列／鍵盤左右鍵／手機左右滑動都能換照片，點款式籤會跳到該款式的實拍照，滑到某款式的照片時款式籤與價格也會跟著切 | 無輸入，由 `ProductModalService` 控制 |
