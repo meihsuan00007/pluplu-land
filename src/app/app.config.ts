@@ -3,7 +3,7 @@ import {
   provideBrowserGlobalErrorListeners,
   provideZonelessChangeDetection,
 } from '@angular/core';
-import { provideRouter, withInMemoryScrolling } from '@angular/router';
+import { provideRouter, withInMemoryScrolling, withRouterConfig } from '@angular/router';
 
 import { routes } from './app.routes';
 
@@ -17,6 +17,9 @@ export const appConfig: ApplicationConfig = {
       // 換頁時回到頁面頂端、返回時回到原捲動位置（模擬傳統多頁網站的行為）；
       // anchorScrolling：讓 #picnic-plan 這類錨點連結能捲動到對應區塊
       withInMemoryScrolling({ scrollPositionRestoration: 'enabled', anchorScrolling: 'enabled' }),
+      // 站在同一頁再點一次導覽列也算一次「前往」：回到頁面頂端，
+      // 並讓選品頁把用網址列偷偷記著的分類／排序（?cat=、?sort=，見 shop.ts 的 syncUrl）重設回預設
+      withRouterConfig({ onSameUrlNavigation: 'reload' }),
     ),
   ],
 };

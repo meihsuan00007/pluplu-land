@@ -679,6 +679,55 @@ app-notice .page-hero p.lead{
   transition:transform .55s ease;
 }
 .product-card:hover .product-photo img{ transform:scale(1.05); }
+/* 卡片封面輪播（2026-08-31，選品陳列架）：照片橫向排成一列，整列平移切換；
+   每格自己裁切（overflow:hidden），滑鼠放大效果才不會從鄰格露出一條邊 */
+.card-track{
+  display:flex; width:100%; height:100%;
+  transition:transform .4s ease;
+}
+/* 只有真的會輪播的封面才提升成獨立圖層（首頁靜態卡與單圖卡不需要，省低階手機的記憶體） */
+.has-carousel .card-track{ will-change:transform; }
+.card-slide{ flex:0 0 100%; height:100%; overflow:hidden; background:var(--cream-deep); }
+.card-slide img{ width:100%; height:100%; object-fit:cover; }
+/* 左右箭頭沿用詳情視窗的 .gallery-nav 造型、縮小一號；桌機滑到卡片上才出現，觸控裝置常駐 */
+.product-photo .card-nav{ width:28px; height:28px; font-size:16px; opacity:0; z-index:2; }
+.product-card:hover .card-nav,
+.product-card:focus-within .card-nav{ opacity:.85; }
+/* 讀屏／鍵盤專用的隱藏元素（畫面看不到、Tab 得到、讀屏唸得到） */
+.sr-only{
+  position:absolute; width:1px; height:1px; padding:0; margin:-1px;
+  overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0;
+}
+/* 可開啟詳情的卡片：滑鼠是手指游標；鍵盤 Tab 到卡片裡的「查看詳情」隱藏鈕時，整張卡亮出焦點框 */
+.product-card.is-openable{ cursor:pointer; }
+.product-card:has(.card-open:focus-visible){ outline:2px solid var(--brown); outline-offset:6px; border-radius:12px; }
+.product-photo .card-nav:hover{ opacity:1; }
+@media (hover:none){ .product-photo .card-nav{ opacity:.8; } }
+.card-dots{
+  position:absolute; left:0; right:0; bottom:2px; z-index:2;
+  display:flex; justify-content:center; gap:0;
+  pointer-events:none;
+}
+/* 圓點看起來 7px，可點區其實是 22px 見方（手指才點得到，點偏不會誤開詳情視窗） */
+.card-dot{
+  width:22px; height:22px;
+  display:flex; align-items:center; justify-content:center;
+  background:none; border:0; padding:0;
+  cursor:pointer;
+  pointer-events:auto;
+}
+.card-dot::before{
+  content:"";
+  width:7px; height:7px;
+  border-radius:50%;
+  border:1px solid var(--brown-deep);
+  background:rgba(251,246,234,.85);
+  transition:background .25s ease, transform .25s ease;
+}
+.card-dot.is-active::before{ background:var(--brown-deep); transform:scale(1.25); }
+.product-photo .card-count{ font-size:10.5px; padding:2px 8px; z-index:2; }
+.product-tape{ z-index:2; }
+@media (prefers-reduced-motion: reduce){ .card-track{ transition:none; } }
 .product-tape{
   position:absolute; top:14px; left:14px;
   background:var(--rose);
@@ -1009,11 +1058,16 @@ a.product-photo-link{ display:block; }
   .contact-card{ padding:28px 24px; }
 }
 /* 聯絡頁只剩一張卡片時：置中、限制寬度（表單已移除，改導 LINE／IG 私訊）。
-   2026-08-31 主理人指定拓寬到 960px，與上方頁首版面視覺平衡；
-   說明文字另設閱讀寬度，卡片變寬時一行不會拉到難讀。 */
+   2026-08-31 主理人指定與購物須知的白色卡片完全同規格：
+   同樣的最大寬度（760px）、內距（28px 32px；窄手機 22px 20px）、置中，
+   兩頁切換時卡片左右邊界對得整整齊齊。改寬度請兩頁一起改。 */
 .contact-card--solo{
-  max-width:960px;
+  max-width:760px;
   margin:0 auto;
+  padding:28px 32px;
+}
+@media (max-width:560px){
+  .contact-card--solo{ padding:22px 20px; }
 }
 .contact-card h3{ word-break:keep-all; }
 .contact-note{
@@ -1304,6 +1358,44 @@ footer{
   border-color:var(--brown-deep);
   color:var(--cream);
 }
+/* 陳列架工具列（2026-08-31）：分類籤靠左、排序選單靠右；手機改上下堆疊置中 */
+.shelf-toolbar{
+  display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between;
+  gap:16px 24px;
+  margin-bottom:48px;
+}
+/* flex-basis 0：分類籤區塊先讓位給右邊的排序選單，籤在自己的區塊裡換行，排序才會真的跟籤同一列
+  （用 auto 的話籤的總寬度會先把整列吃滿，排序被擠到下一行） */
+.shelf-toolbar .filter-bar{ margin:0; max-width:none; justify-content:flex-start; flex:1 1 0; min-width:260px; }
+.sort-control{ display:inline-flex; align-items:center; gap:10px; flex:none; margin-left:auto; }
+.sort-label{
+  font-family:var(--accent-lat);
+  font-size:11.5px; letter-spacing:.15em;
+  color:var(--rose);
+  text-transform:uppercase;
+}
+/* 排序下拉：奶茶深棕描邊膠囊＋自繪小箭頭（原生 select，手機會叫出系統選單，最好操作） */
+.sort-select{
+  appearance:none; -webkit-appearance:none;
+  font-family:var(--sans-cjk);
+  font-size:13px; letter-spacing:.04em;
+  color:var(--brown-deep);
+  background:var(--paper) url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'><path d='M1 1l4 4 4-4' fill='none' stroke='%236B4A32' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/></svg>") no-repeat right 14px center;
+  background-size:10px 6px;
+  border:1px solid var(--brown);
+  border-radius:999px;
+  padding:7px 36px 7px 16px;
+  cursor:pointer;
+  white-space:nowrap; word-break:keep-all;
+  transition:border-color .25s ease, box-shadow .25s ease;
+}
+.sort-select:hover{ border-color:var(--brown-deep); }
+.sort-select:focus-visible{ outline:none; border-color:var(--brown-deep); box-shadow:0 0 0 3px rgba(107,74,50,.16); }
+@media (max-width:760px){
+  .shelf-toolbar{ flex-direction:column; align-items:stretch; margin-bottom:32px; }
+  .shelf-toolbar .filter-bar{ justify-content:center; }
+  .sort-control{ margin:0 auto; }
+}
 
 /* 卡片：售完與特價貼紙（沿用 product-tape 造型） */
 /* display:block＋vertical-align:top：button 預設為 inline-block，
@@ -1579,11 +1671,9 @@ body.cart-open{ overflow:hidden; }   /* 購物袋側欄開啟時同樣鎖住頁�
   padding:28px 32px;
 }
 .notice-card h3{ margin-bottom:10px; }
-/* 購物須知最後一張「先來聊聊」諮詢卡：整張置中、只放一顆 LINE 膠囊鈕（2026-08-31 主理人指定） */
-.notice-card--center{ text-align:center; }
-.notice-card--center .eyebrow::before{ display:none; }
-.notice-card--center .promo-intro{ max-width:520px; margin-left:auto; margin-right:auto; }
-.notice-actions{ display:flex; justify-content:center; margin-top:22px; }
+/* 購物須知最後一張「先來聊聊」諮詢卡的按鈕列：與卡片內容同一條左對齊線
+  （2026-08-31 主理人指定與上方規範卡片統一，靠左、小標細線照常顯示，勿改回置中） */
+.notice-actions{ display:flex; justify-content:flex-start; margin-top:22px; }
 .notice-card ul{ list-style:none; }
 .notice-card li{
   position:relative;

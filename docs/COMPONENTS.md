@@ -32,7 +32,9 @@
 | `pl-line-button` | `line-button.ts` | LINE 綠色膠囊按鈕 | `label`（預設「加入 LINE 好友」） |
 | `pl-ig-button` | `ig-button.ts` | Instagram 深棕膠囊按鈕（與 LINE 鈕同規格，2026-08-31 新增；聯絡頁兩顆並排） | `label`（預設「追蹤 Instagram」） |
 | `pl-badge-real` | `badge-real.ts` | 「全實拍」標章（純文字＋虛線底線的說明標籤，不是按鈕） | `text`（預設「全實拍・零 AI」）、`onDark`（深色底用） |
-| `pl-product-card` | `product-card.ts` | 商品卡片（首頁心頭好／選品陳列架共用；2026-08-25 起顯示價格） | `data: ProductCardData`（`priceText` 有值才顯示價格，完售品項留空）、`showBuy`、`shopStyle`；`data.pid` 有值＝點卡片開詳情視窗 |
+| `pl-product-card` | `product-card.ts` | 商品卡片（首頁心頭好／選品陳列架共用；2026-08-25 起顯示價格；2026-08-31 起 `images` 多張時封面可輪播） | `data: ProductCardData`（`priceText` 有值才顯示價格，完售品項留空；`images` 給整本相簿＝封面可左右翻、圓點／計數、手機滑動、鍵盤左右鍵，點卡片開視窗停在同一張）、`showBuy`、`shopStyle`；`data.pid` 有值＝點卡片開詳情視窗 |
+| （排序）`SORT_OPTIONS` / `sortItems()` | `core/sort.ts` | 選品陳列架排序（上架順序新舊、熱銷排行、價格高低；價格排序完售與未定價一律墊底），網址 `?sort=` 可帶 | 選品頁工具列 `.shelf-toolbar` 的下拉選單 |
+| `SALES_API_URL` / `SalesService` | `brand.ts`、`core/sales.service.ts` | 熱銷排行的銷量統計來源（主理人 Google 帳號的 Apps Script API，只回「商品名稱: 數量」；部署見 docs/SALES-API-SETUP.md；網址留空或讀失敗＝銷量全當 0） | 選品頁「熱銷排行」排序 |
 | `pl-product-modal` | `product-modal.ts` | 商品詳情彈出視窗（全站唯一，掛在 `app.ts` 根版型）。定位是「作品圖鑑」：照片固定 1:1，無購買按鈕，不顯示現貨／預購／售完／特價狀態與出貨時程；2026-08-25 起標題下方顯示「跟著款式走」的價格（`variants[].price`，完售款式不顯示、版面高度保留不跳動）；2026-08-28 起主圖區是**相簿輪播**（`gallery` 欄位）：左右箭頭／下方縮圖列／鍵盤左右鍵／手機左右滑動都能換照片，點款式籤會跳到該款式的實拍照，滑到某款式的照片時款式籤與價格也會跟著切 | 無輸入，由 `ProductModalService` 控制 |
 | `pl-carousel` | `carousel.ts` | 首頁大輪播（海報模式＋分割式版型、自動播 5 秒；兩種版型都整張滿版可點、不做實體按鈕也不疊光圈熱區，跳轉目的地看 site.json 的 link） | `slides`（來自 site.json 的 home.carousel） |
 | `pl-page-hero` | `page-hero.ts` | 內頁頁首（一律左對齊：短線小標＋標題＋導言；有 image＝左文右圖【五頁皆用此版】，無 image＝純文字備用。置中版已廢除勿重建） | `eyebrow`/`title`/`lead`/`image`/`alt`/`hasActions`；按鈕徽章用 `<ng-content>` 投影 |

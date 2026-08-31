@@ -19,17 +19,30 @@
       lead="「現貨」下單後 3–10 個工作天出貨；「預購」約 10–20 天，不接急單。售完的品項也留在架上，紀念它們曾經來過。"
     />
 
-    <div class="filter-bar">
-      @for (chip of filterChips(); track chip.key) {
-        <button
-          type="button"
-          class="filter-chip"
-          [class.is-active]="activeCat() === chip.key"
-          (click)="setCat(chip.key)"
-        >
-          {{ chip.label }}
-        </button>
-      }
+    <!-- 工具列：左邊分類籤、右邊排序選單（手機上下堆疊）。排序邏輯在 core/sort.ts -->
+    <div class="shelf-toolbar">
+      <div class="filter-bar">
+        @for (chip of filterChips(); track chip.key) {
+          <button
+            type="button"
+            class="filter-chip"
+            [class.is-active]="activeCat() === chip.key"
+            (click)="setCat(chip.key)"
+          >
+            {{ chip.label }}
+          </button>
+        }
+      </div>
+      <label class="sort-control">
+        <span class="sort-label">排序</span>
+        <!-- select 的 [value] 與 option 的 [selected] 刻意兩邊都綁：option 是 @for 動態長出來的，
+             只綁 select 的 value 有時會搶在 option 生成之前套用而選不到；兩邊都綁最穩，不是筆誤 -->
+        <select class="sort-select" aria-label="商品排序方式" [value]="sortKey()" (change)="onSortChange($event)">
+          @for (opt of sortOptions; track opt.key) {
+            <option [value]="opt.key" [selected]="opt.key === sortKey()">{{ opt.label }}</option>
+          }
+        </select>
+      </label>
     </div>
 
     <!-- id="shop-grid" 供 CSS 頂端對齊規則使用，勿移除 -->

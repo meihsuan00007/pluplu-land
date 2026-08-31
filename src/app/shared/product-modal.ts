@@ -200,8 +200,10 @@ export class ProductModal {
   }
 
   private resetFor(p: ModalView): void {
-    // focusImage：野餐專區點的是哪張卡片，就從相簿裡那張開始
-    const start = p.focusImage ? Math.max(0, p.gallery.indexOf(p.focusImage)) : 0;
+    // focusImage：野餐專區點的是哪張卡片、或陳列架卡片封面正停在哪張，就從相簿裡那張開始。
+    // 呼叫端給的可能是 JSON 原始路徑或已加上「/」的網址，兩邊都轉成同一種格式再比對。
+    const focus = p.focusImage ? assetUrl(p.focusImage) : null;
+    const start = focus ? Math.max(0, p.gallery.findIndex((g) => assetUrl(g) === focus)) : 0;
     this.index.set(start);
     this.mediaSrc.set(assetUrl(p.gallery[start] ?? p.image));
     this.mediaAlt.set(p.name);

@@ -25,6 +25,13 @@ export const THREADS_URL = 'https://www.threads.net/@plupluland_tw';
 export const SHARE_DISCOUNT_AMOUNT = 30;
 export const SHARE_DISCOUNT = `NT$${SHARE_DISCOUNT_AMOUNT}`;
 
+/** 銷量統計 API（Google Apps Script Web App，部署方式見 docs/SALES-API-SETUP.md）。
+ *  選品頁「熱銷排行」排序的資料來源；只回傳「商品名稱: 累計售出數量」的 JSON。
+ *  2026-08-31 主理人部署完成接上。讀失敗或逾時＝銷量全當 0、熱銷排行退化為上架新到舊。
+ *  品名歸戶規則在 core/sales-match.ts，對不上的品名清單見 docs/SALES-NAME-REVIEW.md。 */
+export const SALES_API_URL =
+  'https://script.google.com/macros/s/AKfycbwVMijzBRFtCaAWisDjEme-t5AArJuH0QoZfk_zeb-QKGTNJV4qmPJ-1hJ1zAIHr2IpZA/exec';
+
 /** 首頁「大家的心頭好」排行（對應 products-store.json 的商品編號；
  *  2026-08-28 主理人指定精簡為 4 款：野餐出遊套組（草帽）、好眠套組、眼鏡 4.5cm、牛仔吊帶褲） */
 export const FEATURED_IDS = ['18', '03', '29', '11'];
