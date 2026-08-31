@@ -23,28 +23,46 @@ function itemsOf(items: readonly StoreItem[], kind: CoverKind): StoreItem[] {
   }
 }
 
-/** 該方塊的照片庫：把符合的商品整本相簿攤平並去重（同一張照片只會被抽中一次的機率） */
+/** 一件商品可以拿來當封面的照片：**只用主圖**（相簿第一張），不從整本相簿抽。
+ *  2026-08-31 主理人指定：相簿裡有白底單品照、局部細節特寫這類不適合當封面的照片，
+ *  只認主圖就不會抽到它們。主圖沒填時退而用相簿第一張。 */
+function coverShotsOf(it: StoreItem): string[] {
+  const main = it.image || it.gallery?.[0];
+  return main ? [main] : [];
+}
+
+/** 該方塊的候選商品：屬於這個分類、而且真的有主圖可以當封面的品項 */
+function candidatesOf(items: readonly StoreItem[], kind: CoverKind): StoreItem[] {
+  return itemsOf(items, kind).filter((it) => coverShotsOf(it).length > 0);
+}
+
+/** 該方塊的封面照片庫（每件商品出一張主圖，重複的只留一張）。給測試與除錯看用。 */
 export function coverPool(items: readonly StoreItem[], kind: CoverKind): string[] {
   const pool = new Set<string>();
-  for (const it of itemsOf(items, kind)) {
-    const shots = it.gallery?.length ? it.gallery : [it.image];
-    for (const src of shots) {
-      if (src) pool.add(src);
-    }
+  for (const it of candidatesOf(items, kind)) {
+    for (const src of coverShotsOf(it)) pool.add(src);
   }
   return [...pool];
 }
 
-/** 從照片庫隨機抽一張當封面；照片庫是空的（資料還沒載入或該分類暫時沒商品）時回傳 null，
- *  由呼叫端沿用後台設定的預設封面。rand 可注入（測試用固定亂數）。 */
+/** 亂數轉成陣列索引（rand 剛好回傳 1 時不會超出範圍） */
+function indexOf(rand: () => number, length: number): number {
+  return Math.min(length - 1, Math.floor(rand() * length));
+}
+
+/** 隨機抽一張封面。**先平均抽一件商品、再從那件商品的封面照片裡抽一張**
+ *（2026-08-31 主理人指定：照片多的商品不會因此被抽中的機率變高，每件商品露臉機會均等）。
+ *  該分類暫時沒有可用商品時回傳 null，由呼叫端沿用後台設定的預設封面。
+ *  rand 可注入（測試用固定亂數）。 */
 export function pickCover(
   items: readonly StoreItem[],
   kind: CoverKind,
   rand: () => number = Math.random,
 ): string | null {
-  const pool = coverPool(items, kind);
-  if (!pool.length) return null;
-  return pool[Math.min(pool.length - 1, Math.floor(rand() * pool.length))] ?? null;
+  const candidates = candidatesOf(items, kind);
+  if (!candidates.length) return null;
+  const shots = coverShotsOf(candidates[indexOf(rand, candidates.length)]!);
+  return shots[indexOf(rand, shots.length)] ?? null;
 }
 
 /** 從方塊的連結判斷它是哪一種分類入口（後台把連結改掉時，封面來源自動跟著換）：
