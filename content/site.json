@@ -25,7 +25,7 @@
         "label_en": "New in",
         "title": "新品上市",
         "subtitle": "娃裝新朋友，陸續報到中",
-        "link": "shop.html"
+        "link": "/shop?sort=new"
       },
       {
         "image": "images/uploads/cuddle-closeup.jpg",

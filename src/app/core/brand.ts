@@ -47,6 +47,9 @@ export const HANDMADE_CAT_KEY = 'handmade';
 export const HANDMADE_CAT_LABEL = '織女手作系列';
 export const HANDMADE_TAG = '織女手工系列';
 
+/** 「配件小物」正式分類的鍵（首頁「配件專區」方塊導流與隨機封面取樣共用） */
+export const ACCESSORY_CAT_KEY = 'accessory';
+
 /** 金額顯示格式：NT$ 1,234。 */
 export function money(n: number): string {
   return 'NT$ ' + Number(n).toLocaleString('zh-Hant-TW');

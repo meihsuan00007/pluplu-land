@@ -2,6 +2,7 @@ import { NgTemplateOutlet, ViewportScroller } from '@angular/common';
 import { ChangeDetectionStrategy, Component, computed, effect, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { FEATURED_IDS, IG_URL, KNIT_IDS, SHARE_DISCOUNT, assetUrl, priceLabel, routeFromLegacy } from '../core/brand';
+import { CoverKind, coverKindOf, pickCover } from '../core/covers';
 import { pickLookbook } from '../core/lookbook';
 import { ProductModalService } from '../core/product-modal.service';
 import { PicnicItem, ProductsService, StoreItem } from '../core/products.service';
@@ -17,7 +18,9 @@ import { QuoteBlock } from '../shared/quote-block';
 import { SectionHead } from '../shared/section-head';
 import { StripCta } from '../shared/strip-cta';
 
-/** 首頁：輪播 → 行銷 Banner → 分享優惠 → 推薦牆 → 野餐／針織企劃 → 品牌理念 → Lookbook 小基地 → 引言 → CTA */
+/** 首頁區塊順序（2026-08-31 主理人指定的 10 個區塊，由上而下）：
+ *  1 頂部輪播 → 2 創辦人引言 → 3 三大分類入口方塊 → 4 分享優惠橫幅 → 5 Lookbook 小基地
+ *  → 6 品牌情境標語 → 7 大家的心頭好 → 8 野餐季企劃 → 9 秋日針織企劃 → 10 品牌故事引導。 */
 @Component({
   selector: 'app-home',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -54,7 +57,25 @@ export class Home {
 
   readonly home = computed(() => this.siteSvc.site().home);
   readonly slides = computed(() => this.home().carousel ?? []);
-  readonly banners = computed(() => (this.home().banners ?? []).slice(0, 3));
+  /** 這次瀏覽已經抽到的封面（抽過就記住）。後台文案與商品目錄是分兩批載入的，
+   *  沒有記住的話顧客眼前的封面可能會再被換掉一次；重新整理（首頁重新建立）才重抽。 */
+  private readonly picked = new Map<CoverKind, string>();
+
+  /** 三大分類入口方塊（新品上市／織女手作系列／配件專區）。
+   *  封面照片每次重新整理隨機換一張：從該方塊對應分類的商品相簿裡抽（邏輯在 core/covers.ts）。
+   *  商品資料還沒載入完、或該分類暫時沒有照片時，沿用後台 site.json 設定的預設封面。 */
+  readonly banners = computed(() => {
+    const base = (this.home().banners ?? []).slice(0, 3);
+    const items = this.products.storeCatalog()?.items;
+    if (!items?.length) return base;
+    return base.map((b) => {
+      const kind = coverKindOf(b.link);
+      const cover = this.picked.get(kind) ?? pickCover(items, kind);
+      if (!cover) return b;
+      this.picked.set(kind, cover);
+      return { ...b, image: cover };
+    });
+  });
 
   /** 推薦牆「大家的心頭好」：從選品目錄取真實商品，
    *  排行順序由 core/brand.ts 的 FEATURED_IDS 決定（2026-08-28 起固定 4 款，前兩名掛 TOP 貼紙）。 */

@@ -58,11 +58,11 @@ collections:
                 widget: "list"
                 summary: "{{title}}"
                 fields:
-                  - { label: "Banner 圖片", name: "image", widget: "image" }
+                  - { label: "Banner 圖片（只在商品資料載入前顯示：正式封面會從該分類的商品照片隨機抽一張）", name: "image", widget: "image" }
                   - { label: "英文小標籤（例如：New in）", name: "label_en", widget: "string", required: false }
                   - { label: "標題（例如：新品上市）", name: "title", widget: "string" }
                   - { label: "副標說明", name: "subtitle", widget: "string", required: false }
-                  - { label: "點擊連結（例如：shop.html；要直接跳到選品的某個分類可填 /shop?cat=handmade 織女手作系列、/shop?cat=accessory 配件小物）", name: "link", widget: "string", required: false }
+                  - { label: "點擊連結（例如：/shop?sort=new 新品上市；要直接跳到選品的某個分類可填 /shop?cat=handmade 織女手作系列、/shop?cat=accessory 配件小物）", name: "link", widget: "string", required: false }
           - { label: "品牌故事頁", name: "story_page", widget: "object", fields: [
               { label: "小標籤", name: "eyebrow", widget: "string" },
               { label: "主標題（可用全形｜指定換行位置）", name: "title", widget: "string" },

@@ -1,6 +1,140 @@
 <!-- ===== 頂部大輪播（內容可在後台「首頁」編輯） ===== -->
 <pl-carousel [slides]="slides()" />
 
+<!-- ===== 創辦人引言（緊接輪播；署名由 pl-quote-block 預設帶出 PluPlu Land 創辦人）===== -->
+<pl-quote-block quote="「娃寶不是玩具，而是一個有角色的小生命。｜我們想陪你，一起把生活過得更溫柔一點。」" />
+
+<!-- ===== 三大分類入口方塊：左大圖＋右二疊圖（新品上市／織女手作系列／配件專區）=====
+     文字與連結在後台「首頁」編輯；封面照片每次重新整理從該分類的商品相簿隨機抽一張
+    （邏輯在 core/covers.ts，後台設定的圖片是資料還沒載入完時的預設封面）。
+     「新品上市」連 /shop?sort=new：到選品頁會捲到陳列架並自動切成「上架順序：由新到舊」。 -->
+<section class="section">
+  <div class="wrap">
+    <div class="promo-grid reveal">
+      @for (b of banners(); track $index) {
+        @if (isExternal(b.link)) {
+          <!-- 後台若填外部網址（如 IG 貼文），開新分頁 -->
+          <a [href]="b.link" target="_blank" rel="noopener" class="promo-item" [class.promo-item--tall]="$index === 0">
+            <ng-container *ngTemplateOutlet="promoInner; context: { b }" />
+          </a>
+        } @else {
+          <!-- 連結可帶 ?cat=分類鍵，導到選品頁時自動切到指定分類（如織女手作系列、配件小物） -->
+          <a
+            [routerLink]="route(b.link)"
+            [queryParams]="routeQuery(b.link)"
+            class="promo-item"
+            [class.promo-item--tall]="$index === 0"
+          >
+            <ng-container *ngTemplateOutlet="promoInner; context: { b }" />
+          </a>
+        }
+      }
+    </div>
+    <ng-template #promoInner let-b="b">
+      <img [src]="asset(b.image)" [alt]="b.title" loading="lazy" />
+      <div class="promo-copy">
+        @if (b.label_en) {
+          <span class="promo-more">{{ b.label_en }}</span>
+        }
+        <h3>{{ b.title }}</h3>
+        @if (b.subtitle) {
+          <p>{{ b.subtitle }}</p>
+        }
+      </div>
+    </ng-template>
+  </div>
+</section>
+
+<!-- ===== 社群分享行銷活動公告（折扣金額由 core/brand.ts 統一設定） ===== -->
+<section class="section" style="padding-top:0;">
+  <div class="wrap">
+    <div class="campaign reveal">
+      <div class="campaign-copy">
+        <span class="eyebrow">SHARE &amp; SAVE</span>
+        <h2>分享實穿照，折 {{ SHARE_DISCOUNT }}</h2>
+        <p>
+          收到娃寶或新衣後，拍張實穿照發 IG 限動、貼文或 Threads，標記 &#64;plupluland_tw，下次消費就折
+          {{ SHARE_DISCOUNT }}（IG 與 Threads 各可領一次）。讓更多人看見你家寶寶今天的可愛吧！
+        </p>
+      </div>
+      <div class="campaign-actions">
+        <a class="btn solid icon-link" [href]="IG_URL" target="_blank" rel="noopener"><pl-icon-ig />追蹤 Instagram</a>
+        <pl-line-button />
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Lookbook 小基地：6 格照片每次重新整理隨機抽（照片庫在 core/lookbook.ts） =====
+     padding-top:0＝與上方優惠橫幅維持 100px 的緊貼節奏（改版前「分類方塊→優惠→下一區」就是這個間距），
+     再往下的區塊才回到全站標準的 200px＋stitch 分隔線 -->
+<section class="section" style="padding-top:0;">
+  <div class="wrap">
+    <pl-section-head eyebrow="LOOKBOOK" title="Lookbook 小基地" />
+    <div class="shelf reveal">
+      @for (photo of lookbook; track photo.src) {
+        <div class="shelf-item">
+          <img [src]="asset(photo.src)" [alt]="photo.alt" loading="lazy" /><span class="shelf-label">{{ photo.label }}</span>
+        </div>
+      }
+    </div>
+  </div>
+</section>
+
+<hr class="stitch stitch--wide" />
+
+<!-- ===== 品牌理念（文案可在後台「首頁」編輯） ===== -->
+<section class="section">
+  <div class="wrap">
+    <pl-section-head [eyebrow]="home().eyebrow" [title]="home().title" [lead]="home().lead" />
+    <div class="value-row">
+      <div class="value-item reveal">
+        <span class="value-num">01 ・ 陪伴</span>
+        <h3>替娃寶佈置生活</h3>
+        <p style="color:var(--ink-soft);margin-top:10px;">
+          換裝、拍照、佈置一個小角落。每一次打理娃寶，都是把日子過軟一點的溫柔練習。
+        </p>
+      </div>
+      <div class="value-item reveal">
+        <span class="value-num">02 ・ 微型</span>
+        <h3>一個有角色的小生命</h3>
+        <p style="color:var(--ink-soft);margin-top:10px;">
+          娃寶不是物品，是值得被取名字、被好好稱呼的「小朋友」。
+        </p>
+      </div>
+      <div class="value-item reveal">
+        <span class="value-num">03 ・ 真實</span>
+        <h3>堅持全實拍，零 AI</h3>
+        <p style="color:var(--ink-soft);margin-top:10px;">
+          每一件衣服、每一個配件，都由娃寶親自實穿拍攝，絕不使用 AI
+          生成照片。想把最真實、沒有誤差的穿搭質感，交給每一位陪伴娃寶的主人。
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="stitch stitch--wide" />
+
+<!-- ===== 商品推薦牆「大家的心頭好」：真實商品，點卡片開詳情視窗 ===== -->
+<section class="section">
+  <div class="wrap">
+    <pl-section-head
+      eyebrow="RECOMMENDED"
+      title="大家的心頭好"
+      lead="這些是最常被抱回家的娃寶與小衣裳，說不定，你的緣分就在裡面。"
+    />
+    <div class="product-grid product-grid--wall">
+      @if (!featured().length) {
+        <div class="shop-fallback">商品資料載入中……若一直沒有出現，請重新整理頁面。</div>
+      }
+      @for (card of featured(); track card.pid) {
+        <pl-product-card [data]="card" />
+      }
+    </div>
+  </div>
+</section>
+
 <!-- ===== 野餐企劃專區（輪播海報「前往野餐」跳到這裡；資料在後台「野餐企劃品項」編輯）=====
      store_id 有值＝既有選品（點卡片開選品詳情視窗）；
      Coming Soon 品項＝佔位圖＋停用購買按鈕「即將開賣」，點卡片開預告視窗 -->
@@ -84,134 +218,6 @@
     </div>
   </div>
 </section>
-
-<!-- ===== 行銷組合 Banner：左大圖＋右二疊圖（後台「首頁」可編輯） ===== -->
-<section class="section">
-  <div class="wrap">
-    <div class="promo-grid reveal">
-      @for (b of banners(); track $index) {
-        @if (isExternal(b.link)) {
-          <!-- 後台若填外部網址（如 IG 貼文），開新分頁 -->
-          <a [href]="b.link" target="_blank" rel="noopener" class="promo-item" [class.promo-item--tall]="$index === 0">
-            <ng-container *ngTemplateOutlet="promoInner; context: { b }" />
-          </a>
-        } @else {
-          <!-- 連結可帶 ?cat=分類鍵，導到選品頁時自動切到指定分類（如織女手作系列、配件小物） -->
-          <a
-            [routerLink]="route(b.link)"
-            [queryParams]="routeQuery(b.link)"
-            class="promo-item"
-            [class.promo-item--tall]="$index === 0"
-          >
-            <ng-container *ngTemplateOutlet="promoInner; context: { b }" />
-          </a>
-        }
-      }
-    </div>
-    <ng-template #promoInner let-b="b">
-      <img [src]="asset(b.image)" [alt]="b.title" loading="lazy" />
-      <div class="promo-copy">
-        @if (b.label_en) {
-          <span class="promo-more">{{ b.label_en }}</span>
-        }
-        <h3>{{ b.title }}</h3>
-        @if (b.subtitle) {
-          <p>{{ b.subtitle }}</p>
-        }
-      </div>
-    </ng-template>
-  </div>
-</section>
-
-<!-- ===== 社群分享行銷活動公告（折扣金額由 core/brand.ts 統一設定） ===== -->
-<section class="section" style="padding-top:0;">
-  <div class="wrap">
-    <div class="campaign reveal">
-      <div class="campaign-copy">
-        <span class="eyebrow">SHARE &amp; SAVE</span>
-        <h2>分享實穿照，折 {{ SHARE_DISCOUNT }}</h2>
-        <p>
-          收到娃寶或新衣後，拍張實穿照發 IG 限動、貼文或 Threads，標記 &#64;plupluland_tw，下次消費就折
-          {{ SHARE_DISCOUNT }}（IG 與 Threads 各可領一次）。讓更多人看見你家寶寶今天的可愛吧！
-        </p>
-      </div>
-      <div class="campaign-actions">
-        <a class="btn solid icon-link" [href]="IG_URL" target="_blank" rel="noopener"><pl-icon-ig />追蹤 Instagram</a>
-        <pl-line-button />
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ===== 商品推薦牆「大家的心頭好」：真實商品，點卡片開詳情視窗 ===== -->
-<section class="section" style="padding-top:0;">
-  <div class="wrap">
-    <pl-section-head
-      eyebrow="RECOMMENDED"
-      title="大家的心頭好"
-      lead="這些是最常被抱回家的娃寶與小衣裳，說不定，你的緣分就在裡面。"
-    />
-    <div class="product-grid product-grid--wall">
-      @if (!featured().length) {
-        <div class="shop-fallback">商品資料載入中……若一直沒有出現，請重新整理頁面。</div>
-      }
-      @for (card of featured(); track card.pid) {
-        <pl-product-card [data]="card" />
-      }
-    </div>
-  </div>
-</section>
-
-<hr class="stitch stitch--wide" />
-
-<!-- ===== 品牌理念（文案可在後台「首頁」編輯） ===== -->
-<section class="section">
-  <div class="wrap">
-    <pl-section-head [eyebrow]="home().eyebrow" [title]="home().title" [lead]="home().lead" />
-    <div class="value-row">
-      <div class="value-item reveal">
-        <span class="value-num">01 ・ 陪伴</span>
-        <h3>替娃寶佈置生活</h3>
-        <p style="color:var(--ink-soft);margin-top:10px;">
-          換裝、拍照、佈置一個小角落。每一次打理娃寶，都是把日子過軟一點的溫柔練習。
-        </p>
-      </div>
-      <div class="value-item reveal">
-        <span class="value-num">02 ・ 微型</span>
-        <h3>一個有角色的小生命</h3>
-        <p style="color:var(--ink-soft);margin-top:10px;">
-          娃寶不是物品，是值得被取名字、被好好稱呼的「小朋友」。
-        </p>
-      </div>
-      <div class="value-item reveal">
-        <span class="value-num">03 ・ 真實</span>
-        <h3>堅持全實拍，零 AI</h3>
-        <p style="color:var(--ink-soft);margin-top:10px;">
-          每一件衣服、每一個配件，都由娃寶親自實穿拍攝，絕不使用 AI
-          生成照片。想把最真實、沒有誤差的穿搭質感，交給每一位陪伴娃寶的主人。
-        </p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<hr class="stitch stitch--wide" />
-
-<!-- ===== Lookbook 小基地：6 格照片每次重新整理隨機抽（照片庫在 core/lookbook.ts） ===== -->
-<section class="section">
-  <div class="wrap">
-    <pl-section-head eyebrow="LOOKBOOK" title="Lookbook 小基地" />
-    <div class="shelf reveal">
-      @for (photo of lookbook; track photo.src) {
-        <div class="shelf-item">
-          <img [src]="asset(photo.src)" [alt]="photo.alt" loading="lazy" /><span class="shelf-label">{{ photo.label }}</span>
-        </div>
-      }
-    </div>
-  </div>
-</section>
-
-<pl-quote-block quote="「娃寶不是玩具，而是一個有角色的小生命。｜我們想陪你，一起把生活過得更溫柔一點。」" />
 
 <pl-strip-cta
   title="「1、2、3、4……」還記得幫娃寶點名的那個自己嗎？"

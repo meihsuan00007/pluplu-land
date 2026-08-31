@@ -111,12 +111,13 @@ export class Shop {
     void this.products.ensureStore();
     // 熱銷排行的銷量統計（Apps Script API；沒設定網址或讀失敗時銷量全當 0，頁面照常）
     void this.sales.ensureSales();
-    // 首頁方塊精準導流：/shop?cat=handmade（織女手作系列）、/shop?cat=accessory（配件小物）
+    // 首頁三大方塊精準導流：/shop?cat=handmade（織女手作系列）、/shop?cat=accessory（配件小物）、
+    // /shop?sort=new（新品上市：陳列架自動切成「上架順序：由新到舊」）
     const route = inject(ActivatedRoute);
     route.queryParamMap.pipe(takeUntilDestroyed()).subscribe((params) => {
       this.applyParams(params.get('cat'), params.get('sort'));
-      // 帶分類進來＝從首頁方塊導流來的，自動捲到選品陳列架讓顧客直接看到商品
-      if (params.get('cat')) this.scrollToShelf();
+      // 帶分類或排序進來＝從首頁方塊導流來的，自動捲到選品陳列架讓顧客直接看到商品
+      if (params.get('cat') || params.get('sort')) this.scrollToShelf();
     });
     // 分類／排序是用 syncUrl 直接改網址列（不經過路由器，才不會每換一次就被捲回頁面頂端），
     // 所以路由器並不知道目前有 ?cat=、?sort=。顧客在本頁再點一次導覽列「娃衣選品」時
