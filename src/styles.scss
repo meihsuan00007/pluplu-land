@@ -736,6 +736,9 @@ app-notice .page-hero p.lead{
 }
 .card-dot.is-active::before{ background:var(--brown-deep); transform:scale(1.25); }
 .product-photo .card-count{ font-size:10.5px; padding:2px 8px; z-index:2; }
+/* 相簿張數少（≤10 張）時桌機顯示圓點；同一組卡片在手機版改顯示這顆「第幾張／共幾張」，
+   窄卡片上十個圓點會擠成一排（切換規則在下方的手機版雙欄區塊） */
+.product-photo .card-count--narrow{ display:none; }
 .product-tape{ z-index:2; }
 @media (prefers-reduced-motion: reduce){ .card-track{ transition:none; } }
 .product-tape{
@@ -804,12 +807,10 @@ a.product-photo-link{ display:block; }
 @media (max-width:900px){
   .product-grid{ grid-template-columns:repeat(2,1fr); gap:32px 20px; }
 }
-@media (max-width:560px){
-  .product-grid{ grid-template-columns:1fr; }
-}
 
 /* 首頁商品推薦牆：4 欄明亮網格（Lativ 式）。
-   2026-08-28 起固定 4 款品項：平板直接收成 2×2、手機 1 欄，任何寬度都是整齊的滿列 */
+   2026-08-28 起固定 4 款品項：平板直接收成 2×2；
+   手機版（760px 以下）與其他商品區塊共用下方的「雙欄緊湊規格」，不再單獨設定 */
 .product-grid--wall{
   grid-template-columns:repeat(4,1fr);
   gap:36px 20px;
@@ -817,6 +818,119 @@ a.product-photo-link{ display:block; }
 .product-grid--wall .product-name{ font-size:16px; }
 @media (max-width:900px){
   .product-grid--wall{ grid-template-columns:repeat(2,1fr); gap:28px 14px; }
+}
+
+/* ============ 手機版商品陳列：雙欄緊湊版（2026-09-18 主理人指定）============
+   選品陳列架、首頁「大家的心頭好／野餐季企劃／秋日針織企劃」共用同一套規格，
+   手機上一律「一排兩件」（原本 560px 以下會收成一排一件，已取消）。
+   調校基準：390px（iPhone 12~16）為主，向下相容 375px（iPhone SE）與 360px（Android），
+   窄機下卡片不爆版、頁面不出現橫向捲軸。
+   卡片外觀維持品牌原本的無框樣式（奶油底直接放照片＋文字，主理人 2026-09-18 指定，
+   勿改成白底方塊或加陰影）。
+   文字一律「能不換行就不換行」：金額與幣別永遠同一行、標籤維持單行膠囊、
+   商品名稱最多兩行且超出才在結尾收「…」（主理人指定，勿改回單行截斷）。 */
+@media (max-width:760px){
+  .product-grid,
+  .product-grid--wall{
+    grid-template-columns:repeat(2,1fr);
+    gap:24px 10px;
+  }
+  /* 照片與文字的距離縮短，兩欄才有緊湊的陳列感。
+     圓角維持全站統一的 12px（不要在這裡改小：選品陳列架另有一條同名規則寫在檔案更後面，
+     在這裡設圓角只有首頁會變、選品頁不會變，兩邊反而不一致） */
+  .product-photo{ margin-bottom:9px; }
+
+  /* 商品名稱：最多兩行，超出結尾收「…」。
+     word-break:keep-all（繼承自基本設定）讓中文不從詞中間亂斷，一行放不下才換行；
+     min-height:3em 讓一行與兩行的卡片，價格與按鈕仍維持在同一水平線 */
+  .product-name,
+  .product-grid--wall .product-name{
+    font-size:15px;
+    line-height:1.5;
+    margin-bottom:5px;
+    min-height:3em;
+    display:-webkit-box;
+    -webkit-box-orient:vertical;
+    -webkit-line-clamp:2;
+    line-clamp:2;
+    overflow:hidden;
+  }
+
+  /* 金額：基本設定已是 white-space:nowrap（幣別與數字絕不拆行），這裡只調字級 */
+  .product-price{ font-size:14.5px; margin-bottom:5px; }
+
+  /* 左上角貼紙標籤：維持單行膠囊，過長時整條收「…」而不是斷成兩行 */
+  .product-tape{
+    top:8px; left:8px;
+    font-size:10px;
+    padding:3px 8px;
+    max-width:calc(100% - 16px);
+    white-space:nowrap;
+    word-break:keep-all;
+    overflow:hidden;
+    text-overflow:ellipsis;
+  }
+
+  /* 情境短文：兩行內收尾，同一排卡片高度才不會差太多。
+     選擇器一定要寫成「.product-card .product-note」：檔案最末的「全站內文字級規格化」
+     也設了 .product-note（16px/1.9）且寫在更後面，只寫 .product-note 會被它整條蓋掉 */
+  .product-card .product-note{
+    font-size:13px;
+    line-height:1.55;
+    display:-webkit-box;
+    -webkit-box-orient:vertical;
+    -webkit-line-clamp:2;
+    line-clamp:2;
+    overflow:hidden;
+  }
+
+  /* 購買按鈕：窄卡片放不下靠左的小膠囊，改成整排置中（文字仍是不斷行的一行） */
+  .product-buy{
+    align-self:stretch;
+    justify-content:center;
+    margin-top:10px;
+    padding:9px 10px;
+    font-size:13px;
+    letter-spacing:.04em;
+  }
+
+  /* 封面輪播控制縮一號；圓點在窄卡片上會擠成一排小點，手機改顯示「第幾張／共幾張」 */
+  .product-photo .card-nav{ width:26px; height:26px; font-size:15px; }
+  .card-dots{ display:none; }
+  .product-photo .card-count{ right:8px; bottom:8px; }
+  .product-photo .card-count--narrow{ display:block; }
+}
+
+/* 手機主力尺寸（360~560px，含 iPhone 12~16 的 390px）：字級與間距再收一號。
+   側邊留白用漸進式寬度（360px 時 20px、560px 時剛好回到全站的 32px），
+   這樣從手機放大到平板不會在某個寬度突然「畫面變寬、卡片反而變窄」 */
+@media (max-width:560px){
+  .wrap{ padding:0 clamp(20px, calc(6vw - 1.6px), 32px); }
+  .product-grid,
+  .product-grid--wall{ gap:22px 9px; }
+  .product-name,
+  .product-grid--wall .product-name{ font-size:14px; }
+  .product-price{ font-size:13.5px; }
+  .product-card .product-note{ font-size:12.5px; }
+  .product-buy{ font-size:12.5px; }
+}
+/* 極窄機（360px 以下的 Android 與舊款 iPhone SE）：只再收間距與按鈕，字級不再縮小 */
+@media (max-width:360px){
+  .product-grid,
+  .product-grid--wall{ gap:20px 8px; }
+  .product-buy{ font-size:12px; padding:9px 6px; letter-spacing:0; }
+}
+
+/* 觸控裝置的點擊回饋：按下去整張卡輕輕縮一下、放開回彈
+   （桌機維持原本「滑過去照片緩緩放大」的效果，不受影響） */
+@media (hover:none){
+  .product-card{ transition:transform .16s ease, opacity .16s ease; }
+  .product-card:active{ transform:scale(.97); opacity:.92; }
+}
+/* 顧客在系統設定裡關掉動態效果時，點擊只改透明度、不做縮放 */
+@media (prefers-reduced-motion: reduce){
+  .product-card{ transition:opacity .16s ease; }
+  .product-card:active{ transform:none; }
 }
 
 /* ============ SPLIT（50/50 雙欄，目前僅聯絡頁雙卡片使用）============

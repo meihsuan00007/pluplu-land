@@ -131,9 +131,13 @@ function preloadImage(src: string): Promise<void> {
                 ></button>
               }
             </div>
-          } @else {
-            <span class="gallery-count card-count" aria-hidden="true">{{ index() + 1 }} / {{ images().length }}</span>
           }
+          <!-- 「第幾張／共幾張」標示：相簿超過 10 張時（沒有圓點）任何螢幕都顯示；
+              10 張以內只在手機版顯示（手機版雙欄的窄卡片放不下一排圓點，圓點由 CSS 隱藏），
+              兩種情況的切換交給 CSS 的 .card-count--narrow，不需要在程式裡判斷螢幕寬度 -->
+          <span class="gallery-count card-count" [class.card-count--narrow]="showDots()" aria-hidden="true"
+            >{{ index() + 1 }} / {{ images().length }}</span
+          >
         }
       </div>
       <div class="product-name">{{ data().name | keepBrand }}</div>
