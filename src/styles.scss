@@ -58,6 +58,9 @@ pl-icon-cart, pl-icon-ig, pl-icon-line{
 /* 防橫向跑版用 clip 而非 hidden：overflow-x:hidden 會把 html/body 變成捲動容器，
    使 .site-nav 的 position:sticky 失效（導覽列捲動時黏不住頂端）；clip 只裁切不產生捲動容器 */
 html{ scroll-behavior:smooth; overflow-x:hidden; overflow-x:clip; }  /* 舊瀏覽器不認識 clip 時退回 hidden（防跑版優先） */
+/* iOS Safari 橫放或某些情況會自動把文字放大，會讓「一句一行」的金句這類精算過的版面掉行。
+   100% ＝ 維持我們設定的字級（使用者自己在系統裡調整字級大小不受影響） */
+html{ -webkit-text-size-adjust:100%; text-size-adjust:100%; }
 
 body{
   background:var(--cream);
@@ -375,7 +378,12 @@ app-notice .page-hero p.lead{
 /* ============ HERO CAROUSEL（首頁大輪播）============
    外層 .carousel-shell > .wrap 讓輪播左右邊界與下方
    Banner 組合、商品網格的內容寬度（--wrap 內縮 32px）完全對齊。
-   圖片比例：桌機 21:9、≤760px 為 4:3（object-fit:cover 置中裁切）。 */
+   圖片比例：桌機 21:9；≤760px 只有「分割式版型」才收成 4:3，
+   **清一色海報圖的輪播（.carousel--poster-only）維持 21:9**，
+   整張 Banner 在手機上完整露出、左右不被裁掉（2026-09-18 主理人指定，
+   實際套用的比例就是上面 .carousel-track 的那一個，改比例只要改那一處）。
+   注意：海報圖請一律做成與 .carousel-track 相同的 21:9（目前兩張分別是
+   2100×900 與 1600×686，像素不同但比例一樣），比例不同的圖在手機上仍會被裁切。 */
 .carousel-shell{
   padding:16px 0 0; /* 導覽列與輪播的間距（2026-08-17 縮為 60%） */
 }
@@ -507,7 +515,26 @@ app-notice .page-hero p.lead{
   transform:scale(1.2);
 }
 @media (max-width:760px){
-  .carousel-track{ aspect-ratio:4/3; }
+  /* 分割式版型（上文下圖）才需要 4:3 的高度；海報式維持原比例整張露出 */
+  .carousel:not(.carousel--poster-only) .carousel-track{ aspect-ratio:4/3; }
+  /* 海報圖不再靠左裁切（比例已對齊，整張都看得到），置中最保險 */
+  .carousel--poster-only .carousel-slide--poster img{ object-position:center; }
+  /* Banner 在手機上變矮之後，疊在圖上的左右箭頭會剛好蓋住海報標題的第一個字
+     （野餐海報的「新」、針織海報的「溫」），與「整張完整露出」的要求衝突，
+     所以手機版的海報輪播把箭頭收起來、圓點移到圖片下方，圖面完全不被遮住。
+     切換方式仍在：點圓點，或等 5 秒自動換下一張（2026-09-18 主理人指定）。
+     桌機不受影響，箭頭照舊。 */
+  .carousel--poster-only .carousel-arrow{ display:none; }
+  .carousel--poster-only .carousel-dots{
+    position:static;
+    margin-top:12px;
+  }
+  /* 圓點移到奶油色頁面底色上（不再疊在照片上），改成實心描邊才看得清楚 */
+  .carousel--poster-only .carousel-dot{
+    background:var(--paper);
+    border-color:var(--brown);
+  }
+  .carousel--poster-only .carousel-dot.is-active{ background:var(--brown-deep); }
   /* 分割式版型：手機改上文下圖、隱藏副標 */
   .carousel-slide--split{
     grid-template-columns:1fr;
@@ -671,7 +698,12 @@ app-notice .page-hero p.lead{
 /* 卡片改為上下伸縮結構：標題／價格／短文在上，.card-fill 吸收多餘空間，
    購買按鈕靠底對齊，同一排卡片不論標題幾行，按鈕都在同一水平線
   （選品陳列架的 .shop-card 整卡可點、無按鈕，稍後的規則會蓋回 display:block） */
-.product-card{ position:relative; display:flex; flex-direction:column; }
+/* min-width:0 一定要直接寫在 .product-card 上（不能只靠下方的 .product-grid > * 規則）：
+   首頁推薦牆的格子成員其實是 <pl-product-card>（display:contents，本身沒有版面盒），
+   min-width 落在它身上等於沒作用，真正的格子是裡面這個 .product-card。
+   少了這行，Safari（iPhone）會用「商品名稱整串不斷行的寬度」當格子的最小寬度，
+   雙欄就會被撐破、右邊那張卡被螢幕邊緣切掉（2026-09-18 修）。 */
+.product-card{ position:relative; display:flex; flex-direction:column; min-width:0; }
 .card-fill{ flex:1 1 auto; min-height:0; }
 /* 全站商品圖統一規格：1:1 正方形＋微圓角 12px＋cover 置中裁切，
    娃寶陳列區、大家的心頭好、選品陳列架共用，不要在個別區塊覆寫比例 */
@@ -847,6 +879,9 @@ a.product-photo-link{ display:block; }
   .product-grid--wall .product-name{
     font-size:15px;
     line-height:1.5;
+    /* anywhere（不是 break-word）：只有 anywhere 會讓瀏覽器把「這串字可以斷開」
+       算進格子的最小寬度，Safari 才不會為了塞下整串商品名而把雙欄撐破 */
+    overflow-wrap:anywhere;
     margin-bottom:5px;
     min-height:3em;
     display:-webkit-box;
@@ -968,9 +1003,24 @@ a.product-photo-link{ display:block; }
   word-break:keep-all;
   line-break:strict;
 }
-/* 特別窄的手機再縮一點字級，讓金句的每個語意段落都放得下一行 */
-@media (max-width:360px){
-  .quote-block blockquote{ font-size:18px; }
+/* 手機版金句（2026-09-18 主理人指定）：兩句各自維持完整一行，
+   絕不可讓「生命。」「點。」這種兩三個字掉到下一行變成孤行。
+   兩個手段一起用：
+   （1）左右留白收成 12px（金句是置中短句，貼近邊緣不影響閱讀），先騰出寬度；
+   （2）字級跟著螢幕寬度縮放，上限 20px（與桌機同級，寬螢幕不會被放大）。
+   算式由實測而來：目前這句話最寬的一行需要「字級 × 20.6」的寬度
+   （20 個全形字＋字距），可用寬度是 100vw − 24px，
+   4.6vw − 1.1px 等於只用掉其中的 95%，留 5% 給不同手機的字型差異。
+   ⚠️ 這個金句版型被**首頁創辦人引言與品牌故事頁引言兩處共用**（pl-quote-block），
+   改任一頁的文案時，**每一行都要維持在 20 個字以內**（以全形「｜」指定換行點），
+   字數變多就要把 4.6vw 再調小，否則會靜默地又出現孤行；
+   改完請在 360／375／390px 三個寬度，兩頁各看一次。 */
+@media (max-width:560px){
+  .quote-block{ padding-left:12px; padding-right:12px; }
+  .quote-block blockquote{
+    font-size:min(20px, calc(4.6vw - 1.1px));
+    line-height:1.85;
+  }
 }
 .quote-block cite{
   display:block;

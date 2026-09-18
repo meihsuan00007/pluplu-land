@@ -90,6 +90,14 @@
 
 `.card-count--narrow` 是手機專用的張數標示（模板固定渲染、由 CSS 決定何時顯示），改動 `product-card.ts` 時勿誤刪。
 
+### ⚠️ 雙欄不能被撐破的關鍵一行（2026-09-18 修）
+
+`.product-card` 一定要保留 `min-width:0`。原因：首頁推薦牆與選品陳列架的格子成員其實是 `<pl-product-card>`，
+它在 styles.scss 頂端被設為 `display:contents`（不產生版面盒），所以 `.product-grid > *{min-width:0}` 這條通用防護**對它無效**，
+真正的格子是元件裡面的 `.product-card`。少了這行，Safari（iPhone）會拿「商品名稱整串不斷行的寬度」當格子的最低寬度，
+雙欄就會被撐破、右邊那張卡被螢幕邊緣切掉（首頁野餐／針織區塊因為卡片是直接寫在 home.html，不受影響，所以當時只有推薦牆壞掉）。
+手機版 `.product-name` 的 `overflow-wrap:anywhere` 是第二道保險（只有 `anywhere` 會被算進「最小寬度」，`break-word` 不會）。
+
 ## 新增共用元件時的規則
 
 1. 檔案放 `src/app/shared/`，selector 用 `pl-` 前綴。

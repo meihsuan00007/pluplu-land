@@ -2,6 +2,7 @@ import {
   ChangeDetectionStrategy,
   Component,
   DestroyRef,
+  computed,
   effect,
   inject,
   input,
@@ -16,7 +17,8 @@ import { TitleBreakPipe } from '../core/text';
 /** 首頁大輪播：淡入切換、自動播放（5 秒）、圓點與左右箭頭、滑鼠移入暫停。
  *  兩種版型（不論哪一種，整張 Banner 皆為連結，點任何位置都會跳轉，不另做實體按鈕、
  *  不疊任何光圈熱區；跳轉目的地由 site.json 的 link 欄位決定，之後要換網址只改 JSON 即可）：
- *  - 海報模式（slide.poster=true）：圖片本身已含文案與按鈕設計，手機 4:3 裁切靠左。
+ *  - 海報模式（slide.poster=true）：圖片本身已含文案與按鈕設計。整組都是海報時，
+ *    手機版維持與桌機相同的圖片比例、整張完整露出（2026-09-18 主理人指定，不再做 4:3 裁切）。
  *    連結可填 #picnic-plan 這類錨點，會捲動到首頁對應區塊。
  *  - 分割式版型（非海報）：左側格紋色塊（theme: butter／rose）＋標題，
  *    右側情境實拍；手機改上文下圖、隱藏副標。
@@ -28,7 +30,16 @@ import { TitleBreakPipe } from '../core/text';
   template: `
     <section class="carousel-shell" aria-label="主打活動輪播">
       <div class="wrap">
-        <div class="carousel" (mouseenter)="stop()" (mouseleave)="start()">
+        <!-- 全部都是海報圖時加 carousel--poster-only：手機版不把比例壓成 4:3，
+            維持與桌機相同的圖片比例，整張 Banner 完整露出不被左右裁切
+            （2026-09-18 主理人指定）。日後若混入分割式版型，這個標記會自動消失、
+            手機版回到 4:3 的上文下圖版型 -->
+        <div
+          class="carousel"
+          [class.carousel--poster-only]="posterOnly()"
+          (mouseenter)="stop()"
+          (mouseleave)="start()"
+        >
           <div class="carousel-track">
             @for (s of slides(); track $index) {
               @if (s.poster) {
@@ -117,6 +128,13 @@ import { TitleBreakPipe } from '../core/text';
 export class Carousel {
   readonly slides = input.required<CarouselSlide[]>();
   readonly index = signal(0);
+
+  /** 這組輪播是不是「清一色海報圖」：是的話手機版維持圖片原本的比例（不裁切）；
+   *  只要有一張是分割式版型，就回到手機版 4:3 的上文下圖規格 */
+  readonly posterOnly = computed(() => {
+    const list = this.slides();
+    return list.length > 0 && list.every((s) => !!s.poster);
+  });
 
   private timer: ReturnType<typeof setInterval> | null = null;
 
