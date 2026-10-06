@@ -77,6 +77,12 @@ CATEGORY_OF = {
     "61": "set",        # 小胖蜂套裝（織女手工系列）
     "62": "dress",      # 貴族千鳥格裙
     "63": "top",        # 馬海毛質感毛衣
+    # 2026-10-06 全量同步新增（66 泰服歸套裝為主理人指定）
+    "64": "headwear",   # 三角頭巾（織女手工系列）
+    "65": "bag",        # 鬆弛感草編包
+    "66": "set",        # 手工訂製泰服
+    "67": "dress",      # 飄飄紗裙
+    "68": "accessory",  # 2.5公分帥氣領帶
 }
 FESTIVE = {"33"}  # 節慶限定標籤
 
@@ -282,8 +288,9 @@ def main():
 
     # 驗證
     errors = []
-    if len(items) != 62:
-        errors.append(f"商品數 {len(items)} ≠ 62")
+    # 每項商品都要有分類，所以分類對照表的筆數就是應有的商品數
+    if len(items) != len(CATEGORY_OF):
+        errors.append(f"商品數 {len(items)} ≠ 分類對照表 {len(CATEGORY_OF)} 項（md 漏寫或多寫了商品）")
     for item in items:
         if not (ROOT / item["image"]).exists():
             errors.append(f"#{item['id']} 圖片不存在：{item['image']}")

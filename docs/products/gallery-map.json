@@ -41,6 +41,7 @@
       "assets/images/products/gallery/05-2608281325447262.jpg",
       "assets/images/products/gallery/05-2608281325447264.jpg",
       "assets/images/products/gallery/05-2608281325448072.jpg",
+      "assets/images/products/gallery/05-2609301371402338.jpg",
       "assets/images/products/variants/05_紫底白點.jpg",
       "assets/images/products/gallery/05-2608281325447898.jpg"
     ],
@@ -59,7 +60,10 @@
     ],
     "07": [
       "assets/images/products/07-handknit-horn-bag.jpg",
-      "assets/images/products/variants/07_黑.jpg"
+      "assets/images/products/variants/07_黑.jpg",
+      "assets/images/products/gallery/07-2609111346054541.jpg",
+      "assets/images/products/gallery/07-2609111346054542.jpg",
+      "assets/images/products/gallery/07-2609111346054543.jpg"
     ],
     "08": [
       "assets/images/products/08-pearl-necklace.jpg",
@@ -86,7 +90,7 @@
       "assets/images/products/gallery/11-2608281325446724.jpg",
       "assets/images/products/gallery/11-2608031287542022.jpg",
       "assets/images/products/gallery/11-2607021242050672.jpg",
-      "assets/images/products/variants/11_指定顏色-淺藍（請先洽官方LINE）.jpg"
+      "assets/images/products/variants/11_淺藍.jpg"
     ],
     "13": [
       "assets/images/products/13-fruit-earflap-hat.jpg",
@@ -94,7 +98,7 @@
       "assets/images/products/gallery/13-2607061247418798.jpg",
       "assets/images/products/gallery/13-2607061247235537.jpg",
       "assets/images/products/gallery/13-2607061247267746.jpg",
-      "assets/images/products/variants/13_草莓.jpg",
+      "assets/images/products/gallery/13-2607061247418491.jpg",
       "assets/images/products/gallery/13-2607061247418493.jpg",
       "assets/images/products/variants/13_蘋果.jpg",
       "assets/images/products/variants/13_蜜桃.jpg"
@@ -218,7 +222,7 @@
     "27": [
       "assets/images/products/gallery/27-2607301282017653.jpg",
       "assets/images/products/gallery/27-2607301282438380.jpg",
-      "assets/images/products/variants/27_遊戲機-粉（售完不補）.jpg",
+      "assets/images/products/gallery/27-2608191312399062.jpg",
       "assets/images/products/gallery/27-2608281325599688.jpg",
       "assets/images/products/gallery/27-2608281325599689.jpg",
       "assets/images/products/variants/27_爆米花-紅❤️.jpg",
@@ -526,13 +530,45 @@
       "assets/images/products/variants/63_緋紅.jpg",
       "assets/images/products/variants/63_霧灰.jpg",
       "assets/images/products/variants/63_奶白.jpg"
+    ],
+    "64": [
+      "assets/images/products/64-triangle-kerchief.jpg",
+      "assets/images/products/gallery/64-2609241364294763.jpg",
+      "assets/images/products/gallery/64-2609241364294761.jpg",
+      "assets/images/products/gallery/64-2609241364294760.jpg",
+      "assets/images/products/gallery/64-2609241364294762.jpg"
+    ],
+    "65": [
+      "assets/images/products/65-straw-bag.jpg"
+    ],
+    "66": [
+      "assets/images/products/66-thai-outfit.jpg",
+      "assets/images/products/gallery/66-2609131349419647.jpg",
+      "assets/images/products/gallery/66-2609131349419661.jpg",
+      "assets/images/products/gallery/66-2609131349419680.jpg",
+      "assets/images/products/gallery/66-2609131349419658.jpg",
+      "assets/images/products/gallery/66-2609131349419681.jpg",
+      "assets/images/products/gallery/66-2609131349419615.jpg"
+    ],
+    "67": [
+      "assets/images/products/67-tulle-skirt.jpg",
+      "assets/images/products/gallery/67-2609301371408204.jpg",
+      "assets/images/products/gallery/67-2609301371408206.jpg"
+    ],
+    "68": [
+      "assets/images/products/68-necktie.jpg",
+      "assets/images/products/gallery/68-2610061380157685.jpg",
+      "assets/images/products/gallery/68-2610061380150256.jpg",
+      "assets/images/products/gallery/68-2610061380150252.jpg",
+      "assets/images/products/gallery/68-2610061380150078.jpg",
+      "assets/images/products/gallery/68-2610061380150255.jpg",
+      "assets/images/products/gallery/68-2610061380159247.jpg"
     ]
   },
   "aliases": {
-    "assets/images/products/variants/02_兔耳帽.jpg": "assets/images/products/02-knit-ear-hat.jpg",
+    "assets/images/products/variants/02_奶白色（圖片色）.jpg": "assets/images/products/02-knit-ear-hat.jpg",
     "assets/images/products/variants/04_單一規格.jpg": "assets/images/products/04-shirt-skirt-set.jpg",
     "assets/images/products/variants/10_米色.jpg": "assets/images/products/10-work-apron.jpg",
-    "assets/images/products/variants/11_我不介意顏色~.jpg": "assets/images/products/11-denim-overalls.jpg",
     "assets/images/products/variants/14_蘋果.jpg": "assets/images/products/14-strawberry-headband.jpg",
     "assets/images/products/variants/18_格紋小布包-紅.jpg": "assets/images/products/18-strawhat.jpg",
     "assets/images/products/variants/18_遮陽草帽（鼠鼠尺寸）.jpg": "assets/images/products/18-strawhat.jpg",
@@ -552,63 +588,60 @@
   },
   "variant_images": {
     "01": {
-      "現貨，黃豆米鼠仔": "assets/images/products/variants/01_黃豆米鼠仔.jpg",
       "現貨，芝麻灰鼠仔": "assets/images/products/variants/01_芝麻灰鼠仔.jpg",
       "現貨，醬糰棕鼠仔": "assets/images/products/variants/01_醬糰棕鼠仔.jpg",
-      "現貨，麻糬白鼠仔": "assets/images/products/variants/01_麻糬白鼠仔.jpg"
-    },
-    "02": {
-      "預購，兔耳帽": "assets/images/products/02-knit-ear-hat.jpg"
+      "現貨，麻糬白鼠仔": "assets/images/products/variants/01_麻糬白鼠仔.jpg",
+      "現貨，黃豆米鼠仔": "assets/images/products/variants/01_黃豆米鼠仔.jpg"
     },
     "03": {
       "預購，粉藍天使睡衣（含小帽帽）": "assets/images/products/variants/03_粉藍天使睡衣（含小帽帽）.jpg",
       "預購，粉紅天使睡衣（含小帽帽）": "assets/images/products/variants/03_粉紅天使睡衣（含小帽帽）.jpg"
     },
     "04": {
-      "預購": "assets/images/products/04-shirt-skirt-set.jpg"
+      "現貨": "assets/images/products/04-shirt-skirt-set.jpg"
     },
     "05": {
-      "現貨，白底紅點": "assets/images/products/gallery/05-2608281325448072.jpg",
+      "現貨，綠白格": "assets/images/products/gallery/05-2608281325447264.jpg",
       "現貨，紅白格": "assets/images/products/gallery/05-2608281325447262.jpg",
+      "現貨，深藍白格": "assets/images/products/gallery/05-2609301371402338.jpg",
       "現貨，棕白格": "assets/images/products/gallery/05-2608281325447263.jpg",
       "現貨，紫底白點（售完不補）": "assets/images/products/variants/05_紫底白點.jpg",
       "現貨，黑白格": "assets/images/products/gallery/05-2608281325447898.jpg",
-      "現貨，綠白格": "assets/images/products/gallery/05-2608281325447264.jpg"
+      "現貨，白底紅點（售完不補）": "assets/images/products/gallery/05-2608281325448072.jpg"
     },
     "06": {
+      "現貨，深夜黑": "assets/images/products/variants/06_深夜黑.jpg",
       "現貨，暖陽黃": "assets/images/products/variants/06_暖陽黃.jpg",
-      "預購，晨霧綠": "assets/images/products/variants/06_晨霧綠.jpg",
+      "現貨，晨霧綠": "assets/images/products/variants/06_晨霧綠.jpg",
       "現貨，初綻粉": "assets/images/products/variants/06_初綻粉.jpg",
       "現貨，奶油米": "assets/images/products/variants/06_奶油米.jpg",
-      "現貨，晴空藍": "assets/images/products/variants/06_晴空藍.jpg",
-      "現貨，深夜黑": "assets/images/products/variants/06_深夜黑.jpg"
+      "現貨，晴空藍": "assets/images/products/variants/06_晴空藍.jpg"
     },
     "07": {
-      "現貨，黑": "assets/images/products/variants/07_黑.jpg"
+      "預購，黑": "assets/images/products/variants/07_黑.jpg",
+      "現貨，深棕": "assets/images/products/gallery/07-2609111346054542.jpg"
     },
     "08": {
-      "現貨，經典正圓": "assets/images/products/variants/08_經典正圓.jpg",
       "現貨，不規則香檳色": "assets/images/products/variants/08_不規則香檳色.jpg",
+      "現貨，經典正圓": "assets/images/products/variants/08_經典正圓.jpg",
       "現貨，蝴蝶吊墜": "assets/images/products/variants/08_蝴蝶吊墜.jpg",
       "現貨，愛心吊墜": "assets/images/products/variants/08_愛心吊墜.jpg"
     },
     "09": {
-      "預購，小香風洋裝 - 長版紫": "assets/images/products/variants/09_小香風洋裝-長版紫.jpg",
-      "預購，小香風洋裝 - 長版藍": "assets/images/products/variants/09_小香風洋裝-長版藍.jpg",
+      "現貨，小香風洋裝 - 長版紫": "assets/images/products/variants/09_小香風洋裝-長版紫.jpg",
+      "現貨，小香風洋裝 - 長版藍": "assets/images/products/variants/09_小香風洋裝-長版藍.jpg",
       "現貨，小香風洋裝 - 短版綠": "assets/images/products/variants/09_小香風洋裝-短版綠.jpg",
-      "預購，小香風洋裝 - 短版棕": "assets/images/products/variants/09_小香風洋裝-短版棕.jpg"
+      "現貨，小香風洋裝 - 短版棕": "assets/images/products/variants/09_小香風洋裝-短版棕.jpg"
     },
     "10": {
       "現貨，米色": "assets/images/products/10-work-apron.jpg"
     },
     "11": {
-      "請先與官方Line確認是否可指定顏色再下單，淺藍": "assets/images/products/variants/11_指定顏色-淺藍（請先洽官方LINE）.jpg",
-      "現貨，我不介意顏色~": "assets/images/products/11-denim-overalls.jpg"
+      "現貨，淺藍": "assets/images/products/11-denim-overalls.jpg"
     },
     "13": {
-      "現貨，蘋果": "assets/images/products/variants/13_蘋果.jpg",
-      "現貨，蜜桃": "assets/images/products/variants/13_蜜桃.jpg",
-      "現貨，草莓": "assets/images/products/variants/13_草莓.jpg"
+      "現貨，蘋果（售完不補）": "assets/images/products/variants/13_蘋果.jpg",
+      "現貨，蜜桃（售完不補）": "assets/images/products/variants/13_蜜桃.jpg"
     },
     "14": {
       "現貨，蘋果": "assets/images/products/14-strawberry-headband.jpg"
@@ -622,22 +655,18 @@
     },
     "18": {
       "現貨，格紋小布包 - 紅": "assets/images/products/18-strawhat.jpg",
-      "預購，格紋小布包 - 藍": "assets/images/products/variants/18_格紋小布包-藍.jpg",
+      "現貨，格紋小布包 - 藍": "assets/images/products/variants/18_格紋小布包-藍.jpg",
       "現貨，格紋小布包 - 粉": "assets/images/products/variants/18_格紋小布包-粉.jpg"
     },
     "19": {
-      "預購，【織女手工系列】斜背煦暖桃": "assets/images/products/variants/19_【織女手工系列】斜背煦暖桃.jpg",
-      "預購，【織女手工系列】斜背流光染": "assets/images/products/19-drink-bag.jpg",
-      "現貨，【織女手工系列】斜背果韻紅": "assets/images/products/variants/19_【織女手工系列】斜背果韻紅.jpg",
-      "預購，【織女手工系列】斜背森野綠": "assets/images/products/variants/19_【織女手工系列】斜背森野綠.jpg",
-      "預購，【織女手工系列】斜背奶白兔": "assets/images/products/gallery/19-2608281325446012.jpg",
-      "現貨，肩背珍珠白": "assets/images/products/variants/19_肩背珍珠白.jpg"
+      "現貨，【織女手工系列】斜背煦暖桃（售完不補）": "assets/images/products/variants/19_【織女手工系列】斜背煦暖桃.jpg",
+      "現貨，【織女手工系列】斜背森野綠（售完不補）": "assets/images/products/variants/19_【織女手工系列】斜背森野綠.jpg",
+      "現貨，【織女手工系列】斜背奶白兔（售完不補）": "assets/images/products/gallery/19-2608281325446012.jpg",
+      "現貨，肩背珍珠白": "assets/images/products/variants/19_肩背珍珠白.jpg",
+      "現貨，【織女手工系列】斜背流光染（售完不補）": "assets/images/products/19-drink-bag.jpg",
+      "現貨，【織女手工系列】斜背果韻紅（售完不補）": "assets/images/products/variants/19_【織女手工系列】斜背果韻紅.jpg"
     },
     "20": {
-      "現貨，【韓國直送】鋁罐飲料": "assets/images/products/variants/20_【韓國直送】鋁罐飲料.jpg",
-      "現貨，【韓國直送】鋁罐百事": "assets/images/products/variants/20_【韓國直送】鋁罐百事.jpg",
-      "現貨，【韓國直送】 鋁罐雪碧": "assets/images/products/variants/20_【韓國直送】鋁罐雪碧.jpg",
-      "現貨，【韓國直送】鋁罐可樂": "assets/images/products/variants/20_【韓國直送】鋁罐可樂.jpg",
       "現貨，棒棒糖 - 橘紅白": "assets/images/products/variants/20_棒棒糖-橘紅白.jpg",
       "現貨，棒棒糖 - 橘黃白": "assets/images/products/variants/20_棒棒糖-橘黃白.jpg",
       "現貨，鼠鼠棒棒糖 - 草莓紅": "assets/images/products/variants/20_鼠鼠棒棒糖-草莓紅.jpg",
@@ -645,16 +674,20 @@
       "現貨，鼠鼠棒棒糖 - 鳳梨黃": "assets/images/products/variants/20_鼠鼠棒棒糖-鳳梨黃.jpg",
       "現貨，鼠鼠棒棒糖 - 蜜桃粉": "assets/images/products/variants/20_鼠鼠棒棒糖-蜜桃粉.jpg",
       "現貨，鼠鼠棒棒糖 - 蘇打藍": "assets/images/products/variants/20_鼠鼠棒棒糖-蘇打藍.jpg",
+      "現貨，【韓國直送】鋁罐飲料": "assets/images/products/variants/20_【韓國直送】鋁罐飲料.jpg",
+      "現貨，【韓國直送】鋁罐百事": "assets/images/products/variants/20_【韓國直送】鋁罐百事.jpg",
+      "現貨，【韓國直送】 鋁罐雪碧": "assets/images/products/variants/20_【韓國直送】鋁罐雪碧.jpg",
       "現貨，招財金元寶（含黃色蠟繩）": "assets/images/products/variants/20_招財金元寶（含黃色蠟繩）.jpg",
       "現貨，瓶裝芬達": "assets/images/products/variants/20_瓶裝芬達.jpg",
-      "現貨，起司": "assets/images/products/variants/20_瓶裝芬達.jpg",
-      "現貨，鋁箔包柳橙汁": "assets/images/products/variants/20_瓶裝芬達.jpg",
+      "現貨，【韓國直送】鋁罐可樂": "assets/images/products/variants/20_【韓國直送】鋁罐可樂.jpg",
+      "現貨，【韓國直送】棒棒冰 - 黃綠": "assets/images/products/variants/20_【韓國直送】棒棒冰-黃綠.jpg",
+      "現貨，【韓國直送】棒棒冰 - 粉紅": "assets/images/products/variants/20_【韓國直送】棒棒冰-粉紅.jpg",
+      "現貨，【韓國直送】 棒棒冰 - 橘": "assets/images/products/variants/20_【韓國直送】棒棒冰-橘.jpg",
       "現貨，【韓國直送】 牛奶": "assets/images/products/variants/20_【韓國直送】牛奶.jpg",
       "現貨，【韓國直送】燒酒": "assets/images/products/variants/20_【韓國直送】燒酒.jpg",
       "現貨，【韓國直送】綠色汽水（吧?）": "assets/images/products/variants/20_【韓國直送】綠色汽水（吧？）.jpg",
-      "現貨，【韓國直送】棒棒冰 - 黃綠": "assets/images/products/variants/20_【韓國直送】棒棒冰-黃綠.jpg",
-      "現貨，【韓國直送】棒棒冰 - 粉紅": "assets/images/products/variants/20_【韓國直送】棒棒冰-粉紅.jpg",
-      "現貨，【韓國直送】 棒棒冰 - 橘": "assets/images/products/variants/20_【韓國直送】棒棒冰-橘.jpg"
+      "現貨，起司": "assets/images/products/variants/20_瓶裝芬達.jpg",
+      "現貨，鋁箔包柳橙汁": "assets/images/products/variants/20_瓶裝芬達.jpg"
     },
     "21": {
       "現貨，斗篷，紅": "assets/images/products/variants/21_斗篷，紅.jpg",
@@ -665,45 +698,44 @@
       "現貨，栗子咖啡": "assets/images/products/gallery/22-2606241230090553.jpg"
     },
     "23": {
-      "現貨，棕": "assets/images/products/variants/23_棕.jpg",
-      "現貨，紅格紋": "assets/images/products/variants/23_紅格紋.jpg",
       "現貨，棕格紋": "assets/images/products/variants/23_棕格紋.jpg",
+      "現貨，紅格紋": "assets/images/products/variants/23_紅格紋.jpg",
+      "現貨，棕": "assets/images/products/variants/23_棕.jpg",
       "現貨，紅": "assets/images/products/variants/23_紅.jpg"
     },
     "24": {
-      "現貨，黑": "assets/images/products/variants/24_黑.jpg",
-      "現貨，淺藍": "assets/images/products/variants/24_淺藍.jpg"
+      "現貨，淺藍": "assets/images/products/variants/24_淺藍.jpg",
+      "現貨，黑": "assets/images/products/variants/24_黑.jpg"
     },
     "25": {
-      "現貨，白": "assets/images/products/variants/25_白.jpg",
-      "現貨，黑": "assets/images/products/variants/25_黑.jpg"
+      "現貨，黑": "assets/images/products/variants/25_黑.jpg",
+      "現貨，白": "assets/images/products/variants/25_白.jpg"
     },
     "26": {
       "現貨，珍珠奶茶": "assets/images/products/variants/26_珍珠奶茶.jpg",
       "現貨，水壺 - 白": "assets/images/products/variants/26_水壺-白.jpg",
-      "預購，水壺 - 藍": "assets/images/products/variants/26_水壺-藍.jpg"
+      "現貨，水壺 - 藍": "assets/images/products/variants/26_水壺-藍.jpg"
     },
     "27": {
-      "現貨，爆米花 - 紅❤️": "assets/images/products/variants/27_爆米花-紅❤️.jpg",
-      "現貨，爆米花 - 白🤍": "assets/images/products/variants/27_爆米花-白🤍.jpg",
-      "現貨，爆米花 - 藍💙": "assets/images/products/variants/27_爆米花-藍💙.jpg",
       "現貨，爆米花 - 咖🤎": "assets/images/products/variants/27_爆米花-咖🤎.jpg",
-      "現貨，爆米花 - 粉🩷": "assets/images/products/variants/27_爆米花-粉🩷.jpg",
-      "現貨，遊戲機 - 粉（售完不補）": "assets/images/products/variants/27_遊戲機-粉（售完不補）.jpg"
+      "現貨，爆米花 - 藍💙": "assets/images/products/variants/27_爆米花-藍💙.jpg",
+      "現貨，爆米花 - 白🤍": "assets/images/products/variants/27_爆米花-白🤍.jpg",
+      "現貨，爆米花 - 紅❤️": "assets/images/products/variants/27_爆米花-紅❤️.jpg",
+      "現貨，爆米花 - 粉🩷": "assets/images/products/variants/27_爆米花-粉🩷.jpg"
     },
     "29": {
       "現貨，眼鏡 - 4.5cm - 透棕框": "assets/images/products/variants/29_眼鏡-4.5cm-透棕框.jpg",
       "現貨，墨鏡 - 4.5cm - 黑框": "assets/images/products/variants/29_墨鏡-4.5cm-黑框.jpg",
-      "現貨，眼鏡 - 4.5cm - 黑框透片": "assets/images/products/variants/29_眼鏡-4.5cm-黑框透片.jpg",
-      "現貨，眼鏡 - 4.5cm - 透灰": "assets/images/products/variants/29_眼鏡-4.5cm-透灰.jpg",
       "現貨，蛙鏡護目鏡 - 4.5cm - 黑": "assets/images/products/gallery/29-2607011240366333.jpg",
+      "現貨，眼鏡 - 4.5cm - 透灰": "assets/images/products/variants/29_眼鏡-4.5cm-透灰.jpg",
+      "現貨，眼鏡 - 4.5cm - 黑框透片": "assets/images/products/variants/29_眼鏡-4.5cm-黑框透片.jpg",
       "現貨，眼鏡 - 4.5cm - 透綠（售完不補）": "assets/images/products/variants/29_眼鏡-4.5cm-透綠（售完不補）.jpg",
       "現貨，眼鏡 - 4.5cm - 黑框藍片": "assets/images/products/variants/29_眼鏡-4.5cm-黑框藍片.jpg",
       "現貨，眼鏡 - 4.5cm - 黑框茶片": "assets/images/products/variants/29_眼鏡-4.5cm-黑框茶片.jpg",
       "現貨，眼鏡 - 4.5cm - 透框藍片": "assets/images/products/variants/29_眼鏡-4.5cm-透框藍片.jpg",
       "現貨，眼鏡 - 4.5cm - 透框湖綠": "assets/images/products/variants/29_眼鏡-4.5cm-透框湖綠.jpg",
       "現貨，墨鏡 - 4.5cm - 白框": "assets/images/products/variants/29_墨鏡-4.5cm-白框.jpg",
-      "預購，眼鏡 - 4.5cm - 棕框茶片": "assets/images/products/variants/29_眼鏡-4.5cm-棕框茶片.jpg"
+      "現貨，眼鏡 - 4.5cm - 棕框茶片": "assets/images/products/variants/29_眼鏡-4.5cm-棕框茶片.jpg"
     },
     "30": {
       "現貨，眼鏡 - 6cm - 漸層藍粉": "assets/images/products/variants/30_眼鏡-6cm-漸層藍粉.jpg",
@@ -719,7 +751,7 @@
       "現貨，眼鏡 - 6cm - 透棕框": "assets/images/products/gallery/30-2607061247195435.jpg",
       "預購，眼鏡 - 6cm - 透框茶片": "assets/images/products/variants/30_眼鏡-6cm-透框茶片.jpg",
       "預購，眼鏡 - 6cm - 粉框粉片": "assets/images/products/variants/30_眼鏡-6cm-粉框粉片.jpg",
-      "預購，護目鏡 - 6cm - 透明": "assets/images/products/variants/30_護目鏡-6cm-透明.jpg",
+      "現貨，護目鏡 - 6cm - 透明": "assets/images/products/variants/30_護目鏡-6cm-透明.jpg",
       "現貨，貓眼造型墨鏡 - 6cm - 白框黑片": "assets/images/products/variants/30_貓眼造型墨鏡-6cm-白框黑片.jpg",
       "現貨，眼鏡 - 6cm - 漸層粉黃（售完不補）": "assets/images/products/variants/30_眼鏡-6cm-漸層粉黃（售完不補）.jpg"
     },
@@ -739,16 +771,16 @@
       "現貨，熊熊藍（目前售完不補，斷貨中）": "assets/images/products/variants/31_熊熊藍（售完不補）.jpg"
     },
     "32": {
-      "現貨，金旗頭": "assets/images/products/variants/32_金旗頭.jpg",
-      "預購中，粉旗頭": "assets/images/products/variants/32_粉旗頭.jpg",
-      "預購中，紫旗頭": "assets/images/products/variants/32_紫旗頭.jpg",
-      "預購中，皇帝帽": "assets/images/products/variants/32_皇帝帽.jpg"
+      "預購，皇帝帽": "assets/images/products/variants/32_皇帝帽.jpg",
+      "預購，紫旗頭": "assets/images/products/variants/32_紫旗頭.jpg",
+      "現貨，粉旗頭": "assets/images/products/variants/32_粉旗頭.jpg",
+      "現貨，金旗頭": "assets/images/products/variants/32_金旗頭.jpg"
     },
     "33": {
       "現貨，南瓜套裝": "assets/images/products/33-halloween-pumpkin-bag.jpg"
     },
     "34": {
-      "預購，灰": "assets/images/products/gallery/34-2605271188586312.jpg"
+      "現貨，灰": "assets/images/products/gallery/34-2605271188586312.jpg"
     },
     "35": {
       "現貨，短版": "assets/images/products/gallery/35-2608281325451121.jpg",
@@ -767,7 +799,7 @@
       "現貨，金絲白（售完不補）": "assets/images/products/38-tweed-shawl.jpg"
     },
     "39": {
-      "預購，透明白拉桿": "assets/images/products/variants/39_透明白拉桿.jpg",
+      "現貨，透明白拉桿": "assets/images/products/variants/39_透明白拉桿.jpg",
       "現貨，透明黑拉桿": "assets/images/products/variants/39_透明黑拉桿.jpg"
     },
     "40": {
@@ -787,35 +819,35 @@
       "現貨，粉（目前售完不補，斷貨中）": "assets/images/products/variants/46_粉（售完不補）.jpg"
     },
     "48": {
+      "現貨，暮瑰粉": "assets/images/products/gallery/48-2608261323054352.jpg",
       "現貨，茉莉白": "assets/images/products/gallery/48-2608261323054364.jpg",
-      "現貨，丁香紫": "assets/images/products/gallery/48-2608261323054264.jpg",
-      "現貨，水仙黃": "assets/images/products/gallery/48-2608261323054292.jpg",
-      "現貨，暮瑰粉": "assets/images/products/gallery/48-2608261323054352.jpg"
+      "預購，丁香紫": "assets/images/products/gallery/48-2608261323054264.jpg",
+      "預購，水仙黃": "assets/images/products/gallery/48-2608261323054292.jpg"
     },
     "49": {
-      "現貨，灰白": "assets/images/products/variants/49_灰白.jpg",
       "現貨，綠白": "assets/images/products/variants/49_綠白.jpg",
       "現貨，紅白": "assets/images/products/variants/49_紅白.jpg",
       "現貨，深藍白": "assets/images/products/variants/49_深藍白.jpg",
+      "現貨，灰白": "assets/images/products/variants/49_灰白.jpg",
       "現貨，黑白": "assets/images/products/variants/49_黑白.jpg",
       "現貨，棕白": "assets/images/products/variants/49_棕白.jpg",
       "現貨，淺藍白": "assets/images/products/variants/49_淺藍白.jpg"
     },
     "50": {
-      "現貨，藍色": "assets/images/products/50-plaid-bow-dress.jpg",
       "現貨，黃色": "assets/images/products/variants/50_黃色.jpg",
       "現貨，粉紅色": "assets/images/products/variants/50_粉紅色.jpg",
       "現貨，紫色": "assets/images/products/variants/50_紫色.jpg",
-      "現貨，綠色": "assets/images/products/variants/50_綠色.jpg"
+      "現貨，綠色": "assets/images/products/variants/50_綠色.jpg",
+      "現貨，藍色": "assets/images/products/50-plaid-bow-dress.jpg"
     },
     "51": {
-      "預購，點點派對裙": "assets/images/products/51-dot-party-dress.jpg"
+      "現貨，點點派對裙": "assets/images/products/51-dot-party-dress.jpg"
     },
     "52": {
-      "現貨，西瓜可愛雙面": "assets/images/products/variants/52_西瓜可愛雙面.jpg",
-      "現貨，藍白條紋": "assets/images/products/variants/52_藍白條紋.jpg",
       "現貨，粉白條紋": "assets/images/products/variants/52_粉白條紋.jpg",
       "現貨，任一顏色+小草帽優惠套組（請訂單備註顏色）": "assets/images/products/variants/52_任一顏色+小草帽優惠套組（請訂單備註顏色）.jpg",
+      "現貨，西瓜可愛雙面": "assets/images/products/variants/52_西瓜可愛雙面.jpg",
+      "現貨，藍白條紋": "assets/images/products/variants/52_藍白條紋.jpg",
       "現貨，樂不濕鼠封底款-粉粉火鶴": "assets/images/products/52-swim-ring.jpg",
       "現貨，樂不濕鼠封底款-單顆櫻桃": "assets/images/products/variants/52_樂不濕鼠封底款-單顆櫻桃.jpg",
       "現貨，樂不濕鼠封底款-草莓甜甜圈": "assets/images/products/variants/52_樂不濕鼠封底款-草莓甜甜圈.jpg",
@@ -824,9 +856,9 @@
     },
     "55": {
       "現貨，范特西紅": "assets/images/products/variants/55_范特西紅.jpg",
-      "預購，芥末黃": "assets/images/products/variants/55_芥末黃.jpg",
+      "現貨，芥末黃": "assets/images/products/variants/55_芥末黃.jpg",
       "現貨，街頭灰": "assets/images/products/variants/55_街頭灰.jpg",
-      "預購，酷帥黑": "assets/images/products/variants/55_酷帥黑.jpg"
+      "現貨，酷帥黑": "assets/images/products/variants/55_酷帥黑.jpg"
     },
     "58": {
       "現貨，藍": "assets/images/products/variants/58_藍.jpg",
@@ -840,6 +872,14 @@
       "現貨，淺藍": "assets/images/products/variants/63_淺藍.jpg",
       "現貨，緋紅": "assets/images/products/variants/63_緋紅.jpg",
       "現貨，霧灰": "assets/images/products/variants/63_霧灰.jpg"
+    },
+    "68": {
+      "現貨，領帶 藏青白斜紋": "assets/images/products/gallery/68-2610061380150255.jpg",
+      "現貨，領帶 紅白斜紋": "assets/images/products/gallery/68-2610061380150252.jpg",
+      "現貨，領帶 藍白斜紋": "assets/images/products/gallery/68-2610061380150256.jpg",
+      "現貨，領帶 棕白斜紋": "assets/images/products/gallery/68-2610061380150078.jpg",
+      "現貨，領帶 綠白斜紋": "assets/images/products/gallery/68-2610061380159247.jpg",
+      "現貨，領帶 黑": "assets/images/products/68-necktie.jpg"
     }
   }
 }

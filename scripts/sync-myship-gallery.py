@@ -10,6 +10,7 @@
    照片順序、各規格的對應照片。
 2. **瑕疵品過濾**：規格名稱含「微瑕／瑕疵／出清／NG」的款式一律不進官網
    （主理人指定，2026-08-28）；只屬於這些款式的照片也不會下載。
+   另外 `EXCLUDED_IMAGES` 是主理人逐張指定的「永久不上架照片」，每次同步都會跳過。
 3. **重複照片自動略過**：用影像內容指紋（dHash＋aHash＋色彩簽章）比對，賣場自己
    重複上傳的同一張照片只留一張；官網已經有的主圖與規格圖直接**沿用既有路徑**，
    不重複下載也不重複存檔。色彩簽章是必要的：娃衣常常「同一個構圖、只有顏色不同」，
@@ -90,6 +91,21 @@ ID_MAP = {
     "2607261276591242": "56", "2607301282765164": "57", "2607261276506251": "58",
     "2607301282787467": "59", "2608141305368095": "60", "2608221317091584": "61",
     "2608191312438228": "62", "2608191312410619": "63",
+    # 2026-10-06 全量同步新增（編號照賣場建檔先後排）
+    "2609021333705522": "64", "2609041335604775": "65", "2609131349436525": "66",
+    "2609301371415301": "67", "2610061380029078": "68",
+}
+
+# 永久不上架的照片（主理人逐張裁示，2026-10-06 建立）：
+# 填賣場 CDN 檔名，後面註明是哪項商品、為什麼不上，例：
+#     "2601011234567890.jpg": "#67 飄飄紗裙：主理人指定不上架",
+# 列在這裡的照片每次全量同步都會跳過，不會因為重跑腳本又回到官網：
+#  - 之前已下載進 gallery/ 的同一張（含縮圖）會一併刪掉；
+#  - 賣場換個檔名重新上傳的同一張照片，用影像指紋比對也會擋下；
+#  - 如果某個規格綁的就是這張照片，該規格只是不跳圖，商品與規格本身照常上架。
+# ⚠️ 官網自己存的主圖（{編號}-xxx.jpg）與 variants/ 款式圖不會被自動刪換，
+#    腳本偵測到它們跟不上架照片是同一張時會印出提醒，要人工換掉。
+EXCLUDED_IMAGES = {
 }
 
 # 賣場已下架、官網保留展示的品項：沒有賣場相簿，只用官網既有照片組相簿
@@ -179,11 +195,12 @@ def parse_products(page):
             i["Cgim_Image_Path"]
             for i in sorted(obj.get("Images") or [], key=lambda x: x["Cgim_Ordering"])
             if i["Cgim_Image_Path"] not in defect_only
+            and i["Cgim_Image_Path"] not in EXCLUDED_IMAGES
         ]
         spec_images = {}
         for sp in specs:
             name, img = sp.get("Cgds_Spec") or "", sp.get("Cgds_CgimImagePath")
-            if img and not DEFECT_RE.search(name):
+            if img and img not in EXCLUDED_IMAGES and not DEFECT_RE.search(name):
                 spec_images[name] = img
         out.append({
             "cgdd_id": obj["Cgdd_Id"],
@@ -192,6 +209,12 @@ def parse_products(page):
             "spec_images": spec_images,
             "dropped_specs": dropped_specs,
             "dropped_images": sorted(defect_only),
+            # 這項商品出現在永久不上架清單裡的照片（相簿或規格綁定圖）
+            "excluded": sorted(
+                ({i["Cgim_Image_Path"] for i in obj.get("Images") or []}
+                 | {s.get("Cgds_CgimImagePath") for s in specs if s.get("Cgds_CgimImagePath")})
+                & set(EXCLUDED_IMAGES)
+            ),
         })
     return out
 
@@ -313,14 +336,33 @@ def main():
     alias_map = {}   # 既有規格圖 → 相簿裡的同一張照片（多顏色共用合照時用）
     variant_images = {}   # {商品編號: {賣場規格名: 相簿路徑}}，補官網還沒有規格圖的款式
     rows = []
-    stat = {"reuse": 0, "new": 0, "dup": 0, "cached": 0, "fail": 0}
+    stat = {"reuse": 0, "new": 0, "dup": 0, "cached": 0, "fail": 0, "excluded": 0}
     dropped_report = []
 
     for p in products:
         pid = ID_MAP[p["cgdd_id"]]
         if p["dropped_specs"]:
             dropped_report.append((pid, p["name"], p["dropped_specs"]))
-        locals_ = [(f, fingerprint(f)) for f in local_files_of(pid)]
+        # 永久不上架的照片：清掉之前下載過的檔案，並記下指紋，
+        # 賣場換檔名重傳的同一張也擋得住
+        blocked = []
+        for name in p["excluded"]:
+            dest = GALLERY_DIR / ("%s-%s.jpg" % (pid, Path(name).stem))
+            fp = fingerprint(dest) if dest.exists() else fingerprint(download(name) or b"")
+            if fp:
+                blocked.append(fp)
+            for f in (dest, thumb_path(rel(dest))):
+                if f.exists():
+                    f.unlink()
+                    stat["excluded"] += 1
+        locals_ = []
+        for f in local_files_of(pid):
+            fp = fingerprint(f)
+            if any(distance(fp, b) <= DUP_VS_LOCAL for b in blocked):
+                print("  ! #%s 官網自己存的 %s 和「永久不上架」的照片是同一張，"
+                      "腳本不會自動刪換，請人工換掉這張圖" % (pid, rel(f)))
+                continue
+            locals_.append((f, fp))
         entries = []          # [(官網路徑, 指紋)]
         cdn_to_path = {}      # 賣場 CDN 檔名 → 官網相簿路徑（用來接規格圖）
         for cdn_name in p["images"]:
@@ -336,6 +378,13 @@ def main():
                     stat["fail"] += 1
                     continue
                 fingerprint_ = fingerprint(data)
+            # 0) 與永久不上架的照片是同一張（賣場換檔名重傳）：略過
+            if any(distance(fingerprint_, b) <= DUP_VS_LOCAL for b in blocked):
+                if dest.exists():
+                    dest.unlink()
+                    stat["cached"] -= 1
+                stat["excluded"] += 1
+                continue
             # 1) 賣場自己重複上傳的同一張照片：略過
             if any(distance(fingerprint_, e[1]) <= DUP_IN_GALLERY for e in entries):
                 stat["dup"] += 1
@@ -455,6 +504,7 @@ def main():
     print("  賣場規格圖對應：%d 項商品、%d 個規格" % (len(variant_images), sum(len(v) for v in variant_images.values())))
     print("  縮圖列小圖：新產 %d 張、沿用 %d 張、失敗 %d 張" % (t_made, t_skipped, t_failed))
     print("  已濾除瑕疵／出清款：%d 個規格" % sum(len(d[2]) for d in dropped_report))
+    print("  永久不上架照片：清單 %d 張、本次擋下或清除 %d 個檔案" % (len(EXCLUDED_IMAGES), stat["excluded"]))
     print("  對照表：%s" % rel(OUT_MD))
 
 
