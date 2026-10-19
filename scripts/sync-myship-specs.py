@@ -17,6 +17,7 @@
   登記在下面的 NAME_ALIAS。
 - 商品名稱、主圖、官網文案都不動（文案要改另外改 docs/products/web-copy.md）。
 - 瑕疵／出清款一律跳過（與照片同步腳本同一套 DEFECT_RE）。
+- 尾款／訂金這種付款用的規格一律跳過（PAYMENT_RE）；訂金制訂製品改標全額（FULL_PRICE）。
 """
 
 import argparse
@@ -40,8 +41,17 @@ gallery = _load("sync_gallery", "sync-myship-gallery.py")
 build = _load("build_products", "build-products-json.py")
 
 # 官網手動整理、不跟賣場規格走的商品（主理人核准，2026-10-06）
-# 66 手工訂製泰服：賣場只有一個「訂金」規格，官網依描述改成裙裝款／褲裝款兩款完售展示
+# 66 手工訂製泰服：賣場只有一個說明用的規格（文字與價格不時更換），
+#    官網依主理人指定整理成裙裝款／褲裝款兩款，皆 NT$ 590（2026-10-19 起標價販售中）
 KEEP_SITE = {"66"}
+
+# 訂金＋尾款制的手工訂製品：賣場規格標的是尾款 NT$ 100，官網改標描述裡的全額
+# （主理人指定，2026-10-19）。款式、現貨預購、庫存仍照賣場同步；規格名稱裡的
+# 「（尾款）」等付款字樣要在 NAME_ALIAS 改成乾淨的款式名，否則會被付款規格過濾擋掉。
+FULL_PRICE = {
+    "70": 790,   # 清宮小鼠服（訂金 690＋尾款 100）
+    "72": 430,   # 條紋睡衣三件套（訂金 330＋尾款 100）
+}
 
 # 賣場規格名 → 官網款式名（寫法差很多但其實是同一款；比對用 variant_key 正規化後的鍵）
 NAME_ALIAS = {
@@ -54,6 +64,16 @@ NAME_ALIAS = {
     },
     "30": {"6cm黑框透片（請備註方框/圓框，沒寫將隨機出貨）": "眼鏡 - 6cm - 黑框透片（請備註方框或圓框）"},
     "54": {"小羊頭套+澎澎洋裝小羊配色 套裝優惠": "小羊頭套＋澎澎洋裝套裝優惠"},
+    "70": {"加官方line溝通訂製": "訂製款"},
+    # 新款旗頭一律是彈力繩款，賣場的「粉旗頭」沒寫，官網補上（主理人指定，2026-10-19）
+    "32": {"現貨，粉旗頭": "粉旗頭（彈力繩款）"},
+    "72": {
+        "條紋睡衣三件套－橘（尾款）": "橘",
+        "條紋睡衣三件套－藍（尾款）": "藍",
+        "條紋睡衣三件套－黃（尾款）": "黃",
+        "條紋睡衣三件套－粉（尾款）": "粉",
+        "條紋睡衣三件套－綠（尾款）": "綠",
+    },
     "57": {
         "相機顏色-現貨，黑,蠟繩顏色-黑色蠟繩": "黑相機・黑色蠟繩",
         "相機顏色-現貨，黑,蠟繩顏色-淺棕蠟繩": "黑相機・淺棕蠟繩",
@@ -98,6 +118,10 @@ def site_variants(block):
     return rows
 
 
+class SkipProduct(Exception):
+    """這項商品的賣場資料有問題：跳過不動並提醒，其他商品照常同步。"""
+
+
 def store_variants(pid, obj, old_rows):
     """賣場規格 → [(供貨, 官網款式名, 售價, 原價, 有庫存)]"""
     old_by_key = {build.variant_key(r[1]): r for r in old_rows}
@@ -112,26 +136,35 @@ def store_variants(pid, obj, old_rows):
         sm = re.match(r"(?:[^，,]*-)?(現貨|預購)", spec)
         bare = re.sub(r"^(現貨|預購中?)\s*[，,]\s*", "", spec).strip()
         name = alias.get(spec) or alias.get(bare)
+        aliased = name is not None
+        # 尾款／訂金這種付款用的規格不是款式，不上官網（主理人指定，2026-10-19）；
+        # 訂金制商品在 NAME_ALIAS 改過名的不算
+        if name is None and build.PAYMENT_RE.search(spec):
+            continue
         if name is None:
             old = old_by_key.get(build.variant_key(spec))
             name = old[1] if old else bare
         if not name or name in ("現貨", "預購"):
-            raise SystemExit("#%s 的賣場規格「%s」沒有款式名稱，請在 NAME_ALIAS 補一個官網名稱" % (pid, spec))
+            raise SkipProduct("#%s 的賣場規格「%s」沒有款式名稱，請在 NAME_ALIAS 補一個官網名稱" % (pid, spec))
         # 賣場沒寫現貨／預購（例：#30 黑框透片）就沿用官網原本的供貨方式，新款式預設現貨
         if sm:
             supply = sm.group(1)
         else:
             old = old_by_key.get(build.variant_key(name))
             supply = old[0] if old else "現貨"
-        price = int(s.get("Cgds_Price") or 0)
-        sale = int(s.get("Cgds_SPrice") or 0)
+        # 全額只套在 NAME_ALIAS 登記過的訂製款式上；賣場日後若加了一般規格，照賣場價格
+        full = FULL_PRICE.get(pid) if aliased else None
+        price = int(full or s.get("Cgds_Price") or 0)
+        sale = 0 if full else int(s.get("Cgds_SPrice") or 0)
         if not (sale or price):
-            raise SystemExit("#%s 的賣場規格「%s」沒有價格，請到賣場確認後再同步" % (pid, spec))
+            raise SkipProduct("#%s 的賣場規格「%s」沒有價格，請到賣場確認後再同步" % (pid, spec))
         out.append((supply, name, sale or price, price, int(s.get("Inventory") or 0) > 0))
+    if not out:
+        raise SkipProduct("#%s 過濾掉瑕疵款與付款用規格（尾款／訂金）後沒有任何款式" % pid)
     names = [r[1] for r in out]
     dup = sorted({n for n in names if names.count(n) > 1})
     if dup:
-        raise SystemExit("#%s 有兩個賣場規格對到同一個官網款式名稱：%s，請在 NAME_ALIAS 分開命名"
+        raise SkipProduct("#%s 有兩個賣場規格對到同一個官網款式名稱：%s（多半是賣場打錯字，請到賣場改名或在 NAME_ALIAS 分開命名）"
                          % (pid, "、".join(dup)))
     return out
 
@@ -226,7 +259,11 @@ def main():
             report.append("#%s 賣場上沒有可用的規格（全是瑕疵款或空的），這項先不動，請人工確認" % pid)
             return block
         old_rows = site_variants(block.partition("- **variants**:")[2])
-        new_rows = store_variants(pid, store[pid], old_rows)
+        try:
+            new_rows = store_variants(pid, store[pid], old_rows)
+        except SkipProduct as e:
+            report.append("⚠ %s；這項先不動" % e)
+            return block
         new_block = rewrite_block(block, new_rows)
         if new_block != block:
             changed += 1

@@ -93,7 +93,13 @@ ID_MAP = {
     "2608191312438228": "62", "2608191312410619": "63",
     # 2026-10-06 全量同步新增（編號照賣場建檔先後排）
     "2609021333705522": "64", "2609041335604775": "65", "2609131349436525": "66",
-    "2609301371415301": "67", "2610061380029078": "68",
+    "2609301371415301": "67",
+    # #68 領帶：賣場 2026-10 下架後重新上架（舊賣場編號 2610061380029078 已消失），
+    # 六色與 13 張照片完全相同，主理人指定沿用 #68（2026-10-19）
+    "2610071381056288": "68",
+    # 2026-10-19 全量同步新增（編號照賣場建檔先後排）
+    "2610071381711096": "69", "2610141390997030": "70", "2610171395208737": "71",
+    "2610171395216412": "72",
 }
 
 # 永久不上架的照片（主理人逐張裁示，2026-10-06 建立）：
@@ -286,6 +292,27 @@ def make_thumbs(gallery_map):
                 print("  x 縮圖失敗：%s／%s" % (rp, e))
                 failed += 1
     return made, skipped, failed
+
+
+def sweep_unused(gallery_map):
+    """刪掉 gallery/ 與 thumbs/gallery/ 裡已經沒有任何商品用到的照片。
+    會出現這種檔案的情況：賣場刪了某張照片、或商品下架後重新上架（賣場檔名全部換新，
+    舊檔名那份就沒人用了）。這兩個資料夾只放本腳本下載的照片，所以清掉不會誤刪
+    主理人自己放的主圖或 variants/ 款式圖。回傳刪掉的檔案數。"""
+    used = {Path(rp).name for paths in gallery_map.values() for rp in paths
+            if rp.startswith("assets/images/products/gallery/")}
+    # 只清「這次有同步到」的商品；暫時從賣場頁面消失的商品（賣場維護、下架中）
+    # 不在 gallery_map 裡，它的照片一律保留，等重新上架或主理人決定再處理
+    synced = set(gallery_map)
+    removed = 0
+    for folder in (GALLERY_DIR, THUMB_DIR / "gallery"):
+        if not folder.exists():
+            continue
+        for f in folder.glob("*.jpg"):
+            if f.name.split("-", 1)[0] in synced and f.name not in used:
+                f.unlink()
+                removed += 1
+    return removed
 
 
 def local_files_of(pid):
@@ -503,6 +530,13 @@ def main():
           % (stat["reuse"], stat["new"], stat["cached"], stat["dup"], stat["fail"]))
     print("  賣場規格圖對應：%d 項商品、%d 個規格" % (len(variant_images), sum(len(v) for v in variant_images.values())))
     print("  縮圖列小圖：新產 %d 張、沿用 %d 張、失敗 %d 張" % (t_made, t_skipped, t_failed))
+    # 清舊照片放在最後：對照表都寫好了、而且這次沒有任何下載失敗才清，
+    # 中途出錯時寧可留著舊檔，也不要讓對照表指到已刪掉的照片
+    if stat["fail"] == 0:
+        swept = sweep_unused(gallery_map)
+        print("  清掉已經沒有商品用到的舊照片：%d 個檔案（含縮圖）" % swept)
+    else:
+        print("  這次有照片下載失敗，先不清舊照片（下次全部成功時會再清）")
     print("  已濾除瑕疵／出清款：%d 個規格" % sum(len(d[2]) for d in dropped_report))
     print("  永久不上架照片：清單 %d 張、本次擋下或清除 %d 個檔案" % (len(EXCLUDED_IMAGES), stat["excluded"]))
     print("  對照表：%s" % rel(OUT_MD))

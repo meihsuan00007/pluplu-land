@@ -26,6 +26,10 @@ GALLERY_MAP = ROOT / "docs" / "products" / "gallery-map.json"
 # 這裡再擋一次：就算來源 md 被貼進微瑕款，產出的 JSON 也不會有。
 DEFECT_RE = re.compile(r"微瑕|瑕疵|出清|NG款|NG品|B品|福利品|格外品")
 
+# 付款用的規格（尾款／訂金）不是款式，一律不上官網，官網直接標總價（主理人指定，2026-10-19）。
+# 訂金制的訂製品由 sync-myship-specs.py 的 FULL_PRICE 改成全額、規格名去掉「尾款」後才寫進 md。
+PAYMENT_RE = re.compile(r"尾款|訂金")
+
 
 def variant_stem(pid, vname):
     """商品編號＋規格名稱 → 規格圖片的檔名主體（去空格、斜線改連字號）"""
@@ -83,6 +87,11 @@ CATEGORY_OF = {
     "66": "set",        # 手工訂製泰服
     "67": "dress",      # 飄飄紗裙
     "68": "accessory",  # 2.5公分帥氣領帶
+    # 2026-10-19 全量同步新增（70、72 歸套裝為主理人確認）
+    "69": "accessory",  # 超好用小工具 - 小毛梳
+    "70": "set",        # 清宮小鼠服（手工訂製系列）
+    "71": "dress",      # 亞麻圓領洋裝
+    "72": "set",        # 條紋睡衣三件套（泰國訂製手工系列）
 }
 FESTIVE = {"33"}  # 節慶限定標籤
 
@@ -150,7 +159,7 @@ def parse_products():
         variants = []
         for vm in re.finditer(r"^  - (.+)$", block, flags=re.M):
             # 瑕疵／出清款直接跳過，不進官網（主理人指定）
-            if DEFECT_RE.search(vm.group(1)):
+            if DEFECT_RE.search(vm.group(1)) or PAYMENT_RE.search(vm.group(1)):
                 continue
             parts = [p.strip() for p in vm.group(1).split("｜")]
             supply = "預購" if parts[0].startswith("預購") else "現貨"
